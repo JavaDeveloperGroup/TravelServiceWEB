@@ -1,0 +1,15 @@
+*.classpath
+.metadata
+*.project
+.settings
+.bin
+doc
+*.class
+bin
+.git
+RemoteSystemsTempFiles
+.recommenders
+build
+.jar
+/lib
+lib
