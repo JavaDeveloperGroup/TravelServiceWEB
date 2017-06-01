@@ -9,7 +9,6 @@ public class UserSession {
 
 	public UserSession() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserSession(HttpServletRequest request) {
@@ -20,4 +19,6 @@ public class UserSession {
 	public HttpSession getSession() {
 		return session;
 	}
+	
+	//request.getSession().invalidate();//close session
 }

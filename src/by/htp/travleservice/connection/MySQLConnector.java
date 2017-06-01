@@ -1,43 +1,44 @@
+
+
 package by.htp.travleservice.connection;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-import static by.htp.travleservice.util.ConstantValue.*;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public final class MySQLConnector {
-	public static Connection establishingConnection() {
-		ResourceBundle rb = ResourceBundle.getBundle(PARAM_DATABASE_CONFIG);
+	
+	private static Connection conn() throws ClassNotFoundException, SQLException {
+		
+		/*ResourceBundle rb = ResourceBundle.getBundle(PARAM_DATABASE_CONFIG);
 		String dbUrl = rb.getString(PARAM_DATABASE_URL);
 		String dbLogin = rb.getString(PARAM_DATABASE_LOGIN);
 		String dbPass = rb.getString(PARAM_DATABASE_PASS);
-		String dbDriverName = rb.getString(PARAM_DATABASE_DRIVER_NAME);
+		String dbDriverName = rb.getString(PARAM_DATABASE_DRIVER_NAME);*/
 
 		Connection conn = null;
-
+		InitialContext initContext = null;
+		DataSource ds = null;
+		
 		try {
-			Class.forName(dbDriverName);
-			conn = DriverManager.getConnection(dbUrl, dbLogin, dbPass);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+			initContext = new InitialContext();
+			ds = (DataSource) initContext.lookup("java:comp/env/jdbc/appname");
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 		
+		conn = ds.getConnection();
+		
+		//conn.close();
+		
+		/*Connection conn = null;
+		Class.forName(dbDriverName);
+		conn = DriverManager.getConnection(dbUrl, dbLogin, dbPass);*/
+		
 		return conn;
 	}
-	
-	/*public static PreparedStatement prepareStatement(String string) {
-		PreparedStatement ps = null;
-		try {
-			ps = establishingConnection().prepareStatement(string);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return ps;
-	}*/
+
 }

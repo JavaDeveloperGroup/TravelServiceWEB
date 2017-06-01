@@ -1,71 +1,49 @@
 package by.htp.travleservice.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.catalina.connector.Connector;
 
 import by.htp.travleservice.connection.MySQLConnector;
 import by.htp.travleservice.entity.Apartment;
+import by.htp.travleservice.entity.Hotel;
+import by.htp.travleservice.entity.Room;
 
-public class ApartmentDaoImpl implements ApartmentDao {
-
-	/*@Override
-	public Object select(Object obj, String string) {
-		PreparedStatement ps = null;
-		
-		if (obj instanceof Apartment) {
-			obj = new Apartment();
-				try {
-					ps = MySQLConnector.establishingConnection().prepareStatement(string);
-					ResultSet rs = ps.executeQuery();
-					while (rs.next()) {						
-						((Apartment) obj).setApartmentId(rs.getInt(1));
-						((Apartment) obj).setPrice(rs.getDouble(2));
-						((Apartment) obj).setStatus(rs.getString(3));
-						((Apartment) obj).setImage(rs.getString(4));
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
-		return obj;
-	}*/
+public class ApartmentDaoImpl extends PreparedStatementDao implements ApartmentDao {
 	
-	public Object select(Apartment apartment, String string) {
-		synchronized (this) {
-					PreparedStatement ps = null;
-					apartment = new Apartment();
-				try {
-					ps = MySQLConnector.establishingConnection().prepareStatement(string);
-					ResultSet rs = ps.executeQuery();
-					while (rs.next()) {						
-						apartment.setApartmentId(rs.getInt(1));
-						apartment.setPrice(rs.getDouble(2));
-						apartment.setStatus(rs.getString(3));
-						apartment.setImage(rs.getString(4));
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				System.out.println();
+	@Override
+	public List<Apartment> fetchApartment(String string) {
+
+		PreparedStatement ps = null;
+		List<Apartment> apartment = new ArrayList<Apartment>();
+		Hotel hotel = null;
+		Room room = null;
+		Connection conn = null;
+		
+		try {
+			ps = super.getPreparedStatement(string, conn);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Integer apartmentId = rs.getInt(1);
+				Double price = rs.getDouble(2);
+				String status = rs.getString(3);
+				String image = rs.getString(4);
+				
+				apartment.add(new Apartment(apartmentId, hotel, room, price, status, image));
+			}
+
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 
 		return apartment;
 	}
-
-	public boolean insertInto() {
-		
-		return false;
-	}
-
-	public boolean update() {
-		
-		return false;
-	}
-
-	public boolean delete() {
-		
-		return false;
-	}
-
+	
+	
 }

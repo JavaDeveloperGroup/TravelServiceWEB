@@ -6,27 +6,69 @@ public class Tour {
 	private String destination;
 	private String name;
 	private String type;
-	private String image;
 	private String description;
+	private String image;
+	
 	public Tour() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Tour(String destination, String name, String type, String image, String description) {
-		super();
-		this.destination = destination;
-		this.name = name;
-		this.type = type;
-		this.image = image;
-		this.description = description;
-	}
-	public Tour(Integer tourId, String destination, String name, String type, String image, String description) {
+	
+	public Tour(Integer tourId, String destination, String name, String type, String description, String image) {
 		super();
 		this.tourId = tourId;
 		this.destination = destination;
 		this.name = name;
 		this.type = type;
+		this.description = description;
 		this.image = image;
+	}
+
+	public Integer getTourId() {
+		return tourId;
+	}
+
+	public void setTourId(Integer tourId) {
+		this.tourId = tourId;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 }

@@ -3,6 +3,8 @@ package by.htp.travleservice.entity;
 public class Apartment {
 	
 	private Integer apartmentId;
+	private Hotel hotel;
+	private Room room;
 	private Double price;
 	private String status;
 	private String image;
@@ -11,16 +13,11 @@ public class Apartment {
 		super();
 	}
 
-	public Apartment(Double price, String status, String image) {
-		super();
-		this.price = price;
-		this.status = status;
-		this.image = image;
-	}
-
-	public Apartment(Integer apartmentId, Double price, String status, String image) {
+	public Apartment(Integer apartmentId, Hotel hotel, Room room, Double price, String status, String image) {
 		super();
 		this.apartmentId = apartmentId;
+		this.hotel = hotel;
+		this.room = room;
 		this.price = price;
 		this.status = status;
 		this.image = image;
@@ -32,6 +29,22 @@ public class Apartment {
 
 	public void setApartmentId(Integer apartmentId) {
 		this.apartmentId = apartmentId;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	public Double getPrice() {
