@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class MySQLConnector {
+	
+	private static final String DATASOURCE_NAME = "travelservice";
+	private static DataSource ds = null;
 	
 	private MySQLConnector(){}
 	
@@ -19,15 +23,35 @@ public class MySQLConnector {
 	public static MySQLConnector getInstance() {
 		return Singleton.INSTANCE;
 	}
+	
+	{
+		try {
+			
+			Context initContext = new InitialContext();
+			Context dataContext = (Context) initContext.lookup("java:jdbc/travelservice");
+			ds = (DataSource) dataContext.lookup(DATASOURCE_NAME);
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public Connection conn() {
 		
+		
 		Connection conn = null;
+		try {
+			conn = ds.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*Connection conn = null;
 		InitialContext initContext = null;
 		DataSource ds = null;
 		
 		try {
 			initContext = new InitialContext();
-			ds = (DataSource) initContext.lookup("java:jdbc/appname");
+			ds = (DataSource) initContext.lookup("");
 			try {
 				conn = ds.getConnection();
 			} catch (SQLException e) {
@@ -35,7 +59,7 @@ public class MySQLConnector {
 			}
 		} catch (NamingException e) {
 			e.printStackTrace();
-		}		
+		}	*/	
 
 		return conn;
 	}

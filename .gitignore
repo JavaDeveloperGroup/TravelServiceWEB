@@ -1,4 +1,4 @@
-*.classpath
+.classpath
 /classes
 /test-classes
 .metadata
@@ -15,3 +15,4 @@ build
 .jar
 /lib
 lib
+/target/

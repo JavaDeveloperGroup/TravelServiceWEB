@@ -16,8 +16,8 @@
 	</servlet-mapping>
 	<resource-ref>
 		<description>DB Connection</description>
-		<res-ref-name>jdbc/appname</res-ref-name>
+		<res-ref-name>jdbc/travelservice</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
+		<res-auth>MainServlet</res-auth>
 	</resource-ref>
 </web-app>
