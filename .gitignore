@@ -15,4 +15,5 @@ build
 .jar
 /lib
 lib
-/target/
+/target
+target

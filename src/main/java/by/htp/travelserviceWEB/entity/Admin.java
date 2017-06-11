@@ -13,19 +13,6 @@ public class Admin implements Serializable {
 		super();
 	}
 
-	public Admin(String login, String password) {
-		super();
-		this.login = login;
-		this.password = password;
-	}
-
-	public Admin(String login, String password, Role role) {
-		super();
-		this.login = login;
-		this.password = password;
-		this.role = role;
-	}
-
 	public Admin(Integer adminId, String login, String password, Role role) {
 		super();
 		this.adminId = adminId;

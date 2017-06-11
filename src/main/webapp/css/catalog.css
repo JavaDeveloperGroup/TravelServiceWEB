@@ -15,27 +15,12 @@ body {
 	background-repeat: no-repeat;
 	background-position: bottom; /*Изображение будет обрезано, в зависимости от значений*/
 }
-#wrapper{
-	width: 100%;
-	margin: 0 auto;
-}
-#header{
-	border-radius: 8px;
-	width: 100%;
-	height: 100px;
-	background-image: url(image/travel.jpg);
-}
 h1{
 	font-family: 'Lato', sans-serif;
 	text-align: center;
 	margin-top: 0px;
     margin-bottom: 0px;
-}
-h3{
-	font-family: 'Lato', sans-serif;
-	text-align: center;
-	margin-top: 0px;
-    margin-bottom: 0px;
+    color: white;
 }
 tr{
 	font-family: 'Raleway', sans-serif;
@@ -62,6 +47,7 @@ tr{
 	-webkit-border-radius: 5px;
 	border: 1px solid rgba(0,0,0,0.3);
 	border-bottom-width: 3px;
+	margin-top: 10px;
 }
 
 	.btn2:hover {
@@ -93,8 +79,10 @@ hr {
   width: 100%;
   position: relative;
   display: inline-block;
-  margin: 10px;
   text-align: center;
+  background: black;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .btn {
@@ -117,32 +105,6 @@ hr {
 
 .lg {
   width: 40%;
-}
-
-.cta {
-  background-color: $primary;
-  color: white;
-  transition: .2s ease;
-  
-  &:hover {
-    background-color: darken($primary, 5%);
-    color: $primary;
-    border: 1px solid $primary;
-    transition: .2s ease;
-  }
-}
-
-.ghost {
-  background-color: transparent;
-  color: $primary;
-  border: 1px solid $primary;
-  transition: .2s ease;
-  
-  &:hover {
-    background-color: $primary;
-    color: white;
-    transition: .2s ease;
-  }
 }
 
 .secondary {

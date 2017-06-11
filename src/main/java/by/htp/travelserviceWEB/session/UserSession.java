@@ -3,15 +3,15 @@ package by.htp.travelserviceWEB.session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class AdminSession {
+public class UserSession {
 	
 	private HttpSession session;
 
-	public AdminSession() {
+	public UserSession() {
 		super();
 	}
 
-	public AdminSession(HttpServletRequest request) {
+	public UserSession(HttpServletRequest request) {
 		super();
 		session = request.getSession(true);
 	}

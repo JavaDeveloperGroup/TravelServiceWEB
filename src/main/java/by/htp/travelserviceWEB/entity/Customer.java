@@ -16,39 +16,14 @@ public class Customer implements Serializable {
 	private String email;
 	private String phoneNumber;
 	private String driverLicense;
-	private String vip;
 	private Role role;
 	
 	public Customer() {
 		super();
 	}
 
-	public Customer(String login, String password) {
-		super();
-		this.login = login;
-		this.password = password;
-	}
-
-	public Customer(String login, String password, String name, String surname, String gender, Date birthday,
-			String passport, String email, String phoneNumber, String driverLicense, String vip, Role role) {
-		super();
-		this.login = login;
-		this.password = password;
-		this.name = name;
-		this.surname = surname;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.passport = passport;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.driverLicense = driverLicense;
-		this.vip = vip;
-		this.role = role;
-	}
-
 	public Customer(Integer userId, String login, String password, String name, String surname, String gender,
-			Date birthday, String passport, String email, String phoneNumber, String driverLicense, String vip,
-			Role role) {
+			Date birthday, String passport, String email, String phoneNumber, String driverLicense, Role role) {
 		super();
 		this.userId = userId;
 		this.login = login;
@@ -61,7 +36,6 @@ public class Customer implements Serializable {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.driverLicense = driverLicense;
-		this.vip = vip;
 		this.role = role;
 	}
 
@@ -153,21 +127,15 @@ public class Customer implements Serializable {
 		this.driverLicense = driverLicense;
 	}
 
-	public String getVip() {
-		return vip;
-	}
-
-	public void setVip(String vip) {
-		this.vip = vip;
-	}
-
-	public Role getRole() {
+	public Role getIdRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setIdRole(Role idRole) {
 		this.role = role;
 	}
+
+	
 	
 	
 

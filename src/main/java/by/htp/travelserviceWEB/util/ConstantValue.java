@@ -1,22 +1,10 @@
 package by.htp.travelserviceWEB.util;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 public final class ConstantValue {
 	
-	private HttpSession session;
-
-	public ConstantValue() {
-		super();
-	}
-
-	public ConstantValue(HttpServletRequest request) {
-		super();
-		session = request.getSession(true);
-	}
-
-	public HttpSession getSession() {
-		return session;
-	}
+	public static final String REQUEST_PARAM_ACTION = "action";
+	
+	public static final String PAGE_CATALOG_HOTEL = "/catalog_hotel.jsp";
+	public static final String PAGE_CATALOG_AUTO = "/catalog_auto.jsp";
+	public static final String PAGE_CATALOG_TOUR = "/catalog_tour.jsp";
 }

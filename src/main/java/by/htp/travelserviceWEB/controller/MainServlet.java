@@ -34,9 +34,9 @@ public class MainServlet extends HttpServlet {
 		if (command != null) {
 			CommandAction commandAction = CommandChooser.chooserAction(command);
 			page = commandAction.execute(request, response);
-			System.out.println(page);
-		}
-		RequestDispatcher disp = request.getRequestDispatcher(page);
-		disp.forward(request, response);
+			
+			RequestDispatcher disp = request.getRequestDispatcher(page);
+			disp.forward(request, response);
+		}		
 	}
 }
