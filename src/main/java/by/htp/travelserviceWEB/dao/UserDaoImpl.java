@@ -1,9 +1,12 @@
 package by.htp.travelserviceWEB.dao;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import by.htp.travelserviceWEB.connector.ConnectionPool;
 import by.htp.travelserviceWEB.connector.MySQLConnector;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
@@ -37,7 +40,7 @@ public class UserDaoImpl implements UserDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Integer userId = null;
+				Integer customerId = null;
 				String login = null;
 				String password = null;
 				String name = null;
@@ -53,7 +56,7 @@ public class UserDaoImpl implements UserDao {
 				Integer idRole = null;
 				String roleName = null;
 
-				userId = rs.getInt(1);
+				customerId = rs.getInt(1);
 				login = rs.getString(2);
 				password = rs.getString(3);
 				name = rs.getString(4);
@@ -68,7 +71,7 @@ public class UserDaoImpl implements UserDao {
 				roleName = rs.getString(14);
 
 				role = new Role(idRole, roleName);
-				customer = new Customer(userId, login, password, name, surname, gender, birthday, passport, email,
+				customer = new Customer(customerId, login, password, name, surname, gender, birthday, passport, email,
 						phoneNumber, driverLicense, role);
 			}
 
@@ -91,7 +94,7 @@ public class UserDaoImpl implements UserDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Integer userId = null;
+				Integer adminId = null;
 				String login = null;
 				String password = null;
 
@@ -99,7 +102,7 @@ public class UserDaoImpl implements UserDao {
 				Integer idRole = null;
 				String roleName = null;
 
-				userId = rs.getInt(1);
+				adminId = rs.getInt(1);
 				login = rs.getString(2);
 				password = rs.getString(3);
 			
@@ -107,7 +110,7 @@ public class UserDaoImpl implements UserDao {
 				roleName = rs.getString(6);
 
 				role = new Role(idRole, roleName);
-				admin = new Admin(userId, login, password, role);
+				admin = new Admin(adminId, login, password, role);
 			}
 
 		} catch (SQLException e) {
@@ -115,5 +118,41 @@ public class UserDaoImpl implements UserDao {
 		}
 
 		return admin;
+	}
+
+	public Customer makeCustomer(Customer customer) {
+		
+		//Customer customer = customerDTO;
+		
+		try {
+			
+			PreparedStatement ps = mySQLConnector.conn().prepareStatement("INSERT INTO travelservice.customer "
+				+ "(login, password, name, surname, gender, "
+				+ "birthday, passport, email, phone_number, driver_licence) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", 
+				PreparedStatement.RETURN_GENERATED_KEYS);
+			
+			ps.setString(1, customer.getLogin());
+			ps.setString(2, customer.getPassword());
+			ps.setString(3, customer.getName());
+			ps.setString(4, customer.getSurname());
+			ps.setString(5, customer.getGender());
+			ps.setDate(6, customer.getBirthday());
+			ps.setString(7, customer.getPassport());
+			ps.setString(8, customer.getEmail());
+			ps.setString(9, customer.getPhoneNumber());
+			ps.setString(10, customer.getDriverLicence());
+			
+			ps.executeUpdate(); 	
+			
+			ResultSet generatedKeys = ps.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				customer.setCustomerId(Integer.valueOf(generatedKeys.getInt(1)));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return customer;
 	}
 }

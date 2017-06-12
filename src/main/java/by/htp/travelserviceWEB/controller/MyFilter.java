@@ -24,19 +24,21 @@ public class MyFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) req;
 		HttpServletResponse httpResponse = (HttpServletResponse) resp;
-		String comm = httpRequest.getParameter("command");
+		String command = httpRequest.getParameter("command");
+		
+		System.out.println(command);
 		
 		/*if ("log_in".equals(comm)) {
 			String page = CommandChooser.chooserAction("log_in").execute(httpRequest, httpResponse);
 			RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher(page);
 			requestDispatcher.forward(req, resp);
 			return;
-		} else*/ {
+		} else*/ 
 			chain.doFilter(req, resp);
-		}
+		
 
-		/*RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/index.jsp");
-		requestDispatcher.forward(req, resp);*/
+		//RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/index.jsp");
+		//requestDispatcher.forward(req, resp);
 
 	}
 

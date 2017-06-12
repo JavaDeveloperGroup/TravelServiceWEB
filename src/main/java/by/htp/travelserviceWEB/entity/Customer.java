@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Customer implements Serializable {
 
-	private Integer userId;
+	private Integer customerId;
 	private String login;
 	private String password;
 	private String name;
@@ -15,17 +15,17 @@ public class Customer implements Serializable {
 	private String passport;
 	private String email;
 	private String phoneNumber;
-	private String driverLicense;
+	private String driverLicence;
 	private Role role;
 	
 	public Customer() {
 		super();
 	}
 
-	public Customer(Integer userId, String login, String password, String name, String surname, String gender,
-			Date birthday, String passport, String email, String phoneNumber, String driverLicense, Role role) {
+	public Customer(Integer customerId, String login, String password, String name, String surname, String gender,
+			Date birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {
 		super();
-		this.userId = userId;
+		this.customerId = customerId;
 		this.login = login;
 		this.password = password;
 		this.name = name;
@@ -35,16 +35,16 @@ public class Customer implements Serializable {
 		this.passport = passport;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.driverLicense = driverLicense;
+		this.driverLicence = driverLicence;
 		this.role = role;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getCustomerId() {
+		return customerId;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getLogin() {
@@ -119,19 +119,19 @@ public class Customer implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getDriverLicense() {
-		return driverLicense;
+	public String getDriverLicence() {
+		return driverLicence;
 	}
 
-	public void setDriverLicense(String driverLicense) {
-		this.driverLicense = driverLicense;
+	public void setDriverLicence(String driverLicence) {
+		this.driverLicence = driverLicence;
 	}
 
-	public Role getIdRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setIdRole(Role idRole) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

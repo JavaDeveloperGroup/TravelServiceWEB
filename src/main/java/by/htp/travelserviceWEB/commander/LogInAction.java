@@ -41,21 +41,21 @@ public class LogInAction implements CommandAction {
 			}
 			httpSession = request.getSession();
 			httpSession.setAttribute("user", admin);
-			request.setAttribute("", "");
+			//request.setAttribute("", "");
 			
 			Cookie cookieLog = new Cookie("login", login);
 			response.addCookie(cookieLog);
 			Cookie cookiePass = new Cookie("password", password);
 			response.addCookie(cookiePass);
 			
-			//Cookie[] cookies = request.getCookies();
+			Cookie[] cookies = request.getCookies();
 			
 			page = "/jsp/catalog.jsp";
 		}
 		else {
 			httpSession = request.getSession();
 			httpSession.setAttribute("user", customer);
-			request.setAttribute("", "");
+			//request.setAttribute("", "");
 			
 			Cookie cookieLog = new Cookie("login", login);
 			response.addCookie(cookieLog);

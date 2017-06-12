@@ -29,6 +29,8 @@ public class MainServlet extends HttpServlet {
 
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("sevlet");
+		
 		String command = request.getParameter("command");
 		String page = "";
 		if (command != null) {
@@ -39,4 +41,11 @@ public class MainServlet extends HttpServlet {
 			disp.forward(request, response);
 		}		
 	}
+
+	@Override
+	public void destroy() {
+		super.destroy();
+	}
+	
+	
 }
