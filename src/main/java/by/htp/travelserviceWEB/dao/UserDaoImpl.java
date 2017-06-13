@@ -122,17 +122,11 @@ public class UserDaoImpl implements UserDao {
 		return admin;
 	}
 
-<<<<<<< HEAD
 	public Customer makeCustomer(CustomerDTO customerDTO) {
 		
 		Customer customer = null;
 		
 		customer = customerDTO;
-=======
-	public Customer makeCustomer(Customer customer) {
-		
-		//Customer customer = customerDTO;
->>>>>>> ead200ba513bd829d0bf53accc9e7f6255a6fe89
 		
 		try {
 			

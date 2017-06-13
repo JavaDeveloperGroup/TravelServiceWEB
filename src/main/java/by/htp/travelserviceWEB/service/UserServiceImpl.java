@@ -41,14 +41,4 @@ public class UserServiceImpl implements UserService {
 		return userDao.makeCustomer(customerDTO);
 	}
 
-<<<<<<< HEAD
-=======
-	@Override
-	public Customer registrationCustomer(String login, String password, String name, String surname, String gender,
-			Date birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {
-		Customer customer = new Customer(null, login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicence, null);
-		return userDao.makeCustomer(customer);
-	}
-
->>>>>>> ead200ba513bd829d0bf53accc9e7f6255a6fe89
 }

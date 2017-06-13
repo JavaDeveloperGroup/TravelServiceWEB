@@ -53,7 +53,7 @@ public class LogInAction implements CommandAction {
 			Cookie cookiePass = new Cookie("password", password);
 			response.addCookie(cookiePass);
 			
-			Cookie[] cookies = request.getCookies();
+			//Cookie[] cookies = request.getCookies();
 			
 			page = "/jsp/admin_page.jsp";
 		}
