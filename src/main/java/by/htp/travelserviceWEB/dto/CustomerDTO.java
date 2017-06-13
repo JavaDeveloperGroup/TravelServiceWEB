@@ -1,11 +1,13 @@
-package by.htp.travelserviceWEB.entity;
+package by.htp.travelserviceWEB.dto;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Customer implements Serializable {
+import by.htp.travelserviceWEB.entity.Customer;
+import by.htp.travelserviceWEB.entity.Role;
 
-	private Integer customerId;
+public class CustomerDTO extends Customer implements Serializable {
+
 	private String login;
 	private String password;
 	private String name;
@@ -18,14 +20,13 @@ public class Customer implements Serializable {
 	private String driverLicence;
 	private Role role;
 	
-	public Customer() {
+	public CustomerDTO() {
 		super();
 	}
 
-	public Customer(Integer customerId, String login, String password, String name, String surname, String gender,
+	public CustomerDTO(String login, String password, String name, String surname, String gender,
 			Date birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {
 		super();
-		this.customerId = customerId;
 		this.login = login;
 		this.password = password;
 		this.name = name;
@@ -37,14 +38,6 @@ public class Customer implements Serializable {
 		this.phoneNumber = phoneNumber;
 		this.driverLicence = driverLicence;
 		this.role = role;
-	}
-
-	public Integer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
 	}
 
 	public String getLogin() {

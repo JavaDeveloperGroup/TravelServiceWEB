@@ -17,6 +17,11 @@ public final class CommandMap {
 		Map<String, CommandAction> mapCommand = new HashMap<String, CommandAction>(); 
 		mapCommand.put("log_in", new LogInAction());
 		mapCommand.put("log_out", new LogOutAction());
+<<<<<<< HEAD
+		mapCommand.put("sign_up", new SignUpAction());
+=======
+		mapCommand.put("sign_up", new SignUp());
+>>>>>>> ead200ba513bd829d0bf53accc9e7f6255a6fe89
 		//here are the commands
 		return mapCommand;
 	}

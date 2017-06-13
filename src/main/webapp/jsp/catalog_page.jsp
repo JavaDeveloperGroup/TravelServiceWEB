@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Catalog</title>
-<link href="css/catalog.css" rel="stylesheet" type="text/css" />
+<link href="css/catalog_page.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div style="width: 100%; height: 1px; clear: both;"></div>

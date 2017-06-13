@@ -1,0 +1,107 @@
+@CHARSET "UTF-8";
+body {
+	background-image: url('../image/backgr.jpg');
+	-moz-background-size: 100%;
+	-webkit-background-size: 100%;
+	-o-background-size: 100%;
+	background-size: 100%;
+	background-attachment: fixed;
+    background-size: cover; /* Масштабируем фон */
+}
+
+.form-row {
+	margin-bottom: 8px;
+	overflow: hidden;
+}
+
+.center {
+	text-align: center;
+	vertical-align: top;
+}
+
+.name {
+	padding: 0; /* Поля вокруг текста */
+	background-image: url('../image/mate.png');
+	margin-top: 1%;
+}
+
+.name2 {
+	background-image: url('../image/mate.png');
+}
+
+.label {
+	padding: 0; /* Поля вокруг текста */
+	margin-top: 1%;
+}
+
+.center_label {
+	text-align: center;
+	vertical-align: top;
+}
+
+.form-row input {
+	float: right;
+	height: 19px;
+	line-height: 19px;
+	margin: 0px;
+	padding: 0px 5px;
+	width: 287px;
+	border: 1px solid #ABADB3;
+}
+
+.form-row label {
+	hspace: 5;
+}
+
+.reg-form {
+	border-radius: 10px;
+	width: 416px;
+	background-image: url('../image/mate.png');
+	margin: 0 auto;
+}
+
+.form-row input[type=submit] {
+	padding:5px;
+	height:25px;
+	width:100%;
+	margin-bottom: 10px;
+	line-height: 10px;
+	background: #337AB7;
+	color:white;
+}
+
+.form-row input[type=submit]:hover {
+	background:#286090;
+}
+
+.hot-container {
+	min-height: 10px;
+	margin-top: 1px;
+	width: 100%;
+	text-align: center;
+}
+
+.btn {
+	display: inline-block;
+	color: #666;
+	background-color: #e3f7f9;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 20px;
+	padding: 10px 30px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-bottom-width: 3px;
+}
+
+	.btn:hover {
+		background-color: #e3e3e3;
+		border-color: rgba(0,0,0,0.5);
+	}
+	
+	.btn:active {
+		background-color: #CCC;
+		border-color: rgba(0,0,0,0.9);
+	}

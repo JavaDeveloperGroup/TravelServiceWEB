@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.service.UserService;
@@ -32,30 +33,34 @@ public class LogInAction implements CommandAction {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		
-		customer = userService.authoriseCustomer(login, password);
+		UserDTO userDTO = new UserDTO(login, password);
+		
+		customer = userService.authoriseCustomer(userDTO);
 		
 		if (customer == null) {
-			admin = userService.authoriseAdmin(login, password);
+			admin = userService.authoriseAdmin(userDTO);
 			if (admin == null) {
-				page = "/jsp/index.jsp";				
+				request.setAttribute("msg", "There is no user with such login.");
+				page = "/jsp/login_page.jsp";		
+				return page;
 			}
 			httpSession = request.getSession();
 			httpSession.setAttribute("user", admin);
-			request.setAttribute("", "");
+			//request.setAttribute("", "");
 			
 			Cookie cookieLog = new Cookie("login", login);
 			response.addCookie(cookieLog);
 			Cookie cookiePass = new Cookie("password", password);
 			response.addCookie(cookiePass);
 			
-			//Cookie[] cookies = request.getCookies();
+			Cookie[] cookies = request.getCookies();
 			
-			page = "/jsp/catalog.jsp";
+			page = "/jsp/admin_page.jsp";
 		}
 		else {
 			httpSession = request.getSession();
 			httpSession.setAttribute("user", customer);
-			request.setAttribute("", "");
+			//request.setAttribute("", "");
 			
 			Cookie cookieLog = new Cookie("login", login);
 			response.addCookie(cookieLog);
@@ -64,7 +69,7 @@ public class LogInAction implements CommandAction {
 			
 			//Cookie[] cookies = request.getCookies();
 			
-			page = "/jsp/catalog.jsp";
+			page = "/jsp/catalog_page.jsp";
 		}
 
 		return page;

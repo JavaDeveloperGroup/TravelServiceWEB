@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link href="catalog.css" rel="stylesheet" type="text/css" />
+<link href="" rel="stylesheet" type="text/css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,5 +15,7 @@
 	</form>
 	<a href="MainServlet?command=log_in">Login</a>
 	<hr />
+	<a href="jsp/sign_up.jsp"> <font face="monospace" color="#66CDAA">Sign up</font>
+	</a>
 </body>
 </html>

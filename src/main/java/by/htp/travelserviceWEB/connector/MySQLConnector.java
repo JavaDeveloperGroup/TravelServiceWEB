@@ -10,8 +10,7 @@ public class MySQLConnector {
 
 	private static final String DATASOURCE_NAME = "java:/comp/env/jdbc/travelservice";
 
-	private MySQLConnector() {
-	}
+	private MySQLConnector() {}
 
 	private static class Singleton {
 		private static final MySQLConnector INSTANCE = new MySQLConnector();

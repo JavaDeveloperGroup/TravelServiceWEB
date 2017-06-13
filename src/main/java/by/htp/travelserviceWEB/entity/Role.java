@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Role implements Serializable {
 	
-	private Integer apartmentId;
+	private Integer roletId;
 	private String name;
 	
 	public Role() {
@@ -16,18 +16,18 @@ public class Role implements Serializable {
 		this.name = name;
 	}
 
-	public Role(Integer apartmentId, String name) {
+	public Role(Integer roleId, String name) {
 		super();
-		this.apartmentId = apartmentId;
+		this.roletId = roletId;
 		this.name = name;
 	}
 
 	public Integer getApartmentId() {
-		return apartmentId;
+		return roletId;
 	}
 
-	public void setApartmentId(Integer apartmentId) {
-		this.apartmentId = apartmentId;
+	public void setApartmentId(Integer roleId) {
+		this.roletId = roleId;
 	}
 
 	public String getName() {
