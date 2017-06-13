@@ -1,18 +1,3 @@
-*.classpath
-.metadata
-*.project
-.settings
-.bin
-doc
-*.class
-bin
-.git
-RemoteSystemsTempFiles
-.recommenders
-build
-.jar
-/lib
-lib
 .classpath
 /classes
 /test-classes
@@ -32,4 +17,4 @@ build
 lib
 /target
 target
-.MF
+.gitignore
