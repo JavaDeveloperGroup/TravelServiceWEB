@@ -9,32 +9,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.CommandAction;
-import by.htp.travelserviceWEB.commander.CommandChooser;
+import by.htp.travelserviceWEB.commander.CommandManager;
+import by.htp.travelserviceWEB.connector.ConnectionPoolImpl;
+import by.htp.travelserviceWEB.connector.Connector;
 
 public class MainServlet extends HttpServlet {
 
-    public MainServlet() {
+	private static final long serialVersionUID = -8562737127959031335L;
+
+	public MainServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet");
 		processRequest(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost");
 		processRequest(request, response);
 	}
 
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("sevlet");
-		
 		String command = request.getParameter("command");
-		String page = "";
+		String page;
 		if (command != null) {
-			CommandAction commandAction = CommandChooser.chooserAction(command);
+			CommandAction commandAction = CommandManager.getInstance().init().get(command);
 			page = commandAction.execute(request, response);
 			
 			RequestDispatcher disp = request.getRequestDispatcher(page);
@@ -45,6 +45,7 @@ public class MainServlet extends HttpServlet {
 	@Override
 	public void destroy() {
 		super.destroy();
+		ConnectionPoolImpl.getInstance().close();
 	}
 	
 	

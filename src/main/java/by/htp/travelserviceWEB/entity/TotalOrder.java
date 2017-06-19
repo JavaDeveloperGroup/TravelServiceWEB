@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class TotalOrder implements Serializable {
 	
 	private Integer orderId;
-	private Customer customer;
+	private CustomerImpl customer;
 	private TourOrder tourOrder;
 	private HotelOrder hotelOrder;
 	private AutoOrder autoOrder;
@@ -15,7 +15,7 @@ public class TotalOrder implements Serializable {
 		super();
 	}
 
-	public TotalOrder(Customer customer, TourOrder tourOrder, HotelOrder hotelOrder, AutoOrder autoOrder,
+	public TotalOrder(CustomerImpl customer, TourOrder tourOrder, HotelOrder hotelOrder, AutoOrder autoOrder,
 			Double totalPrice) {
 		super();
 		this.customer = customer;
@@ -25,7 +25,7 @@ public class TotalOrder implements Serializable {
 		this.totalPrice = totalPrice;
 	}
 
-	public TotalOrder(Integer orderId, Customer customer, TourOrder tourOrder, HotelOrder hotelOrder,
+	public TotalOrder(Integer orderId, CustomerImpl customer, TourOrder tourOrder, HotelOrder hotelOrder,
 			AutoOrder autoOrder, Double totalPrice) {
 		super();
 		this.orderId = orderId;
@@ -44,11 +44,11 @@ public class TotalOrder implements Serializable {
 		this.orderId = orderId;
 	}
 
-	public Customer getCustomer() {
+	public CustomerImpl getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setCustomer(CustomerImpl customer) {
 		this.customer = customer;
 	}
 

@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<meta charset="utf-8">
-<link href="css/signup_page.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sign up</title>
+<link href="<c:url value="css/signup_page.css"/>" rel="stylesheet" type="text/css" />
 </head>
 <body class="center" topmargin="0">
 	<div class="name">
@@ -50,9 +50,9 @@
 				</div>
 
 				<div class='form-row'>
-					<label>Remove Pass.</label> <input placeholder="Remove Password"
+					<label>Repeat Pass.</label> <input placeholder="Repeat Password"
 						pattern="[a-zA-Z0-9]{4,8}" type="password" value="user"
-						name='rem_password' required>
+						name='repeat_password' required>
 				</div>
 
 				<div class='form-row'>
@@ -62,7 +62,7 @@
 
 				<div class="form-row">
 					<label>Birthday</label> <input type="date" placeholder="Birth date"
-						title="Format: YYYY-MM-DD" name="birthday" />
+						title="Format: YYYY-MM-DD" name="birthday" required/>
 				</div>
 
 				<div class='form-row'>
@@ -82,8 +82,8 @@
 				</div>
 
 				<div class='form-row'>
-					<label>Driver licence </label> <input pattern="[a-zA-Z]{2,3}"
-						value="No" name='driver_licence' required>
+					<label>Driver license </label> <input pattern="[a-zA-Z]{2,3}"
+						value="No" name='driver_license' required>
 				</div>
 
 				<div class="form-row">

@@ -7,11 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
-import by.htp.travelserviceWEB.entity.Customer;
+import by.htp.travelserviceWEB.entity.CustomerImpl;
 import by.htp.travelserviceWEB.service.UserService;
 import by.htp.travelserviceWEB.service.UserServiceImpl;
-
-import static by.htp.travelserviceWEB.util.ConstantValue.*;
+import by.htp.travelserviceWEB.util.Encryption;
 
 public class LogInAction implements CommandAction {
 	
@@ -25,15 +24,16 @@ public class LogInAction implements CommandAction {
 		
 		String page = null;
 		
-		Customer customer = null;
+		CustomerImpl customer = null;
 		Admin admin = null;
+		UserDTO userDTO = null;
 		
-		HttpSession httpSession;
+		HttpSession httpSession = request.getSession();
 		
 		String login = request.getParameter("login");
-		String password = request.getParameter("password");
+		String password = Encryption.md5Apache(request.getParameter("password"));
 		
-		UserDTO userDTO = new UserDTO(login, password);
+		userDTO = new UserDTO(login, password);
 		
 		customer = userService.authoriseCustomer(userDTO);
 		
@@ -41,35 +41,24 @@ public class LogInAction implements CommandAction {
 			admin = userService.authoriseAdmin(userDTO);
 			if (admin == null) {
 				request.setAttribute("msg", "There is no user with such login.");
-				page = "/jsp/login_page.jsp";		
+				page = "jsp/login_page.jsp";		
 				return page;
 			}
-			httpSession = request.getSession();
+			
 			httpSession.setAttribute("user", admin);
 			//request.setAttribute("", "");
 			
-			Cookie cookieLog = new Cookie("login", login);
-			response.addCookie(cookieLog);
-			Cookie cookiePass = new Cookie("password", password);
-			response.addCookie(cookiePass);
-			
-			//Cookie[] cookies = request.getCookies();
-			
-			page = "/jsp/admin_page.jsp";
+			page = "jsp/admin_page.jsp";
 		}
 		else {
-			httpSession = request.getSession();
+			
 			httpSession.setAttribute("user", customer);
 			//request.setAttribute("", "");
 			
-			Cookie cookieLog = new Cookie("login", login);
-			response.addCookie(cookieLog);
-			Cookie cookiePass = new Cookie("password", password);
-			response.addCookie(cookiePass);
+			response.addCookie(new Cookie("log", login));
+			response.addCookie(new Cookie("passw", request.getParameter("password")));
 			
-			//Cookie[] cookies = request.getCookies();
-			
-			page = "/jsp/catalog_page.jsp";
+			page = "jsp/catalog_hotel_page.jsp";
 		}
 
 		return page;

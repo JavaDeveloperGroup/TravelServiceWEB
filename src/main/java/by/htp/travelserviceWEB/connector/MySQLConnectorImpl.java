@@ -6,32 +6,32 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class MySQLConnector {
+public class MySQLConnectorImpl implements ConnectionProject{
 
 	private static final String DATASOURCE_NAME = "java:/comp/env/jdbc/travelservice";
 
-	private MySQLConnector() {}
+	private MySQLConnectorImpl() {}
 
 	private static class Singleton {
-		private static final MySQLConnector INSTANCE = new MySQLConnector();
+		private static final MySQLConnectorImpl INSTANCE = new MySQLConnectorImpl();
 	}
 
-	public static MySQLConnector getInstance() {
+	public static MySQLConnectorImpl getInstance() {
 		return Singleton.INSTANCE;
 	}
 
-	public Connection conn() {
+	public Connection getConnection() {
 
-		Connection conn = null;
+		Connection connection = null;
 		DataSource ds = null;
 		try {
 			InitialContext ic   = new InitialContext();
             ds = (DataSource)ic.lookup(DATASOURCE_NAME);
-			conn = ds.getConnection();
+			connection = ds.getConnection();
 		} catch (SQLException | NamingException e) {
 			e.printStackTrace();
 		}
 
-		return conn;
+		return connection;
 	}
 }

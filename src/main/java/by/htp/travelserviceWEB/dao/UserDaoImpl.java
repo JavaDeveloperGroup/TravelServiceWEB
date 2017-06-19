@@ -6,17 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.htp.travelserviceWEB.connector.ConnectionPool;
-import by.htp.travelserviceWEB.connector.MySQLConnector;
-import by.htp.travelserviceWEB.dto.CustomerDTO;
+import by.htp.travelserviceWEB.connector.Connector;
 import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
+import by.htp.travelserviceWEB.entity.CustomerImpl;
 import by.htp.travelserviceWEB.entity.Role;
 
 public class UserDaoImpl implements UserDao {
 
-	private MySQLConnector mySQLConnector = MySQLConnector.getInstance();
+	private Connector connector = Connector.getInstance();
+	private Connection connection;
 
 	private UserDaoImpl() {
 	}
@@ -29,13 +29,13 @@ public class UserDaoImpl implements UserDao {
 		return Singletone.INSTANCE;
 	}
 
-	public Customer fetchCustomer(UserDTO userDTO) {
+	public CustomerImpl fetchCustomer(UserDTO userDTO) {
 
-		Customer customer = null;
+		CustomerImpl customer = null;
 
 		try {
-
-			PreparedStatement ps = mySQLConnector.conn().prepareStatement(
+			connection = connector.getConnection();
+			PreparedStatement ps = connection.prepareStatement(
 					"SELECT * FROM customer left join role on customer.id_role = role.id_role where customer.login = ? and customer.password = ?");
 			ps.setString(1, userDTO.getLogin());
 			ps.setString(2, userDTO.getPassword());
@@ -73,9 +73,10 @@ public class UserDaoImpl implements UserDao {
 				roleName = rs.getString(14);
 
 				role = new Role(idRole, roleName);
-				customer = new Customer(customerId, login, password, name, surname, gender, birthday, passport, email,
+				customer = new CustomerImpl(customerId, login, password, name, surname, gender, birthday, passport, email,
 						phoneNumber, driverLicense, role);
 			}
+			connector.getBack(connection);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,8 +90,8 @@ public class UserDaoImpl implements UserDao {
 		Admin admin = null;
 
 		try {
-
-			PreparedStatement ps = mySQLConnector.conn().prepareStatement("SELECT * FROM admin left join role on admin.id_role = role.id_role where admin.login = ? and admin.password = ?");
+			connection = connector.getConnection();
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM admin left join role on admin.id_role = role.id_role where admin.login = ? and admin.password = ?");
 			ps.setString(1, userDTO.getLogin());
 			ps.setString(2, userDTO.getPassword());
 			ResultSet rs = ps.executeQuery();
@@ -114,6 +115,7 @@ public class UserDaoImpl implements UserDao {
 				role = new Role(idRole, roleName);
 				admin = new Admin(adminId, login, password, role);
 			}
+			connector.getBack(connection);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,17 +124,15 @@ public class UserDaoImpl implements UserDao {
 		return admin;
 	}
 
-	public Customer makeCustomer(CustomerDTO customerDTO) {
+	public CustomerImpl makeCustomer(Customer customerDTO) {
 		
-		Customer customer = null;
-		
-		customer = customerDTO;
+		CustomerImpl customer = (CustomerImpl) customerDTO;
 		
 		try {
-			
-			PreparedStatement ps = mySQLConnector.conn().prepareStatement("INSERT INTO travelservice.customer "
+			connection = connector.getConnection();
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO travelservice.customer "
 				+ "(login, password, name, surname, gender, "
-				+ "birthday, passport, email, phone_number, driver_licence) "
+				+ "birthday, passport, email, phone_number, driver_license) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", 
 				PreparedStatement.RETURN_GENERATED_KEYS);
 			
@@ -145,7 +145,7 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(7, customer.getPassport());
 			ps.setString(8, customer.getEmail());
 			ps.setString(9, customer.getPhoneNumber());
-			ps.setString(10, customer.getDriverLicence());
+			ps.setString(10, customer.getDriverLicense());
 			
 			ps.executeUpdate(); 	
 			
@@ -153,6 +153,7 @@ public class UserDaoImpl implements UserDao {
 			if (generatedKeys.next()) {
 				customer.setCustomerId(Integer.valueOf(generatedKeys.getInt(1)));
 			}
+			connector.getBack(connection);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

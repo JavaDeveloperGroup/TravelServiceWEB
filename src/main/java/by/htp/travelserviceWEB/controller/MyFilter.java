@@ -9,40 +9,40 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.htp.travelserviceWEB.commander.CommandChooser;
+import by.htp.travelserviceWEB.commander.CommandAction;
+import by.htp.travelserviceWEB.commander.CommandManager;
 
 public class MyFilter implements Filter {
 
-	public void destroy() {
-		
+	public void init(FilterConfig arg0) throws ServletException {
+
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
+
 		HttpServletRequest httpRequest = (HttpServletRequest) req;
 		HttpServletResponse httpResponse = (HttpServletResponse) resp;
 		String command = httpRequest.getParameter("command");
-		
-		System.out.println(command);
-		
-		/*if ("log_in".equals(comm)) {
-			String page = CommandChooser.chooserAction("log_in").execute(httpRequest, httpResponse);
-			RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher(page);
-			requestDispatcher.forward(req, resp);
-			return;
-		} else*/ 
+
+		/*if ("sign_up".equals(command) || "log_in".equals(command)) {
+			if (httpRequest.getSession().getId().equals(httpRequest.getCookies()[num].getValue()) && isId) {
+				RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/jsp/catalog_hotel_page.jsp");
+				requestDispatcher.forward(req, resp);
+				return;				
+			} else {
+				chain.doFilter(req, resp);
+			}
+		} else*/
+
 			chain.doFilter(req, resp);
-		
-
-		//RequestDispatcher requestDispatcher = req.getServletContext().getRequestDispatcher("/index.jsp");
-		//requestDispatcher.forward(req, resp);
-
 	}
 
-	public void init(FilterConfig arg0) throws ServletException {
-		System.out.println("Filter init");
+	public void destroy() {
+
 	}
 }

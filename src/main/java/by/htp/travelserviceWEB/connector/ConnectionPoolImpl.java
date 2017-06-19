@@ -6,12 +6,13 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class ConnectionPool {
+public final class ConnectionPoolImpl implements ConnectionProject {
+	
 	private ConcurrentHashMap<Connection, Boolean> connections;
 	private int size = 5;
 	private int numberOfConnection = 1;
 	
-	private ConnectionPool() {
+	private ConnectionPoolImpl() {
 		System.out.println(numberOfConnection);
 	}
 	
@@ -20,10 +21,10 @@ public final class ConnectionPool {
 	}
 	
 	private static class Singleton {
-		private  static final ConnectionPool INSTANCE = new ConnectionPool();
+		private  static final ConnectionPoolImpl INSTANCE = new ConnectionPoolImpl();
 	}
 	
-	public static ConnectionPool getInstance() {
+	public static ConnectionPoolImpl getInstance() {
 		return Singleton.INSTANCE;
 	}
 	public void initConnectionPool() {

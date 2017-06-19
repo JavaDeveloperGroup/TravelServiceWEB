@@ -1,16 +1,11 @@
 package by.htp.travelserviceWEB.service;
 
-import java.sql.Date;
-
-import javax.servlet.http.HttpServletRequest;
-
 import by.htp.travelserviceWEB.dao.UserDao;
 import by.htp.travelserviceWEB.dao.UserDaoImpl;
-import by.htp.travelserviceWEB.dto.CustomerDTO;
 import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.Role;
+import by.htp.travelserviceWEB.entity.CustomerImpl;
 
 public class UserServiceImpl implements UserService {
 
@@ -27,7 +22,7 @@ public class UserServiceImpl implements UserService {
 		return Singletone.INSTANCE;
 	}
 
-	public Customer authoriseCustomer(UserDTO userDTO) {
+	public CustomerImpl authoriseCustomer(UserDTO userDTO) {
 		return userDao.fetchCustomer(userDTO);
 	}
 
@@ -37,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Customer registrationCustomer(CustomerDTO customerDTO) {
+	public CustomerImpl registrationCustomer(Customer customerDTO) {
 		return userDao.makeCustomer(customerDTO);
 	}
 

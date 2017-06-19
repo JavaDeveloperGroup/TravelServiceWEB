@@ -1,13 +1,11 @@
-package by.htp.travelserviceWEB.dto;
+package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
 
-import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.Role;
+public class CustomerImpl implements Serializable, Customer {
 
-public class CustomerDTO extends Customer implements Serializable {
-
+	private Integer customerId;
 	private String login;
 	private String password;
 	private String name;
@@ -17,16 +15,17 @@ public class CustomerDTO extends Customer implements Serializable {
 	private String passport;
 	private String email;
 	private String phoneNumber;
-	private String driverLicence;
+	private String driverLicense;
 	private Role role;
 	
-	public CustomerDTO() {
+	public CustomerImpl() {
 		super();
 	}
 
-	public CustomerDTO(String login, String password, String name, String surname, String gender,
-			Date birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {
+	public CustomerImpl(Integer customerId, String login, String password, String name, String surname, String gender,
+			Date birthday, String passport, String email, String phoneNumber, String driverLicense, Role role) {
 		super();
+		this.customerId = customerId;
 		this.login = login;
 		this.password = password;
 		this.name = name;
@@ -36,8 +35,16 @@ public class CustomerDTO extends Customer implements Serializable {
 		this.passport = passport;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.driverLicence = driverLicence;
+		this.driverLicense = driverLicense;
 		this.role = role;
+	}
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getLogin() {
@@ -112,12 +119,12 @@ public class CustomerDTO extends Customer implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getDriverLicence() {
-		return driverLicence;
+	public String getDriverLicense() {
+		return driverLicense;
 	}
 
-	public void setDriverLicence(String driverLicence) {
-		this.driverLicence = driverLicence;
+	public void setDriverLicense(String driverLicense) {
+		this.driverLicense = driverLicense;
 	}
 
 	public Role getRole() {

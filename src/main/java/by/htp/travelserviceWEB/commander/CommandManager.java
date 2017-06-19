@@ -3,26 +3,27 @@ package by.htp.travelserviceWEB.commander;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class CommandMap {
+public final class CommandManager {	
 	
-	private CommandMap() {
-		CommandMap.getInstance();
+	private CommandManager() {
+		init();
 	}
 	
-	private static class Singletone{
-		private static final CommandMap INSTANCE = new CommandMap();
+	static class Singleton {
+		private static final CommandManager INSTANCE = new CommandManager();
 	}
 	
-	public static Map map() {
+	public static CommandManager getInstance() {
+		return Singleton.INSTANCE;
+	}
+	
+	public Map<String, CommandAction> init() {
 		Map<String, CommandAction> mapCommand = new HashMap<String, CommandAction>(); 
 		mapCommand.put("log_in", new LogInAction());
 		mapCommand.put("log_out", new LogOutAction());
+		mapCommand.put("sign_up_page", new SignUpPageAction());
 		mapCommand.put("sign_up", new SignUpAction());
-		//here are the commands
 		return mapCommand;
 	}
-	
-	private static CommandMap getInstance() {
-		return Singletone.INSTANCE;
-	}
+
 }
