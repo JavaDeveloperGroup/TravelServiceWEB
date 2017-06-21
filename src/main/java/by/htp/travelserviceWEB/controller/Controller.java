@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.CommandAction;
 import by.htp.travelserviceWEB.commander.CommandManager;
-import by.htp.travelserviceWEB.connector.ConnectionPoolImpl;
+import by.htp.travelserviceWEB.connector.OwnConnection;
 
 public class Controller extends HttpServlet {
 
@@ -44,7 +44,7 @@ public class Controller extends HttpServlet {
 	@Override
 	public void destroy() {
 		super.destroy();
-		ConnectionPoolImpl.getInstance().close();
+		OwnConnection.getInstance().close();
 	}
 	
 	

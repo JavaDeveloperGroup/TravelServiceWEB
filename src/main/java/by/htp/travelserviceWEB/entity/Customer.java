@@ -18,29 +18,10 @@ public class Customer implements Serializable {
 	private String driverLicense;
 	private Role role;
 	
-	public Customer() {
-		super();
-	}
-
-	public Customer(String login, String password, String name, String surname, String gender, Date birthday,
-			String passport, String email, String phoneNumber, String driverLicense, Role role) {
-		super();
-		this.login = login;
-		this.password = password;
-		this.name = name;
-		this.surname = surname;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.passport = passport;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.driverLicense = driverLicense;
-		this.role = role;
-	}
+	public Customer() {}
 
 	public Customer(Integer customerId, String login, String password, String name, String surname, String gender,
 			Date birthday, String passport, String email, String phoneNumber, String driverLicense, Role role) {
-		super();
 		this.customerId = customerId;
 		this.login = login;
 		this.password = password;

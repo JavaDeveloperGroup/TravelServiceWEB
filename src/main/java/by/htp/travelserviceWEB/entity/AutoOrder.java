@@ -12,22 +12,10 @@ public class AutoOrder implements Serializable {
 	private Date dateEnd;
 	private Double orderPrice;
 	
-	public AutoOrder() {
-		super();
-	}
-
-	public AutoOrder(Auto autoRent, Salon salonEnd, Date dateStart, Date dateEnd, Double orderPrice) {
-		super();
-		this.autoRent = autoRent;
-		this.salonEnd = salonEnd;
-		this.dateStart = dateStart;
-		this.dateEnd = dateEnd;
-		this.orderPrice = orderPrice;
-	}
+	public AutoOrder() {}
 
 	public AutoOrder(Integer autoOrderId, Auto autoRent, Salon salonEnd, Date dateStart, Date dateEnd,
 			Double orderPrice) {
-		super();
 		this.autoOrderId = autoOrderId;
 		this.autoRent = autoRent;
 		this.salonEnd = salonEnd;

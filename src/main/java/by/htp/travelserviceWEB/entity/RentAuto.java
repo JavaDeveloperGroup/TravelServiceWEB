@@ -10,20 +10,9 @@ public class RentAuto implements Serializable {
 	private String status;
 	private Double price;
 	
-	public RentAuto() {
-		super();
-	}
-
-	public RentAuto(Auto auto, Salon salonStart, String status, Double price) {
-		super();
-		this.auto = auto;
-		this.salonStart = salonStart;
-		this.status = status;
-		this.price = price;
-	}
+	public RentAuto() {}
 
 	public RentAuto(Integer rentAutoId, Auto auto, Salon salonStart, String status, Double price) {
-		super();
 		this.rentAutoId = rentAutoId;
 		this.auto = auto;
 		this.salonStart = salonStart;

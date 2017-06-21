@@ -6,17 +6,17 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class MySQLConnectorImpl implements ConnectionProject{
+public class ApacheConnector implements ConnectionFetch{
 
 	private static final String DATASOURCE_NAME = "java:/comp/env/jdbc/travelservice";
 
-	private MySQLConnectorImpl() {}
+	private ApacheConnector() {}
 
 	private static class Singleton {
-		private static final MySQLConnectorImpl INSTANCE = new MySQLConnectorImpl();
+		private static final ApacheConnector INSTANCE = new ApacheConnector();
 	}
 
-	public static MySQLConnectorImpl getInstance() {
+	public static ApacheConnector getInstance() {
 		return Singleton.INSTANCE;
 	}
 

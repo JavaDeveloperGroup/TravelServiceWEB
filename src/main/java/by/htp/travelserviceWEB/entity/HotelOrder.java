@@ -11,22 +11,9 @@ public class HotelOrder implements Serializable {
 	private Date dateEnd;
 	private Double orderPrice;
 	
-	public HotelOrder() {
-		super();
-	}
-
-	
-	public HotelOrder(Apartment apartment, Date dateStart, Date dateEnd, Double orderPrice) {
-		super();
-		this.apartment = apartment;
-		this.dateStart = dateStart;
-		this.dateEnd = dateEnd;
-		this.orderPrice = orderPrice;
-	}
-
+	public HotelOrder() {}
 
 	public HotelOrder(Integer hotelOrderId, Apartment apartment, Date dateStart, Date dateEnd, Double orderPrice) {
-		super();
 		this.hotelOrderId = hotelOrderId;
 		this.apartment = apartment;
 		this.dateStart = dateStart;

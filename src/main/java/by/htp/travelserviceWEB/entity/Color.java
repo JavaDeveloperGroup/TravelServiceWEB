@@ -7,17 +7,9 @@ public class Color implements Serializable {
 	private Integer colorId;
 	private String name;
 	
-	public Color() {
-		super();
-	}
-
-	public Color(String name) {
-		super();
-		this.name = name;
-	}
+	public Color() {}
 
 	public Color(Integer colorId, String name) {
-		super();
 		this.colorId = colorId;
 		this.name = name;
 	}

@@ -9,12 +9,9 @@ public class Admin implements Serializable {
 	private String password;
 	private Role role;
 	
-	public Admin() {
-		super();
-	}
+	public Admin() {}
 
 	public Admin(Integer adminId, String login, String password, Role role) {
-		super();
 		this.adminId = adminId;
 		this.login = login;
 		this.password = password;

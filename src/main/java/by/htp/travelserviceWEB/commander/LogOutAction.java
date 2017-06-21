@@ -14,7 +14,11 @@ public class LogOutAction implements CommandAction {
 		if (request.getSession() != null) {
 			request.getSession().invalidate();
 		}
-
+		saveAuthoriseData(request);
+		return page;
+	}
+	
+	private void saveAuthoriseData(HttpServletRequest request) {
 		Cookie[] cookie = request.getCookies();
 
 		for (int i = 0, k = cookie.length; i < k; i++) {
@@ -25,8 +29,6 @@ public class LogOutAction implements CommandAction {
 				request.setAttribute("password", cookie[i].getValue());
 			}
 		}
-
-		return page;
 	}
 
 }

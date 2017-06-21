@@ -14,25 +14,10 @@ public class TourOffer implements Serializable {
 	private Double price;
 	private String hot;
 	
-	public TourOffer() {
-		super();
-	}
-
-	public TourOffer(Tour tour, Bus bus, Date dateStart, Date dateEnd, Integer pessengers_per_order, Double price,
-			String hot) {
-		super();
-		this.tour = tour;
-		this.bus = bus;
-		this.dateStart = dateStart;
-		this.dateEnd = dateEnd;
-		this.pessengers_per_order = pessengers_per_order;
-		this.price = price;
-		this.hot = hot;
-	}
+	public TourOffer() {}
 
 	public TourOffer(Integer offerId, Tour tour, Bus bus, Date dateStart, Date dateEnd, Integer pessengers_per_order,
 			Double price, String hot) {
-		super();
 		this.offerId = offerId;
 		this.tour = tour;
 		this.bus = bus;

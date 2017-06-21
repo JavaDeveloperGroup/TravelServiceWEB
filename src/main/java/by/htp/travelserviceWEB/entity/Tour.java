@@ -11,25 +11,9 @@ public class Tour implements Serializable {
 	private String description;
 	private String image;
 	
-	public Tour() {
-		super();
-	}
-	
-	
-	
-	public Tour(String destination, String name, String type, String description, String image) {
-		super();
-		this.destination = destination;
-		this.name = name;
-		this.type = type;
-		this.description = description;
-		this.image = image;
-	}
-
-
+	public Tour() {}
 
 	public Tour(Integer tourId, String destination, String name, String type, String description, String image) {
-		super();
 		this.tourId = tourId;
 		this.destination = destination;
 		this.name = name;

@@ -7,17 +7,9 @@ public class BodyType implements Serializable {
 	private Integer bodyTypeId;
 	private String name;
 	
-	public BodyType() {
-		super();
-	}
-
-	public BodyType(String name) {
-		super();
-		this.name = name;
-	}
+	public BodyType() {}
 
 	public BodyType(Integer bodyTypeId, String name) {
-		super();
 		this.bodyTypeId = bodyTypeId;
 		this.name = name;
 	}

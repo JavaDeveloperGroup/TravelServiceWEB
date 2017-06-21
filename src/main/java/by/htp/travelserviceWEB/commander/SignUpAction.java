@@ -19,20 +19,8 @@ public class SignUpAction implements CommandAction {
 
 	private UserService userService;
 	
-	private String page;
-	
-	private String login;
-	private String password;
-	private String name;
-	private String surname;
-	private String gender;
-	private String birthDate;
-	private Date birthday;
-	private String passport;
-	private String email;
-	private String phoneNumber;
-	private String driverLicense;
-	private Role role;
+	private Customer customer;
+	private UserDTO userDTO;
 
 	public SignUpAction() {
 		userService = UserServiceImpl.getInstance();
@@ -40,7 +28,20 @@ public class SignUpAction implements CommandAction {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-
+		
+		String login;
+		String password;
+		String name;
+		String surname;
+		String gender;
+		String birthDate;
+		Date birthday;
+		String passport;
+		String email;
+		String phoneNumber;
+		String driverLicense;
+		Role role;
+		
 		password = Encryption.md5Apache(request.getParameter("password"));
 		login = request.getParameter("login");
 		name = request.getParameter("name");
@@ -54,6 +55,9 @@ public class SignUpAction implements CommandAction {
 
 		birthday = Date.valueOf(birthDate);
 		role = new Role(1, "customer");
+		
+		userDTO = new UserDTO(login, password);
+		customer = new Customer(null, login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicense, role);
 
 		return getPage(request, response);
 
@@ -61,12 +65,9 @@ public class SignUpAction implements CommandAction {
 	
 	private String getPage(HttpServletRequest request, HttpServletResponse response) {
 		
-		Customer customer;
-		UserDTO userDTO;
+		String page;
 		
 		HttpSession httpSession = request.getSession();
-		
-		userDTO = new UserDTO(login, password);
 		
 		customer = userService.authoriseCustomer(userDTO);	
 		
@@ -74,13 +75,12 @@ public class SignUpAction implements CommandAction {
 			Admin admin = null;
 			admin = userService.authoriseAdmin(userDTO);
 			if (admin == null) {
-				customer = new Customer(login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicense, role);
 				
 				customer = userService.registrationCustomer(customer);
 				
 				httpSession.setAttribute("customer", customer);
 
-				Cookie cookieLog = new Cookie("login", login);
+				Cookie cookieLog = new Cookie("login", customer.getLogin());
 				response.addCookie(cookieLog);
 				Cookie cookiePass = new Cookie("password", request.getParameter("password"));
 				response.addCookie(cookiePass);

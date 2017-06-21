@@ -9,19 +9,9 @@ public class TourOrder implements Serializable {
 	private Integer personNumber;
 	private Double orderPrice;
 	
-	public TourOrder() {
-		super();
-	}
-
-	public TourOrder(TourOffer tourOffer, Integer personNumber, Double orderPrice) {
-		super();
-		this.tourOffer = tourOffer;
-		this.personNumber = personNumber;
-		this.orderPrice = orderPrice;
-	}
+	public TourOrder() {}
 
 	public TourOrder(Integer tourOrderId, TourOffer tourOffer, Integer personNumber, Double orderPrice) {
-		super();
 		this.tourOrderId = tourOrderId;
 		this.tourOffer = tourOffer;
 		this.personNumber = personNumber;

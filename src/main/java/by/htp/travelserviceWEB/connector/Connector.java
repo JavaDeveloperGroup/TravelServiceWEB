@@ -19,17 +19,17 @@ public class Connector {
 	public Connection getConnection() {
 		try {
 			x = 1;
-			return ConnectionPoolImpl.getInstance().getConnection();
+			return OwnConnection.getInstance().getConnection();
 		}catch (Exception e) {
 			x = 0;
 			
-			return MySQLConnectorImpl.getInstance().getConnection();
+			return ApacheConnector.getInstance().getConnection();
 		}
 	}
 	
 	public void getBack(Connection conn) {
 		if(x == 0) {
-			ConnectionPoolImpl.getInstance().getBack(conn);
+			OwnConnection.getInstance().getBack(conn);
 		}
 	}
 

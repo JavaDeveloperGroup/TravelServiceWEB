@@ -8,20 +8,9 @@ public class Salon implements Serializable {
 	private String city;
 	private String address;
 	
-	public Salon() {
-		super();
-	}
-
-	
-	public Salon(String city, String address) {
-		super();
-		this.city = city;
-		this.address = address;
-	}
-
+	public Salon() {}
 
 	public Salon(Integer salonId, String city, String address) {
-		super();
 		this.salonId = salonId;
 		this.city = city;
 		this.address = address;

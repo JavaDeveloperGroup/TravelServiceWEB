@@ -11,21 +11,9 @@ public class Apartment implements Serializable{
 	private String status;
 	private String image;
 	
-	public Apartment() {
-		super();
-	}
-
-	public Apartment(Hotel hotel, Room room, Double price, String status, String image) {
-		super();
-		this.hotel = hotel;
-		this.room = room;
-		this.price = price;
-		this.status = status;
-		this.image = image;
-	}
+	public Apartment() {}
 
 	public Apartment(Integer apartmentId, Hotel hotel, Room room, Double price, String status, String image) {
-		super();
 		this.apartmentId = apartmentId;
 		this.hotel = hotel;
 		this.room = room;

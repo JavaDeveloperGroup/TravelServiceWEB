@@ -11,23 +11,10 @@ public class TotalOrder implements Serializable {
 	private AutoOrder autoOrder;
 	private Double totalPrice;
 	
-	public TotalOrder() {
-		super();
-	}
-
-	public TotalOrder(Customer customer, TourOrder tourOrder, HotelOrder hotelOrder, AutoOrder autoOrder,
-			Double totalPrice) {
-		super();
-		this.customer = customer;
-		this.tourOrder = tourOrder;
-		this.hotelOrder = hotelOrder;
-		this.autoOrder = autoOrder;
-		this.totalPrice = totalPrice;
-	}
+	public TotalOrder() {}
 
 	public TotalOrder(Integer orderId, Customer customer, TourOrder tourOrder, HotelOrder hotelOrder,
 			AutoOrder autoOrder, Double totalPrice) {
-		super();
 		this.orderId = orderId;
 		this.customer = customer;
 		this.tourOrder = tourOrder;

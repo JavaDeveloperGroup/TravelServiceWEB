@@ -16,27 +16,10 @@ public class Auto implements Serializable {
 	private BodyType bodyType;
 	private String image;
 	
-	public Auto() {
-		super();
-	}
-
-	public Auto(String title, String model, Date year, String transmition, String wheelDdrive, String fuilType,
-			Color color, BodyType bodyType, String image) {
-		super();
-		this.title = title;
-		this.model = model;
-		this.year = year;
-		this.transmition = transmition;
-		this.wheelDdrive = wheelDdrive;
-		this.fuilType = fuilType;
-		this.color = color;
-		this.bodyType = bodyType;
-		this.image = image;
-	}
+	public Auto() {}
 
 	public Auto(Integer autoId, String title, String model, Date year, String transmition, String wheelDdrive,
 			String fuilType, Color color, BodyType bodyType, String image) {
-		super();
 		this.autoId = autoId;
 		this.title = title;
 		this.model = model;

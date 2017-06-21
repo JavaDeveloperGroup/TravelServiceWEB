@@ -10,22 +10,9 @@ public class Room implements Serializable {
 	private String balcony;
 	private String conditioner;
 	
-	public Room() {
-		super();
-	}
-
-	
-	public Room(Integer capacity, String tv, String balcony, String conditioner) {
-		super();
-		this.capacity = capacity;
-		this.tv = tv;
-		this.balcony = balcony;
-		this.conditioner = conditioner;
-	}
-
+	public Room() {}
 
 	public Room(Integer roomId, Integer capacity, String tv, String balcony, String conditioner) {
-		super();
 		this.roomId = roomId;
 		this.capacity = capacity;
 		this.tv = tv;

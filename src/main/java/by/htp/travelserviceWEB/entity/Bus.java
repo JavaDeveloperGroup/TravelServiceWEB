@@ -9,19 +9,9 @@ public class Bus implements Serializable {
 	private Integer capacity;
 	private String registrationNumber;
 	
-	public Bus() {
-		super();
-	}
-	
-	public Bus(String name, Integer capacity, String registrationNumber) {
-		super();
-		this.name = name;
-		this.capacity = capacity;
-		this.registrationNumber = registrationNumber;
-	}
+	public Bus() {}
 
 	public Bus(Integer busId, String name, Integer capacity, String registrationNumber) {
-		super();
 		this.busId = busId;
 		this.name = name;
 		this.capacity = capacity;

@@ -2,7 +2,7 @@ package by.htp.travelserviceWEB.connector;
 
 import java.sql.Connection;
 
-public interface ConnectionProject {
+public interface ConnectionFetch {
 	
 	Connection getConnection();
 
