@@ -10,7 +10,6 @@ import by.htp.travelserviceWEB.connector.Connector;
 import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.CustomerImpl;
 import by.htp.travelserviceWEB.entity.Role;
 
 public class UserDaoImpl implements UserDao {
@@ -29,9 +28,9 @@ public class UserDaoImpl implements UserDao {
 		return Singletone.INSTANCE;
 	}
 
-	public CustomerImpl fetchCustomer(UserDTO userDTO) {
+	public Customer fetchCustomer(UserDTO userDTO) {
 
-		CustomerImpl customer = null;
+		Customer customer = null;
 
 		try {
 			connection = connector.getConnection();
@@ -73,7 +72,7 @@ public class UserDaoImpl implements UserDao {
 				roleName = rs.getString(14);
 
 				role = new Role(idRole, roleName);
-				customer = new CustomerImpl(customerId, login, password, name, surname, gender, birthday, passport, email,
+				customer = new Customer(customerId, login, password, name, surname, gender, birthday, passport, email,
 						phoneNumber, driverLicense, role);
 			}
 			connector.getBack(connection);
@@ -124,9 +123,7 @@ public class UserDaoImpl implements UserDao {
 		return admin;
 	}
 
-	public CustomerImpl makeCustomer(Customer customerDTO) {
-		
-		CustomerImpl customer = (CustomerImpl) customerDTO;
+	public Customer makeCustomer(Customer customer) {
 		
 		try {
 			connection = connector.getConnection();

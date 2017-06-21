@@ -38,14 +38,12 @@ public final class ConnectionPoolImpl implements ConnectionProject {
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = connections.size(); i < size; i++) {
 			try {
 				connections.put(DriverManager.getConnection(url, user, password), false);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

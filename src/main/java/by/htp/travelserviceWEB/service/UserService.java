@@ -3,11 +3,11 @@ package by.htp.travelserviceWEB.service;
 import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.CustomerImpl;
+import by.htp.travelserviceWEB.entity.Customer;
 
 public interface UserService {
 
-	CustomerImpl authoriseCustomer(UserDTO userDTO);
+	Customer authoriseCustomer(UserDTO userDTO);
 	Admin authoriseAdmin(UserDTO userDTO);
-	CustomerImpl registrationCustomer(Customer customerDTO);
+	Customer registrationCustomer(Customer customer);
 }

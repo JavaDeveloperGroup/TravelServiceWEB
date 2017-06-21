@@ -10,13 +10,13 @@
 	<font face="monospace" color="black" size="4"> <b>
 			<td><c:out value="${msg}" />
 	</b>
-		<form action="MainServlet" method="POST">
+		<form action="Controller" method="POST">
 			<input type="hidden" name="command" value="log_in" /> Login:<br />
 			<input type="text" name="login" value="${login}" /> <br />Password:<br />
 			<input type="password" name="password" value="${password}" /> <br />
 			<input type="submit" value="Log in" />
-		</form> <a href="MainServlet?command=log_in">Login</a>
-		<hr /> <a href="MainServlet?command=sign_up_page"> <font
+		
+		<hr /> <a href="Controller?command=sign_up_page"> <font
 			face="monospace" color="#66CDAA">Sign up</font>
 	</a>
 </body>

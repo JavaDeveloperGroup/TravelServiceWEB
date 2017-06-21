@@ -5,15 +5,15 @@ import java.sql.Date;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import by.htp.travelserviceWEB.dto.CustomerDTOImpl;
 import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.CustomerImpl;
 import by.htp.travelserviceWEB.entity.Role;
 import by.htp.travelserviceWEB.service.UserService;
 import by.htp.travelserviceWEB.service.UserServiceImpl;
+import by.htp.travelserviceWEB.util.Encryption;
 
 public class SignUpAction implements CommandAction {
 
@@ -21,15 +21,12 @@ public class SignUpAction implements CommandAction {
 	
 	private String page;
 	
-	private CustomerImpl customer;
-	private UserDTO userDTO;
-	private Customer customerDTO;
-	
 	private String login;
 	private String password;
 	private String name;
 	private String surname;
 	private String gender;
+	private String birthDate;
 	private Date birthday;
 	private String passport;
 	private String email;
@@ -44,33 +41,30 @@ public class SignUpAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
+		password = Encryption.md5Apache(request.getParameter("password"));
 		login = request.getParameter("login");
-		password = request.getParameter("password");
-		String repPassword = request.getParameter("repeat_password");
-		
-		if(!password.equals(repPassword)) {
-			page = "jsp/signup_page.jsp";
-			return page;
-		}
-		else {
-			name = request.getParameter("name");
-			surname = request.getParameter("surname");
-			gender = request.getParameter("gender");
-			String birthDate = request.getParameter("birthday");
-			passport = request.getParameter("passport");
-			email = request.getParameter("email");
-			phoneNumber = request.getParameter("phone_number");
-			driverLicense = request.getParameter("driver_license");
+		name = request.getParameter("name");
+		surname = request.getParameter("surname");
+		gender = request.getParameter("gender");
+		birthDate = request.getParameter("birthday");
+		passport = request.getParameter("passport");
+		email = request.getParameter("email");
+		phoneNumber = request.getParameter("phone_number");
+		driverLicense = request.getParameter("driver_license");
 
-			birthday = Date.valueOf(birthDate);
-			role = new Role(1, "customer");
+		birthday = Date.valueOf(birthDate);
+		role = new Role(1, "customer");
 
-			return getPage(request, response);
-		}		
+		return getPage(request, response);
+
 	}
 	
 	private String getPage(HttpServletRequest request, HttpServletResponse response) {
-		String page = null;
+		
+		Customer customer;
+		UserDTO userDTO;
+		
+		HttpSession httpSession = request.getSession();
 		
 		userDTO = new UserDTO(login, password);
 		
@@ -80,21 +74,16 @@ public class SignUpAction implements CommandAction {
 			Admin admin = null;
 			admin = userService.authoriseAdmin(userDTO);
 			if (admin == null) {
-				customerDTO = new CustomerDTOImpl(login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicense, role);
+				customer = new Customer(login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicense, role);
 				
-				customer = userService.registrationCustomer(customerDTO);
-
-				System.out.println(request.getSession().getId());
+				customer = userService.registrationCustomer(customer);
 				
-				request.getSession().setAttribute("user", customer);
-				// request.setAttribute("", "");
+				httpSession.setAttribute("customer", customer);
 
 				Cookie cookieLog = new Cookie("login", login);
 				response.addCookie(cookieLog);
 				Cookie cookiePass = new Cookie("password", request.getParameter("password"));
 				response.addCookie(cookiePass);
-
-				Cookie[] cookies = request.getCookies();
 
 				page = "jsp/catalog_hotel_page.jsp";
 				

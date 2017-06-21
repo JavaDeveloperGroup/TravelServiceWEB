@@ -5,7 +5,6 @@ import by.htp.travelserviceWEB.dao.UserDaoImpl;
 import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.CustomerImpl;
 
 public class UserServiceImpl implements UserService {
 
@@ -22,7 +21,7 @@ public class UserServiceImpl implements UserService {
 		return Singletone.INSTANCE;
 	}
 
-	public CustomerImpl authoriseCustomer(UserDTO userDTO) {
+	public Customer authoriseCustomer(UserDTO userDTO) {
 		return userDao.fetchCustomer(userDTO);
 	}
 
@@ -32,8 +31,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public CustomerImpl registrationCustomer(Customer customerDTO) {
-		return userDao.makeCustomer(customerDTO);
+	public Customer registrationCustomer(Customer customer) {
+		return userDao.makeCustomer(customer);
 	}
 
 }

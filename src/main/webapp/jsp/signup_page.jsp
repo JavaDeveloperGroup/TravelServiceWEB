@@ -20,7 +20,7 @@
 	</font>
 	<div class='reg-form'>
 		<div class='reg-form'>
-			<form action="MainServlet" method="POST">
+			<form action="Controller" method="POST">
 				<input type="hidden" name="command" value="sign_up" />
 				<p class="center">
 					<font face="monospace" color="black" size="6"> <b>SIGNUP</b>

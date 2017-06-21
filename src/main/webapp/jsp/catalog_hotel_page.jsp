@@ -15,9 +15,9 @@
 		</p>
 	</div>
 	<div>
-		<c:if test="${user==null}">
+		<c:if test="${customer==null}">
 			<div style="float: right; margin-left: 15px;">
-				<form action="MainServlet" method="POST">
+				<form action="Controller" method="POST">
 					<input type="hidden" value="log_in" name="command" />
 					<div style="float: left; margin-left: 15px;">
 						<input value="user" type="text" name="login" required />
@@ -33,13 +33,13 @@
 		</c:if>
 	</div>
 	<div>
-		<c:if test="${user!=null}">
+		<c:if test="${customer!=null}">
 			<div style="float: right;">
-				<form action="MainServlet" method="GET">
+				<form action="Controller" method="GET">
 					<input type="hidden" value="log_out" name="command" />
 					<div style="float: left; margin-left: 15px;">
 						<tr>
-							<td>${user.getLogin()}</td>
+							<td>${customer.getLogin()}</td>
 						</tr>
 					</div>
 					<div style="float: left; margin-left: 15px;">
@@ -53,7 +53,7 @@
 	<div class="row">
 		<div
 			style="margin-left: 30px; height: 70px; margin-bottom: 6px; background-image: url(image/auto.jpg); border-radius: 8px; margin-right: 30px; margin-top: 10px;">
-			<form action="MainServlet" method="GET">
+			<form action="Controller" method="GET">
 				<input type="hidden" value="catalog_auto" name="command" />
 				<button class="btn2" value="CATALOG" type="submit">RENTAL
 					AUTO</button>
@@ -61,7 +61,7 @@
 		</div>
 		<div
 			style="margin-left: 30px; height: 70px; margin-bottom: 20px; background-image: url(image/tour.jpg); border-radius: 8px; margin-right: 30px; margin-top: 10px;">
-			<form action="MainServlet" method="GET">
+			<form action="Controller" method="GET">
 				<input type="hidden" value="catalog_tour" name="command" />
 				<button class="btn2" value="CATALOG" type="submit">TRAVEL
 					TOUR</button>
@@ -71,7 +71,7 @@
 	<div>
 		<div
 			style="font-family: 'Raleway', sans-serif; float: left; margin-left: 0px; width: 250px; background: white">
-			<form action="MainServlet" method="GET">
+			<form action="Controller" method="GET">
 				<input type="hidden" value="sort_hotel" name="command" />
 				<div style="margin-bottom: 20px; margin-top: 30px;">
 					<select name="capacity">
@@ -98,7 +98,7 @@
 			</form>
 		</div>
 		<div style="background: #f2f2f2">
-			<form action="MainServlet" method="GET">
+			<form action="Controller" method="GET">
 				<input type="hidden" name="command" value="make_order_hotel">
 				<div style="margin-bottom: 30px;">
 					<table border="1">

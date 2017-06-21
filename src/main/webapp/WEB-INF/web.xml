@@ -6,24 +6,44 @@
 	<display-name>Archetype Created Web Application</display-name>
 	
 	<filter>
-		<filter-name>MyFilter</filter-name>
-		<filter-class>by.htp.travelserviceWEB.controller.MyFilter</filter-class>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>by.htp.travelserviceWEB.filter.EncodingFilter</filter-class>
 	</filter>
 	
 	<filter-mapping>
-		<filter-name>MyFilter</filter-name>
-		<url-pattern>/MainServlet</url-pattern>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/Controller</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>SecurityCommandFilter</filter-name>
+		<filter-class>by.htp.travelserviceWEB.filter.SecurityCommandFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>SecurityCommandFilter</filter-name>
+		<url-pattern>/Controller</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>SecurityUserFilter</filter-name>
+		<filter-class>by.htp.travelserviceWEB.filter.SecurityUserFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>SecurityUserFilter</filter-name>
+		<url-pattern>/Controller</url-pattern>
 	</filter-mapping>
 	
 	<servlet>
-		<display-name>MainServlet</display-name>
-		<servlet-name>MainServlet</servlet-name>
-		<servlet-class>by.htp.travelserviceWEB.controller.MainServlet</servlet-class>
+		<display-name>Controller</display-name>
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>by.htp.travelserviceWEB.controller.Controller</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>MainServlet</servlet-name>
-		<url-pattern>/MainServlet</url-pattern>
+		<servlet-name>Controller</servlet-name>
+		<url-pattern>/Controller</url-pattern>
 	</servlet-mapping>
 
 	<resource-ref>

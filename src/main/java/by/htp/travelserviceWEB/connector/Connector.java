@@ -19,10 +19,11 @@ public class Connector {
 	public Connection getConnection() {
 		try {
 			x = 1;
-			return MySQLConnectorImpl.getInstance().getConnection();
+			return ConnectionPoolImpl.getInstance().getConnection();
 		}catch (Exception e) {
 			x = 0;
-			return ConnectionPoolImpl.getInstance().getConnection();
+			
+			return MySQLConnectorImpl.getInstance().getConnection();
 		}
 	}
 	
