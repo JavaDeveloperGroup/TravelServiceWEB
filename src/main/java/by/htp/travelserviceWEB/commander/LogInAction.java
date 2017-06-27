@@ -5,19 +5,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.service.UserService;
-import by.htp.travelserviceWEB.service.UserServiceImpl;
+import by.htp.travelserviceWEB.entity.dto.UserTO;
+import by.htp.travelserviceWEB.service.factory.ServiceFactory;
 import by.htp.travelserviceWEB.util.Encryption;
+import by.htp.travelserviceWEB.util.Factory;
 
 public class LogInAction implements CommandAction {
 	
-	private UserService userService; 
+private ServiceFactory serviceFactory; 
 	
 	public LogInAction() {
-		userService = UserServiceImpl.getInstance();
+		serviceFactory = ServiceFactory.getInstance();
 	}
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -26,19 +26,19 @@ public class LogInAction implements CommandAction {
 		
 		Customer customer = null;
 		Admin admin = null;
-		UserDTO userDTO = null;
+		UserTO userDTO = null;
 		
 		HttpSession httpSession = request.getSession();
 		
 		String login = request.getParameter("login");
 		String password = Encryption.md5Apache(request.getParameter("password"));
 		
-		userDTO = new UserDTO(login, password);
+		userDTO = new UserTO(login, password);
 		
-		customer = userService.authoriseCustomer(userDTO);
+		customer = serviceFactory.getUserService().authoriseCustomer(userDTO);
 		
 		if (customer == null) {
-			admin = userService.authoriseAdmin(userDTO);
+			admin = serviceFactory.getUserService().authoriseAdmin(userDTO);
 			if (admin == null) {
 				request.setAttribute("msg", "There is no user with such login.");
 				page = "jsp/login_page.jsp";		
@@ -61,5 +61,4 @@ public class LogInAction implements CommandAction {
 
 		return page;
 	}
-	
 }

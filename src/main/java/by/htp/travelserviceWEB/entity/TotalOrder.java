@@ -2,6 +2,10 @@ package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
 
+import by.htp.travelserviceWEB.entity.auto.AutoOrder;
+import by.htp.travelserviceWEB.entity.hotel.HotelOrder;
+import by.htp.travelserviceWEB.entity.tour.TourOrder;
+
 public class TotalOrder implements Serializable {
 	
 	private Integer orderId;

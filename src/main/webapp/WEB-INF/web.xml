@@ -25,16 +25,6 @@
 		<url-pattern>/Controller</url-pattern>
 	</filter-mapping>
 	
-	<filter>
-		<filter-name>SecurityUserFilter</filter-name>
-		<filter-class>by.htp.travelserviceWEB.filter.SecurityUserFilter</filter-class>
-	</filter>
-	
-	<filter-mapping>
-		<filter-name>SecurityUserFilter</filter-name>
-		<url-pattern>/Controller</url-pattern>
-	</filter-mapping>
-	
 	<servlet>
 		<display-name>Controller</display-name>
 		<servlet-name>Controller</servlet-name>

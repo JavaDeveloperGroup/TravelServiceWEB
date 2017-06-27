@@ -2,6 +2,8 @@ package by.htp.travelserviceWEB.util;
 
 public final class ConstantValue {
 	
+	private ConstantValue(){}
+	
 	public static final String REQUEST_PARAM_ACTION = "action";
 	
 	public static final String PAGE_CATALOG_HOTEL = "/catalog_hotel.jsp";

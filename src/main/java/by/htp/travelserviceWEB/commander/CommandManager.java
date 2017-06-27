@@ -3,11 +3,13 @@ package by.htp.travelserviceWEB.commander;
 import java.util.HashMap;
 import java.util.Map;
 
+import static by.htp.travelserviceWEB.commander.EnumCommandAction.*;
+
 public final class CommandManager {	
 	
-	private CommandManager() {
-		init();
-	}
+private static final Map<EnumCommandAction, CommandAction> mapCommand = new HashMap<EnumCommandAction, CommandAction>(); 
+	
+	private CommandManager() {}
 	
 	static class Singleton {
 		private static final CommandManager INSTANCE = new CommandManager();
@@ -17,13 +19,15 @@ public final class CommandManager {
 		return Singleton.INSTANCE;
 	}
 	
-	public Map<String, CommandAction> init() {
-		Map<String, CommandAction> mapCommand = new HashMap<String, CommandAction>(); 
-		mapCommand.put("log_in", new LogInAction());
-		mapCommand.put("log_out", new LogOutAction());
-		mapCommand.put("sign_up_page", new SignUpPageAction());
-		mapCommand.put("sign_up", new SignUpAction());
-		return mapCommand;
+	static {
+		mapCommand.put(LOG_IN, new LogInAction());
+		mapCommand.put(LOG_OUT, new LogOutAction());
+		mapCommand.put(SIGN_UP_PAGE, new SignUpPageAction());
+		mapCommand.put(SIGN_UP, new SignUpAction());
 	}
 
+	public CommandAction getCommandAction(String command) {
+		EnumCommandAction enumCommandAction = initAction(command);
+		return mapCommand.get(enumCommandAction);
+	}
 }

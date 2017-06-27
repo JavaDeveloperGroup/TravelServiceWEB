@@ -7,23 +7,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.Role;
-import by.htp.travelserviceWEB.service.UserService;
-import by.htp.travelserviceWEB.service.UserServiceImpl;
+import by.htp.travelserviceWEB.entity.dto.UserTO;
+import by.htp.travelserviceWEB.service.factory.ServiceFactory;
 import by.htp.travelserviceWEB.util.Encryption;
 
 public class SignUpAction implements CommandAction {
 
-	private UserService userService;
+private ServiceFactory serviceFactory;
 	
 	private Customer customer;
-	private UserDTO userDTO;
+	private UserTO userDTO;
 
 	public SignUpAction() {
-		userService = UserServiceImpl.getInstance();
+		serviceFactory = ServiceFactory.getInstance();
 	}
 
 	@Override
@@ -56,7 +55,7 @@ public class SignUpAction implements CommandAction {
 		birthday = Date.valueOf(birthDate);
 		role = new Role(1, "customer");
 		
-		userDTO = new UserDTO(login, password);
+		userDTO = new UserTO(login, password);
 		customer = new Customer(null, login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicense, role);
 
 		return getPage(request, response);
@@ -66,21 +65,22 @@ public class SignUpAction implements CommandAction {
 	private String getPage(HttpServletRequest request, HttpServletResponse response) {
 		
 		String page;
+		Customer customer;
 		
 		HttpSession httpSession = request.getSession();
 		
-		customer = userService.authoriseCustomer(userDTO);	
+		customer = serviceFactory.getUserService().authoriseCustomer(userDTO);	
 		
 		if (customer == null) {
 			Admin admin = null;
-			admin = userService.authoriseAdmin(userDTO);
+			admin = serviceFactory.getUserService().authoriseAdmin(userDTO);
 			if (admin == null) {
 				
-				customer = userService.registrationCustomer(customer);
+				customer = serviceFactory.getUserService().registrationCustomer(this.customer);
 				
-				httpSession.setAttribute("customer", customer);
+				httpSession.setAttribute("customer", this.customer);
 
-				Cookie cookieLog = new Cookie("login", customer.getLogin());
+				Cookie cookieLog = new Cookie("login", this.customer.getLogin());
 				response.addCookie(cookieLog);
 				Cookie cookiePass = new Cookie("password", request.getParameter("password"));
 				response.addCookie(cookiePass);
@@ -96,9 +96,6 @@ public class SignUpAction implements CommandAction {
 			request.setAttribute("msg", "There is a user with such login.");
 			page = "jsp/signup_page.jsp";
 		}
-		
 		return page;
 	}
-	
-
 }

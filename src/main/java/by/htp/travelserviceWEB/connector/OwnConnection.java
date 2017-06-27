@@ -6,22 +6,24 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class OwnConnection implements ConnectionFetch {
+public final class OwnConnection {
 	
 	private ConcurrentHashMap<Connection, Boolean> connections;
-	private int size = 5;
-	private int numberOfConnection = 1;
+	private int size;
+	private int numberOfConnection;
 	
 	private OwnConnection() {
 		System.out.println(numberOfConnection);
 	}
 	
-	{
-		initConnectionPool();
-	}
-	
 	private static class Singleton {
 		private  static final OwnConnection INSTANCE = new OwnConnection();
+	}
+	
+	{
+		this.size = 5;
+		this.numberOfConnection = 1;
+		initConnectionPool();
 	}
 	
 	public static OwnConnection getInstance() {
@@ -40,7 +42,7 @@ public final class OwnConnection implements ConnectionFetch {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		for (int i = connections.size(); i < size; i++) {
+		for (int i = connections.size(); i < this.size; i++) {
 			try {
 				connections.put(DriverManager.getConnection(url, user, password), false);
 			} catch (SQLException e) {
@@ -90,28 +92,3 @@ public final class OwnConnection implements ConnectionFetch {
 		return !error;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

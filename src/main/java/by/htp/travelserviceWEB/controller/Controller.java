@@ -16,9 +16,7 @@ public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 6613316973192999815L;
 
-	public Controller() {
-        super();
-    }
+	public Controller() {super();}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
@@ -33,7 +31,7 @@ public class Controller extends HttpServlet {
 		String command = request.getParameter("command");
 		String page;
 		if (command != null) {
-			CommandAction commandAction = CommandManager.getInstance().init().get(command);
+			CommandAction commandAction = CommandManager.getInstance().getCommandAction(command);
 			page = commandAction.execute(request, response);
 			
 			RequestDispatcher disp = request.getRequestDispatcher(page);
