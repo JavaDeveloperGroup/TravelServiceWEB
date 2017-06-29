@@ -41,7 +41,7 @@ private ServiceFactory serviceFactory;
 			admin = serviceFactory.getUserService().authoriseAdmin(userDTO);
 			if (admin == null) {
 				request.setAttribute("msg", "There is no user with such login.");
-				page = "jsp/login_page.jsp";		
+				page = "jsp/log_in_page.jsp";		
 				return page;
 			}
 			
@@ -56,7 +56,7 @@ private ServiceFactory serviceFactory;
 			response.addCookie(new Cookie("log", login));
 			response.addCookie(new Cookie("passw", request.getParameter("password")));
 			
-			page = "jsp/catalog_hotel_page.jsp";
+			page = "jsp/home_page.jsp";
 		}
 
 		return page;

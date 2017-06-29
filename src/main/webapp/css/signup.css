@@ -1,0 +1,203 @@
+@CHARSET "UTF-8";
+header {
+	padding: 10px 0 0 0;
+}
+form[name="back"] {
+	float: right;
+}
+form[name="sign_in"] {
+	float: right;
+}
+
+header{
+	font: 14px 'Oswald', sans-serif;
+	font-weight: bold;
+}
+body {
+	color: #8f8f8f;
+	font-family: 'Oswald', sans-serif;
+	background-color: #f8f8f8;
+	border-top: 5px solid #7e7e7e;
+	margin: 0;
+}
+
+button {
+	color: black ;
+	background-color: silver;
+	border: none;
+	height: 32px;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 6px;
+	margin: 35px 15px;
+	padding: 0px 15px;
+	box-shadow: 0.2em 0.2em 3px rgba(122,122,122,0.5);
+}
+
+button:hover {
+	color: orange ;
+	background-color: gray;
+	font-weight: bold;
+	box-shadow: -0.2em -0.2em 3px rgba(122,122,122,0.5);
+}
+
+p {
+	margin: 20px 0;
+}
+
+#wrapper {
+	max-width: 960px;
+	margin: auto;
+}
+
+hr {
+    border: none;
+    background-color: orange; 
+    color: orange; 
+    height: 2px;
+    margin: 0;
+    padding: 0;
+   }
+   #heading {
+	margin: 5%;
+	padding-left: 20px;
+	text-align: center;
+}
+
+h2 {
+	display: inline-block;
+	color: #7e7e7e;
+	font: 25px/25px 'Oswald', sans-serif;
+	margin: 0;
+	padding: 0 10px;
+}
+
+.form-row input, .form-row select {
+	float: right;
+	height: 35px;
+	margin: 0px;
+	padding: 0px 5px;
+	width: 480px;
+	border: 1px solid #ABADB3;
+	font-family: 'Oswald', sans-serif;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center;
+	border-radius: 6px;
+}
+
+.form-row label {
+	hspace: 10;
+	font-family: 'Oswald', sans-serif;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 150%;
+	
+}
+
+.reg-form {
+	border-radius: 10px;
+	width: 700px;
+	margin: 0 auto;
+}
+
+.form-row input[type=submit] {
+	padding:5px;
+	height:40px;
+	width:100%;
+	margin-bottom: 20px;
+	line-height: 25px;
+	color: black ;
+	background-color: silver;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 1.5em;
+	cursor: pointer;
+}
+
+.form-row input[type=submit]:hover {
+	color: orange ;
+	background-color: gray;
+	font-weight: bold;
+}
+
+.top-menu li #about {
+	class:"active";
+	background-color:"yellow";
+}
+
+/*pasted from example*/
+
+.input-requirements {
+  font-size: 1.3rem;
+  font-style: italic;
+  text-align: left;
+  list-style: disc;
+  list-style-position: inside;
+  max-width: 800px;
+  margin: 10px auto;
+  color: rgb(150,150,150);
+}
+
+
+.input-requirements li.invalid {
+	color: #e74c3c;
+}
+.input-requirements li.valid {
+	color: #2ecc71;
+}
+
+.input-requirements li.valid:after {
+	display: inline-block;
+	padding-left: 10px;
+	content: "\2713";
+}
+
+/* States ------------------ */
+
+input[disabled],
+select[disabled],
+option[disabled],
+button[disabled] {
+  cursor: not-allowed;
+}
+
+input:focus,
+select:focus,
+option:focus,
+button:focus  {
+  background-color: var(--fh-focus-bg-color);
+  border-color: var(--fh-focus-border-color);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+button:focus,
+input[type="button"]:focus,
+input[type="submit"]:focus {
+  background-color: var(--fh-button-hover-bg-color);
+  color: var(--fh-button-hover-font-color);
+}
+
+/* Custom ------------------ */
+
+input:not([type="submit"]):valid {
+  border-color: #2ecc71;
+}
+
+/* Hide and show related .input-requirements when interacting with input */
+
+input:not([type="submit"]) + .input-requirements {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 1s ease-out;  
+}
+
+input:not([type="submit"]):hover + .input-requirements,
+input:not([type="submit"]):focus + .input-requirements,
+input:not([type="submit"]):active + .input-requirements {
+  max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
+  transition: max-height 1s ease-in;
+}
+

@@ -46,7 +46,7 @@ public class SecurityCommandFilter implements Filter {
 				String password = httpServetRequest.getParameter("password");
 				String repPassword = httpServetRequest.getParameter("repeat_password");
 				if (!password.equals(repPassword)) {
-					page = "jsp/signup_page.jsp";
+					page = "jsp/sign_up_page.jsp";
 					httpServetRequest.setAttribute("msg", "Repeat password incorrectly.");
 					RequestDispatcher disp = httpServetRequest.getRequestDispatcher(page);
 					disp.forward(httpServetRequest, httpServletResponse);
@@ -56,7 +56,7 @@ public class SecurityCommandFilter implements Filter {
 			chain.doFilter(servletRequest, servletResponse);
 		} else if(null != admin && initAdminCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else httpServletResponse.sendRedirect("/index.jsp");
+		} else httpServletResponse.sendRedirect("jsp/home_page.jsp");
 	}
 
 	@Override

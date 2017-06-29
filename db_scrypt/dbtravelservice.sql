@@ -13,14 +13,16 @@
 
 
 -- Dumping database structure for travelservice
+DROP DATABASE IF EXISTS `travelservice`;
 CREATE DATABASE IF NOT EXISTS `travelservice` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `travelservice`;
 
 -- Dumping structure for table travelservice.admin
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id_admin` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `id_role` int(11) NOT NULL,
   PRIMARY KEY (`id_admin`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -29,12 +31,13 @@ CREATE TABLE IF NOT EXISTS `admin` (
 DELETE FROM `admin`;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`id_admin`, `login`, `password`, `id_role`) VALUES
-	(1, 'tour', 'tour', 2),
-	(2, 'hotel', 'hotel', 3),
-	(3, 'auto', 'auto', 4);
+	(1, 'tour', 'f0a4025b3b49b3e256004503ee31df8c', 2),
+	(2, 'hotel', 'e919c49d5f0cd737285367810a3394d0', 3),
+	(3, 'auto', '9df22f196a33acd0b372fe502de51211', 4);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.apartment
+DROP TABLE IF EXISTS `apartment`;
 CREATE TABLE IF NOT EXISTS `apartment` (
   `id_apartment` int(4) NOT NULL AUTO_INCREMENT,
   `id_hotel` int(4) NOT NULL,
@@ -46,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   PRIMARY KEY (`id_apartment`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.apartment: ~4 rows (approximately)
+-- Dumping data for table travelservice.apartment: ~25 rows (approximately)
 DELETE FROM `apartment`;
 /*!40000 ALTER TABLE `apartment` DISABLE KEYS */;
 INSERT INTO `apartment` (`id_apartment`, `id_hotel`, `id_room`, `room_capacity`, `price`, `status`, `image`) VALUES
@@ -79,6 +82,7 @@ INSERT INTO `apartment` (`id_apartment`, `id_hotel`, `id_room`, `room_capacity`,
 /*!40000 ALTER TABLE `apartment` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.auto
+DROP TABLE IF EXISTS `auto`;
 CREATE TABLE IF NOT EXISTS `auto` (
   `id_auto` tinyint(4) NOT NULL AUTO_INCREMENT,
   `id_brand` tinyint(2) NOT NULL,
@@ -106,6 +110,7 @@ INSERT INTO `auto` (`id_auto`, `id_brand`, `model`, `year`, `transmition`, `whee
 /*!40000 ALTER TABLE `auto` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.auto_order
+DROP TABLE IF EXISTS `auto_order`;
 CREATE TABLE IF NOT EXISTS `auto_order` (
   `id_auto_order` int(4) NOT NULL AUTO_INCREMENT,
   `id_rent_auto` int(4) NOT NULL,
@@ -122,11 +127,12 @@ DELETE FROM `auto_order`;
 /*!40000 ALTER TABLE `auto_order` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.body_type
+DROP TABLE IF EXISTS `body_type`;
 CREATE TABLE IF NOT EXISTS `body_type` (
   `id_body_type` int(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_body_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.body_type: ~4 rows (approximately)
 DELETE FROM `body_type`;
@@ -139,6 +145,7 @@ INSERT INTO `body_type` (`id_body_type`, `name`) VALUES
 /*!40000 ALTER TABLE `body_type` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.brand
+DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
   `id_brand` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
@@ -155,6 +162,7 @@ INSERT INTO `brand` (`id_brand`, `Name`) VALUES
 /*!40000 ALTER TABLE `brand` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.bus
+DROP TABLE IF EXISTS `bus`;
 CREATE TABLE IF NOT EXISTS `bus` (
   `id_bus` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -174,6 +182,7 @@ INSERT INTO `bus` (`id_bus`, `name`, `capacity`, `registration_number`) VALUES
 /*!40000 ALTER TABLE `bus` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.city
+DROP TABLE IF EXISTS `city`;
 CREATE TABLE IF NOT EXISTS `city` (
   `id_city` int(4) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
@@ -191,6 +200,7 @@ INSERT INTO `city` (`id_city`, `Name`) VALUES
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.color
+DROP TABLE IF EXISTS `color`;
 CREATE TABLE IF NOT EXISTS `color` (
   `id_color` int(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -209,10 +219,11 @@ INSERT INTO `color` (`id_color`, `name`) VALUES
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.customer
+DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `id_customer` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
   `gender` enum('MALE','FEMALE') NOT NULL,
@@ -224,18 +235,21 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `id_role` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_customer`),
   KEY `fk_customer` (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.customer: ~3 rows (approximately)
 DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`id_customer`, `login`, `password`, `name`, `surname`, `gender`, `birthday`, `passport`, `email`, `phone_number`, `driver_license`, `id_role`) VALUES
-	(1, 'user0', 'user0', 'Tsovak', 'Palakian', 'MALE', '2017-06-05', 'sdf', 'tsovak@gmail.com', '+375257018079', 'No', 1),
-	(2, 'user1', 'user1', 'Zhenya', 'Popovich', 'MALE', '2017-06-05', 'ds', 'zhenya@gmail.com', '+375297261647', 'Yes', 1),
-	(3, 'user2', 'user2', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1);
+	(1, 'user0', '3d517fe6ebab7b8cfcf98db6259c8a59', 'Tsovak', 'Palakian', 'MALE', '2017-06-05', 'sdf', 'tsovak@gmail.com', '+375257018079', 'No', 1),
+	(2, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 'Zhenya', 'Popovich', 'MALE', '2017-06-05', 'ds', 'zhenya@gmail.com', '+375297261647', 'Yes', 1),
+	(3, 'user2', '7e58d63b60197ceb55a1c487989a3720', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1),
+	(4, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'Yauheni', 'Papovich', 'MALE', '2017-06-18', 'AA2222222', 'po@mail.ru', '333333333', 'No', 1),
+	(5, 'user4', '3f02ebe3d7929b091e3d8ccfde2f3bc6', 'Yauheni', 'Papovich', 'MALE', '2017-06-03', 'AA2222222', 'po@mail.ru', '333333333', 'No', 1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.hotel
+DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
   `id_hotel` tinyint(4) NOT NULL AUTO_INCREMENT,
   `id_city` tinyint(2) NOT NULL,
@@ -262,6 +276,7 @@ INSERT INTO `hotel` (`id_hotel`, `id_city`, `title`, `stars`, `address`) VALUES
 /*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.hotel_order
+DROP TABLE IF EXISTS `hotel_order`;
 CREATE TABLE IF NOT EXISTS `hotel_order` (
   `id_hotel_order` int(4) NOT NULL AUTO_INCREMENT,
   `id_apartment` int(4) NOT NULL,
@@ -277,6 +292,7 @@ DELETE FROM `hotel_order`;
 /*!40000 ALTER TABLE `hotel_order` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.rent_auto
+DROP TABLE IF EXISTS `rent_auto`;
 CREATE TABLE IF NOT EXISTS `rent_auto` (
   `id_rent_auto` int(11) NOT NULL AUTO_INCREMENT,
   `id_auto` int(11) NOT NULL,
@@ -286,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `rent_auto` (
   PRIMARY KEY (`id_rent_auto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.rent_auto: ~0 rows (approximately)
+-- Dumping data for table travelservice.rent_auto: ~6 rows (approximately)
 DELETE FROM `rent_auto`;
 /*!40000 ALTER TABLE `rent_auto` DISABLE KEYS */;
 INSERT INTO `rent_auto` (`id_rent_auto`, `id_auto`, `id_salon_start`, `status`, `price`) VALUES
@@ -299,6 +315,7 @@ INSERT INTO `rent_auto` (`id_rent_auto`, `id_auto`, `id_salon_start`, `status`, 
 /*!40000 ALTER TABLE `rent_auto` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.role
+DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
   `id_role` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -317,15 +334,16 @@ INSERT INTO `role` (`id_role`, `name`) VALUES
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.room
+DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
   `id_room` int(11) NOT NULL AUTO_INCREMENT,
   `tv` enum('Yes','No') NOT NULL DEFAULT 'Yes',
   `balcony` enum('Yes','No') NOT NULL DEFAULT 'No',
   `conditioner` enum('Yes','No') NOT NULL DEFAULT 'No',
   PRIMARY KEY (`id_room`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.room: ~0 rows (approximately)
+-- Dumping data for table travelservice.room: ~8 rows (approximately)
 DELETE FROM `room`;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
 INSERT INTO `room` (`id_room`, `tv`, `balcony`, `conditioner`) VALUES
@@ -340,6 +358,7 @@ INSERT INTO `room` (`id_room`, `tv`, `balcony`, `conditioner`) VALUES
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.salon
+DROP TABLE IF EXISTS `salon`;
 CREATE TABLE IF NOT EXISTS `salon` (
   `id_salon` int(11) NOT NULL AUTO_INCREMENT,
   `id_city` int(11) NOT NULL,
@@ -347,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `salon` (
   PRIMARY KEY (`id_salon`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.salon: ~0 rows (approximately)
+-- Dumping data for table travelservice.salon: ~5 rows (approximately)
 DELETE FROM `salon`;
 /*!40000 ALTER TABLE `salon` DISABLE KEYS */;
 INSERT INTO `salon` (`id_salon`, `id_city`, `address`) VALUES
@@ -359,6 +378,7 @@ INSERT INTO `salon` (`id_salon`, `id_city`, `address`) VALUES
 /*!40000 ALTER TABLE `salon` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.total_order
+DROP TABLE IF EXISTS `total_order`;
 CREATE TABLE IF NOT EXISTS `total_order` (
   `id_order` int(11) NOT NULL AUTO_INCREMENT,
   `id_customer` int(11) NOT NULL,
@@ -367,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `total_order` (
   `id_auto_order` int(11) NOT NULL,
   `total_price` double(7,2) NOT NULL,
   PRIMARY KEY (`id_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.total_order: ~0 rows (approximately)
 DELETE FROM `total_order`;
@@ -375,6 +395,7 @@ DELETE FROM `total_order`;
 /*!40000 ALTER TABLE `total_order` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.tour
+DROP TABLE IF EXISTS `tour`;
 CREATE TABLE IF NOT EXISTS `tour` (
   `id_tour` int(11) NOT NULL AUTO_INCREMENT,
   `destination` varchar(500) NOT NULL,
@@ -385,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `tour` (
   PRIMARY KEY (`id_tour`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.tour: ~0 rows (approximately)
+-- Dumping data for table travelservice.tour: ~15 rows (approximately)
 DELETE FROM `tour`;
 /*!40000 ALTER TABLE `tour` DISABLE KEYS */;
 INSERT INTO `tour` (`id_tour`, `destination`, `name`, `type`, `description`, `image`) VALUES
@@ -407,6 +428,7 @@ INSERT INTO `tour` (`id_tour`, `destination`, `name`, `type`, `description`, `im
 /*!40000 ALTER TABLE `tour` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.tour_offer
+DROP TABLE IF EXISTS `tour_offer`;
 CREATE TABLE IF NOT EXISTS `tour_offer` (
   `id_offer` int(11) NOT NULL AUTO_INCREMENT,
   `id_tour` int(11) NOT NULL,
@@ -419,7 +441,7 @@ CREATE TABLE IF NOT EXISTS `tour_offer` (
   PRIMARY KEY (`id_offer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.tour_offer: ~0 rows (approximately)
+-- Dumping data for table travelservice.tour_offer: ~15 rows (approximately)
 DELETE FROM `tour_offer`;
 /*!40000 ALTER TABLE `tour_offer` DISABLE KEYS */;
 INSERT INTO `tour_offer` (`id_offer`, `id_tour`, `id_bus`, `date_start`, `date_end`, `passengers_per_order`, `price`, `hot`) VALUES
@@ -441,13 +463,14 @@ INSERT INTO `tour_offer` (`id_offer`, `id_tour`, `id_bus`, `date_start`, `date_e
 /*!40000 ALTER TABLE `tour_offer` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.tour_order
+DROP TABLE IF EXISTS `tour_order`;
 CREATE TABLE IF NOT EXISTS `tour_order` (
   `id_tour_order` int(4) NOT NULL AUTO_INCREMENT,
   `id_offer` int(4) NOT NULL,
   `person_number` int(3) NOT NULL DEFAULT '1',
   `order_price` double(7,2) NOT NULL,
   PRIMARY KEY (`id_tour_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.tour_order: ~0 rows (approximately)
 DELETE FROM `tour_order`;

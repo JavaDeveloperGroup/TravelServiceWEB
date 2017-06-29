@@ -1,0 +1,128 @@
+@CHARSET "UTF-8";
+
+body {
+	color: #8f8f8f;
+	font: 12px Tahoma, sans-serif;
+	background-color: #f8f8f8;
+	border-top: 0 solid #7e7e7e;
+	margin: 0;
+}
+
+button {
+	color: black ;
+	background-color: silver;
+	border: none;
+	height: 32px;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 6px;
+	margin: 35px 15px;
+	padding: 0px 15px;
+	box-shadow: 0.2em 0.2em 3px rgba(122,122,122,0.5);
+	
+}
+
+button:hover {
+	color: orange ;
+	background-color: gray;
+	font-weight: bold;
+	box-shadow: -0.2em -0.2em 3px rgba(122,122,122,0.5);
+}
+
+p {
+	margin: 20px 0;
+}
+
+#wrapper {
+	max-width: 960px;
+	margin: auto;
+}
+header {
+	padding: 10px 0 0 0;
+}
+
+form[name="sign_in"] {
+	float: right;
+}
+form[name="sign_up"] {
+	float: right;
+}
+
+
+hr {
+    border: none;
+    background-color: orange; 
+    color: orange; 
+    height: 2px;
+    margin: 0;
+    padding: 0;
+   }
+     
+#heading {
+	margin: 5%;
+	padding-left: 20px;
+	text-align: center;
+}
+
+h2 {
+	display: inline-block;
+	color: #7e7e7e;
+	font: 25px/25px 'Oswald', sans-serif;
+	margin: 0;
+	padding: 0 10px;
+}
+
+input{
+	font: 25px/25px 'Oswald', sans-serif;
+	text-align: center;
+	border-radius: 6px;
+	margin-bottom: 30px;
+}
+ #login_form{
+ font: 25px/25px 'Oswald', sans-serif;
+ font-weight:bold;
+ text-align: center;
+ }
+ 
+ p{
+ padding: 0;
+ margin-bottom: 5px;
+ }
+
+#subbut{
+	color: black ;
+	background-color: silver;
+	border: none;
+	height: 60px;
+	width: 9em;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 6px;
+	padding: 15px 15px;
+	font-weight: bold;
+}
+
+#subbut:hover {
+	color: orange ;
+	background-color: gray;
+	font-weight: bold;
+}
+
+#p{
+    margin-top: 750px;
+}
+
+@keyframes fade { 
+     0% { opacity: 0; } 
+     11.11% { opacity: 1; } 
+     33.33% { opacity: 1; } 
+     44.44% { opacity: 0; } 
+     100% { opacity: 0; } 
+ } 
+ #fadein { 
+ position:relative;} 
+ #fadein div { font-size: 1.8em;
+ position:absolute; left:0; right:0; opacity:0; animation-name: fade; animation-duration: 9s; animation-iteration-count: infinite; margin-top: 20px;} 
+ #fadein div img {height:600px; width:100%; }
+ #fadein div:nth-child(1) { animation-delay: 0s; } 
+ #fadein div:nth-child(2) { animation-delay: 3s; } 
+ #fadein div:nth-child(3) { animation-delay: 6s; }
+

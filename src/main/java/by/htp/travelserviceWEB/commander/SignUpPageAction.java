@@ -7,7 +7,7 @@ public class SignUpPageAction implements CommandAction{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String page = "jsp/signup_page.jsp";
+		String page = "jsp/sign_up_page.jsp";
 		
 		return page;
 	}

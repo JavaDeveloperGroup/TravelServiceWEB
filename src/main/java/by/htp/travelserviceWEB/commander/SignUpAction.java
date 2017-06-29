@@ -85,16 +85,16 @@ private ServiceFactory serviceFactory;
 				Cookie cookiePass = new Cookie("password", request.getParameter("password"));
 				response.addCookie(cookiePass);
 
-				page = "jsp/catalog_hotel_page.jsp";
+				page = "jsp/home_page.jsp";
 				
 			}
 			else {
 				request.setAttribute("msg", "There is a user with such login.");
-				page = "jsp/signup_page.jsp";
+				page = "jsp/sign_up_page.jsp";
 			}
 		} else {
 			request.setAttribute("msg", "There is a user with such login.");
-			page = "jsp/signup_page.jsp";
+			page = "jsp/sign_up_page.jsp";
 		}
 		return page;
 	}
