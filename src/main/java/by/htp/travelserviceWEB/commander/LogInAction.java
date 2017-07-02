@@ -10,7 +10,6 @@ import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.dto.UserTO;
 import by.htp.travelserviceWEB.service.factory.ServiceFactory;
 import by.htp.travelserviceWEB.util.Encryption;
-import by.htp.travelserviceWEB.util.Factory;
 
 public class LogInAction implements CommandAction {
 	

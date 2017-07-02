@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
 				String passport = null;
 				String email = null;
 				String phoneNumber = null;
-				String driverLicense = null;
+				String driverLicence = null;
 
 				Role role = null;
 				Integer idRole = null;
@@ -69,13 +69,13 @@ public class UserDaoImpl implements UserDao {
 				passport = rs.getString(8);
 				email = rs.getString(9);
 				phoneNumber = rs.getString(10);
-				driverLicense = rs.getString(11);
+				driverLicence = rs.getString(11);
 				idRole = rs.getInt(13);
 				roleName = rs.getString(14);
 
 				role = new Role(idRole, roleName);
 				customer = new Customer(customerId, login, password, name, surname, gender, birthday, passport, email,
-						phoneNumber, driverLicense, role);
+						phoneNumber, driverLicence, role);
 			}
 			connector.getBack(connection);
 
@@ -144,7 +144,7 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(7, customer.getPassport());
 			ps.setString(8, customer.getEmail());
 			ps.setString(9, customer.getPhoneNumber());
-			ps.setString(10, customer.getDriverLicense());
+			ps.setString(10, customer.getDriverLicence());
 			
 			ps.executeUpdate(); 	
 			

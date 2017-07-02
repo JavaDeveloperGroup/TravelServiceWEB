@@ -40,7 +40,7 @@ public class SecurityCommandFilter implements Filter {
 		Admin admin = (Admin) httpSession.getAttribute("admin");
 
 		if (null == customer && null == admin) {
-			if ("log_in".equals(command) || "sign_up_page".equals(command)) {
+			if ("log_in_page".equals(command) || "sign_up_page".equals(command)) {
 				chain.doFilter(servletRequest, servletResponse);
 			} else if ("sign_up".equals(command)) {
 				String password = httpServetRequest.getParameter("password");
@@ -50,17 +50,27 @@ public class SecurityCommandFilter implements Filter {
 					httpServetRequest.setAttribute("msg", "Repeat password incorrectly.");
 					RequestDispatcher disp = httpServetRequest.getRequestDispatcher(page);
 					disp.forward(httpServetRequest, httpServletResponse);
-				} else {chain.doFilter(servletRequest, servletResponse);}
+				} 
+				else {
+					chain.doFilter(servletRequest, servletResponse);
+				}
+			} else if ("log_in".equals(command)) {
+				chain.doFilter(servletRequest, servletResponse);
+			} else {
+				httpServletResponse.sendRedirect("jsp/home_page.jsp");
 			}
-		} else if(null != customer && initCustomerCommand(command)) {
+		} else if (null != customer && initCustomerCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else if(null != admin && initAdminCommand(command)) {
+		} else if (null != admin && initAdminCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else httpServletResponse.sendRedirect("jsp/home_page.jsp");
+		} else 
+			httpServletResponse.sendRedirect("jsp/home_page.jsp");
 	}
 
 	@Override
-	public void destroy() {page = null;}
+	public void destroy() {
+		page = null;
+	}
 	
 	private boolean initCustomerCommand(String command) {
 		Set<String> listCommand = new HashSet<String>();

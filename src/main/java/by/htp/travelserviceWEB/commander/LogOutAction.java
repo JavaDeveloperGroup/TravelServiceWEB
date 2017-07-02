@@ -5,6 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class LogOutAction implements CommandAction {
+	
+	public LogOutAction() {
+		super();
+	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -18,6 +22,8 @@ public class LogOutAction implements CommandAction {
 		return page;
 	}
 	
+	
+	//Not protected
 	private void saveAuthoriseData(HttpServletRequest request) {
 		Cookie[] cookie = request.getCookies();
 

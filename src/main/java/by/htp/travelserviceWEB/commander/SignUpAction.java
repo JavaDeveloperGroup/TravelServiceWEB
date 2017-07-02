@@ -38,7 +38,7 @@ private ServiceFactory serviceFactory;
 		String passport;
 		String email;
 		String phoneNumber;
-		String driverLicense;
+		String driverLicence;
 		Role role;
 		
 		password = Encryption.md5Apache(request.getParameter("password"));
@@ -50,13 +50,13 @@ private ServiceFactory serviceFactory;
 		passport = request.getParameter("passport");
 		email = request.getParameter("email");
 		phoneNumber = request.getParameter("phone_number");
-		driverLicense = request.getParameter("driver_license");
+		driverLicence = request.getParameter("driver_licence");
 
 		birthday = Date.valueOf(birthDate);
 		role = new Role(1, "customer");
 		
 		userDTO = new UserTO(login, password);
-		customer = new Customer(null, login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicense, role);
+		customer = new Customer(null, login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicence, role);
 
 		return getPage(request, response);
 

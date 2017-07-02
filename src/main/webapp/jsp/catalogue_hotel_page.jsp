@@ -19,30 +19,24 @@
 					src="${pageContext.request.contextPath}/image/logoF.png"
 					width="180"> </a>
 				<c:if test="${customer==null}">
-					<form name="sign_in">
-						<button>
-							<a href="${pageContext.request.contextPath}/jsp/log_in_page.jsp">SIGN
-								IN</a>
-						</button>
+					<form name="sign_in" action="${pageContext.request.contextPath}/Controller" method="GET">
+						<input type="hidden" value="log_in_page" name="command" />
+						<button type="submit">SIGN IN</button>
 					</form>
 
 					<form name="sign_up"
-						action="${pageContext.request.contextPath}/Controller"
-						method="GET">
+						action="${pageContext.request.contextPath}/Controller"	method="GET">
 						<input type="hidden" value="sign_up_page" name="command" />
 						<button type="submit">SIGN UP</button>
 					</form>
 				</c:if>
 				<c:if test="${customer!=null}">
-					<form name="sign_up">
+					<form name="sign_up" action="${pageContext.request.contextPath}/Controller" method="GET">
+						<input type="hidden" value="log_out" name="command" />
 						<tr>
 							<td>${customer.getLogin()}</td>
 						</tr>
-						<button type="submit">
-							<a
-								href="${pageContext.request.contextPath}/Controller?command=log_out">
-								LOG OUT </a>
-						</button>
+						<button type="submit">LOG OUT</button>
 					</form>
 				</c:if>
 
@@ -70,9 +64,9 @@
 								additional beds</td>
 							<hr>
 							<div class="head-cont">Price:</div>
-							<label for="minCost">From: </label> <input type="text"
+							<label for="minCost" >From: </label> <input class="inp_price" type="text"
 								id="minCost" value="0" /> <label for="maxCost">Till: </label> <input
-								type="text" id="maxCost" value="500" />
+								class="inp_price" type="text" id="maxCost" value="500" />
 							<hr class="div_tr">
 							<div id="slider" style=""></div>
 						</div>
@@ -85,12 +79,11 @@
 							<table>
 								<tr>
 									<th id="ckeck">
-									<th id="photo">PHOTO
-									<th id="hotel">HOTEL
-									<th id="address">ADDRESS
-									<th id="stars">STAR RATE
-									<th id="numberPersons">NUMBER OF PERSONS
-									<th id="price">PRICE
+									<th class="col1">HOTEL</th>
+									<th class="col2">ADDRESS</th>
+									<th class="col3">STAR RATE</th>
+									<th class="col4">NUMBER OF PERSONS</th>
+									<th class="col5">PRICE</th>
 								</tr>
 								<c:forEach items="${list_apartment}" var="i">
 									<tr>
@@ -105,7 +98,7 @@
 									</tr>
 								</c:forEach>
 							</table>
-							<div>
+							<div style="text-align: center">
 								<input value="ORDER" type="submit">
 							</div>
 						</div>

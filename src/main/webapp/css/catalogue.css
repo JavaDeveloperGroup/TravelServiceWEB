@@ -32,6 +32,7 @@ button:hover {
 	max-width: 1200px;
 	margin: auto;
 }
+
 header {
 	padding: 10px 0 0 0;
 }
@@ -39,10 +40,10 @@ header {
 form[name="sign_in"] {
 	float: right;
 }
+
 form[name="sign_up"] {
 	float: right;
 }
-
 
 hr {
     border: none;
@@ -51,7 +52,7 @@ hr {
     height: 2px;
     margin: 0;
     padding: 0;
-   }
+}
      
 #heading {
 	margin: 5%;
@@ -68,16 +69,19 @@ h2 {
 }
 
 input{
-	font: 25px/25px 'Oswald', sans-serif;
 	text-align: center;
 	border-radius: 6px;
 }
 
+.inp_price{
+	width: 200px;
+}
 
 aside {
 	float: left;
 	width: 200px;
 	margin-right: 30px;
+	margin-bottom: 20px;
 }
 
 .head-cont{
@@ -86,8 +90,6 @@ aside {
 	font-size: 1.5em;
 	font-weight: bold;
 }
-
-
 
 table {
 border-spacing: 0 10px;
@@ -103,6 +105,7 @@ border: 1px solid gray;
 font-size: 0.8em;
 font-color: black;
 }
+
 td {
 vertical-align: middle;
 padding: 10px;
@@ -135,13 +138,14 @@ div input [type="date"]{
 	opacity: 0;
 }
 
-.col1{
-	width: 35%;
+.col3{
+	width: 50px;
 }
 
-.col2{
-	width:50%;
+.col4{
+	width:50px;
 }
-.col3 {
-	width:5%;
+
+.col5 {
+	width:50px;
 }

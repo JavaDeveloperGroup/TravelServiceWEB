@@ -1,4 +1,7 @@
 @CHARSET "UTF-8";
+.menu_center{
+	text-align: center;
+}
 nav{
 	font: 14px 'Oswald', sans-serif;
 	font-weight: bold;
@@ -14,10 +17,12 @@ nav li {
 	padding: 10px;
 	text-decoration: none;
 }
+
 .top-menu{
-	margin-left: 2%;
+	text-align: center;
 	display: inline-block;
 }
+
 .top-menu li {
 	padding: 10px 25px;
 	margin: 0;
@@ -35,7 +40,6 @@ nav li {
 .top-menu a:hover {
 	color: orange;
 	font-weight: bold;
-	
 }
 
 #lang{

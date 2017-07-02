@@ -4,11 +4,16 @@ div #foot{
 	font: 14px 'Oswald', sans-serif;
 	font-weight: italic;
 	margin: 100px 0 0 0;
-	width: 100%;
+	max-width: 1200px;
+	margin: auto;
 	font-color: grey;
 	text-align: center;
 }
 
 p{
 	padding: 20px 0;
+}
+
+#p{
+	width: 1200px;
 }

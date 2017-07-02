@@ -1,15 +1,24 @@
-		<hr>
-		<nav>
-			<ul class="top-menu">
-				<li id="about"><a href="/home/">ABOUT US</a></li>
-				<li><a href="${pageContext.request.contextPath}/jsp/catalogue_tour_page.jsp">TOUR CATALOGUE</a></li>
-				<li><a href="http://localhost:8080/travelservice/jsp/catalogue_hotel_page.jsp">HOTEL CATALOGUE</a></li>
-				<!-- <a href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue"> HOTEL CATALOGUE </a> -->
-				<li><a href="${pageContext.request.contextPath}/jsp/catalogue_auto_page.jsp">CAR CATALOGUE</a></li>
-				<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
-			</ul>
-			<select id="lang">
-					<option value="RU">RUSSIAN</option>
-					<option selected value="EN"€>ENGLISH</option>
-			</select>
-		</nav>
+
+<hr>
+<div class="menu_center">
+	<nav>
+		<ul class="top-menu">
+			<li id="about"><a href="/home/">ABOUT US</a></li>
+			<li><a
+				href="http://localhost:8080/travelservice/jsp/catalogue_tour_page.jsp">TOUR
+					CATALOGUE</a></li>
+			<li><a
+				href="http://localhost:8080/travelservice/jsp/catalogue_hotel_page.jsp">HOTEL
+					CATALOGUE</a></li>
+			<!-- <a href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue"> HOTEL CATALOGUE </a> -->
+			<li><a
+				href="http://localhost:8080/travelservice/jsp/catalogue_auto_page.jsp">CAR
+					CATALOGUE</a></li>
+			<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
+		</ul>
+		<select id="lang">
+			<option value="RU">RUSSIAN</option>
+			<option selected value="EN"€>ENGLISH</option>
+		</select>
+	</nav>
+</div>

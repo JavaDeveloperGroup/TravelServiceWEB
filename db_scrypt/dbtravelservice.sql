@@ -20,36 +20,42 @@ USE `travelservice`;
 -- Dumping structure for table travelservice.admin
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
+  `id_admin` tinyint(4) NOT NULL AUTO_INCREMENT,
   `login` varchar(100) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `id_role` int(11) NOT NULL,
-  PRIMARY KEY (`id_admin`)
+  `id_role` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id_admin`),
+  KEY `FK_admin_role` (`id_role`),
+  CONSTRAINT `FK_admin_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.admin: ~3 rows (approximately)
 DELETE FROM `admin`;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`id_admin`, `login`, `password`, `id_role`) VALUES
-	(1, 'tour', 'f0a4025b3b49b3e256004503ee31df8c', 2),
-	(2, 'hotel', 'e919c49d5f0cd737285367810a3394d0', 3),
-	(3, 'auto', '9df22f196a33acd0b372fe502de51211', 4);
+	(1, 'tour', 'dG91cg==', 2),
+	(2, 'hotel', 'aG90ZWw=', 3),
+	(3, 'auto', 'YXV0bw==', 4);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.apartment
 DROP TABLE IF EXISTS `apartment`;
 CREATE TABLE IF NOT EXISTS `apartment` (
-  `id_apartment` int(4) NOT NULL AUTO_INCREMENT,
-  `id_hotel` int(4) NOT NULL,
-  `id_room` int(4) NOT NULL DEFAULT '1',
-  `room_capacity` int(2) NOT NULL DEFAULT '1',
+  `id_apartment` int(11) NOT NULL AUTO_INCREMENT,
+  `id_hotel` smallint(6) NOT NULL,
+  `id_room` smallint(6) NOT NULL DEFAULT '1',
+  `room_capacity` tinyint(2) NOT NULL DEFAULT '1',
   `price` double(7,2) NOT NULL,
   `status` enum('FREE','OCCU') NOT NULL DEFAULT 'FREE',
   `image` varchar(400) NOT NULL,
-  PRIMARY KEY (`id_apartment`)
+  PRIMARY KEY (`id_apartment`),
+  KEY `FK_apartment_hotel` (`id_hotel`),
+  KEY `FK_apartment_room` (`id_room`),
+  CONSTRAINT `FK_apartment_hotel` FOREIGN KEY (`id_hotel`) REFERENCES `hotel` (`id_hotel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_apartment_room` FOREIGN KEY (`id_room`) REFERENCES `room` (`id_room`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.apartment: ~25 rows (approximately)
+-- Dumping data for table travelservice.apartment: ~26 rows (approximately)
 DELETE FROM `apartment`;
 /*!40000 ALTER TABLE `apartment` DISABLE KEYS */;
 INSERT INTO `apartment` (`id_apartment`, `id_hotel`, `id_room`, `room_capacity`, `price`, `status`, `image`) VALUES
@@ -84,17 +90,23 @@ INSERT INTO `apartment` (`id_apartment`, `id_hotel`, `id_room`, `room_capacity`,
 -- Dumping structure for table travelservice.auto
 DROP TABLE IF EXISTS `auto`;
 CREATE TABLE IF NOT EXISTS `auto` (
-  `id_auto` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `id_brand` tinyint(2) NOT NULL,
+  `id_auto` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `id_brand` tinyint(4) NOT NULL,
   `model` varchar(10) NOT NULL,
   `year` year(4) NOT NULL,
   `transmition` enum('AUTO','MANUAL') NOT NULL DEFAULT 'AUTO',
   `wheel_drive` enum('REAR','FRONT','FULL') NOT NULL DEFAULT 'REAR',
   `fuil_type` enum('PETROL','DIESEL','GAS','ELECTRO') NOT NULL DEFAULT 'PETROL',
-  `id_color` tinyint(2) NOT NULL,
-  `id_body_type` tinyint(2) NOT NULL,
+  `id_color` tinyint(4) NOT NULL,
+  `id_body_type` tinyint(4) NOT NULL,
   `image` varchar(400) NOT NULL,
-  PRIMARY KEY (`id_auto`)
+  PRIMARY KEY (`id_auto`),
+  KEY `FK_auto_brand` (`id_brand`),
+  KEY `FK_auto_color` (`id_color`),
+  KEY `FK_auto_body_type` (`id_body_type`),
+  CONSTRAINT `FK_auto_body_type` FOREIGN KEY (`id_body_type`) REFERENCES `body_type` (`id_body_type`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_auto_brand` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id_brand`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_auto_color` FOREIGN KEY (`id_color`) REFERENCES `color` (`id_color`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.auto: ~6 rows (approximately)
@@ -102,7 +114,7 @@ DELETE FROM `auto`;
 /*!40000 ALTER TABLE `auto` DISABLE KEYS */;
 INSERT INTO `auto` (`id_auto`, `id_brand`, `model`, `year`, `transmition`, `wheel_drive`, `fuil_type`, `id_color`, `id_body_type`, `image`) VALUES
 	(1, 3, 'Mustang', '1969', 'MANUAL', 'FULL', 'PETROL', 3, 2, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg'),
-	(2, 1, 'X5', '2011', 'MANUAL', 'FRONT', 'PETROL', 1, 1, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/bmw-x5-suv_gqaopv.jpg'),
+	(2, 1, 'X5', '2011', 'MANUAL', 'FRONT', 'PETROL', 1, 1, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805travelservice525/auto/bmw-x5-suv_gqaopv.jpg'),
 	(3, 2, 'C300', '2010', 'AUTO', 'FULL', 'DIESEL', 5, 2, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805529/auto/2015_mercedes-benz_c-class_sedan_c300_xbc5ol.jpg'),
 	(4, 3, 'Mustang', '1975', 'MANUAL', 'REAR', 'PETROL', 3, 2, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805531/auto/Lovely-Ford-Mustang_ploeiz.jpg'),
 	(5, 3, 'Flex', '2012', 'AUTO', 'FULL', 'GAS', 4, 1, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Ford-Flex-suv_rlhzej.jpg'),
@@ -112,13 +124,17 @@ INSERT INTO `auto` (`id_auto`, `id_brand`, `model`, `year`, `transmition`, `whee
 -- Dumping structure for table travelservice.auto_order
 DROP TABLE IF EXISTS `auto_order`;
 CREATE TABLE IF NOT EXISTS `auto_order` (
-  `id_auto_order` int(4) NOT NULL AUTO_INCREMENT,
-  `id_rent_auto` int(4) NOT NULL,
-  `id_salon_end` int(4) NOT NULL,
+  `id_auto_order` int(11) NOT NULL AUTO_INCREMENT,
+  `id_rent_auto` int(11) NOT NULL,
+  `id_salon_end` smallint(6) NOT NULL,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
   `order_price` double(7,2) NOT NULL,
-  PRIMARY KEY (`id_auto_order`)
+  PRIMARY KEY (`id_auto_order`),
+  KEY `FK_auto_order_rent_auto` (`id_rent_auto`),
+  KEY `FK_auto_order_salon` (`id_salon_end`),
+  CONSTRAINT `FK_auto_order_rent_auto` FOREIGN KEY (`id_rent_auto`) REFERENCES `rent_auto` (`id_rent_auto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_auto_order_salon` FOREIGN KEY (`id_salon_end`) REFERENCES `salon` (`id_salon`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.auto_order: ~0 rows (approximately)
@@ -129,8 +145,8 @@ DELETE FROM `auto_order`;
 -- Dumping structure for table travelservice.body_type
 DROP TABLE IF EXISTS `body_type`;
 CREATE TABLE IF NOT EXISTS `body_type` (
-  `id_body_type` int(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `id_body_type` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id_body_type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
@@ -147,15 +163,15 @@ INSERT INTO `body_type` (`id_body_type`, `name`) VALUES
 -- Dumping structure for table travelservice.brand
 DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
-  `id_brand` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(50) NOT NULL,
+  `id_brand` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_brand`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.brand: ~3 rows (approximately)
 DELETE FROM `brand`;
 /*!40000 ALTER TABLE `brand` DISABLE KEYS */;
-INSERT INTO `brand` (`id_brand`, `Name`) VALUES
+INSERT INTO `brand` (`id_brand`, `name`) VALUES
 	(1, 'BMW'),
 	(2, 'Mercedes'),
 	(3, 'Ford');
@@ -164,9 +180,9 @@ INSERT INTO `brand` (`id_brand`, `Name`) VALUES
 -- Dumping structure for table travelservice.bus
 DROP TABLE IF EXISTS `bus`;
 CREATE TABLE IF NOT EXISTS `bus` (
-  `id_bus` int(11) NOT NULL AUTO_INCREMENT,
+  `id_bus` smallint(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `capacity` int(4) NOT NULL,
+  `capacity` tinyint(3) NOT NULL,
   `registration_number` varchar(50) NOT NULL,
   PRIMARY KEY (`id_bus`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
@@ -184,15 +200,15 @@ INSERT INTO `bus` (`id_bus`, `name`, `capacity`, `registration_number`) VALUES
 -- Dumping structure for table travelservice.city
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE IF NOT EXISTS `city` (
-  `id_city` int(4) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(50) NOT NULL,
+  `id_city` smallint(6) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_city`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.city: ~4 rows (approximately)
 DELETE FROM `city`;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` (`id_city`, `Name`) VALUES
+INSERT INTO `city` (`id_city`, `name`) VALUES
 	(1, 'Minsk'),
 	(2, 'Mogilev'),
 	(3, 'Brest'),
@@ -202,7 +218,7 @@ INSERT INTO `city` (`id_city`, `Name`) VALUES
 -- Dumping structure for table travelservice.color
 DROP TABLE IF EXISTS `color`;
 CREATE TABLE IF NOT EXISTS `color` (
-  `id_color` int(4) NOT NULL AUTO_INCREMENT,
+  `id_color` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_color`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
@@ -232,31 +248,32 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `email` varchar(100) NOT NULL,
   `phone_number` varchar(50) NOT NULL,
   `driver_license` enum('Yes','No') NOT NULL DEFAULT 'No',
-  `id_role` int(11) NOT NULL DEFAULT '1',
+  `id_role` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_customer`),
-  KEY `fk_customer` (`id_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  KEY `FK_customer_role` (`id_role`),
+  CONSTRAINT `FK_customer_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.customer: ~3 rows (approximately)
+-- Dumping data for table travelservice.customer: ~5 rows (approximately)
 DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`id_customer`, `login`, `password`, `name`, `surname`, `gender`, `birthday`, `passport`, `email`, `phone_number`, `driver_license`, `id_role`) VALUES
-	(1, 'user0', '3d517fe6ebab7b8cfcf98db6259c8a59', 'Tsovak', 'Palakian', 'MALE', '2017-06-05', 'sdf', 'tsovak@gmail.com', '+375257018079', 'No', 1),
-	(2, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 'Zhenya', 'Popovich', 'MALE', '2017-06-05', 'ds', 'zhenya@gmail.com', '+375297261647', 'Yes', 1),
-	(3, 'user2', '7e58d63b60197ceb55a1c487989a3720', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1),
-	(4, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'Yauheni', 'Papovich', 'MALE', '2017-06-18', 'AA2222222', 'po@mail.ru', '333333333', 'No', 1),
-	(5, 'user4', '3f02ebe3d7929b091e3d8ccfde2f3bc6', 'Yauheni', 'Papovich', 'MALE', '2017-06-03', 'AA2222222', 'po@mail.ru', '333333333', 'No', 1);
+	(1, 'user0', 'dXNlcjFRQHE=', 'Tsovak', 'Palakian', 'MALE', '2017-06-05', 'sdf', 'tsovak@gmail.com', '+375257018079', 'No', 1),
+	(2, 'user1', 'dXNlcjFRQHE=', 'Zhenya', 'Popovich', 'MALE', '2017-06-05', 'ds', 'zhenya@gmail.com', '+375297261647', 'Yes', 1),
+	(3, 'user2', 'dXNlcjFRQHE=', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.hotel
 DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
-  `id_hotel` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `id_city` tinyint(2) NOT NULL,
+  `id_hotel` smallint(6) NOT NULL AUTO_INCREMENT,
+  `id_city` smallint(6) NOT NULL,
   `title` varchar(100) NOT NULL,
   `stars` enum('3','4','5') NOT NULL,
   `address` varchar(200) NOT NULL,
-  PRIMARY KEY (`id_hotel`)
+  PRIMARY KEY (`id_hotel`),
+  KEY `FK_hotel_city` (`id_city`),
+  CONSTRAINT `FK_hotel_city` FOREIGN KEY (`id_city`) REFERENCES `city` (`id_city`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.hotel: ~10 rows (approximately)
@@ -278,12 +295,14 @@ INSERT INTO `hotel` (`id_hotel`, `id_city`, `title`, `stars`, `address`) VALUES
 -- Dumping structure for table travelservice.hotel_order
 DROP TABLE IF EXISTS `hotel_order`;
 CREATE TABLE IF NOT EXISTS `hotel_order` (
-  `id_hotel_order` int(4) NOT NULL AUTO_INCREMENT,
-  `id_apartment` int(4) NOT NULL,
+  `id_hotel_order` int(11) NOT NULL AUTO_INCREMENT,
+  `id_apartment` int(11) NOT NULL,
   `data_start` date NOT NULL,
   `data_end` date NOT NULL,
   `order_price` double(7,2) NOT NULL,
-  PRIMARY KEY (`id_hotel_order`)
+  PRIMARY KEY (`id_hotel_order`),
+  KEY `FK_hotel_order_apartment` (`id_apartment`),
+  CONSTRAINT `FK_hotel_order_apartment` FOREIGN KEY (`id_apartment`) REFERENCES `apartment` (`id_apartment`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.hotel_order: ~0 rows (approximately)
@@ -295,11 +314,15 @@ DELETE FROM `hotel_order`;
 DROP TABLE IF EXISTS `rent_auto`;
 CREATE TABLE IF NOT EXISTS `rent_auto` (
   `id_rent_auto` int(11) NOT NULL AUTO_INCREMENT,
-  `id_auto` int(11) NOT NULL,
-  `id_salon_start` int(11) NOT NULL,
+  `id_auto` mediumint(9) NOT NULL,
+  `id_salon_start` smallint(6) NOT NULL,
   `status` enum('FREE','OCCU','BROKEN') NOT NULL DEFAULT 'FREE',
   `price` double(7,2) NOT NULL,
-  PRIMARY KEY (`id_rent_auto`)
+  PRIMARY KEY (`id_rent_auto`),
+  KEY `FK_rent_auto_auto` (`id_auto`),
+  KEY `FK_rent_auto_salon` (`id_salon_start`),
+  CONSTRAINT `FK_rent_auto_auto` FOREIGN KEY (`id_auto`) REFERENCES `auto` (`id_auto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_rent_auto_salon` FOREIGN KEY (`id_salon_start`) REFERENCES `salon` (`id_salon`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.rent_auto: ~6 rows (approximately)
@@ -317,8 +340,8 @@ INSERT INTO `rent_auto` (`id_rent_auto`, `id_auto`, `id_salon_start`, `status`, 
 -- Dumping structure for table travelservice.role
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
-  `id_role` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
+  `id_role` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id_role`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
@@ -336,7 +359,7 @@ INSERT INTO `role` (`id_role`, `name`) VALUES
 -- Dumping structure for table travelservice.room
 DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
-  `id_room` int(11) NOT NULL AUTO_INCREMENT,
+  `id_room` smallint(6) NOT NULL AUTO_INCREMENT,
   `tv` enum('Yes','No') NOT NULL DEFAULT 'Yes',
   `balcony` enum('Yes','No') NOT NULL DEFAULT 'No',
   `conditioner` enum('Yes','No') NOT NULL DEFAULT 'No',
@@ -360,10 +383,12 @@ INSERT INTO `room` (`id_room`, `tv`, `balcony`, `conditioner`) VALUES
 -- Dumping structure for table travelservice.salon
 DROP TABLE IF EXISTS `salon`;
 CREATE TABLE IF NOT EXISTS `salon` (
-  `id_salon` int(11) NOT NULL AUTO_INCREMENT,
-  `id_city` int(11) NOT NULL,
+  `id_salon` smallint(6) NOT NULL AUTO_INCREMENT,
+  `id_city` smallint(6) NOT NULL,
   `address` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_salon`)
+  PRIMARY KEY (`id_salon`),
+  KEY `FK_salon_city` (`id_city`),
+  CONSTRAINT `FK_salon_city` FOREIGN KEY (`id_city`) REFERENCES `city` (`id_city`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.salon: ~5 rows (approximately)
@@ -386,7 +411,15 @@ CREATE TABLE IF NOT EXISTS `total_order` (
   `id_hotel_order` int(11) NOT NULL,
   `id_auto_order` int(11) NOT NULL,
   `total_price` double(7,2) NOT NULL,
-  PRIMARY KEY (`id_order`)
+  PRIMARY KEY (`id_order`),
+  KEY `FK_total_order_customer` (`id_customer`),
+  KEY `FK_total_order_tour_order` (`id_tour_order`),
+  KEY `FK_total_order_hotel_order` (`id_hotel_order`),
+  KEY `FK_total_order_auto_order` (`id_auto_order`),
+  CONSTRAINT `FK_total_order_auto_order` FOREIGN KEY (`id_auto_order`) REFERENCES `auto_order` (`id_auto_order`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_total_order_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_total_order_hotel_order` FOREIGN KEY (`id_hotel_order`) REFERENCES `hotel_order` (`id_hotel_order`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_total_order_tour_order` FOREIGN KEY (`id_tour_order`) REFERENCES `tour_order` (`id_tour_order`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.total_order: ~0 rows (approximately)
@@ -430,21 +463,25 @@ INSERT INTO `tour` (`id_tour`, `destination`, `name`, `type`, `description`, `im
 -- Dumping structure for table travelservice.tour_offer
 DROP TABLE IF EXISTS `tour_offer`;
 CREATE TABLE IF NOT EXISTS `tour_offer` (
-  `id_offer` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tour_offer` int(11) NOT NULL AUTO_INCREMENT,
   `id_tour` int(11) NOT NULL,
-  `id_bus` int(11) NOT NULL,
+  `id_bus` smallint(6) NOT NULL,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
-  `passengers_per_order` int(4) NOT NULL,
+  `passengers_per_order` tinyint(4) NOT NULL,
   `price` double(7,2) NOT NULL,
   `hot` enum('YES','NO') NOT NULL DEFAULT 'NO',
-  PRIMARY KEY (`id_offer`)
+  PRIMARY KEY (`id_tour_offer`),
+  KEY `FK_tour_offer_tour` (`id_tour`),
+  KEY `FK_tour_offer_bus` (`id_bus`),
+  CONSTRAINT `FK_tour_offer_bus` FOREIGN KEY (`id_bus`) REFERENCES `bus` (`id_bus`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_tour_offer_tour` FOREIGN KEY (`id_tour`) REFERENCES `tour` (`id_tour`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.tour_offer: ~15 rows (approximately)
 DELETE FROM `tour_offer`;
 /*!40000 ALTER TABLE `tour_offer` DISABLE KEYS */;
-INSERT INTO `tour_offer` (`id_offer`, `id_tour`, `id_bus`, `date_start`, `date_end`, `passengers_per_order`, `price`, `hot`) VALUES
+INSERT INTO `tour_offer` (`id_tour_offer`, `id_tour`, `id_bus`, `date_start`, `date_end`, `passengers_per_order`, `price`, `hot`) VALUES
 	(1, 1, 1, '2017-12-20', '2017-12-21', 24, 55.00, 'NO'),
 	(10, 5, 8, '2017-06-27', '2017-06-28', 30, 40.00, 'NO'),
 	(11, 6, 6, '2017-07-03', '2017-07-05', 22, 76.00, 'NO'),
@@ -466,10 +503,12 @@ INSERT INTO `tour_offer` (`id_offer`, `id_tour`, `id_bus`, `date_start`, `date_e
 DROP TABLE IF EXISTS `tour_order`;
 CREATE TABLE IF NOT EXISTS `tour_order` (
   `id_tour_order` int(4) NOT NULL AUTO_INCREMENT,
-  `id_offer` int(4) NOT NULL,
-  `person_number` int(3) NOT NULL DEFAULT '1',
+  `id_tour_offer` int(4) NOT NULL,
+  `person_number` tinyint(3) NOT NULL DEFAULT '1',
   `order_price` double(7,2) NOT NULL,
-  PRIMARY KEY (`id_tour_order`)
+  PRIMARY KEY (`id_tour_order`),
+  KEY `FK_tour_order_tour_offer` (`id_tour_offer`),
+  CONSTRAINT `FK_tour_order_tour_offer` FOREIGN KEY (`id_tour_offer`) REFERENCES `tour_offer` (`id_tour_offer`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table travelservice.tour_order: ~0 rows (approximately)

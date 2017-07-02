@@ -22,6 +22,7 @@ private static final Map<EnumCommandAction, CommandAction> mapCommand = new Hash
 	static {
 		mapCommand.put(LOG_IN, new LogInAction());
 		mapCommand.put(LOG_OUT, new LogOutAction());
+		mapCommand.put(LOG_IN_PAGE, new LogInPageAction());
 		mapCommand.put(SIGN_UP_PAGE, new SignUpPageAction());
 		mapCommand.put(SIGN_UP, new SignUpAction());
 	}

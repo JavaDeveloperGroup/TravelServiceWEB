@@ -21,10 +21,10 @@
 				<input type="hidden" name="command" value="back_page" />
 				<button type="submit"><!--<fmt:message key="back" />-->BACK</button>
 			</form>
-			<form name="sign_in">
-				<button><!--<fmt:message key="sign_in" />-->
-					<a href="${pageContext.request.contextPath}/jsp/log_in_page.jsp">SIGN IN</a>
-				</button>
+			<form name="sign_in"
+				action="${pageContext.request.contextPath}/Controller" method="GET">
+				<input type="hidden" value="log_in_page" name="command" />
+				<button type="submit">SIGN IN</button>
 			</form>
 		</header>
 		
@@ -70,7 +70,7 @@
 
 				<div class='form-row'>
 					<label for="username"> <span><!--<fmt:message key="login" />--> Login </span> <input
-						type='text' pattern="[a-zA-Z0-9]{4}" value="user" name='login' id="username"
+						type='text' pattern="[a-zA-Z0-9]{3-8}" value="user" name='login' id="username"
 						required>
 						<ul class="input-requirements">
 							<li>At least 3 characters long</li>
@@ -101,13 +101,15 @@
 						id="password_repeat" required>
 					</label>
 				</div>
+				
+				<div style="width: 100%; height: 1px; clear: both;"></div>
 
 				<div class='form-row' id="selectgender">
-					<label><div style = "float: left"><span>Gender</span></div>
+					<label><div style="float: left;"><span>Gender</span></div>
 						<div> 
 							<font size="3">
-								<select id="gender" name='gender' value="Male" style="width: 492px;">				
-									<option selected disabled hidden>Choose here</option>
+								<select id="gender" name='gender' style="width: 492px;">				
+									<!-- <option selected disabled value="male">Choose here</option>-->
 									<option value="male">Male</option>
 									<option value="female">Female</option>
 								</select>
@@ -122,7 +124,7 @@
 					<label>
 						<span>Birthday</span> 
 						<font size="3">
-							<input type="date" placeholder="Birth date"
+							<input value="2017-06-30" type="date" placeholder="Birth date"
 							title="Format: YYYY-MM-DD" name="birthday" />
 						</font>
 					</label>

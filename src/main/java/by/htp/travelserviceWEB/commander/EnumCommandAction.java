@@ -4,6 +4,7 @@ enum EnumCommandAction {
 	
 	LOG_IN,
 	LOG_OUT,
+	LOG_IN_PAGE,
 	SIGN_UP_PAGE,
 	SIGN_UP;
 	
@@ -12,7 +13,7 @@ enum EnumCommandAction {
 		try {
 			return EnumCommandAction.valueOf(comm);
 		} catch (EnumConstantNotPresentException e) {
-			return EnumCommandAction.LOG_IN;
+			return EnumCommandAction.LOG_IN_PAGE;
 		}
 	}
 
