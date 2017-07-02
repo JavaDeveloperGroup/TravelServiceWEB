@@ -5,20 +5,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import by.htp.travelserviceWEB.dto.UserDTO;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.service.UserService;
-import by.htp.travelserviceWEB.service.UserServiceImpl;
-
-import static by.htp.travelserviceWEB.util.ConstantValue.*;
+import by.htp.travelserviceWEB.entity.dto.UserTO;
+import by.htp.travelserviceWEB.service.factory.ServiceFactory;
+import by.htp.travelserviceWEB.util.Encryption;
 
 public class LogInAction implements CommandAction {
 	
-	private UserService userService; 
+private ServiceFactory serviceFactory; 
 	
 	public LogInAction() {
-		userService = UserServiceImpl.getInstance();
+		serviceFactory = ServiceFactory.getInstance();
 	}
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -27,52 +25,39 @@ public class LogInAction implements CommandAction {
 		
 		Customer customer = null;
 		Admin admin = null;
+		UserTO userDTO = null;
 		
-		HttpSession httpSession;
+		HttpSession httpSession = request.getSession();
 		
 		String login = request.getParameter("login");
-		String password = request.getParameter("password");
+		String password = Encryption.md5Apache(request.getParameter("password"));
 		
-		UserDTO userDTO = new UserDTO(login, password);
+		userDTO = new UserTO(login, password);
 		
-		customer = userService.authoriseCustomer(userDTO);
+		customer = serviceFactory.getUserService().authoriseCustomer(userDTO);
 		
 		if (customer == null) {
-			admin = userService.authoriseAdmin(userDTO);
+			admin = serviceFactory.getUserService().authoriseAdmin(userDTO);
 			if (admin == null) {
 				request.setAttribute("msg", "There is no user with such login.");
-				page = "/jsp/login_page.jsp";		
+				page = "jsp/log_in_page.jsp";		
 				return page;
 			}
-			httpSession = request.getSession();
-			httpSession.setAttribute("user", admin);
-			//request.setAttribute("", "");
 			
-			Cookie cookieLog = new Cookie("login", login);
-			response.addCookie(cookieLog);
-			Cookie cookiePass = new Cookie("password", password);
-			response.addCookie(cookiePass);
+			httpSession.setAttribute("admin", admin);
 			
-			//Cookie[] cookies = request.getCookies();
-			
-			page = "/jsp/admin_page.jsp";
+			page = "jsp/admin_page.jsp";
 		}
 		else {
-			httpSession = request.getSession();
-			httpSession.setAttribute("user", customer);
-			//request.setAttribute("", "");
 			
-			Cookie cookieLog = new Cookie("login", login);
-			response.addCookie(cookieLog);
-			Cookie cookiePass = new Cookie("password", password);
-			response.addCookie(cookiePass);
+			httpSession.setAttribute("customer", customer);
 			
-			//Cookie[] cookies = request.getCookies();
+			response.addCookie(new Cookie("log", login));
+			response.addCookie(new Cookie("passw", request.getParameter("password")));
 			
-			page = "/jsp/catalog_page.jsp";
+			page = "jsp/home_page.jsp";
 		}
 
 		return page;
 	}
-	
 }

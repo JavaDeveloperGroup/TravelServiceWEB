@@ -7,17 +7,9 @@ public class Role implements Serializable {
 	private Integer roletId;
 	private String name;
 	
-	public Role() {
-		super();
-	}
-
-	public Role(String name) {
-		super();
-		this.name = name;
-	}
-
+	public Role() {}
+	
 	public Role(Integer roleId, String name) {
-		super();
 		this.roletId = roletId;
 		this.name = name;
 	}

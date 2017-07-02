@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+html {
+	min-height: 100%;
+	background-size: cover;	/*Значение cover масштабирует изображение, в зависимости от размеров блока*/
+	background-image: url(../image/error.png);
+	background-repeat: no-repeat;
+	background-position: bottom;	/*Изображение будет обрезано, в зависимости от значений*/
+}
+
+body {
+	min-height: 100%;
+}
+
+.headline {
+	text-align: center;
+	vertical-align: top;
+}
