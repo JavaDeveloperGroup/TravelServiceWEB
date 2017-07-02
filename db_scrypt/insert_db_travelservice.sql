@@ -42,16 +42,14 @@ INSERT INTO `role` (`id_role`, `name`) VALUES
 	(5, 'vip_customer');
 
 INSERT INTO `admin` (`id_admin`, `login`, `password`, `id_role`) VALUES
-	(1, 'tour', 'f0a4025b3b49b3e256004503ee31df8c', 2),
-	(2, 'hotel', 'e919c49d5f0cd737285367810a3394d0', 3),
-	(3, 'auto', '9df22f196a33acd0b372fe502de51211', 4);
+	(1, 'tour', 'dG91cg==', 2),
+	(2, 'hotel', 'aG90ZWw=', 3),
+	(3, 'auto', 'YXV0bw==', 4);
 	
 INSERT INTO `customer` (`id_customer`, `login`, `password`, `name`, `surname`, `gender`, `birthday`, `passport`, `email`, `phone_number`, `driver_license`, `id_role`) VALUES
-	(1, 'user0', '3d517fe6ebab7b8cfcf98db6259c8a59', 'Tsovak', 'Palakian', 'MALE', '2017-06-05', 'sdf', 'tsovak@gmail.com', '+375257018079', 'No', 1),
-	(2, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 'Zhenya', 'Popovich', 'MALE', '2017-06-05', 'ds', 'zhenya@gmail.com', '+375297261647', 'Yes', 1),
-	(3, 'user2', '7e58d63b60197ceb55a1c487989a3720', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1),
-	(4, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'Yauheni', 'Papovich', 'MALE', '2017-06-18', 'AA2222222', 'po@mail.ru', '333333333', 'No', 1),
-	(5, 'user4', '3f02ebe3d7929b091e3d8ccfde2f3bc6', 'Yauheni', 'Papovich', 'MALE', '2017-06-03', 'AA2222222', 'po@mail.ru', '333333333', 'No', 1);
+	(1, 'user0', 'dXNlcjFRQHE=', 'Tsovak', 'Palakian', 'MALE', '2017-06-05', 'sdf', 'tsovak@gmail.com', '+375257018079', 'No', 1),
+	(2, 'user1', 'dXNlcjFRQHE=', 'Zhenya', 'Popovich', 'MALE', '2017-06-05', 'ds', 'zhenya@gmail.com', '+375297261647', 'Yes', 1),
+	(3, 'user2', 'dXNlcjFRQHE=', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1);
 
 INSERT INTO `bus` (`id_bus`, `name`, `capacity`, `registration_number`) VALUES
 	(1, 'MAZ 256170', 24, 'AH 6637-7'),
