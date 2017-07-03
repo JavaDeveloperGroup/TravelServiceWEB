@@ -174,7 +174,7 @@
 		</div>
 	</div>
 
-	<script src="http://localhost:8080/travelservice/js/script.js" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/js/script.js" charset="utf-8"></script>
 
 </body>
 </html>

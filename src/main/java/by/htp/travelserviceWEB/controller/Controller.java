@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.CommandAction;
 import by.htp.travelserviceWEB.commander.CommandManager;
+import by.htp.travelserviceWEB.commander.EnumCommandAction;
 import by.htp.travelserviceWEB.connector.OwnConnection;
 
 public class Controller extends HttpServlet {
@@ -33,7 +34,7 @@ public class Controller extends HttpServlet {
 		String command = request.getParameter("command");
 		String page = "index.jsp";
 		if (command != null) {
-			CommandAction commandAction = CommandManager.getInstance().getCommandAction(command);
+			CommandAction commandAction = EnumCommandAction.valueOf(command.toUpperCase()).getCommantAction();
 			page = commandAction.execute(request, response);
 		}		
 		RequestDispatcher disp = request.getRequestDispatcher(page);

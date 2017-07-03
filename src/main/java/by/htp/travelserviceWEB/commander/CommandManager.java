@@ -7,7 +7,7 @@ import static by.htp.travelserviceWEB.commander.EnumCommandAction.*;
 
 public final class CommandManager {	
 	
-private static final Map<EnumCommandAction, CommandAction> mapCommand = new HashMap<EnumCommandAction, CommandAction>(); 
+	/*private static final Map<EnumCommandAction, CommandAction> mapCommand = new HashMap<EnumCommandAction, CommandAction>(); 
 	
 	private CommandManager() {}
 	
@@ -30,5 +30,5 @@ private static final Map<EnumCommandAction, CommandAction> mapCommand = new Hash
 	public CommandAction getCommandAction(String command) {
 		EnumCommandAction enumCommandAction = initAction(command);
 		return mapCommand.get(enumCommandAction);
-	}
+	}*/
 }

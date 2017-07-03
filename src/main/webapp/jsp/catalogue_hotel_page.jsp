@@ -68,7 +68,7 @@
 				</aside>
 				<div>
 					<form action="${pageContext.request.contextPath}/Controller" method="GET">
-						<input type="hidden" name="command" value="make_order_hotel">
+						<input type="hidden" name="command" value="hotel_make_order">
 						<div>
 							<table>
 								<tr>

@@ -91,7 +91,7 @@
 				<div>
 					<form action="${pageContext.request.contextPath}/Controller"
 						method="GET">
-						<input type="hidden" name="command" value="make_order_tour">
+						<input type="hidden" name="command" value="tour_make_order">
 						<div>
 							<table>
 								<tr>

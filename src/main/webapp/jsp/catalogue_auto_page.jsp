@@ -105,7 +105,7 @@
 				</aside>
 				<div>
 					<form action="${pageContext.request.contextPath}/Controller" method="GET">
-						<input type="hidden" name="command" value="make_order_auto">
+						<input type="hidden" name="command" value="auto_make_order">
 						<div>
 							<table>
 								<tr>
