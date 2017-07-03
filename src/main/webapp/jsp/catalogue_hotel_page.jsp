@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath}/css/slider.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<title>Catalogue page</title>
+<title>Hotel page</title>
 </head>
 <body>
 	<div>
@@ -24,8 +24,7 @@
 						<button type="submit">SIGN IN</button>
 					</form>
 
-					<form name="sign_up"
-						action="${pageContext.request.contextPath}/Controller"	method="GET">
+					<form name="sign_up" action="${pageContext.request.contextPath}/Controller"	method="GET">
 						<input type="hidden" value="sign_up_page" name="command" />
 						<button type="submit">SIGN UP</button>
 					</form>
@@ -39,7 +38,6 @@
 						<button type="submit">LOG OUT</button>
 					</form>
 				</c:if>
-
 			</header>
 			<jsp:include page="/jspf/menu.jspf" />
 			<hr>
@@ -48,37 +46,34 @@
 					<nav>
 						<div class="aside-menu">
 							<div class="head-cont">Star rate:</div>
-							<td><input type="checkbox" name="id" value="3" />3 &#9733;
-								(Cat. B)</td> <br />
-							<td><input type="checkbox" name="id" value="4" />4 &#9733;
-								(Cat. A)</td> <br />
-							<td><input type="checkbox" name="id" value="5" />5 &#9733;
-								(Cat. De Luxe)</td>
+							<td><input type="checkbox" name="id_stars" value="3" />3 &#9733; (Cat. B)</td> <br />
+							<td><input type="checkbox" name="id_stars" value="4" />4 &#9733; (Cat. A)</td> <br />
+							<td><input type="checkbox" name="id_stars" value="5" />5 &#9733; (Cat. De Luxe)</td>
 							<hr>
 							<div class="head-cont">Number of persons:</div>
-							<td><input type="radio" name="id" value="3" />1 (single)</td> <br />
-							<td><input type="radio" name="id" value="3" />2 (double)</td> <br />
-							<td><input type="radio" name="id" value="3" />2 + 1
-								additional bed</td> <br />
-							<td><input type="radio" name="id" value="3" />2 + 2
-								additional beds</td>
+							<td><input type="radio" name="id_num_persons" value="1" />1 (single)</td> <br />
+							<td><input type="radio" name="id_num_persons" value="2" />2 (double)</td> <br />
+							<td><input type="radio" name="id_num_persons" value="3" />2 + 1	additional bed</td> <br />
+							<td><input type="radio" name="id_num_persons" value="4" />2 + 2	additional beds</td>
 							<hr>
 							<div class="head-cont">Price:</div>
-							<label for="minCost" >From: </label> <input class="inp_price" type="text"
-								id="minCost" value="0" /> <label for="maxCost">Till: </label> <input
-								class="inp_price" type="text" id="maxCost" value="500" />
+							<label for="minCost" >From:</label> 
+							<input class="inp_price" type="text" id="minCost" name="price_min" value="0" /> 
+							<label for="maxCost">Till: </label> 
+							<input class="inp_price" type="text" id="maxCost" name="price_max" value="500" />
 							<hr class="div_tr">
 							<div id="slider" style=""></div>
 						</div>
 					</nav>
 				</aside>
 				<div>
-					<form action="Controller" method="GET">
+					<form action="${pageContext.request.contextPath}/Controller" method="GET">
 						<input type="hidden" name="command" value="make_order_hotel">
 						<div>
 							<table>
 								<tr>
 									<th id="ckeck">
+									<th id="photo">PHOTO</th>
 									<th class="col1">HOTEL</th>
 									<th class="col2">ADDRESS</th>
 									<th class="col3">STAR RATE</th>
@@ -88,12 +83,12 @@
 								<c:forEach items="${list_apartment}" var="i">
 									<tr>
 										<td><input type="radio" name="id"
-											value="${i.getApartmentId()}" /></td>
+											value="${i.getApartmentId()}"/></td>
 										<td><img src="${i.getImage()}"></td>
-										<td>${i.Hotel.getTitle()}</td>
-										<td>${i.Hotel.getAddress()}</td>
-										<td>${i.Hotel.getStars()}</td>
-										<td>${i.Room.getCapacity()}</td>
+										<td>${i.getHotel().getTitle()}</td>
+										<td>${i.getHotel().toStringAddress()}</td>
+										<td>${i.getHotel().getStars()}</td>
+										<td>${i.getRoom().getCapacity()}</td>
 										<td>${i.getPrice()}</td>
 									</tr>
 								</c:forEach>

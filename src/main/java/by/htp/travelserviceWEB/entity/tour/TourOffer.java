@@ -10,20 +10,20 @@ public class TourOffer implements Serializable {
 	private Bus bus;
 	private Date dateStart;
 	private Date dateEnd;
-	private Integer pessengers_per_order;
+	private Integer pessengersPerOrder;
 	private Double price;
 	private String hot;
 	
 	public TourOffer() {}
 
-	public TourOffer(Integer offerId, Tour tour, Bus bus, Date dateStart, Date dateEnd, Integer pessengers_per_order,
+	public TourOffer(Integer offerId, Tour tour, Bus bus, Date dateStart, Date dateEnd, Integer pessengersPerOrder,
 			Double price, String hot) {
 		this.offerId = offerId;
 		this.tour = tour;
 		this.bus = bus;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
-		this.pessengers_per_order = pessengers_per_order;
+		this.pessengersPerOrder = pessengersPerOrder;
 		this.price = price;
 		this.hot = hot;
 	}
@@ -68,12 +68,12 @@ public class TourOffer implements Serializable {
 		this.dateEnd = dateEnd;
 	}
 
-	public Integer getPessengers_per_order() {
-		return pessengers_per_order;
+	public Integer getPessengersPerOrder() {
+		return pessengersPerOrder;
 	}
 
-	public void setPessengers_per_order(Integer pessengers_per_order) {
-		this.pessengers_per_order = pessengers_per_order;
+	public void setPessengersPerOrder(Integer pessengersPerOrder) {
+		this.pessengersPerOrder = pessengersPerOrder;
 	}
 
 	public Double getPrice() {
