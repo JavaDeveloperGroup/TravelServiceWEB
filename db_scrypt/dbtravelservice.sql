@@ -252,15 +252,16 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`id_customer`),
   KEY `FK_customer_role` (`id_role`),
   CONSTRAINT `FK_customer_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.customer: ~5 rows (approximately)
+-- Dumping data for table travelservice.customer: ~3 rows (approximately)
 DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`id_customer`, `login`, `password`, `name`, `surname`, `gender`, `birthday`, `passport`, `email`, `phone_number`, `driver_license`, `id_role`) VALUES
 	(1, 'user0', 'dXNlcjFRQHE=', 'Tsovak', 'Palakian', 'MALE', '2017-06-05', 'sdf', 'tsovak@gmail.com', '+375257018079', 'No', 1),
 	(2, 'user1', 'dXNlcjFRQHE=', 'Zhenya', 'Popovich', 'MALE', '2017-06-05', 'ds', 'zhenya@gmail.com', '+375297261647', 'Yes', 1),
-	(3, 'user2', 'dXNlcjFRQHE=', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1);
+	(3, 'user2', 'dXNlcjFRQHE=', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1),
+	(4, 'user', 'dXNlcjFRQHE=', 'Yauheni', 'Papovich', 'MALE', '2017-06-30', 'AA2222222', 'po@mail.ru', '333333333', 'No', 1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table travelservice.hotel
@@ -412,10 +413,10 @@ CREATE TABLE IF NOT EXISTS `total_order` (
   `id_auto_order` int(11) NOT NULL,
   `total_price` double(7,2) NOT NULL,
   PRIMARY KEY (`id_order`),
+  UNIQUE KEY `FK_total_order_tour_order` (`id_tour_order`),
+  UNIQUE KEY `FK_total_order_hotel_order` (`id_hotel_order`),
+  UNIQUE KEY `FK_total_order_auto_order` (`id_auto_order`),
   KEY `FK_total_order_customer` (`id_customer`),
-  KEY `FK_total_order_tour_order` (`id_tour_order`),
-  KEY `FK_total_order_hotel_order` (`id_hotel_order`),
-  KEY `FK_total_order_auto_order` (`id_auto_order`),
   CONSTRAINT `FK_total_order_auto_order` FOREIGN KEY (`id_auto_order`) REFERENCES `auto_order` (`id_auto_order`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_total_order_customer` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_total_order_hotel_order` FOREIGN KEY (`id_hotel_order`) REFERENCES `hotel_order` (`id_hotel_order`) ON DELETE CASCADE ON UPDATE CASCADE,
