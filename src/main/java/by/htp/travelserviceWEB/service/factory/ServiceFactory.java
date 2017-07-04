@@ -25,11 +25,11 @@ public class ServiceFactory {
 		return UserServiceImpl.getInstance();
 	}
 	
-	public ApartmentService getApartmentService() {
+	public ApartmentService getHotelService() {
 		return ApartmentServiceImpl.getInstance();
 	}
 	
-	public TourOfferService getTourOfferService() {
+	public TourOfferService getTourService() {
 		return TourOfferServiceImpl.getInstance();
 	}
 	

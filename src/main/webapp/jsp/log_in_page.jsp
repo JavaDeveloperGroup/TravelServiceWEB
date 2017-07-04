@@ -6,6 +6,7 @@
 	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
+	<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 	<title>Log in</title>
 </head>
 <body>
@@ -31,7 +32,7 @@
 		<font face="monospace" color="black" size="4"> 
 			<b>
 				<td>
-					<c:out value="${msg}" />
+					<h2><c:out value="${msg}" /></h2>
 				</td>
 			</b>
 		</font>
@@ -39,9 +40,9 @@
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="log_in" />
 				<p>Login:</p>
-				<input type="text" name="login" value="${login}" placeholder="LOGIN" />
+				<input type="text" name="login" value="user1" placeholder="LOGIN" />
 				<p>Password:</p>
-				<input type="password" name="password" value="${password}" placeholder="PASSWORD"/> 
+				<input type="password" name="password" value="user1Q@q" placeholder="PASSWORD"/> 
 				<br> 
 				<input type="submit" value="Log in" id="subbut"/>
 			</form>
@@ -50,6 +51,5 @@
 			<jsp:include page="/jspf/footer.jspf" />
 		</div>
 	</div>
-
 </body>
 </html>

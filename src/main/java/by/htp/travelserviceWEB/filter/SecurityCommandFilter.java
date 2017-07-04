@@ -32,11 +32,8 @@ public class SecurityCommandFilter implements Filter {
 
 		HttpServletRequest httpServetRequest = (HttpServletRequest) servletRequest;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-
 		String command = httpServetRequest.getParameter("command");
-
 		HttpSession httpSession = httpServetRequest.getSession();
-
 		Customer customer = (Customer) httpSession.getAttribute("customer");
 		Admin admin = (Admin) httpSession.getAttribute("admin");
 

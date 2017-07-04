@@ -9,6 +9,7 @@
 <link href="${pageContext.request.contextPath}/css/slider.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 <title>Hotel page</title>
 </head>
 <body>
@@ -46,15 +47,15 @@
 					<nav>
 						<div class="aside-menu">
 							<div class="head-cont">Star rate:</div>
-							<td><input type="checkbox" name="id_stars" value="3" />3 &#9733; (Cat. B)</td> <br />
-							<td><input type="checkbox" name="id_stars" value="4" />4 &#9733; (Cat. A)</td> <br />
-							<td><input type="checkbox" name="id_stars" value="5" />5 &#9733; (Cat. De Luxe)</td>
+							<input type="checkbox" name="id_stars" value="3" />3 &#9733; (Cat. B)</td> <br />
+							<input type="checkbox" name="id_stars" value="4" />4 &#9733; (Cat. A)</td> <br />
+							<input type="checkbox" name="id_stars" value="5" />5 &#9733; (Cat. De Luxe)</td>
 							<hr>
 							<div class="head-cont">Number of persons:</div>
-							<td><input type="radio" name="id_num_persons" value="1" />1 (single)</td> <br />
-							<td><input type="radio" name="id_num_persons" value="2" />2 (double)</td> <br />
-							<td><input type="radio" name="id_num_persons" value="3" />2 + 1	additional bed</td> <br />
-							<td><input type="radio" name="id_num_persons" value="4" />2 + 2	additional beds</td>
+							<input type="radio" name="id_num_persons" value="1" />1 (single)</td> <br />
+							<input type="radio" name="id_num_persons" value="2" />2 (double)</td> <br />
+							<input type="radio" name="id_num_persons" value="3" />2 + 1	additional bed</td> <br />
+							<input type="radio" name="id_num_persons" value="4" />2 + 2	additional beds</td>
 							<hr>
 							<div class="head-cont">Price:</div>
 							<label for="minCost" >From:</label> 

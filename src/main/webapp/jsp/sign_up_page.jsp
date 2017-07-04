@@ -10,11 +10,11 @@
 	<link href="${pageContext.request.contextPath}/css/signup.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
+	<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 	<title>Sign up</title>
 </head>
 <body>
 	<div id="wrapper">
-	
 		<header>
 			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img src="${pageContext.request.contextPath}/image/logoF.png" width="180"></a>
 			<form name="back" action="${pageContext.request.contextPath}/Controller" method="GET">
@@ -27,9 +27,7 @@
 				<button type="submit">SIGN IN</button>
 			</form>
 		</header>
-		
 		<jsp:include page="/jspf/menu.jspf" />
-		
 		<hr>
 		<div id="heading">
 			<h2><!--<fmt:message key="sign_up_invitation" />--> Please, fill in the form to sign up!</h2>

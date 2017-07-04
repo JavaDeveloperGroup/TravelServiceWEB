@@ -13,7 +13,7 @@ import by.htp.travelserviceWEB.util.Encryption;
 
 public class LogInAction implements CommandAction {
 	
-private ServiceFactory serviceFactory; 
+	private ServiceFactory serviceFactory; 
 	
 	public LogInAction() {
 		serviceFactory = ServiceFactory.getInstance();
@@ -30,10 +30,10 @@ private ServiceFactory serviceFactory;
 		HttpSession httpSession = request.getSession();
 		
 		String login = request.getParameter("login");
-		String password = Encryption.md5Apache(request.getParameter("password"));
+		String password = Encryption.base64Code(request.getParameter("password"));
 		
 		userDTO = new UserTO(login, password);
-		
+	
 		customer = serviceFactory.getUserService().authoriseCustomer(userDTO);
 		
 		if (customer == null) {
@@ -43,21 +43,18 @@ private ServiceFactory serviceFactory;
 				page = "jsp/log_in_page.jsp";		
 				return page;
 			}
-			
 			httpSession.setAttribute("admin", admin);
-			
+		
 			page = "jsp/admin_page.jsp";
 		}
 		else {
-			
 			httpSession.setAttribute("customer", customer);
 			
 			response.addCookie(new Cookie("log", login));
 			response.addCookie(new Cookie("passw", request.getParameter("password")));
-			
+
 			page = "jsp/home_page.jsp";
 		}
-
 		return page;
 	}
 }

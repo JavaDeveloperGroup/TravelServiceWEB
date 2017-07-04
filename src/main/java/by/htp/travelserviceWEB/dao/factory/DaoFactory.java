@@ -21,19 +21,19 @@ public class DaoFactory {
 		return Singletone.INSTANCE;
 	}
 	
-	public UserDao getUserService() {
+	public UserDao getUserDao() {
 		return UserDaoImpl.getInstance();
 	}
 	
-	public ApartmentDao getApartmentService() {
+	public ApartmentDao getHotelDao() {
 		return ApartmentDaoImpl.getInstance();
 	}
 	
-	public TourOfferDao getTourOfferService() {
+	public TourOfferDao getTourDao() {
 		return TourOfferDaoImpl.getInstance();
 	}
 	
-	public AutoDao getAutoService() {
+	public AutoDao getAutoDao() {
 		return AutoDaoImpl.getInstance();
 	}
 	

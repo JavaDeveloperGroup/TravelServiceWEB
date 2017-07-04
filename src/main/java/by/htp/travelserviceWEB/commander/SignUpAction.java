@@ -52,7 +52,7 @@ private ServiceFactory serviceFactory;
 			request.setAttribute("msg", "Repeat password incorrectly.");
 			request.getRequestDispatcher(page);
 		}
-		password = Encryption.md5Apache(request.getParameter("password"));
+		password = Encryption.base64Code(request.getParameter("password"));
 		login = request.getParameter("login");
 		name = request.getParameter("name");
 		surname = request.getParameter("surname");

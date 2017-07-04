@@ -6,6 +6,7 @@
 	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
+	<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 	<title>Home page</title>
 </head>
 <body>

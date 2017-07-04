@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.htp.travelserviceWEB.connector.Connector;
 import by.htp.travelserviceWEB.connector.OwnConnection;
 import by.htp.travelserviceWEB.dao.UserDao;
 import by.htp.travelserviceWEB.entity.Admin;
