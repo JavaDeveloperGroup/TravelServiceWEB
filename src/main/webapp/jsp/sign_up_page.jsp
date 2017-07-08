@@ -48,7 +48,7 @@
 					<label for="name"> <span><!--<fmt:message key="first_name" />--> Name </span> <input
 						type='text' value="Yauheni" id="name" name='name' required>
 						<ul class="input-requirements">
-							<li>Should be at least 2 characters long.</li>
+							<li>Should be at least 1 character long.</li>
 							<li>Should only contain letters.</li>
 							<li>Should start with an uppercase letter.</li>
 						</ul>
@@ -59,7 +59,7 @@
 					<label for="surname"> <span><!--<fmt:message key="second_name" />--> Surname </span> <input
 						type='text' value="Papovich" id="surname" name='surname' required>
 						<ul class="input-requirements">
-							<li>Should be at least 2 characters long.</li>
+							<li>Should be at least 1 characters long.</li>
 							<li>Should only contain letters.</li>
 							<li>Should start with an uppercase letter.</li>
 						</ul>
@@ -68,10 +68,10 @@
 
 				<div class='form-row'>
 					<label for="username"> <span><!--<fmt:message key="login" />--> Login </span> <input
-						type='text' pattern="[a-zA-Z0-9]{3-8}" value="user" name='login' id="username"
+						type='text' value="user" name='login' id="username"
 						required>
 						<ul class="input-requirements">
-							<li>At least 3 characters long</li>
+							<li>At least 3-20 characters long</li>
 							<li>Must only contain letters and numbers (no special
 								characters)</li>
 						</ul>
@@ -87,7 +87,7 @@
 							<li>Contains at least 1 number</li>
 							<li>Contains at least 1 lowercase letter</li>
 							<li>Contains at least 1 uppercase letter</li>
-							<li>Contains a special character (e.g. @ !)</li>
+							<li>Contains a special character (!, @, #, $, %, ^, &, *)</li>
 						</ul>
 					</label>
 				</div>
@@ -122,7 +122,7 @@
 					<label>
 						<span>Birthday</span> 
 						<font size="3">
-							<input value="2017-06-30" type="date" placeholder="Birth date"
+							<input value="1999-06-30" type="date" placeholder="Birth date"
 							title="Format: YYYY-MM-DD" name="birthday" />
 						</font>
 					</label>
@@ -131,7 +131,7 @@
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 				
 				<div class='form-row'>
-					<label>Passport </label> <input pattern="[A-Z]{2}+([0-9]{7})"
+					<label>Passport </label> <input 
 						value="AA2222222" name='passport' required>
 				</div>
 				
@@ -146,17 +146,26 @@
 				
 				<div class='form-row'>
 					<label>Phone </label> <input placeholder="+375(_ _)_ _ _-_ _-_ _"
-						pattern="(29|44|33|25)+([0-9]{7})" value="333333333"
+						 value="+375293333333"
 						name='phone_number' required>
 				</div>
 				
 				<div style="width: 100%; height: 1px; clear: both;"></div>
-				
+
 				<div class='form-row'>
-					<label>Driver licence </label> <input pattern="[a-zA-Z]{2,3}"
-						value="No" name='driver_licence' required>
+					<label>
+						<div style="float: left;"><span>Driver licence</span></div>
+						<div>
+							<font size="3"> 
+								<select id="driver_licence"	name='driver_licence' style="width: 492px;">
+									<option value="NO">No</option>
+									<option value="YES">Yes</option>
+								</select>
+							</font>
+						</div> 
+					</label>
 				</div>
-				
+
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 				
 				<div class="form-row">

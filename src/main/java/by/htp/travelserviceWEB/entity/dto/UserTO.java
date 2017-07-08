@@ -6,7 +6,7 @@ import java.sql.Date;
 public class UserTO implements Serializable {
 
 	private String login;
-	private String password;
+	private transient String password;
 	
 	public UserTO() {
 		super();

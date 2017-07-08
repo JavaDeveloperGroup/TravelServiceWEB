@@ -48,8 +48,8 @@ public class UserDaoImpl implements UserDao {
 				String name = null;
 				String surname = null;
 				String gender = null;
-				Date birthday = null;
-				String passport = null;
+				String birthday = null;
+				//String passport = null;
 				String email = null;
 				String phoneNumber = null;
 				String driverLicence = null;
@@ -64,8 +64,8 @@ public class UserDaoImpl implements UserDao {
 				name = rs.getString(4);
 				surname = rs.getString(5);
 				gender = rs.getString(6);
-				birthday = rs.getDate(7);
-				passport = rs.getString(8);
+				birthday = rs.getString(7);
+				//passport = rs.getString(8);
 				email = rs.getString(9);
 				phoneNumber = rs.getString(10);
 				driverLicence = rs.getString(11);
@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserDao {
 				roleName = rs.getString(14);
 
 				role = new Role(idRole, roleName);
-				customer = new Customer(customerId, login, password, name, surname, gender, birthday, passport, email,
+				customer = new Customer(customerId, login, password, name, surname, gender, birthday, email,
 						phoneNumber, driverLicence, role);
 			}
 			connector.getBack(connection);
@@ -99,7 +99,7 @@ public class UserDaoImpl implements UserDao {
 			while (rs.next()) {
 				Integer adminId = null;
 				String login = null;
-				String password = null;
+				//String password = null;
 
 				Role role = null;
 				Integer idRole = null;
@@ -107,13 +107,13 @@ public class UserDaoImpl implements UserDao {
 
 				adminId = rs.getInt(1);
 				login = rs.getString(2);
-				password = rs.getString(3);
+				//password = rs.getString(3);
 			
 				idRole = rs.getInt(5);
 				roleName = rs.getString(6);
 
 				role = new Role(idRole, roleName);
-				admin = new Admin(adminId, login, password, role);
+				admin = new Admin(adminId, login, role);
 			}
 			connector.getBack(connection);
 
@@ -136,10 +136,11 @@ public class UserDaoImpl implements UserDao {
 			
 			ps.setString(1, customer.getLogin());
 			ps.setString(2, customer.getPassword());
+			customer.setPassword(null);
 			ps.setString(3, customer.getName());
 			ps.setString(4, customer.getSurname());
 			ps.setString(5, customer.getGender());
-			ps.setDate(6, customer.getBirthday());
+			ps.setString(6, customer.getBirthday());
 			ps.setString(7, customer.getPassport());
 			ps.setString(8, customer.getEmail());
 			ps.setString(9, customer.getPhoneNumber());

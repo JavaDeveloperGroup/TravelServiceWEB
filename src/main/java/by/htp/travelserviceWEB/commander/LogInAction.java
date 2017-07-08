@@ -34,6 +34,7 @@ public class LogInAction implements CommandAction {
 		
 		userDTO = new UserTO(login, password);
 	
+		//if(Validator.checkAuthorise()){
 		customer = serviceFactory.getUserService().authoriseCustomer(userDTO);
 		
 		if (customer == null) {
@@ -55,6 +56,7 @@ public class LogInAction implements CommandAction {
 
 			page = "jsp/home_page.jsp";
 		}
+	//}
 		return page;
 	}
 }

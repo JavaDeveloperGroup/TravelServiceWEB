@@ -90,9 +90,9 @@ CustomValidation.prototype = {
 var nameValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value.length < 2;
+			return input.value.length < 1;
 		},
-		invalidityMessage: 'This input needs to be at least 2 characters',
+		invalidityMessage: 'This input needs to be at least 1 character',
 		element: document.querySelector('label[for="name"] .input-requirements li:nth-child(1)')
 	},
 	{
@@ -116,9 +116,9 @@ var nameValidityChecks = [
 var surnameValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value.length < 2;
+			return input.value.length < 1;
 		},
-		invalidityMessage: 'This input needs to be at least 2 characters',
+		invalidityMessage: 'This input needs to be at least 1 characters',
 		element: document.querySelector('label[for="surname"] .input-requirements li:nth-child(1)')
 	},
 	{
@@ -144,7 +144,7 @@ var usernameValidityChecks = [
 		isInvalid: function(input) {
 			return input.value.length < 3;
 		},
-		invalidityMessage: 'This input needs to be at least 3 characters',
+		invalidityMessage: 'This input needs to be at least 3-20 characters',
 		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
 	},
 	{
