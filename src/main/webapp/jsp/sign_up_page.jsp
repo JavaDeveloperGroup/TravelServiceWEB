@@ -32,21 +32,21 @@
 		<div id="heading">
 			<h2><!--<fmt:message key="sign_up_invitation" />--> Please, fill in the form to sign up!</h2>
 		</div>
-		<font face="monospace" color="black" size="4"> 
-			<b>
-				<td>
-					<c:out value="${msg}" />
-				</td>
-			</b>
-		</font>
-		
+		<div id="heading">
+			<h2>
+				<font face="monospace" color="black" size="4"> <b>
+						<td><c:out value="${msg}" /></td>
+				</b>
+				</font>
+			</h2>
+		</div>
 		<div class='reg-form'>
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="sign_up" />
 
 				<div class='form-row'>
 					<label for="name"> <span><!--<fmt:message key="first_name" />--> Name </span> <input
-						type='text' value="Yauheni" id="name" name='name' required>
+						type='text' <%--value="Yauheni"--%> id="name" name='name' required>
 						<ul class="input-requirements">
 							<li>Should be at least 1 character long.</li>
 							<li>Should only contain letters.</li>
@@ -57,7 +57,7 @@
 
 				<div class='form-row'>
 					<label for="surname"> <span><!--<fmt:message key="second_name" />--> Surname </span> <input
-						type='text' value="Papovich" id="surname" name='surname' required>
+						type='text' <%--value="Papovich"--%> id="surname" name='surname' required>
 						<ul class="input-requirements">
 							<li>Should be at least 1 characters long.</li>
 							<li>Should only contain letters.</li>
@@ -68,7 +68,7 @@
 
 				<div class='form-row'>
 					<label for="username"> <span><!--<fmt:message key="login" />--> Login </span> <input
-						type='text' value="user" name='login' id="username"
+						type='text' <%--value="user"--%> name='login' id="login"
 						required>
 						<ul class="input-requirements">
 							<li>At least 3-20 characters long</li>
@@ -80,7 +80,7 @@
 
 				<div class='form-row'>
 					<label for="password"> <span>Password</span> <input
-						type="password" value="user1Q@q" name='password'
+						type="password" <%--value="user1Q@q"--%> name='password'
 						id="password" required>
 						<ul class="input-requirements">
 							<li>At least 8 characters long (and less than 100 characters)</li>
@@ -95,7 +95,7 @@
 				<div class='form-row'>
 					<label for="password_repeat"> <span> Repeat Password
 					</span> <input placeholder="Repeat Password" 
-						type="password" value="user1Q@q" name='repeat_password'
+						type="password" <%--value="user1Q@q"--%> name='repeat_password'
 						id="password_repeat" required>
 					</label>
 				</div>
@@ -122,8 +122,8 @@
 					<label>
 						<span>Birthday</span> 
 						<font size="3">
-							<input value="1999-06-30" type="date" placeholder="Birth date"
-							title="Format: YYYY-MM-DD" name="birthday" />
+							<input <%--value="1999-06-30"--%> type="date" placeholder="Birth date"
+							title="Format: YYYY-MM-DD" name="birthday" id="birthday"/>
 						</font>
 					</label>
 				</div>
@@ -132,13 +132,13 @@
 				
 				<div class='form-row'>
 					<label>Passport </label> <input 
-						value="AA2222222" name='passport' required>
+						<%--value="AA2222222"--%> name='passport' id="passport" required>
 				</div>
 				
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 				
 				<div class='form-row'>
-					<label>Email </label> <input type='email' value="po@mail.ru"
+					<label>Email </label> <input type='email' id="email" <%--value="po@mail.ru"--%>
 						name='email' required>
 				</div>
 				
@@ -146,7 +146,7 @@
 				
 				<div class='form-row'>
 					<label>Phone </label> <input placeholder="+375(_ _)_ _ _-_ _-_ _"
-						 value="+375293333333"
+						 <%--value="+375293333333"--%> id="phone" 
 						name='phone_number' required>
 				</div>
 				
@@ -169,7 +169,7 @@
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 				
 				<div class="form-row">
-					<input type="submit" value='Go' />
+					<input type="submit" id="go" value='Go' />
 				</div>
 				
 				<div style="width: 100%; height: 1px; clear: both;"></div>

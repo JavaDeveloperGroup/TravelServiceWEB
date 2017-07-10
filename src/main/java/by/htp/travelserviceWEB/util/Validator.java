@@ -33,14 +33,13 @@ public class Validator {
     public static boolean registrationCustomer(String login, String password, String name, String surname, String passport, String email, String phoneNumber) {
     	if(null != login && null != password && null != name && null != surname && null != passport
                 && null != email && null != phoneNumber) {
-    		boolean b = Pattern.matches(LOGIN_REGEX, login)
+    		return Pattern.matches(LOGIN_REGEX, login)
                     && Pattern.matches(PASSWORD_REGEX, password)
                     && Pattern.matches(STRING_REGEX, name)
                     && Pattern.matches(STRING_REGEX, surname)
                     && Pattern.matches(EMAIL_REGEX, email)
                     && Pattern.matches(PASSPORT_REGEX, passport)
                     && Pattern.matches(PHONE_NUMBER_REGEX, phoneNumber);
-    		return b;
     	}
     	else
     		return false;

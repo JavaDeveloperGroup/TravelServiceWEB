@@ -29,7 +29,7 @@ public class SecurityCommandFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
-
+		
 		HttpServletRequest httpServetRequest = (HttpServletRequest) servletRequest;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 		String command = httpServetRequest.getParameter("command");

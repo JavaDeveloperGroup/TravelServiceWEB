@@ -29,13 +29,14 @@
 		<div id="heading">
 			<h2>Please, fill in the form to log in!</h2>
 		</div>
-		<font face="monospace" color="black" size="4"> 
-			<b>
-				<td>
-					<h2><c:out value="${msg}" /></h2>
-				</td>
-			</b>
-		</font>
+		<div id="heading">
+			<h2>
+				<font face="monospace" color="black" size="4"> <b>
+						<td><c:out value="${msg}" /></td>
+				</b>
+				</font>
+			</h2>
+		</div>
 		<div id="login_form">
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="log_in" />

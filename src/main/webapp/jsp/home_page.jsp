@@ -34,7 +34,7 @@
 						<tr>
 							<td>${customer.getLogin()}</td>
 						</tr>
-						<button type="submit">LOG OUT</button>
+						<button name="log_out" type="submit">LOG OUT</button>
 					</form>
 				</c:if>
 			</div>
