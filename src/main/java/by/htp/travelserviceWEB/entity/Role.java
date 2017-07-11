@@ -4,22 +4,22 @@ import java.io.Serializable;
 
 public class Role implements Serializable {
 	
-	private Integer roletId;
+	private Integer roleId;
 	private String name;
 	
 	public Role() {}
 	
 	public Role(Integer roleId, String name) {
-		this.roletId = roletId;
+		this.roleId = roleId;
 		this.name = name;
 	}
 
-	public Integer getApartmentId() {
-		return roletId;
+	public Integer getId() {
+		return roleId;
 	}
 
-	public void setApartmentId(Integer roleId) {
-		this.roletId = roleId;
+	public void setId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
 	public String getName() {

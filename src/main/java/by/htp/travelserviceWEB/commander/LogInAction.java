@@ -34,7 +34,6 @@ public class LogInAction implements CommandAction {
 		
 		userDTO = new UserTO(login, password);
 	
-		//if(Validator.checkAuthorise()){
 		customer = serviceFactory.getUserService().authoriseCustomer(userDTO);
 		
 		if (customer == null) {
@@ -44,19 +43,18 @@ public class LogInAction implements CommandAction {
 				page = "jsp/log_in_page.jsp";		
 				return page;
 			}
-			httpSession.setAttribute("admin", admin);
+			httpSession.setAttribute("user", admin);
 		
 			page = "jsp/admin_page.jsp";
 		}
 		else {
-			httpSession.setAttribute("customer", customer);
+			httpSession.setAttribute("user", customer);
 			
 			response.addCookie(new Cookie("log", login));
 			response.addCookie(new Cookie("passw", request.getParameter("password")));
 
 			page = "jsp/home_page.jsp";
 		}
-	//}
 		return page;
 	}
 }

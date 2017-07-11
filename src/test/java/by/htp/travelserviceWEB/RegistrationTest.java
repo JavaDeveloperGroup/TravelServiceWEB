@@ -16,6 +16,7 @@ public class RegistrationTest {
 		driver.get("http://localhost:8080/travelservice/");
 		clickNameElement("sign_up");
 		
+		//correct data
 		inputData("Sergeo", "Parkhanovich", "Dubina", "qwerty1Q@", "qwerty1Q@", "09101990", "AT1234567", "parkh@mail.ru", "+37529222222");
 		
 		clickIdElement("go");
@@ -25,7 +26,7 @@ public class RegistrationTest {
 		inputData("Sergeo", "Parkhanovich", "Dubina", "qwertyQ@", "qwerty1Q@", "09101990", "AT1234567", "parkh@mail.ru", "+37529222222");
 		
 		clickIdElement("go");
-		clickNameElement("log_out");
+		
 	
 	}
 	
@@ -48,5 +49,4 @@ public class RegistrationTest {
 		driver.findElement(By.id("email")).sendKeys(email);
 		driver.findElement(By.id("phone")).sendKeys(phone);	
 	}
-
 }

@@ -24,6 +24,7 @@ public class SignUpAction implements CommandAction {
 
 private ServiceFactory serviceFactory;
 	
+	private HttpSession httpSession;
 	private Customer customer;
 	private UserTO userDTO;
 	private String page;
@@ -45,7 +46,6 @@ private ServiceFactory serviceFactory;
 		String email;
 		String phoneNumber;
 		String driverLicence;
-		Role role;
 		login = request.getParameter("login");
 		name = request.getParameter("name");
 		surname = request.getParameter("surname");
@@ -55,65 +55,34 @@ private ServiceFactory serviceFactory;
 		email = request.getParameter("email");
 		phoneNumber = request.getParameter("phone_number");
 		birthday = request.getParameter("birthday");
+		gender = request.getParameter("gender");
+		driverLicence = request.getParameter("driver_licence");
 		
-		if (!password.equals(repeatPassword)) {
-			page = "jsp/sign_up_page.jsp";
-			request.setAttribute("msg", "Repeat password incorrectly.");
-			return page;
-		}
-		else if (!checkDate(request)) {
-			page = "jsp/sign_up_page.jsp";
-			request.setAttribute("msg", "Incorrect date entry.");
-			return page;
-		}
-		else if (!Validator.registrationCustomer(login, password, name, surname, passport, email, phoneNumber)) {
+		if (!Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber)) {
 			page = "jsp/sign_up_page.jsp";
 			request.setAttribute("msg", "Incorrect data entry.");
 			return page;
 		}
 		else {
 			password = Encryption.base64Code(request.getParameter("password"));
-			gender = request.getParameter("gender");
-			driverLicence = request.getParameter("driver_licence");
-			role = new Role(1, "customer");
 			userDTO = new UserTO(login, password);
 			customer = new Customer(null, login, password, name, surname, gender, birthday, passport, email,
-					phoneNumber, driverLicence, role);
+					phoneNumber, driverLicence, null);
 			return getPage(request, response);
 		}
 	}
 	
-	private boolean checkDate(HttpServletRequest request) throws ServletException, IOException {
-		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-		long d1 = 0;
-		long d2 = 0;
-		try {
-			d1 = formater.parse(request.getParameter("birthday")).getTime();
-			d2 = formater.parse(formater.format(new Date())).getTime();
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		if (((18 * 365) + 4) > Math.abs((d2 - d1) / (1000 * 60 * 60 * 24)) && d1 < d2) {
-			return false;
-		}
-		else 
-			return true;
-	}
-	
 	private String getPage(HttpServletRequest request, HttpServletResponse response) {
 		Customer customer;
-		HttpSession httpSession = request.getSession();
+		httpSession = request.getSession();
 		customer = serviceFactory.getUserService().authoriseCustomer(userDTO);	
 		if (customer == null) {
 			Admin admin = null;
 			admin = serviceFactory.getUserService().authoriseAdmin(userDTO);
 			if (admin == null) {
 				customer = serviceFactory.getUserService().registrationCustomer(this.customer);
-				httpSession.setAttribute("customer", this.customer);
-				Cookie cookieLog = new Cookie("login", this.customer.getLogin());
-				response.addCookie(cookieLog);
-				Cookie cookiePass = new Cookie("password", Encryption.base64Code(request.getParameter("password")));
-				response.addCookie(cookiePass);
+				httpSession.setAttribute("user", this.customer);
+				inputCookie(request, response);
 				page = "jsp/home_page.jsp";
 			}
 			else {
@@ -125,5 +94,12 @@ private ServiceFactory serviceFactory;
 			page = "jsp/sign_up_page.jsp";
 		}
 		return page;
+	}
+	
+	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
+		Cookie cookieLog = new Cookie("login", this.customer.getLogin());
+		response.addCookie(cookieLog);
+		Cookie cookiePass = new Cookie("password", Encryption.base64Code(request.getParameter("password")));
+		response.addCookie(cookiePass);
 	}
 }

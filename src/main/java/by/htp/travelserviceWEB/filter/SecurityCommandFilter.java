@@ -21,7 +21,10 @@ import by.htp.travelserviceWEB.filter.InitSecurityCommand.Singleton;
 
 public class SecurityCommandFilter implements Filter {
 
-	private String page;
+	private FilterChain chain;
+	private String command;
+	private ServletRequest servletRequest;
+	private ServletResponse servletResponse;
 
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {}
@@ -29,32 +32,32 @@ public class SecurityCommandFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
-		
-		HttpServletRequest httpServetRequest = (HttpServletRequest) servletRequest;
-		HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-		String command = httpServetRequest.getParameter("command");
-		HttpSession httpSession = httpServetRequest.getSession();
-		Customer customer = (Customer) httpSession.getAttribute("customer");
-		Admin admin = (Admin) httpSession.getAttribute("admin");
-
-		if (null == customer && null == admin) {
+		this.chain = chain;
+		this.servletRequest = servletRequest;
+		this.servletResponse = servletResponse;
+		this.command = ((HttpServletRequest) servletRequest).getParameter("command");
+		HttpSession httpSession = ((HttpServletRequest) servletRequest).getSession();
+		Object user = httpSession.getAttribute("user");
+		whereCanGoUser(user);
+	}
+	
+	private void whereCanGoUser(Object user) throws IOException, ServletException {
+		if (null == user) {
 			if (InitSecurityCommand.getInstance().initGuestCommand(command)) {
 				chain.doFilter(servletRequest, servletResponse);
 			} else {
-				httpServletResponse.sendRedirect("jsp/home_page.jsp");
+				((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 			}
-		} else if (null != customer && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
+		} else if (1 == ((Customer)user).getRole().getId() && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else if (null != admin && InitSecurityCommand.getInstance().initAdminCommand(command)) {
+		} else if (1 != ((Admin)user).getRole().getId() && InitSecurityCommand.getInstance().initAdminCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else 
-			httpServletResponse.sendRedirect("jsp/home_page.jsp");
+			((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 	}
 
 	@Override
-	public void destroy() {
-		page = null;
-	}
+	public void destroy() {	}
 }
 
 final class InitSecurityCommand {

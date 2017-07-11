@@ -18,21 +18,6 @@ public class Customer implements Serializable {
 	private Role role;
 	
 	public Customer() {}
-	
-	public Customer(Integer customerId, String login, String name, String surname, String gender,
-			String birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {
-		this.customerId = customerId;
-		this.login = login;
-		this.name = name;
-		this.surname = surname;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.passport = passport;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.driverLicence = driverLicence;
-		this.role = role;
-	}
 
 	public Customer(Integer customerId, String login, String password, String name, String surname, String gender,
 			String birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {

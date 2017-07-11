@@ -41,7 +41,7 @@
 		</header>
 		<jsp:include page="/jspf/menu.jspf" />
 		<hr>
-		<div class="hz" id="fadein">
+		<div id="fadein">
 			<div>
 				<img src="http://res.cloudinary.com/javadevgroup/image/upload/v1497805539/hotel/tv4_vkohcp.jpg">
 				<p>

@@ -44,37 +44,24 @@ public class UserDaoImpl implements UserDao {
 			while (rs.next()) {
 				Integer customerId = null;
 				String login = null;
-				String password = null;
 				String name = null;
 				String surname = null;
-				String gender = null;
-				String birthday = null;
-				//String passport = null;
-				String email = null;
-				String phoneNumber = null;
 				String driverLicence = null;
-
 				Role role = null;
 				Integer idRole = null;
 				String roleName = null;
 
 				customerId = rs.getInt(1);
 				login = rs.getString(2);
-				password = rs.getString(3);
 				name = rs.getString(4);
 				surname = rs.getString(5);
-				gender = rs.getString(6);
-				birthday = rs.getString(7);
-				//passport = rs.getString(8);
-				email = rs.getString(9);
-				phoneNumber = rs.getString(10);
 				driverLicence = rs.getString(11);
 				idRole = rs.getInt(13);
 				roleName = rs.getString(14);
-
 				role = new Role(idRole, roleName);
-				customer = new Customer(customerId, login, password, name, surname, gender, birthday, email,
-						phoneNumber, driverLicence, role);
+				
+				customer = new Customer(customerId, login, null, name, surname, null, null, null, null,
+						null, driverLicence, role);
 			}
 			connector.getBack(connection);
 

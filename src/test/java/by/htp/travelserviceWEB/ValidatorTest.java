@@ -2,7 +2,10 @@ package by.htp.travelserviceWEB;
 
 import static org.junit.Assert.*;
 
-import org.junit.AfterClass;
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+
 import org.junit.Before;
 import org.junit.Ignore;
 
@@ -15,8 +18,10 @@ public class ValidatorTest {
 	
 	private String login;
 	private String password;
+	private String repeatPassword;
 	private String name;
 	private String surname;
+	private String birthday;
 	private String passport;
 	private String email;
 	private String phoneNumber;
@@ -25,41 +30,44 @@ public class ValidatorTest {
 	public void inputValitAllDataField() {
 		login = "User";
 		password = "fidelio1Q@";
+		repeatPassword = "fidelio1Q@";
 		name = "Ivan";
 		surname = "Ivanov";
+		birthday = "19-02-1999";
 		passport = "AB1234567";
 		email = "popovich@a1qa.by";
 		phoneNumber = "+375293333333";
 	}
 	
 	@Test (timeout = 50)
-	public void validAllDataField() {
-		assertEquals(true, Validator.registrationCustomer(login, password, name, surname, passport, email, phoneNumber));
+	public void validAllDataField() throws ServletException, IOException {
+		assertEquals(true, Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber));
 	}
 	
 	@Test (timeout = 50)
-	public void notValidAllDataField() {
+	public void notValidAllDataField() throws ServletException, IOException {
 		login = "";
 		password = "";
+		repeatPassword = "";
 		name = "";
 		surname = "";
 		passport = "";
 		email = "";
 		phoneNumber = "";
-		assertEquals(true, Validator.registrationCustomer(login, password, name, surname, passport, email, phoneNumber));
+		assertEquals(true, Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber));
 	}
 	
 	@Ignore
 	@Test (timeout = 50)
-	public void notValidEmailField() {
+	public void notValidEmailField() throws ServletException, IOException {
 		email = "popovich@a1qa";
-		assertEquals(true, Validator.registrationCustomer(login, password, name, surname, passport, email, phoneNumber));
+		assertEquals(true, Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber));
 	}
 	
 	@Test (timeout = 50)
-	public void notValidPasswField() {
+	public void notValidPasswField() throws ServletException, IOException {
 		password = "fidelio1Q";
-		assertEquals(true, Validator.registrationCustomer(login, password, name, surname, passport, email, phoneNumber));
+		assertEquals(true, Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber));
 	}
 	
 	/*@AfterClass
