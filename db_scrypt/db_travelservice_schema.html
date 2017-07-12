@@ -1,0 +1,2002 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html>
+<html lang='en' xmlns='http://www.w3.org/1999/xhtml' >
+<head>
+<title>Parsed Script Layout</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<style type='text/css'>
+body {
+    font-family: 'Segoe UI', 'Lucida sans', Dialog;
+    font-size: 13px;
+    color: #444;
+    margin: 10px;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    caption-side: top;
+    width: auto;
+    margin: 10px 15px 5px 0;
+}
+
+
+.bordered td, .bordered th {
+   background-color: #fafafa;
+   border: 1px solid #D5D5D5;
+   padding: 3px 3px 3px 3px;
+   white-space:pre-wrap!important;
+}
+
+.bordered th {
+    background-color: #f0f0f0;
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    padding: 3px 3px 3px 3px;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: left;
+    color: #333333;
+}
+
+.section-header h2 {
+    background-color: #f0f0f0;
+    font-size: 16px;
+    font-weight: normal;
+    border-top: solid 1px #D5D5D5;
+    border-bottom: solid 1px #D5D5D5;
+    width: 95%;
+    margin: 5px 0 5px 0;
+    padding: 5px 0 5px 0;
+    color: #4d82b8;
+}
+.section-header div {
+    font-size: 70%;
+    padding-left: 5px;
+}
+
+
+a, a:visited, a:hover, a:active {
+  color: #044282;
+  text-decoration: none;
+}
+
+th > a {
+    color:#858585;
+}
+
+.lg {
+    font-size: 110%;
+}
+
+h1 {
+    font-family: Verdana,Arial,Helvetica;
+    font-weight: normal;
+    color: #4d82b8;
+    margin: 20px 0 10px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+<div class='svg-container'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' text-rendering='optimizeLegibility'   width='1590' height='1055' viewbox='0 0 1590 1055' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ document.getElementById(el[i]).setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ document.getElementById(el[i]).setAttribute('class','scene'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#000000; font-family: Tahoma, 'Trebuchet MS', Dialog; font-size:11px; }
+  a text:hover        { text-shadow: 0 0 6px #d0ce00; }
+  text.highlight      { text-shadow: 0 0 4px #eac533; }
+  text.colType        { fill:#b3b3b3; }
+  text.relName        { fill:#b09c7c; }
+  path                { stroke:#5c554f; stroke-width:1.15; fill:none; }
+  path.virtual        { stroke:#b7642d; }
+  path.dotted         { stroke-dasharray:4,2; }
+  path.scene          { stroke-width:10; opacity:0;}
+  path.highlight      { stroke-width:5; stroke:#eac533; opacity:0.6;}
+  rect.table          { fill:#ffffff; stroke:#aaa; stroke-width:1;shape-rendering:crispEdges;filter:url(#shadow); }
+  line.delim          { stroke-width:1; shape-rendering:crispEdges; }
+  text.callout        { fill:#000000; font-family: Tahoma, 'Trebuchet MS', Dialog; font-size:11px; }
+  rect.callout        { fill:url(#calloutGradient); stroke:#bebdbd; stroke-width:0.5; filter: url(#shadow);}
+  rect.grp            { stroke:#b1b1b1; stroke-width:1.7; opacity:0.8; }
+</style>
+<defs>
+  <pattern id='layoutBgA' patternUnits='userSpaceOnUse'  width='10' height='20' x='0' y='0' viewBox='0 0 5 10'>  
+     <line x1='-2' y1='1' x2='7' y2='10' stroke='#efefef' stroke-width='.5'/>  
+     <line x1='-2' y1='6' x2='7' y2='15' stroke='#efefef' stroke-width='.5'/>  
+     <line x1='-2' y1='-4' x2='7' y2='5' stroke='#efefef' stroke-width='.5'/>  
+  </pattern>  
+  <radialGradient id='layoutBgB' gradientUnits='userSpaceOnUse' cx='50%' cy='50%' r='75%' fx='46%' fy='22%'>
+     <stop offset='0%' stop-opacity='.2' stop-color='#f5f5f5' />  
+     <stop offset='100%' stop-color='#efefef' />  
+  </radialGradient>
+  <pattern id='layoutBgTr' patternUnits='userSpaceOnUse'  width='300' height='300' x='0' y='0' viewBox='0 0 300 300'>  
+    <text x='-55' y='200' transform='rotate(-45)' style='font-family:Arial;font-size:48px;font-weight:bold;fill:#e7e7e7;'>&#84;&#82;&#73;&#65;&#76;</text> 
+    <text x='-130' y='230' transform='rotate(-45)' style='font-family:Arial;font-size:24px;font-weight:bold;fill:#e7e7e7;'>&#77;ove &#116;he m&#111;use &#111;ver &#116;ables</text> 
+    <text x='-85' y='250' transform='rotate(-45)' style='font-family:Arial;font-size:24px;font-weight:bold;fill:#e7e7e7;'>&#116;o re&#97;d &#116;he c&#111;mmen&#116;s</text> 
+  </pattern>  
+  <linearGradient id='groupUnderTitleLine' x1='0%' y1='0%' x2='100%' y2='0%' >
+          <stop offset='0%' stop-color='#999999' stop-opacity='0.7'/> 
+          <stop offset='100%' stop-color='#999999' stop-opacity='0' /> 
+   </linearGradient>
+  <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+	   <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#f8f6d1' />
+  </radialGradient>
+  <filter id='shadow' width='120%' height='120%'> 
+      <feOffset result='offOut' in='SourceGraphic' dx='1' dy='1' /> 
+      <feColorMatrix result='matrixOut' in='offOut' type='matrix' 
+      values='0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.3 0' /> 
+      <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='3' /> 
+      <feBlend in='SourceGraphic' in2='blurOut' mode='normal' /> 
+    </filter> 
+  <filter id='fkShadow' height='130%'> 
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+    <feMergeNode/> <!-- this contains the offset blurred image -->
+    <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <radialGradient id='legendGradient' fx='5%' fy='5%' r='75%' spreadMethod='pad'>
+          <stop offset='0%' stop-color='#eefbf2' stop-opacity='1'/> 
+          <stop offset='100%' stop-color='#cff9cb' stop-opacity='1' /> 
+   </radialGradient>
+  <symbol id='calloutArrowDown' overflow='visible' >
+      <path d='M 0,0 L 7,11 L 15,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+      <path d='M 0,0 L 7,11 L 15,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' overflow='visible' >
+      <path d='M 0,15 L 7,3 L 15,15 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+      <path d='M 0,15 L 7,3 L 15,15' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' overflow='visible' >
+    <g transform='scale(0.99)'>
+     <path style='fill:#fffa7d;stroke:#765f03;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;'
+        d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+     <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+        style='fill:#ffe5a5;fill-opacity:1;stroke:#854e31;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='unq' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#fbea8e;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.8' y='7.4' style='font-size:7px;fill:#8a8a8a;'>1</text>
+    </g>
+  </symbol>
+  <symbol id='idx' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#fbea8e;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#f3e1b7;stroke:#7e471f;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+      d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#f3e1b7;stroke:#7e471f;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag0' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag1' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#f4a393;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag2' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#77ec8b;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' overflow='visible' >
+  <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <symbol id='view' overflow='visible' >
+    <g transform='scale(0.99)'>
+     <line x1='12' y1='6' x2='19' y2='0' stroke='black' stroke-width='0.5' />
+     <line x1='0' y1='6' x2='7' y2='0' stroke='black' stroke-width='0.5' />
+     <circle cx='3' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+     <circle cx='10' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+    </g>
+  </symbol>
+  <marker id='arrow01' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 7.500,3.750 L 15.000,3.750 L 7.500,0.000 L 15.000,3.750 L 7.500,7.500' />
+  </marker>
+  <marker id='arrow1' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 7.500,3.750 L 15.000,3.750 L 7.500,0.000 L 15.000,3.750 L 7.500,7.500' />
+  </marker>
+  <marker id='foot01' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <circle cx='11.25' cy='3.75' r='2.50' style='fill:white;stroke:#5e554d;' />
+    <path d='M 3.75,0.00 L 3.75, 7.50 z' />
+  </marker>
+  <marker id='foot0p' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <circle cx='11.25' cy='3.75' r='2.50' style='fill:white;stroke:#5e554d;' />
+    <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
+  </marker>
+  <marker id='foot1' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <path d='M 7.50,0.00 L 7.50, 7.50 z' />
+    <path d='M 3.75,0.00 L 3.75, 7.50 z' />
+  </marker>
+  <marker id='foot1p' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <path d='M 7.50,0.00 L 7.50, 7.50 z' />
+    <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
+  </marker>
+  <linearGradient id='tbg_c1d8ee' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#e0ecf8' /> 
+     <stop offset='100%' stop-color='#c1d8ee' /> 
+  </linearGradient>
+</defs>
+
+<!-- ============= Desktop ============= -->
+<rect x='1' y='1' width='1588' height='1053' rx='7' ry='7' style='fill:url(#layoutBgB); stroke:#333333; stroke-width:0.5;' />
+<rect x='1' y='1' width='1588' height='1053' rx='7' ry='7' style='fill:url(#layoutBgTr);' />
+<rect x='1' y='1' width='1588' height='1053' rx='7' ry='7' style='fill:url(#layoutBgA); stroke:#333333; stroke-width:0.5;' />
+
+<!-- ============= Legend ============= -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='330' height='52' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <text x='65' y='33'>Parsed Script Layout</text> 
+  <text x='65' y='49' style='fill:#aaaaaa; font-size:11px;'><tspan>Read table &amp; column comments as mouse-over tooltips.</tspan></text> 
+<g transform="scale(0.75,0.75) translate(10,7)" > <a xlink:href='http://www.dbschema.com'> <rect style="fill:#eb7f2c;stroke:none;shape-rendering:geometricPrecision;" width="13.27" height="11.26" x="40.04" y="59.44" ry="3.14" transform="matrix(0.90187511,-0.43199686,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.27" height="11.26" x="54.83" y="59.57" ry="3.14" transform="matrix(0.90187511,-0.43199686,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.27" height="11.26" x="40.35" y="71.62" ry="3.14" transform="matrix(0.90187511,-0.43199686,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.27" height="11.26" x="54.68" y="71.75" ry="3.14" transform="matrix(0.90187511,-0.43199686,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.35" height="11.20" x="13.48" y="19.67" ry="3.12" transform="matrix(0.84723158,0.53122372,0,1,0,0)" /> <rect style="fill:#eb7f2c;stroke:none;shape-rendering:geometricPrecision;" width="13.35" height="11.20" x="28.36" y="19.80" ry="3.12" transform="matrix(0.84723158,0.53122372,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.35" height="11.20" x="13.79" y="31.78" ry="3.12" transform="matrix(0.84723158,0.53122372,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.35" height="11.20" x="28.21" y="31.92" ry="3.12" transform="matrix(0.84723158,0.53122372,0,1,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.49" height="14.24" x="34.59" y="-9.62" ry="3.97" transform="matrix(0.85815392,0.51339249,-0.91732703,0.39813455,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.49" height="14.24" x="49.63" y="-9.46" ry="3.97" transform="matrix(0.85815392,0.51339249,-0.91732703,0.39813455,0,0)" /> <rect style="fill:#2c49eb;stroke:none;shape-rendering:geometricPrecision;" width="13.49" height="14.24" x="34.90" y="5.77"  ry="3.97" transform="matrix(0.85815392,0.51339249,-0.91732703,0.39813455,0,0)" /> <rect style="fill:#eb7f2c;stroke:none;shape-rendering:geometricPrecision;" width="13.49" height="14.24" x="49.47" y="5.93"  ry="3.97" transform="matrix(0.85815392,0.51339249,-0.91732703,0.39813455,0,0)" /> <title>Generated using DbSchema - www.dbschema.com</title> </a></g>
+</g>
+
+<g transform='translate(0,110)'>
+<!-- ============= Fk 'rent_auto_FK_rent_auto_auto' ============= -->
+<path id='rent_auto_FK_rent_auto_auto'  onmouseover="hghl(['rent_auto_FK_rent_auto_auto','travelservice.rent_auto.id_auto','travelservice.auto.id_auto'])" onmouseout="uhghl(['rent_auto_FK_rent_auto_auto','travelservice.rent_auto.id_auto','travelservice.auto.id_auto'])" transform='translate(7,0)' class='scene' d='M 645 720 L 420,720' >
+	<title>Fk FK_rent_auto_auto
+rent_auto ref auto ( id_auto )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 645 720 L 420,720' ></path>
+<text x='616' y='715' transform='rotate(0 616,715)' title='Fk FK_rent_auto_auto
+rent_auto ref auto ( id_auto )' class='relName' style='fill:#748ea7'>id_auto</text>
+<!-- ============= Fk 'rent_auto_FK_rent_auto_salon' ============= -->
+<path id='rent_auto_FK_rent_auto_salon'  onmouseover="hghl(['rent_auto_FK_rent_auto_salon','travelservice.rent_auto.id_salon_start','travelservice.salon.id_salon'])" onmouseout="uhghl(['rent_auto_FK_rent_auto_salon','travelservice.rent_auto.id_salon_start','travelservice.salon.id_salon'])" transform='translate(7,0)' class='scene' d='M 645 675 L 225,675' >
+	<title>Fk FK_rent_auto_salon
+rent_auto ref salon ( id_salon_start -&gt; id_salon )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 645 675 L 225,675' ></path>
+<text x='584' y='670' transform='rotate(0 584,670)' title='Fk FK_rent_auto_salon
+rent_auto ref salon ( id_salon_start -&gt; id_salon )' class='relName' style='fill:#748ea7'>id_salon_start</text>
+<!-- ============= Fk 'apartment_FK_apartment_hotel' ============= -->
+<path id='apartment_FK_apartment_hotel'  onmouseover="hghl(['apartment_FK_apartment_hotel','travelservice.apartment.id_hotel','travelservice.hotel.id_hotel'])" onmouseout="uhghl(['apartment_FK_apartment_hotel','travelservice.apartment.id_hotel','travelservice.hotel.id_hotel'])" transform='translate(7,0)' class='scene' d='M 645 450 L 240,450' >
+	<title>Fk FK_apartment_hotel
+apartment ref hotel ( id_hotel )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 645 450 L 240,450' ></path>
+<text x='614' y='445' transform='rotate(0 614,445)' title='Fk FK_apartment_hotel
+apartment ref hotel ( id_hotel )' class='relName' style='fill:#748ea7'>id_hotel</text>
+<!-- ============= Fk 'apartment_FK_apartment_room' ============= -->
+<path id='apartment_FK_apartment_room'  onmouseover="hghl(['apartment_FK_apartment_room','travelservice.apartment.id_room','travelservice.room.id_room'])" onmouseout="uhghl(['apartment_FK_apartment_room','travelservice.apartment.id_room','travelservice.room.id_room'])" transform='translate(7,0)' class='scene' d='M 645 390 L 255,390' >
+	<title>Fk FK_apartment_room
+apartment ref room ( id_room )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 645 390 L 255,390' ></path>
+<text x='614' y='385' transform='rotate(0 614,385)' title='Fk FK_apartment_room
+apartment ref room ( id_room )' class='relName' style='fill:#748ea7'>id_room</text>
+<!-- ============= Fk 'tour_order_FK_tour_order_tour_offer' ============= -->
+<path id='tour_order_FK_tour_order_tour_offer'  onmouseover="hghl(['tour_order_FK_tour_order_tour_offer','travelservice.tour_order.id_tour_offer','travelservice.tour_offer.id_tour_offer'])" onmouseout="uhghl(['tour_order_FK_tour_order_tour_offer','travelservice.tour_order.id_tour_offer','travelservice.tour_offer.id_tour_offer'])" transform='translate(7,0)' class='scene' d='M 990 180 L 795,180' >
+	<title>Fk FK_tour_order_tour_offer
+tour_order ref tour_offer ( id_tour_offer )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 990 180 L 795,180' ></path>
+<text x='933' y='175' transform='rotate(0 933,175)' title='Fk FK_tour_order_tour_offer
+tour_order ref tour_offer ( id_tour_offer )' class='relName' style='fill:#748ea7'>id_tour_offer</text>
+<!-- ============= Fk 'hotel_FK_hotel_city' ============= -->
+<path id='hotel_FK_hotel_city'  onmouseover="hghl(['hotel_FK_hotel_city','travelservice.hotel.id_city','travelservice.city.id_city'])" onmouseout="uhghl(['hotel_FK_hotel_city','travelservice.hotel.id_city','travelservice.city.id_city'])" transform='translate(7,0)' class='scene' d='M 150 495 L 112,495 Q 105,495 105,502 L 105,510' >
+	<title>Fk FK_hotel_city
+hotel ref city ( id_city )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 150 495 L 112,495 Q 105,495 105,502 L 105,510' ></path>
+<text x='126' y='490' transform='rotate(0 126,490)' title='Fk FK_hotel_city
+hotel ref city ( id_city )' class='relName' style='fill:#748ea7'>id_city</text>
+<!-- ============= Fk 'salon_FK_salon_city' ============= -->
+<path id='salon_FK_salon_city'  onmouseover="hghl(['salon_FK_salon_city','travelservice.salon.id_city','travelservice.city.id_city'])" onmouseout="uhghl(['salon_FK_salon_city','travelservice.salon.id_city','travelservice.city.id_city'])" transform='translate(7,0)' class='scene' d='M 135 615 L 112,615 Q 105,615 105,607 L 105,600' >
+	<title>Fk FK_salon_city
+salon ref city ( id_city )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 135 615 L 112,615 Q 105,615 105,607 L 105,600' ></path>
+<text x='111' y='610' transform='rotate(0 111,610)' title='Fk FK_salon_city
+salon ref city ( id_city )' class='relName' style='fill:#748ea7'>id_city</text>
+<!-- ============= Fk 'auto_order_FK_auto_order_rent_auto' ============= -->
+<path id='auto_order_FK_auto_order_rent_auto'  onmouseover="hghl(['auto_order_FK_auto_order_rent_auto','travelservice.auto_order.id_rent_auto','travelservice.rent_auto.id_rent_auto'])" onmouseout="uhghl(['auto_order_FK_auto_order_rent_auto','travelservice.auto_order.id_rent_auto','travelservice.rent_auto.id_rent_auto'])" transform='translate(7,0)' class='scene' d='M 990 690 L 765,690' >
+	<title>Fk FK_auto_order_rent_auto
+auto_order ref rent_auto ( id_rent_auto )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 990 690 L 765,690' ></path>
+<text x='935' y='685' transform='rotate(0 935,685)' title='Fk FK_auto_order_rent_auto
+auto_order ref rent_auto ( id_rent_auto )' class='relName' style='fill:#748ea7'>id_rent_auto</text>
+<!-- ============= Fk 'auto_order_FK_auto_order_salon' ============= -->
+<path id='auto_order_FK_auto_order_salon'  onmouseover="hghl(['auto_order_FK_auto_order_salon','travelservice.auto_order.id_salon_end','travelservice.salon.id_salon'])" onmouseout="uhghl(['auto_order_FK_auto_order_salon','travelservice.auto_order.id_salon_end','travelservice.salon.id_salon'])" transform='translate(7,0)' class='scene' d='M 990 630 L 225,630' >
+	<title>Fk FK_auto_order_salon
+auto_order ref salon ( id_salon_end -&gt; id_salon )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 990 630 L 225,630' ></path>
+<text x='934' y='625' transform='rotate(0 934,625)' title='Fk FK_auto_order_salon
+auto_order ref salon ( id_salon_end -&gt; id_salon )' class='relName' style='fill:#748ea7'>id_salon_end</text>
+<!-- ============= Fk 'tour_offer_FK_tour_offer_bus' ============= -->
+<path id='tour_offer_FK_tour_offer_bus'  onmouseover="hghl(['tour_offer_FK_tour_offer_bus','travelservice.tour_offer.id_bus','travelservice.bus.id_bus'])" onmouseout="uhghl(['tour_offer_FK_tour_offer_bus','travelservice.tour_offer.id_bus','travelservice.bus.id_bus'])" transform='translate(7,0)' class='scene' d='M 630 135 L 300,135' >
+	<title>Fk FK_tour_offer_bus
+tour_offer ref bus ( id_bus )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 630 135 L 300,135' ></path>
+<text x='606' y='130' transform='rotate(0 606,130)' title='Fk FK_tour_offer_bus
+tour_offer ref bus ( id_bus )' class='relName' style='fill:#748ea7'>id_bus</text>
+<!-- ============= Fk 'tour_offer_FK_tour_offer_tour' ============= -->
+<path id='tour_offer_FK_tour_offer_tour'  onmouseover="hghl(['tour_offer_FK_tour_offer_tour','travelservice.tour_offer.id_tour','travelservice.tour.id_tour'])" onmouseout="uhghl(['tour_offer_FK_tour_offer_tour','travelservice.tour_offer.id_tour','travelservice.tour.id_tour'])" transform='translate(7,0)' class='scene' d='M 630 180 L 255,180' >
+	<title>Fk FK_tour_offer_tour
+tour_offer ref tour ( id_tour )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 630 180 L 255,180' ></path>
+<text x='603' y='175' transform='rotate(0 603,175)' title='Fk FK_tour_offer_tour
+tour_offer ref tour ( id_tour )' class='relName' style='fill:#748ea7'>id_tour</text>
+<!-- ============= Fk 'auto_FK_auto_body_type' ============= -->
+<path id='auto_FK_auto_body_type'  onmouseover="hghl(['auto_FK_auto_body_type','travelservice.auto.id_body_type','travelservice.body_type.id_body_type'])" onmouseout="uhghl(['auto_FK_auto_body_type','travelservice.auto.id_body_type','travelservice.body_type.id_body_type'])" transform='translate(7,0)' class='scene' d='M 420 825 L 465,825' >
+	<title>Fk FK_auto_body_type
+auto ref body_type ( id_body_type )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 420 825 L 465,825' ></path>
+<text x='427' y='820' transform='rotate(0 427,820)' title='Fk FK_auto_body_type
+auto ref body_type ( id_body_type )' class='relName' style='fill:#748ea7'>id_body_type</text>
+<!-- ============= Fk 'auto_FK_auto_brand' ============= -->
+<path id='auto_FK_auto_brand'  onmouseover="hghl(['auto_FK_auto_brand','travelservice.auto.id_brand','travelservice.brand.id_brand'])" onmouseout="uhghl(['auto_FK_auto_brand','travelservice.auto.id_brand','travelservice.brand.id_brand'])" transform='translate(7,0)' class='scene' d='M 300 735 L 225,735' >
+	<title>Fk FK_auto_brand
+auto ref brand ( id_brand )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 300 735 L 225,735' ></path>
+<text x='265' y='730' transform='rotate(0 265,730)' title='Fk FK_auto_brand
+auto ref brand ( id_brand )' class='relName' style='fill:#748ea7'>id_brand</text>
+<!-- ============= Fk 'auto_FK_auto_color' ============= -->
+<path id='auto_FK_auto_color'  onmouseover="hghl(['auto_FK_auto_color','travelservice.auto.id_color','travelservice.color.id_color'])" onmouseout="uhghl(['auto_FK_auto_color','travelservice.auto.id_color','travelservice.color.id_color'])" transform='translate(7,0)' class='scene' d='M 300 825 L 225,825' >
+	<title>Fk FK_auto_color
+auto ref color ( id_color )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 300 825 L 225,825' ></path>
+<text x='270' y='820' transform='rotate(0 270,820)' title='Fk FK_auto_color
+auto ref color ( id_color )' class='relName' style='fill:#748ea7'>id_color</text>
+<!-- ============= Fk 'hotel_order_FK_hotel_order_apartment' ============= -->
+<path id='hotel_order_FK_hotel_order_apartment'  onmouseover="hghl(['hotel_order_FK_hotel_order_apartment','travelservice.hotel_order.id_apartment','travelservice.apartment.id_apartment'])" onmouseout="uhghl(['hotel_order_FK_hotel_order_apartment','travelservice.hotel_order.id_apartment','travelservice.apartment.id_apartment'])" transform='translate(7,0)' class='scene' d='M 990 405 L 765,405' >
+	<title>Fk FK_hotel_order_apartment
+hotel_order ref apartment ( id_apartment )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 990 405 L 765,405' ></path>
+<text x='933' y='400' transform='rotate(0 933,400)' title='Fk FK_hotel_order_apartment
+hotel_order ref apartment ( id_apartment )' class='relName' style='fill:#748ea7'>id_apartment</text>
+<!-- ============= Fk 'total_order_FK_total_order_auto_order' ============= -->
+<path id='total_order_FK_total_order_auto_order'  onmouseover="hghl(['total_order_FK_total_order_auto_order','travelservice.total_order.id_auto_order','travelservice.auto_order.id_auto_order'])" onmouseout="uhghl(['total_order_FK_total_order_auto_order','travelservice.total_order.id_auto_order','travelservice.auto_order.id_auto_order'])" transform='translate(7,0)' class='scene' d='M 1245 480 L 1132,480 Q 1125,480 1125,487 L 1125,622 Q 1125,630 1117,630 L 1110,630' >
+	<title>Fk FK_total_order_auto_order
+total_order ref auto_order ( id_auto_order )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1)' marker-end='url(#arrow1)'    d='M 1245 480 L 1132,480 Q 1125,480 1125,487 L 1125,622 Q 1125,630 1117,630 L 1110,630' ></path>
+<text x='1184' y='475' transform='rotate(0 1184,475)' title='Fk FK_total_order_auto_order
+total_order ref auto_order ( id_auto_order )' class='relName' style='fill:#748ea7'>id_auto_order</text>
+<!-- ============= Fk 'total_order_FK_total_order_customer' ============= -->
+<path id='total_order_FK_total_order_customer'  onmouseover="hghl(['total_order_FK_total_order_customer','travelservice.total_order.id_customer','travelservice.customer.id_customer'])" onmouseout="uhghl(['total_order_FK_total_order_customer','travelservice.total_order.id_customer','travelservice.customer.id_customer'])" transform='translate(7,0)' class='scene' d='M 1365 390 L 1425,390' >
+	<title>Fk FK_total_order_customer
+total_order ref customer ( id_customer )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1365 390 L 1425,390' ></path>
+<text x='1372' y='385' transform='rotate(0 1372,385)' title='Fk FK_total_order_customer
+total_order ref customer ( id_customer )' class='relName' style='fill:#748ea7'>id_customer</text>
+<!-- ============= Fk 'total_order_FK_total_order_hotel_order' ============= -->
+<path id='total_order_FK_total_order_hotel_order'  onmouseover="hghl(['total_order_FK_total_order_hotel_order','travelservice.total_order.id_hotel_order','travelservice.hotel_order.id_hotel_order'])" onmouseout="uhghl(['total_order_FK_total_order_hotel_order','travelservice.total_order.id_hotel_order','travelservice.hotel_order.id_hotel_order'])" transform='translate(7,0)' class='scene' d='M 1245 420 L 1110,420' >
+	<title>Fk FK_total_order_hotel_order
+total_order ref hotel_order ( id_hotel_order )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1)' marker-end='url(#arrow1)'    d='M 1245 420 L 1110,420' ></path>
+<text x='1182' y='415' transform='rotate(0 1182,415)' title='Fk FK_total_order_hotel_order
+total_order ref hotel_order ( id_hotel_order )' class='relName' style='fill:#748ea7'>id_hotel_order</text>
+<!-- ============= Fk 'total_order_FK_total_order_tour_order' ============= -->
+<path id='total_order_FK_total_order_tour_order'  onmouseover="hghl(['total_order_FK_total_order_tour_order','travelservice.total_order.id_tour_order','travelservice.tour_order.id_tour_order'])" onmouseout="uhghl(['total_order_FK_total_order_tour_order','travelservice.total_order.id_tour_order','travelservice.tour_order.id_tour_order'])" transform='translate(7,0)' class='scene' d='M 1245 375 L 1117,375 Q 1110,375 1110,367 L 1110,285' >
+	<title>Fk FK_total_order_tour_order
+total_order ref tour_order ( id_tour_order )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1)' marker-end='url(#arrow1)'    d='M 1245 375 L 1117,375 Q 1110,375 1110,367 L 1110,285' ></path>
+<text x='1186' y='370' transform='rotate(0 1186,370)' title='Fk FK_total_order_tour_order
+total_order ref tour_order ( id_tour_order )' class='relName' style='fill:#748ea7'>id_tour_order</text>
+<!-- ============= Fk 'customer_FK_customer_role' ============= -->
+<path id='customer_FK_customer_role'  onmouseover="hghl(['customer_FK_customer_role','travelservice.customer.id_role','travelservice.role.id_role'])" onmouseout="uhghl(['customer_FK_customer_role','travelservice.customer.id_role','travelservice.role.id_role'])" transform='translate(7,0)' class='scene' d='M 1425 525 L 1387,525 Q 1380,525 1380,532 L 1380,600' >
+	<title>Fk FK_customer_role
+customer ref role ( id_role )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1425 525 L 1387,525 Q 1380,525 1380,532 L 1380,600' ></path>
+<text x='1400' y='520' transform='rotate(0 1400,520)' title='Fk FK_customer_role
+customer ref role ( id_role )' class='relName' style='fill:#748ea7'>id_role</text>
+<!-- ============= Fk 'admin_FK_admin_role' ============= -->
+<path id='admin_FK_admin_role'  onmouseover="hghl(['admin_FK_admin_role','travelservice.admin.id_role','travelservice.role.id_role'])" onmouseout="uhghl(['admin_FK_admin_role','travelservice.admin.id_role','travelservice.role.id_role'])" transform='translate(7,0)' class='scene' d='M 1410 765 L 1387,765 Q 1380,765 1380,757 L 1380,690' >
+	<title>Fk FK_admin_role
+admin ref role ( id_role )</title>
+</path>
+<path transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 1410 765 L 1387,765 Q 1380,765 1380,757 L 1380,690' ></path>
+<text x='1385' y='760' transform='rotate(0 1385,760)' title='Fk FK_admin_role
+admin ref role ( id_role )' class='relName' style='fill:#748ea7'>id_role</text>
+<!-- ============= Table 'rent_auto' ============= -->
+<rect class='table' x='660' y='668' width='105' height='120' rx='7' ry='7' style='stroke:none'/>
+<path d='M 660.00 694.00 L 660.00 675.00 Q 660.00 668.00 667.00 668.00 L 758.00 668.00 Q 765.00 668.00 765.00 675.00 L 765.00 694.00 L660.00 694.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='660' y='668' width='105' height='120' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='660.000000' y1='694.000000' x2='765.000000' y2='694.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='675.000000' y1='694.000000' x2='675.000000' y2='788.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='754.000000' y1='694.000000' x2='754.000000' y2='788.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#rent_auto'><text x='685' y='686'>rent_auto</text><title>Table travelservice.rent_auto</title></a>
+  <use id='nn' x='662' y='702' xlink:href='#nn'/><a xlink:href='#rent_auto.id_rent_auto'><use id='pk' x='662' y='701' xlink:href='#pk'/><title>Pk pk_rent_auto ( id_rent_auto ) </title></a>
+<a xlink:href='#rent_auto.id_rent_auto'><text id='travelservice.rent_auto.id_rent_auto' x='678' y='711' onmouseover="hghl(['auto_order_FK_auto_order_rent_auto'])" onmouseout="uhghl(['auto_order_FK_auto_order_rent_auto'])">id_rent_auto</text><title>id_rent_auto
+* int</title></a>
+<a xlink:href='#rent_auto.id_rent_auto'><use id='ref' x='754' y='701' xlink:href='#ref'/><title>Referred by auto_order ( id_rent_auto ) </title></a>
+  <use id='nn' x='662' y='717' xlink:href='#nn'/><a xlink:href='#rent_auto.id_auto'><use id='idx' x='662' y='716' xlink:href='#idx'/><title>FK_rent_auto_auto ( id_auto ) </title></a>
+<a xlink:href='#rent_auto.id_auto'><text id='travelservice.rent_auto.id_auto' x='678' y='726' onmouseover="hghl(['rent_auto_FK_rent_auto_auto'])" onmouseout="uhghl(['rent_auto_FK_rent_auto_auto'])">id_auto</text><title>id_auto
+* mediumint</title></a>
+<a xlink:href='#rent_auto.id_auto'><use id='fk' x='754' y='716' xlink:href='#fk'/><title>References auto ( id_auto ) </title></a>
+  <use id='nn' x='662' y='732' xlink:href='#nn'/><a xlink:href='#rent_auto.id_salon_start'><use id='idx' x='662' y='731' xlink:href='#idx'/><title>FK_rent_auto_salon ( id_salon_start ) </title></a>
+<a xlink:href='#rent_auto.id_salon_start'><text id='travelservice.rent_auto.id_salon_start' x='678' y='741' onmouseover="hghl(['rent_auto_FK_rent_auto_salon'])" onmouseout="uhghl(['rent_auto_FK_rent_auto_salon'])">id_salon_start</text><title>id_salon_start
+* smallint</title></a>
+<a xlink:href='#rent_auto.id_salon_start'><use id='fk' x='754' y='731' xlink:href='#fk'/><title>References salon ( id_salon_start -&gt; id_salon ) </title></a>
+  <use id='nn' x='662' y='747' xlink:href='#nn'/><a xlink:href='#rent_auto.status'><text id='travelservice.rent_auto.status' x='678' y='756'>status</text><title>status
+* enum('free','occu','broken')  default 'FREE'</title></a>
+  <use id='nn' x='662' y='762' xlink:href='#nn'/><a xlink:href='#rent_auto.price'><text id='travelservice.rent_auto.price' x='678' y='771'>price</text><title>price
+* double</title></a>
+
+<!-- ============= Table 'apartment' ============= -->
+<rect class='table' x='660' y='383' width='105' height='150' rx='7' ry='7' style='stroke:none'/>
+<path d='M 660.00 409.00 L 660.00 390.00 Q 660.00 383.00 667.00 383.00 L 758.00 383.00 Q 765.00 383.00 765.00 390.00 L 765.00 409.00 L660.00 409.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='660' y='383' width='105' height='150' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='660.000000' y1='409.000000' x2='765.000000' y2='409.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='675.000000' y1='409.000000' x2='675.000000' y2='533.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='754.000000' y1='409.000000' x2='754.000000' y2='533.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#apartment'><text x='684' y='401'>apartment</text><title>Table travelservice.apartment</title></a>
+  <use id='nn' x='662' y='417' xlink:href='#nn'/><a xlink:href='#apartment.id_apartment'><use id='pk' x='662' y='416' xlink:href='#pk'/><title>Pk pk_apartment ( id_apartment ) </title></a>
+<a xlink:href='#apartment.id_apartment'><text id='travelservice.apartment.id_apartment' x='678' y='426' onmouseover="hghl(['hotel_order_FK_hotel_order_apartment'])" onmouseout="uhghl(['hotel_order_FK_hotel_order_apartment'])">id_apartment</text><title>id_apartment
+* int</title></a>
+<a xlink:href='#apartment.id_apartment'><use id='ref' x='754' y='416' xlink:href='#ref'/><title>Referred by hotel_order ( id_apartment ) </title></a>
+  <use id='nn' x='662' y='432' xlink:href='#nn'/><a xlink:href='#apartment.id_hotel'><use id='idx' x='662' y='431' xlink:href='#idx'/><title>FK_apartment_hotel ( id_hotel ) </title></a>
+<a xlink:href='#apartment.id_hotel'><text id='travelservice.apartment.id_hotel' x='678' y='441' onmouseover="hghl(['apartment_FK_apartment_hotel'])" onmouseout="uhghl(['apartment_FK_apartment_hotel'])">id_hotel</text><title>id_hotel
+* smallint</title></a>
+<a xlink:href='#apartment.id_hotel'><use id='fk' x='754' y='431' xlink:href='#fk'/><title>References hotel ( id_hotel ) </title></a>
+  <use id='nn' x='662' y='447' xlink:href='#nn'/><a xlink:href='#apartment.id_room'><use id='idx' x='662' y='446' xlink:href='#idx'/><title>FK_apartment_room ( id_room ) </title></a>
+<a xlink:href='#apartment.id_room'><text id='travelservice.apartment.id_room' x='678' y='456' onmouseover="hghl(['apartment_FK_apartment_room'])" onmouseout="uhghl(['apartment_FK_apartment_room'])">id_room</text><title>id_room
+* smallint default 1</title></a>
+<a xlink:href='#apartment.id_room'><use id='fk' x='754' y='446' xlink:href='#fk'/><title>References room ( id_room ) </title></a>
+  <use id='nn' x='662' y='462' xlink:href='#nn'/><a xlink:href='#apartment.room_capacity'><text id='travelservice.apartment.room_capacity' x='678' y='471'>room_capacity</text><title>room_capacity
+* tinyint default 1</title></a>
+  <use id='nn' x='662' y='477' xlink:href='#nn'/><a xlink:href='#apartment.price'><text id='travelservice.apartment.price' x='678' y='486'>price</text><title>price
+* double</title></a>
+  <use id='nn' x='662' y='492' xlink:href='#nn'/><a xlink:href='#apartment.status'><text id='travelservice.apartment.status' x='678' y='501'>status</text><title>status
+* enum('free','occu')  default 'FREE'</title></a>
+  <use id='nn' x='662' y='507' xlink:href='#nn'/><a xlink:href='#apartment.image'><text id='travelservice.apartment.image' x='678' y='516'>image</text><title>image
+* varchar(400)</title></a>
+
+<!-- ============= Table 'tour_order' ============= -->
+<rect class='table' x='1005' y='173' width='120' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1005.00 199.00 L 1005.00 180.00 Q 1005.00 173.00 1012.00 173.00 L 1118.00 173.00 Q 1125.00 173.00 1125.00 180.00 L 1125.00 199.00 L1005.00 199.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='1005' y='173' width='120' height='105' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='1005.000000' y1='199.000000' x2='1125.000000' y2='199.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1020.000000' y1='199.000000' x2='1020.000000' y2='278.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1114.000000' y1='199.000000' x2='1114.000000' y2='278.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#tour_order'><text x='1036' y='191'>tour_order</text><title>Table travelservice.tour_order</title></a>
+  <use id='nn' x='1007' y='207' xlink:href='#nn'/><a xlink:href='#tour_order.id_tour_order'><use id='pk' x='1007' y='206' xlink:href='#pk'/><title>Pk pk_tour_order ( id_tour_order ) </title></a>
+<a xlink:href='#tour_order.id_tour_order'><text id='travelservice.tour_order.id_tour_order' x='1023' y='216' onmouseover="hghl(['total_order_FK_total_order_tour_order'])" onmouseout="uhghl(['total_order_FK_total_order_tour_order'])">id_tour_order</text><title>id_tour_order
+* int</title></a>
+<a xlink:href='#tour_order.id_tour_order'><use id='ref' x='1114' y='206' xlink:href='#ref'/><title>Referred by total_order ( id_tour_order ) </title></a>
+  <use id='nn' x='1007' y='222' xlink:href='#nn'/><a xlink:href='#tour_order.id_tour_offer'><use id='idx' x='1007' y='221' xlink:href='#idx'/><title>FK_tour_order_tour_offer ( id_tour_offer ) </title></a>
+<a xlink:href='#tour_order.id_tour_offer'><text id='travelservice.tour_order.id_tour_offer' x='1023' y='231' onmouseover="hghl(['tour_order_FK_tour_order_tour_offer'])" onmouseout="uhghl(['tour_order_FK_tour_order_tour_offer'])">id_tour_offer</text><title>id_tour_offer
+* int</title></a>
+<a xlink:href='#tour_order.id_tour_offer'><use id='fk' x='1114' y='221' xlink:href='#fk'/><title>References tour_offer ( id_tour_offer ) </title></a>
+  <use id='nn' x='1007' y='237' xlink:href='#nn'/><a xlink:href='#tour_order.person_number'><text id='travelservice.tour_order.person_number' x='1023' y='246'>person_number</text><title>person_number
+* tinyint default 1</title></a>
+  <use id='nn' x='1007' y='252' xlink:href='#nn'/><a xlink:href='#tour_order.order_price'><text id='travelservice.tour_order.order_price' x='1023' y='261'>order_price</text><title>order_price
+* double</title></a>
+
+<!-- ============= Table 'hotel' ============= -->
+<rect class='table' x='165' y='428' width='75' height='120' rx='7' ry='7' style='stroke:none'/>
+<path d='M 165.00 454.00 L 165.00 435.00 Q 165.00 428.00 172.00 428.00 L 233.00 428.00 Q 240.00 428.00 240.00 435.00 L 240.00 454.00 L165.00 454.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='165' y='428' width='75' height='120' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='165.000000' y1='454.000000' x2='240.000000' y2='454.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='180.000000' y1='454.000000' x2='180.000000' y2='548.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='229.000000' y1='454.000000' x2='229.000000' y2='548.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#hotel'><text x='187' y='446'>hotel</text><title>Table travelservice.hotel</title></a>
+  <use id='nn' x='167' y='462' xlink:href='#nn'/><a xlink:href='#hotel.id_hotel'><use id='pk' x='167' y='461' xlink:href='#pk'/><title>Pk pk_hotel ( id_hotel ) </title></a>
+<a xlink:href='#hotel.id_hotel'><text id='travelservice.hotel.id_hotel' x='183' y='471' onmouseover="hghl(['apartment_FK_apartment_hotel'])" onmouseout="uhghl(['apartment_FK_apartment_hotel'])">id_hotel</text><title>id_hotel
+* smallint</title></a>
+<a xlink:href='#hotel.id_hotel'><use id='ref' x='229' y='461' xlink:href='#ref'/><title>Referred by apartment ( id_hotel ) </title></a>
+  <use id='nn' x='167' y='477' xlink:href='#nn'/><a xlink:href='#hotel.id_city'><use id='idx' x='167' y='476' xlink:href='#idx'/><title>FK_hotel_city ( id_city ) </title></a>
+<a xlink:href='#hotel.id_city'><text id='travelservice.hotel.id_city' x='183' y='486' onmouseover="hghl(['hotel_FK_hotel_city'])" onmouseout="uhghl(['hotel_FK_hotel_city'])">id_city</text><title>id_city
+* smallint</title></a>
+<a xlink:href='#hotel.id_city'><use id='fk' x='229' y='476' xlink:href='#fk'/><title>References city ( id_city ) </title></a>
+  <use id='nn' x='167' y='492' xlink:href='#nn'/><a xlink:href='#hotel.title'><text id='travelservice.hotel.title' x='183' y='501'>title</text><title>title
+* varchar(100)</title></a>
+  <use id='nn' x='167' y='507' xlink:href='#nn'/><a xlink:href='#hotel.stars'><text id='travelservice.hotel.stars' x='183' y='516'>stars</text><title>stars
+* enum('3','4','5') </title></a>
+  <use id='nn' x='167' y='522' xlink:href='#nn'/><a xlink:href='#hotel.address'><text id='travelservice.hotel.address' x='183' y='531'>address</text><title>address
+* varchar(200)</title></a>
+
+<!-- ============= Table 'tour' ============= -->
+<rect class='table' x='165' y='158' width='90' height='135' rx='7' ry='7' style='stroke:none'/>
+<path d='M 165.00 184.00 L 165.00 165.00 Q 165.00 158.00 172.00 158.00 L 248.00 158.00 Q 255.00 158.00 255.00 165.00 L 255.00 184.00 L165.00 184.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='165' y='158' width='90' height='135' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='165.000000' y1='184.000000' x2='255.000000' y2='184.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='180.000000' y1='184.000000' x2='180.000000' y2='293.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='244.000000' y1='184.000000' x2='244.000000' y2='293.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#tour'><text x='197' y='176'>tour</text><title>Table travelservice.tour</title></a>
+  <use id='nn' x='167' y='192' xlink:href='#nn'/><a xlink:href='#tour.id_tour'><use id='pk' x='167' y='191' xlink:href='#pk'/><title>Pk pk_tour ( id_tour ) </title></a>
+<a xlink:href='#tour.id_tour'><text id='travelservice.tour.id_tour' x='183' y='201' onmouseover="hghl(['tour_offer_FK_tour_offer_tour'])" onmouseout="uhghl(['tour_offer_FK_tour_offer_tour'])">id_tour</text><title>id_tour
+* int</title></a>
+<a xlink:href='#tour.id_tour'><use id='ref' x='244' y='191' xlink:href='#ref'/><title>Referred by tour_offer ( id_tour ) </title></a>
+  <use id='nn' x='167' y='207' xlink:href='#nn'/><a xlink:href='#tour.destination'><text id='travelservice.tour.destination' x='183' y='216'>destination</text><title>destination
+* varchar(500)</title></a>
+  <use id='nn' x='167' y='222' xlink:href='#nn'/><a xlink:href='#tour.name'><text id='travelservice.tour.name' x='183' y='231'>name</text><title>name
+* varchar(50)</title></a>
+  <use id='nn' x='167' y='237' xlink:href='#nn'/><a xlink:href='#tour.type'><text id='travelservice.tour.type' x='183' y='246'>type</text><title>type
+* enum('rest','trip','shop') </title></a>
+  <use id='nn' x='167' y='252' xlink:href='#nn'/><a xlink:href='#tour.description'><text id='travelservice.tour.description' x='183' y='261'>description</text><title>description
+* text</title></a>
+  <use id='nn' x='167' y='267' xlink:href='#nn'/><a xlink:href='#tour.image'><text id='travelservice.tour.image' x='183' y='276'>image</text><title>image
+* varchar(400)</title></a>
+
+<!-- ============= Table 'room' ============= -->
+<rect class='table' x='165' y='308' width='90' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 165.00 334.00 L 165.00 315.00 Q 165.00 308.00 172.00 308.00 L 248.00 308.00 Q 255.00 308.00 255.00 315.00 L 255.00 334.00 L165.00 334.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='165' y='308' width='90' height='105' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='165.000000' y1='334.000000' x2='255.000000' y2='334.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='180.000000' y1='334.000000' x2='180.000000' y2='413.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='244.000000' y1='334.000000' x2='244.000000' y2='413.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#room'><text x='195' y='326'>room</text><title>Table travelservice.room</title></a>
+  <use id='nn' x='167' y='342' xlink:href='#nn'/><a xlink:href='#room.id_room'><use id='pk' x='167' y='341' xlink:href='#pk'/><title>Pk pk_room ( id_room ) </title></a>
+<a xlink:href='#room.id_room'><text id='travelservice.room.id_room' x='183' y='351' onmouseover="hghl(['apartment_FK_apartment_room'])" onmouseout="uhghl(['apartment_FK_apartment_room'])">id_room</text><title>id_room
+* smallint</title></a>
+<a xlink:href='#room.id_room'><use id='ref' x='244' y='341' xlink:href='#ref'/><title>Referred by apartment ( id_room ) </title></a>
+  <use id='nn' x='167' y='357' xlink:href='#nn'/><a xlink:href='#room.tv'><text id='travelservice.room.tv' x='183' y='366'>tv</text><title>tv
+* enum('yes','no')  default 'Yes'</title></a>
+  <use id='nn' x='167' y='372' xlink:href='#nn'/><a xlink:href='#room.balcony'><text id='travelservice.room.balcony' x='183' y='381'>balcony</text><title>balcony
+* enum('yes','no')  default 'No'</title></a>
+  <use id='nn' x='167' y='387' xlink:href='#nn'/><a xlink:href='#room.conditioner'><text id='travelservice.room.conditioner' x='183' y='396'>conditioner</text><title>conditioner
+* enum('yes','no')  default 'No'</title></a>
+
+<!-- ============= Table 'bus' ============= -->
+<rect class='table' x='165' y='38' width='135' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 165.00 64.00 L 165.00 45.00 Q 165.00 38.00 172.00 38.00 L 293.00 38.00 Q 300.00 38.00 300.00 45.00 L 300.00 64.00 L165.00 64.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='165' y='38' width='135' height='105' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='165.000000' y1='64.000000' x2='300.000000' y2='64.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='180.000000' y1='64.000000' x2='180.000000' y2='143.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='289.000000' y1='64.000000' x2='289.000000' y2='143.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#bus'><text x='221' y='56'>bus</text><title>Table travelservice.bus</title></a>
+  <use id='nn' x='167' y='72' xlink:href='#nn'/><a xlink:href='#bus.id_bus'><use id='pk' x='167' y='71' xlink:href='#pk'/><title>Pk pk_bus ( id_bus ) </title></a>
+<a xlink:href='#bus.id_bus'><text id='travelservice.bus.id_bus' x='183' y='81' onmouseover="hghl(['tour_offer_FK_tour_offer_bus'])" onmouseout="uhghl(['tour_offer_FK_tour_offer_bus'])">id_bus</text><title>id_bus
+* smallint</title></a>
+<a xlink:href='#bus.id_bus'><use id='ref' x='289' y='71' xlink:href='#ref'/><title>Referred by tour_offer ( id_bus ) </title></a>
+  <use id='nn' x='167' y='87' xlink:href='#nn'/><a xlink:href='#bus.name'><text id='travelservice.bus.name' x='183' y='96'>name</text><title>name
+* varchar(50)</title></a>
+  <use id='nn' x='167' y='102' xlink:href='#nn'/><a xlink:href='#bus.capacity'><text id='travelservice.bus.capacity' x='183' y='111'>capacity</text><title>capacity
+* tinyint</title></a>
+  <use id='nn' x='167' y='117' xlink:href='#nn'/><a xlink:href='#bus.registration_number'><text id='travelservice.bus.registration_number' x='183' y='126'>registration_number</text><title>registration_number
+* varchar(50)</title></a>
+
+<!-- ============= Table 'brand' ============= -->
+<rect class='table' x='150' y='713' width='75' height='75' rx='7' ry='7' style='stroke:none'/>
+<path d='M 150.00 739.00 L 150.00 720.00 Q 150.00 713.00 157.00 713.00 L 218.00 713.00 Q 225.00 713.00 225.00 720.00 L 225.00 739.00 L150.00 739.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='150' y='713' width='75' height='75' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='150.000000' y1='739.000000' x2='225.000000' y2='739.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='165.000000' y1='739.000000' x2='165.000000' y2='788.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='214.000000' y1='739.000000' x2='214.000000' y2='788.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#brand'><text x='170' y='731'>brand</text><title>Table travelservice.brand</title></a>
+  <use id='nn' x='152' y='747' xlink:href='#nn'/><a xlink:href='#brand.id_brand'><use id='pk' x='152' y='746' xlink:href='#pk'/><title>Pk pk_brand ( id_brand ) </title></a>
+<a xlink:href='#brand.id_brand'><text id='travelservice.brand.id_brand' x='168' y='756' onmouseover="hghl(['auto_FK_auto_brand'])" onmouseout="uhghl(['auto_FK_auto_brand'])">id_brand</text><title>id_brand
+* tinyint</title></a>
+<a xlink:href='#brand.id_brand'><use id='ref' x='214' y='746' xlink:href='#ref'/><title>Referred by auto ( id_brand ) </title></a>
+  <use id='nn' x='152' y='762' xlink:href='#nn'/><a xlink:href='#brand.name'><text id='travelservice.brand.name' x='168' y='771'>name</text><title>name
+* varchar(50)</title></a>
+
+<!-- ============= Table 'color' ============= -->
+<rect class='table' x='150' y='803' width='75' height='75' rx='7' ry='7' style='stroke:none'/>
+<path d='M 150.00 829.00 L 150.00 810.00 Q 150.00 803.00 157.00 803.00 L 218.00 803.00 Q 225.00 803.00 225.00 810.00 L 225.00 829.00 L150.00 829.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='150' y='803' width='75' height='75' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='150.000000' y1='829.000000' x2='225.000000' y2='829.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='165.000000' y1='829.000000' x2='165.000000' y2='878.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='214.000000' y1='829.000000' x2='214.000000' y2='878.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#color'><text x='173' y='821'>color</text><title>Table travelservice.color</title></a>
+  <use id='nn' x='152' y='837' xlink:href='#nn'/><a xlink:href='#color.id_color'><use id='pk' x='152' y='836' xlink:href='#pk'/><title>Pk pk_color ( id_color ) </title></a>
+<a xlink:href='#color.id_color'><text id='travelservice.color.id_color' x='168' y='846' onmouseover="hghl(['auto_FK_auto_color'])" onmouseout="uhghl(['auto_FK_auto_color'])">id_color</text><title>id_color
+* tinyint</title></a>
+<a xlink:href='#color.id_color'><use id='ref' x='214' y='836' xlink:href='#ref'/><title>Referred by auto ( id_color ) </title></a>
+  <use id='nn' x='152' y='852' xlink:href='#nn'/><a xlink:href='#color.name'><text id='travelservice.color.name' x='168' y='861'>name</text><title>name
+* varchar(50)</title></a>
+
+<!-- ============= Table 'salon' ============= -->
+<rect class='table' x='150' y='608' width='75' height='90' rx='7' ry='7' style='stroke:none'/>
+<path d='M 150.00 634.00 L 150.00 615.00 Q 150.00 608.00 157.00 608.00 L 218.00 608.00 Q 225.00 608.00 225.00 615.00 L 225.00 634.00 L150.00 634.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='150' y='608' width='75' height='90' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='150.000000' y1='634.000000' x2='225.000000' y2='634.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='165.000000' y1='634.000000' x2='165.000000' y2='698.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='214.000000' y1='634.000000' x2='214.000000' y2='698.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#salon'><text x='172' y='626'>salon</text><title>Table travelservice.salon</title></a>
+  <use id='nn' x='152' y='642' xlink:href='#nn'/><a xlink:href='#salon.id_salon'><use id='pk' x='152' y='641' xlink:href='#pk'/><title>Pk pk_salon ( id_salon ) </title></a>
+<a xlink:href='#salon.id_salon'><text id='travelservice.salon.id_salon' x='168' y='651' onmouseover="hghl(['auto_order_FK_auto_order_salon','rent_auto_FK_rent_auto_salon'])" onmouseout="uhghl(['auto_order_FK_auto_order_salon','rent_auto_FK_rent_auto_salon'])">id_salon</text><title>id_salon
+* smallint</title></a>
+<a xlink:href='#salon.id_salon'><use id='ref' x='214' y='641' xlink:href='#ref'/><title>Referred by auto_order ( id_salon_end -&gt; id_salon ) 
+Referred by rent_auto ( id_salon_start -&gt; id_salon ) </title></a>
+  <use id='nn' x='152' y='657' xlink:href='#nn'/><a xlink:href='#salon.id_city'><use id='idx' x='152' y='656' xlink:href='#idx'/><title>FK_salon_city ( id_city ) </title></a>
+<a xlink:href='#salon.id_city'><text id='travelservice.salon.id_city' x='168' y='666' onmouseover="hghl(['salon_FK_salon_city'])" onmouseout="uhghl(['salon_FK_salon_city'])">id_city</text><title>id_city
+* smallint</title></a>
+<a xlink:href='#salon.id_city'><use id='fk' x='214' y='656' xlink:href='#fk'/><title>References city ( id_city ) </title></a>
+  <use id='nn' x='152' y='672' xlink:href='#nn'/><a xlink:href='#salon.address'><text id='travelservice.salon.address' x='168' y='681'>address</text><title>address
+* varchar(50)</title></a>
+
+<!-- ============= Table 'city' ============= -->
+<rect class='table' x='45' y='518' width='75' height='75' rx='7' ry='7' style='stroke:none'/>
+<path d='M 45.00 544.00 L 45.00 525.00 Q 45.00 518.00 52.00 518.00 L 113.00 518.00 Q 120.00 518.00 120.00 525.00 L 120.00 544.00 L45.00 544.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='45' y='518' width='75' height='75' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='45.000000' y1='544.000000' x2='120.000000' y2='544.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='60.000000' y1='544.000000' x2='60.000000' y2='593.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='109.000000' y1='544.000000' x2='109.000000' y2='593.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#city'><text x='71' y='536'>city</text><title>Table travelservice.city</title></a>
+  <use id='nn' x='47' y='552' xlink:href='#nn'/><a xlink:href='#city.id_city'><use id='pk' x='47' y='551' xlink:href='#pk'/><title>Pk pk_city ( id_city ) </title></a>
+<a xlink:href='#city.id_city'><text id='travelservice.city.id_city' x='63' y='561' onmouseover="hghl(['hotel_FK_hotel_city','salon_FK_salon_city'])" onmouseout="uhghl(['hotel_FK_hotel_city','salon_FK_salon_city'])">id_city</text><title>id_city
+* smallint</title></a>
+<a xlink:href='#city.id_city'><use id='ref' x='109' y='551' xlink:href='#ref'/><title>Referred by hotel ( id_city ) 
+Referred by salon ( id_city ) </title></a>
+  <use id='nn' x='47' y='567' xlink:href='#nn'/><a xlink:href='#city.name'><text id='travelservice.city.name' x='63' y='576'>name</text><title>name
+* varchar(50)</title></a>
+
+<!-- ============= Table 'body_type' ============= -->
+<rect class='table' x='480' y='818' width='105' height='75' rx='7' ry='7' style='stroke:none'/>
+<path d='M 480.00 844.00 L 480.00 825.00 Q 480.00 818.00 487.00 818.00 L 578.00 818.00 Q 585.00 818.00 585.00 825.00 L 585.00 844.00 L480.00 844.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='480' y='818' width='105' height='75' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='480.000000' y1='844.000000' x2='585.000000' y2='844.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='495.000000' y1='844.000000' x2='495.000000' y2='893.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='574.000000' y1='844.000000' x2='574.000000' y2='893.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#body_type'><text x='503' y='836'>body_type</text><title>Table travelservice.body_type</title></a>
+  <use id='nn' x='482' y='852' xlink:href='#nn'/><a xlink:href='#body_type.id_body_type'><use id='pk' x='482' y='851' xlink:href='#pk'/><title>Pk pk_body_type ( id_body_type ) </title></a>
+<a xlink:href='#body_type.id_body_type'><text id='travelservice.body_type.id_body_type' x='498' y='861' onmouseover="hghl(['auto_FK_auto_body_type'])" onmouseout="uhghl(['auto_FK_auto_body_type'])">id_body_type</text><title>id_body_type
+* tinyint</title></a>
+<a xlink:href='#body_type.id_body_type'><use id='ref' x='574' y='851' xlink:href='#ref'/><title>Referred by auto ( id_body_type ) </title></a>
+  <use id='nn' x='482' y='867' xlink:href='#nn'/><a xlink:href='#body_type.name'><text id='travelservice.body_type.name' x='498' y='876'>name</text><title>name
+* varchar(100)</title></a>
+
+<!-- ============= Table 'auto_order' ============= -->
+<rect class='table' x='1005' y='608' width='105' height='135' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1005.00 634.00 L 1005.00 615.00 Q 1005.00 608.00 1012.00 608.00 L 1103.00 608.00 Q 1110.00 608.00 1110.00 615.00 L 1110.00 634.00 L1005.00 634.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='1005' y='608' width='105' height='135' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='1005.000000' y1='634.000000' x2='1110.000000' y2='634.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1020.000000' y1='634.000000' x2='1020.000000' y2='743.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1099.000000' y1='634.000000' x2='1099.000000' y2='743.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#auto_order'><text x='1027' y='626'>auto_order</text><title>Table travelservice.auto_order</title></a>
+  <use id='nn' x='1007' y='642' xlink:href='#nn'/><a xlink:href='#auto_order.id_auto_order'><use id='pk' x='1007' y='641' xlink:href='#pk'/><title>Pk pk_auto_order ( id_auto_order ) </title></a>
+<a xlink:href='#auto_order.id_auto_order'><text id='travelservice.auto_order.id_auto_order' x='1023' y='651' onmouseover="hghl(['total_order_FK_total_order_auto_order'])" onmouseout="uhghl(['total_order_FK_total_order_auto_order'])">id_auto_order</text><title>id_auto_order
+* int</title></a>
+<a xlink:href='#auto_order.id_auto_order'><use id='ref' x='1099' y='641' xlink:href='#ref'/><title>Referred by total_order ( id_auto_order ) </title></a>
+  <use id='nn' x='1007' y='657' xlink:href='#nn'/><a xlink:href='#auto_order.id_rent_auto'><use id='idx' x='1007' y='656' xlink:href='#idx'/><title>FK_auto_order_rent_auto ( id_rent_auto ) </title></a>
+<a xlink:href='#auto_order.id_rent_auto'><text id='travelservice.auto_order.id_rent_auto' x='1023' y='666' onmouseover="hghl(['auto_order_FK_auto_order_rent_auto'])" onmouseout="uhghl(['auto_order_FK_auto_order_rent_auto'])">id_rent_auto</text><title>id_rent_auto
+* int</title></a>
+<a xlink:href='#auto_order.id_rent_auto'><use id='fk' x='1099' y='656' xlink:href='#fk'/><title>References rent_auto ( id_rent_auto ) </title></a>
+  <use id='nn' x='1007' y='672' xlink:href='#nn'/><a xlink:href='#auto_order.id_salon_end'><use id='idx' x='1007' y='671' xlink:href='#idx'/><title>FK_auto_order_salon ( id_salon_end ) </title></a>
+<a xlink:href='#auto_order.id_salon_end'><text id='travelservice.auto_order.id_salon_end' x='1023' y='681' onmouseover="hghl(['auto_order_FK_auto_order_salon'])" onmouseout="uhghl(['auto_order_FK_auto_order_salon'])">id_salon_end</text><title>id_salon_end
+* smallint</title></a>
+<a xlink:href='#auto_order.id_salon_end'><use id='fk' x='1099' y='671' xlink:href='#fk'/><title>References salon ( id_salon_end -&gt; id_salon ) </title></a>
+  <use id='nn' x='1007' y='687' xlink:href='#nn'/><a xlink:href='#auto_order.date_start'><text id='travelservice.auto_order.date_start' x='1023' y='696'>date_start</text><title>date_start
+* date</title></a>
+  <use id='nn' x='1007' y='702' xlink:href='#nn'/><a xlink:href='#auto_order.date_end'><text id='travelservice.auto_order.date_end' x='1023' y='711'>date_end</text><title>date_end
+* date</title></a>
+  <use id='nn' x='1007' y='717' xlink:href='#nn'/><a xlink:href='#auto_order.order_price'><text id='travelservice.auto_order.order_price' x='1023' y='726'>order_price</text><title>order_price
+* double</title></a>
+
+<!-- ============= Table 'tour_offer' ============= -->
+<rect class='table' x='645' y='128' width='150' height='165' rx='7' ry='7' style='stroke:none'/>
+<path d='M 645.00 154.00 L 645.00 135.00 Q 645.00 128.00 652.00 128.00 L 788.00 128.00 Q 795.00 128.00 795.00 135.00 L 795.00 154.00 L645.00 154.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='645' y='128' width='150' height='165' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='645.000000' y1='154.000000' x2='795.000000' y2='154.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='660.000000' y1='154.000000' x2='660.000000' y2='293.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='784.000000' y1='154.000000' x2='784.000000' y2='293.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#tour_offer'><text x='692' y='146'>tour_offer</text><title>Table travelservice.tour_offer</title></a>
+  <use id='nn' x='647' y='162' xlink:href='#nn'/><a xlink:href='#tour_offer.id_tour_offer'><use id='pk' x='647' y='161' xlink:href='#pk'/><title>Pk pk_tour_offer ( id_tour_offer ) </title></a>
+<a xlink:href='#tour_offer.id_tour_offer'><text id='travelservice.tour_offer.id_tour_offer' x='663' y='171' onmouseover="hghl(['tour_order_FK_tour_order_tour_offer'])" onmouseout="uhghl(['tour_order_FK_tour_order_tour_offer'])">id_tour_offer</text><title>id_tour_offer
+* int</title></a>
+<a xlink:href='#tour_offer.id_tour_offer'><use id='ref' x='784' y='161' xlink:href='#ref'/><title>Referred by tour_order ( id_tour_offer ) </title></a>
+  <use id='nn' x='647' y='177' xlink:href='#nn'/><a xlink:href='#tour_offer.id_tour'><use id='idx' x='647' y='176' xlink:href='#idx'/><title>FK_tour_offer_tour ( id_tour ) </title></a>
+<a xlink:href='#tour_offer.id_tour'><text id='travelservice.tour_offer.id_tour' x='663' y='186' onmouseover="hghl(['tour_offer_FK_tour_offer_tour'])" onmouseout="uhghl(['tour_offer_FK_tour_offer_tour'])">id_tour</text><title>id_tour
+* int</title></a>
+<a xlink:href='#tour_offer.id_tour'><use id='fk' x='784' y='176' xlink:href='#fk'/><title>References tour ( id_tour ) </title></a>
+  <use id='nn' x='647' y='192' xlink:href='#nn'/><a xlink:href='#tour_offer.id_bus'><use id='idx' x='647' y='191' xlink:href='#idx'/><title>FK_tour_offer_bus ( id_bus ) </title></a>
+<a xlink:href='#tour_offer.id_bus'><text id='travelservice.tour_offer.id_bus' x='663' y='201' onmouseover="hghl(['tour_offer_FK_tour_offer_bus'])" onmouseout="uhghl(['tour_offer_FK_tour_offer_bus'])">id_bus</text><title>id_bus
+* smallint</title></a>
+<a xlink:href='#tour_offer.id_bus'><use id='fk' x='784' y='191' xlink:href='#fk'/><title>References bus ( id_bus ) </title></a>
+  <use id='nn' x='647' y='207' xlink:href='#nn'/><a xlink:href='#tour_offer.date_start'><text id='travelservice.tour_offer.date_start' x='663' y='216'>date_start</text><title>date_start
+* date</title></a>
+  <use id='nn' x='647' y='222' xlink:href='#nn'/><a xlink:href='#tour_offer.date_end'><text id='travelservice.tour_offer.date_end' x='663' y='231'>date_end</text><title>date_end
+* date</title></a>
+  <use id='nn' x='647' y='237' xlink:href='#nn'/><a xlink:href='#tour_offer.passengers_per_order'><text id='travelservice.tour_offer.passengers_per_order' x='663' y='246'>passengers_per_order</text><title>passengers_per_order
+* tinyint</title></a>
+  <use id='nn' x='647' y='252' xlink:href='#nn'/><a xlink:href='#tour_offer.price'><text id='travelservice.tour_offer.price' x='663' y='261'>price</text><title>price
+* double</title></a>
+  <use id='nn' x='647' y='267' xlink:href='#nn'/><a xlink:href='#tour_offer.hot'><text id='travelservice.tour_offer.hot' x='663' y='276'>hot</text><title>hot
+* enum('yes','no')  default 'NO'</title></a>
+
+<!-- ============= Table 'auto' ============= -->
+<rect class='table' x='315' y='698' width='105' height='195' rx='7' ry='7' style='stroke:none'/>
+<path d='M 315.00 724.00 L 315.00 705.00 Q 315.00 698.00 322.00 698.00 L 413.00 698.00 Q 420.00 698.00 420.00 705.00 L 420.00 724.00 L315.00 724.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='315' y='698' width='105' height='195' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='315.000000' y1='724.000000' x2='420.000000' y2='724.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='330.000000' y1='724.000000' x2='330.000000' y2='893.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='409.000000' y1='724.000000' x2='409.000000' y2='893.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#auto'><text x='353' y='716'>auto</text><title>Table travelservice.auto</title></a>
+  <use id='nn' x='317' y='732' xlink:href='#nn'/><a xlink:href='#auto.id_auto'><use id='pk' x='317' y='731' xlink:href='#pk'/><title>Pk pk_auto ( id_auto ) </title></a>
+<a xlink:href='#auto.id_auto'><text id='travelservice.auto.id_auto' x='333' y='741' onmouseover="hghl(['rent_auto_FK_rent_auto_auto'])" onmouseout="uhghl(['rent_auto_FK_rent_auto_auto'])">id_auto</text><title>id_auto
+* mediumint</title></a>
+<a xlink:href='#auto.id_auto'><use id='ref' x='409' y='731' xlink:href='#ref'/><title>Referred by rent_auto ( id_auto ) </title></a>
+  <use id='nn' x='317' y='747' xlink:href='#nn'/><a xlink:href='#auto.id_brand'><use id='idx' x='317' y='746' xlink:href='#idx'/><title>FK_auto_brand ( id_brand ) </title></a>
+<a xlink:href='#auto.id_brand'><text id='travelservice.auto.id_brand' x='333' y='756' onmouseover="hghl(['auto_FK_auto_brand'])" onmouseout="uhghl(['auto_FK_auto_brand'])">id_brand</text><title>id_brand
+* tinyint</title></a>
+<a xlink:href='#auto.id_brand'><use id='fk' x='409' y='746' xlink:href='#fk'/><title>References brand ( id_brand ) </title></a>
+  <use id='nn' x='317' y='762' xlink:href='#nn'/><a xlink:href='#auto.model'><text id='travelservice.auto.model' x='333' y='771'>model</text><title>model
+* varchar(10)</title></a>
+  <use id='nn' x='317' y='777' xlink:href='#nn'/><a xlink:href='#auto.year'><text id='travelservice.auto.year' x='333' y='786'>year</text><title>year
+* year</title></a>
+  <use id='nn' x='317' y='792' xlink:href='#nn'/><a xlink:href='#auto.transmition'><text id='travelservice.auto.transmition' x='333' y='801'>transmition</text><title>transmition
+* enum('auto','manual')  default 'AUTO'</title></a>
+  <use id='nn' x='317' y='807' xlink:href='#nn'/><a xlink:href='#auto.wheel_drive'><text id='travelservice.auto.wheel_drive' x='333' y='816'>wheel_drive</text><title>wheel_drive
+* enum('rear','front','full')  default 'REAR'</title></a>
+  <use id='nn' x='317' y='822' xlink:href='#nn'/><a xlink:href='#auto.fuil_type'><text id='travelservice.auto.fuil_type' x='333' y='831'>fuil_type</text><title>fuil_type
+* enum('petrol','diesel','gas','electro')  default 'PETROL'</title></a>
+  <use id='nn' x='317' y='837' xlink:href='#nn'/><a xlink:href='#auto.id_color'><use id='idx' x='317' y='836' xlink:href='#idx'/><title>FK_auto_color ( id_color ) </title></a>
+<a xlink:href='#auto.id_color'><text id='travelservice.auto.id_color' x='333' y='846' onmouseover="hghl(['auto_FK_auto_color'])" onmouseout="uhghl(['auto_FK_auto_color'])">id_color</text><title>id_color
+* tinyint</title></a>
+<a xlink:href='#auto.id_color'><use id='fk' x='409' y='836' xlink:href='#fk'/><title>References color ( id_color ) </title></a>
+  <use id='nn' x='317' y='852' xlink:href='#nn'/><a xlink:href='#auto.id_body_type'><use id='idx' x='317' y='851' xlink:href='#idx'/><title>FK_auto_body_type ( id_body_type ) </title></a>
+<a xlink:href='#auto.id_body_type'><text id='travelservice.auto.id_body_type' x='333' y='861' onmouseover="hghl(['auto_FK_auto_body_type'])" onmouseout="uhghl(['auto_FK_auto_body_type'])">id_body_type</text><title>id_body_type
+* tinyint</title></a>
+<a xlink:href='#auto.id_body_type'><use id='fk' x='409' y='851' xlink:href='#fk'/><title>References body_type ( id_body_type ) </title></a>
+  <use id='nn' x='317' y='867' xlink:href='#nn'/><a xlink:href='#auto.image'><text id='travelservice.auto.image' x='333' y='876'>image</text><title>image
+* varchar(400)</title></a>
+
+<!-- ============= Table 'hotel_order' ============= -->
+<rect class='table' x='1005' y='398' width='105' height='120' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1005.00 424.00 L 1005.00 405.00 Q 1005.00 398.00 1012.00 398.00 L 1103.00 398.00 Q 1110.00 398.00 1110.00 405.00 L 1110.00 424.00 L1005.00 424.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='1005' y='398' width='105' height='120' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='1005.000000' y1='424.000000' x2='1110.000000' y2='424.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1020.000000' y1='424.000000' x2='1020.000000' y2='518.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1099.000000' y1='424.000000' x2='1099.000000' y2='518.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#hotel_order'><text x='1026' y='416'>hotel_order</text><title>Table travelservice.hotel_order</title></a>
+  <use id='nn' x='1007' y='432' xlink:href='#nn'/><a xlink:href='#hotel_order.id_hotel_order'><use id='pk' x='1007' y='431' xlink:href='#pk'/><title>Pk pk_hotel_order ( id_hotel_order ) </title></a>
+<a xlink:href='#hotel_order.id_hotel_order'><text id='travelservice.hotel_order.id_hotel_order' x='1023' y='441' onmouseover="hghl(['total_order_FK_total_order_hotel_order'])" onmouseout="uhghl(['total_order_FK_total_order_hotel_order'])">id_hotel_order</text><title>id_hotel_order
+* int</title></a>
+<a xlink:href='#hotel_order.id_hotel_order'><use id='ref' x='1099' y='431' xlink:href='#ref'/><title>Referred by total_order ( id_hotel_order ) </title></a>
+  <use id='nn' x='1007' y='447' xlink:href='#nn'/><a xlink:href='#hotel_order.id_apartment'><use id='idx' x='1007' y='446' xlink:href='#idx'/><title>FK_hotel_order_apartment ( id_apartment ) </title></a>
+<a xlink:href='#hotel_order.id_apartment'><text id='travelservice.hotel_order.id_apartment' x='1023' y='456' onmouseover="hghl(['hotel_order_FK_hotel_order_apartment'])" onmouseout="uhghl(['hotel_order_FK_hotel_order_apartment'])">id_apartment</text><title>id_apartment
+* int</title></a>
+<a xlink:href='#hotel_order.id_apartment'><use id='fk' x='1099' y='446' xlink:href='#fk'/><title>References apartment ( id_apartment ) </title></a>
+  <use id='nn' x='1007' y='462' xlink:href='#nn'/><a xlink:href='#hotel_order.data_start'><text id='travelservice.hotel_order.data_start' x='1023' y='471'>data_start</text><title>data_start
+* date</title></a>
+  <use id='nn' x='1007' y='477' xlink:href='#nn'/><a xlink:href='#hotel_order.data_end'><text id='travelservice.hotel_order.data_end' x='1023' y='486'>data_end</text><title>data_end
+* date</title></a>
+  <use id='nn' x='1007' y='492' xlink:href='#nn'/><a xlink:href='#hotel_order.order_price'><text id='travelservice.hotel_order.order_price' x='1023' y='501'>order_price</text><title>order_price
+* double</title></a>
+
+<!-- ============= Table 'total_order' ============= -->
+<rect class='table' x='1260' y='368' width='105' height='135' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1260.00 394.00 L 1260.00 375.00 Q 1260.00 368.00 1267.00 368.00 L 1358.00 368.00 Q 1365.00 368.00 1365.00 375.00 L 1365.00 394.00 L1260.00 394.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='1260' y='368' width='105' height='135' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='1260.000000' y1='394.000000' x2='1365.000000' y2='394.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1275.000000' y1='394.000000' x2='1275.000000' y2='503.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1354.000000' y1='394.000000' x2='1354.000000' y2='503.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#total_order'><text x='1282' y='386'>total_order</text><title>Table travelservice.total_order</title></a>
+  <use id='nn' x='1262' y='402' xlink:href='#nn'/><a xlink:href='#total_order.id_order'><use id='pk' x='1262' y='401' xlink:href='#pk'/><title>Pk pk_total_order ( id_order ) </title></a>
+<a xlink:href='#total_order.id_order'><text id='travelservice.total_order.id_order' x='1278' y='411'>id_order</text><title>id_order
+* int</title></a>
+  <use id='nn' x='1262' y='417' xlink:href='#nn'/><a xlink:href='#total_order.id_customer'><use id='idx' x='1262' y='416' xlink:href='#idx'/><title>FK_total_order_customer ( id_customer ) </title></a>
+<a xlink:href='#total_order.id_customer'><text id='travelservice.total_order.id_customer' x='1278' y='426' onmouseover="hghl(['total_order_FK_total_order_customer'])" onmouseout="uhghl(['total_order_FK_total_order_customer'])">id_customer</text><title>id_customer
+* int</title></a>
+<a xlink:href='#total_order.id_customer'><use id='fk' x='1354' y='416' xlink:href='#fk'/><title>References customer ( id_customer ) </title></a>
+  <use id='nn' x='1262' y='432' xlink:href='#nn'/><a xlink:href='#total_order.id_tour_order'><use id='unq' x='1262' y='431' xlink:href='#unq'/><title>Unq FK_total_order_tour_order ( id_tour_order ) </title></a>
+<a xlink:href='#total_order.id_tour_order'><text id='travelservice.total_order.id_tour_order' x='1278' y='441' onmouseover="hghl(['total_order_FK_total_order_tour_order'])" onmouseout="uhghl(['total_order_FK_total_order_tour_order'])">id_tour_order</text><title>id_tour_order
+* int</title></a>
+<a xlink:href='#total_order.id_tour_order'><use id='fk' x='1354' y='431' xlink:href='#fk'/><title>References tour_order ( id_tour_order ) </title></a>
+  <use id='nn' x='1262' y='447' xlink:href='#nn'/><a xlink:href='#total_order.id_hotel_order'><use id='unq' x='1262' y='446' xlink:href='#unq'/><title>Unq FK_total_order_hotel_order ( id_hotel_order ) </title></a>
+<a xlink:href='#total_order.id_hotel_order'><text id='travelservice.total_order.id_hotel_order' x='1278' y='456' onmouseover="hghl(['total_order_FK_total_order_hotel_order'])" onmouseout="uhghl(['total_order_FK_total_order_hotel_order'])">id_hotel_order</text><title>id_hotel_order
+* int</title></a>
+<a xlink:href='#total_order.id_hotel_order'><use id='fk' x='1354' y='446' xlink:href='#fk'/><title>References hotel_order ( id_hotel_order ) </title></a>
+  <use id='nn' x='1262' y='462' xlink:href='#nn'/><a xlink:href='#total_order.id_auto_order'><use id='unq' x='1262' y='461' xlink:href='#unq'/><title>Unq FK_total_order_auto_order ( id_auto_order ) </title></a>
+<a xlink:href='#total_order.id_auto_order'><text id='travelservice.total_order.id_auto_order' x='1278' y='471' onmouseover="hghl(['total_order_FK_total_order_auto_order'])" onmouseout="uhghl(['total_order_FK_total_order_auto_order'])">id_auto_order</text><title>id_auto_order
+* int</title></a>
+<a xlink:href='#total_order.id_auto_order'><use id='fk' x='1354' y='461' xlink:href='#fk'/><title>References auto_order ( id_auto_order ) </title></a>
+  <use id='nn' x='1262' y='477' xlink:href='#nn'/><a xlink:href='#total_order.total_price'><text id='travelservice.total_order.total_price' x='1278' y='486'>total_price</text><title>total_price
+* double</title></a>
+
+<!-- ============= Table 'customer' ============= -->
+<rect class='table' x='1440' y='323' width='105' height='225' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1440.00 349.00 L 1440.00 330.00 Q 1440.00 323.00 1447.00 323.00 L 1538.00 323.00 Q 1545.00 323.00 1545.00 330.00 L 1545.00 349.00 L1440.00 349.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='1440' y='323' width='105' height='225' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='1440.000000' y1='349.000000' x2='1545.000000' y2='349.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1455.000000' y1='349.000000' x2='1455.000000' y2='548.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1534.000000' y1='349.000000' x2='1534.000000' y2='548.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#customer'><text x='1467' y='341'>customer</text><title>Table travelservice.customer</title></a>
+  <use id='nn' x='1442' y='357' xlink:href='#nn'/><a xlink:href='#customer.id_customer'><use id='pk' x='1442' y='356' xlink:href='#pk'/><title>Pk pk_customer ( id_customer ) </title></a>
+<a xlink:href='#customer.id_customer'><text id='travelservice.customer.id_customer' x='1458' y='366' onmouseover="hghl(['total_order_FK_total_order_customer'])" onmouseout="uhghl(['total_order_FK_total_order_customer'])">id_customer</text><title>id_customer
+* int</title></a>
+<a xlink:href='#customer.id_customer'><use id='ref' x='1534' y='356' xlink:href='#ref'/><title>Referred by total_order ( id_customer ) </title></a>
+  <use id='nn' x='1442' y='372' xlink:href='#nn'/><a xlink:href='#customer.login'><text id='travelservice.customer.login' x='1458' y='381'>login</text><title>login
+* varchar(50)</title></a>
+  <use id='nn' x='1442' y='387' xlink:href='#nn'/><a xlink:href='#customer.password'><text id='travelservice.customer.password' x='1458' y='396'>password</text><title>password
+* varchar(200)</title></a>
+  <use id='nn' x='1442' y='402' xlink:href='#nn'/><a xlink:href='#customer.name'><text id='travelservice.customer.name' x='1458' y='411'>name</text><title>name
+* varchar(100)</title></a>
+  <use id='nn' x='1442' y='417' xlink:href='#nn'/><a xlink:href='#customer.surname'><text id='travelservice.customer.surname' x='1458' y='426'>surname</text><title>surname
+* varchar(100)</title></a>
+  <use id='nn' x='1442' y='432' xlink:href='#nn'/><a xlink:href='#customer.gender'><text id='travelservice.customer.gender' x='1458' y='441'>gender</text><title>gender
+* enum('male','female') </title></a>
+  <use id='nn' x='1442' y='447' xlink:href='#nn'/><a xlink:href='#customer.birthday'><text id='travelservice.customer.birthday' x='1458' y='456'>birthday</text><title>birthday
+* date</title></a>
+  <use id='nn' x='1442' y='462' xlink:href='#nn'/><a xlink:href='#customer.passport'><text id='travelservice.customer.passport' x='1458' y='471'>passport</text><title>passport
+* varchar(9)</title></a>
+  <use id='nn' x='1442' y='477' xlink:href='#nn'/><a xlink:href='#customer.email'><text id='travelservice.customer.email' x='1458' y='486'>email</text><title>email
+* varchar(100)</title></a>
+  <use id='nn' x='1442' y='492' xlink:href='#nn'/><a xlink:href='#customer.phone_number'><text id='travelservice.customer.phone_number' x='1458' y='501'>phone_number</text><title>phone_number
+* varchar(50)</title></a>
+  <use id='nn' x='1442' y='507' xlink:href='#nn'/><a xlink:href='#customer.driver_license'><text id='travelservice.customer.driver_license' x='1458' y='516'>driver_license</text><title>driver_license
+* enum('yes','no')  default 'No'</title></a>
+  <use id='nn' x='1442' y='522' xlink:href='#nn'/><a xlink:href='#customer.id_role'><use id='idx' x='1442' y='521' xlink:href='#idx'/><title>FK_customer_role ( id_role ) </title></a>
+<a xlink:href='#customer.id_role'><text id='travelservice.customer.id_role' x='1458' y='531' onmouseover="hghl(['customer_FK_customer_role'])" onmouseout="uhghl(['customer_FK_customer_role'])">id_role</text><title>id_role
+* tinyint default 1</title></a>
+<a xlink:href='#customer.id_role'><use id='fk' x='1534' y='521' xlink:href='#fk'/><title>References role ( id_role ) </title></a>
+
+<!-- ============= Table 'role' ============= -->
+<rect class='table' x='1320' y='608' width='75' height='75' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1320.00 634.00 L 1320.00 615.00 Q 1320.00 608.00 1327.00 608.00 L 1388.00 608.00 Q 1395.00 608.00 1395.00 615.00 L 1395.00 634.00 L1320.00 634.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='1320' y='608' width='75' height='75' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='1320.000000' y1='634.000000' x2='1395.000000' y2='634.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1335.000000' y1='634.000000' x2='1335.000000' y2='683.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1384.000000' y1='634.000000' x2='1384.000000' y2='683.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#role'><text x='1345' y='626'>role</text><title>Table travelservice.role</title></a>
+  <use id='nn' x='1322' y='642' xlink:href='#nn'/><a xlink:href='#role.id_role'><use id='pk' x='1322' y='641' xlink:href='#pk'/><title>Pk pk_role ( id_role ) </title></a>
+<a xlink:href='#role.id_role'><text id='travelservice.role.id_role' x='1338' y='651' onmouseover="hghl(['admin_FK_admin_role','customer_FK_customer_role'])" onmouseout="uhghl(['admin_FK_admin_role','customer_FK_customer_role'])">id_role</text><title>id_role
+* tinyint</title></a>
+<a xlink:href='#role.id_role'><use id='ref' x='1384' y='641' xlink:href='#ref'/><title>Referred by admin ( id_role ) 
+Referred by customer ( id_role ) </title></a>
+  <use id='nn' x='1322' y='657' xlink:href='#nn'/><a xlink:href='#role.name'><text id='travelservice.role.name' x='1338' y='666'>name</text><title>name
+* varchar(150)</title></a>
+
+<!-- ============= Table 'admin' ============= -->
+<rect class='table' x='1425' y='758' width='90' height='105' rx='7' ry='7' style='stroke:none'/>
+<path d='M 1425.00 784.00 L 1425.00 765.00 Q 1425.00 758.00 1432.00 758.00 L 1508.00 758.00 Q 1515.00 758.00 1515.00 765.00 L 1515.00 784.00 L1425.00 784.00 ' style='fill:url(#tbg_c1d8ee);stroke:1;stroke-opacity:0.1;' />
+<rect class='table' x='1425' y='758' width='90' height='105' rx='7' ry='7' style='fill:none;stroke:#aeb7bf'/>
+<line class='delim' x1='1425.000000' y1='784.000000' x2='1515.000000' y2='784.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1440.000000' y1='784.000000' x2='1440.000000' y2='863.000000' style='stroke:#aeb7bf'/>
+<line class='delim' x1='1504.000000' y1='784.000000' x2='1504.000000' y2='863.000000' style='stroke:#aeb7bf'/>
+<a xlink:href='#admin'><text x='1453' y='776'>admin</text><title>Table travelservice.admin</title></a>
+  <use id='nn' x='1427' y='792' xlink:href='#nn'/><a xlink:href='#admin.id_admin'><use id='pk' x='1427' y='791' xlink:href='#pk'/><title>Pk pk_admin ( id_admin ) </title></a>
+<a xlink:href='#admin.id_admin'><text id='travelservice.admin.id_admin' x='1443' y='801'>id_admin</text><title>id_admin
+* tinyint</title></a>
+  <use id='nn' x='1427' y='807' xlink:href='#nn'/><a xlink:href='#admin.login'><text id='travelservice.admin.login' x='1443' y='816'>login</text><title>login
+* varchar(100)</title></a>
+  <use id='nn' x='1427' y='822' xlink:href='#nn'/><a xlink:href='#admin.password'><text id='travelservice.admin.password' x='1443' y='831'>password</text><title>password
+* varchar(200)</title></a>
+  <use id='nn' x='1427' y='837' xlink:href='#nn'/><a xlink:href='#admin.id_role'><use id='idx' x='1427' y='836' xlink:href='#idx'/><title>FK_admin_role ( id_role ) </title></a>
+<a xlink:href='#admin.id_role'><text id='travelservice.admin.id_role' x='1443' y='846' onmouseover="hghl(['admin_FK_admin_role'])" onmouseout="uhghl(['admin_FK_admin_role'])">id_role</text><title>id_role
+* tinyint</title></a>
+<a xlink:href='#admin.id_role'><use id='fk' x='1504' y='836' xlink:href='#fk'/><title>References role ( id_role ) </title></a>
+
+</g></svg></div>
+
+
+<br/><br/>
+<div class='section-header'><a name='rent_auto' onclick='window.scrollTo(460, 675);return false;' style='cursor:pointer;'><h2>Table rent_auto</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='rent_auto.id_rent_auto'>id&#95;rent&#95;auto</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='rent_auto.id_auto'>id&#95;auto</a></td>
+		<td> mediumint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='rent_auto.id_salon_start'>id&#95;salon&#95;start</a></td>
+		<td> smallint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='rent_auto.status'>status</a></td>
+		<td> enum   DEFAULT 'FREE' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='rent_auto.price'>price</a></td>
+		<td> double   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;rent&#95;auto</td>
+		<td> ON id&#95;rent&#95;auto</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;rent&#95;auto&#95;auto</td>
+		<td> ON id&#95;auto</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;rent&#95;auto&#95;salon</td>
+		<td> ON id&#95;salon&#95;start</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_rent_auto_auto</td>
+		<td > ( id&#95;auto ) ref <a href='#auto'>auto</a> (id&#95;auto) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_rent_auto_salon</td>
+		<td > ( id&#95;salon&#95;start ) ref <a href='#salon'>salon</a> (id&#95;salon) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='apartment' onclick='window.scrollTo(460, 390);return false;' style='cursor:pointer;'><h2>Table apartment</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='apartment.id_apartment'>id&#95;apartment</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='apartment.id_hotel'>id&#95;hotel</a></td>
+		<td> smallint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='apartment.id_room'>id&#95;room</a></td>
+		<td> smallint   DEFAULT 1 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='apartment.room_capacity'>room&#95;capacity</a></td>
+		<td> tinyint   DEFAULT 1 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='apartment.price'>price</a></td>
+		<td> double   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='apartment.status'>status</a></td>
+		<td> enum   DEFAULT 'FREE' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='apartment.image'>image</a></td>
+		<td> varchar&#40; 400 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;apartment</td>
+		<td> ON id&#95;apartment</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;apartment&#95;hotel</td>
+		<td> ON id&#95;hotel</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;apartment&#95;room</td>
+		<td> ON id&#95;room</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_apartment_hotel</td>
+		<td > ( id&#95;hotel ) ref <a href='#hotel'>hotel</a> (id&#95;hotel) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_apartment_room</td>
+		<td > ( id&#95;room ) ref <a href='#room'>room</a> (id&#95;room) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='tour_order' onclick='window.scrollTo(805, 180);return false;' style='cursor:pointer;'><h2>Table tour_order</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='tour_order.id_tour_order'>id&#95;tour&#95;order</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='tour_order.id_tour_offer'>id&#95;tour&#95;offer</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour_order.person_number'>person&#95;number</a></td>
+		<td> tinyint   DEFAULT 1 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour_order.order_price'>order&#95;price</a></td>
+		<td> double   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;tour&#95;order</td>
+		<td> ON id&#95;tour&#95;order</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;tour&#95;order&#95;tour&#95;offer</td>
+		<td> ON id&#95;tour&#95;offer</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_tour_order_tour_offer</td>
+		<td > ( id&#95;tour&#95;offer ) ref <a href='#tour&#95;offer'>tour&#95;offer</a> (id&#95;tour&#95;offer) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='hotel' onclick='window.scrollTo(60, 435);return false;' style='cursor:pointer;'><h2>Table hotel</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='hotel.id_hotel'>id&#95;hotel</a></td>
+		<td> smallint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='hotel.id_city'>id&#95;city</a></td>
+		<td> smallint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='hotel.title'>title</a></td>
+		<td> varchar&#40; 100 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='hotel.stars'>stars</a></td>
+		<td> enum   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='hotel.address'>address</a></td>
+		<td> varchar&#40; 200 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;hotel</td>
+		<td> ON id&#95;hotel</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;hotel&#95;city</td>
+		<td> ON id&#95;city</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_hotel_city</td>
+		<td > ( id&#95;city ) ref <a href='#city'>city</a> (id&#95;city) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='tour' onclick='window.scrollTo(60, 165);return false;' style='cursor:pointer;'><h2>Table tour</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='tour.id_tour'>id&#95;tour</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour.destination'>destination</a></td>
+		<td> varchar&#40; 500 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour.name'>name</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour.type'>type</a></td>
+		<td> enum   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour.description'>description</a></td>
+		<td> text   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour.image'>image</a></td>
+		<td> varchar&#40; 400 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;tour</td>
+		<td> ON id&#95;tour</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='room' onclick='window.scrollTo(60, 315);return false;' style='cursor:pointer;'><h2>Table room</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='room.id_room'>id&#95;room</a></td>
+		<td> smallint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='room.tv'>tv</a></td>
+		<td> enum   DEFAULT 'Yes' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='room.balcony'>balcony</a></td>
+		<td> enum   DEFAULT 'No' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='room.conditioner'>conditioner</a></td>
+		<td> enum   DEFAULT 'No' </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;room</td>
+		<td> ON id&#95;room</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='bus' onclick='window.scrollTo(60, 45);return false;' style='cursor:pointer;'><h2>Table bus</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='bus.id_bus'>id&#95;bus</a></td>
+		<td> smallint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='bus.name'>name</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='bus.capacity'>capacity</a></td>
+		<td> tinyint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='bus.registration_number'>registration&#95;number</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;bus</td>
+		<td> ON id&#95;bus</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='brand' onclick='window.scrollTo(60, 720);return false;' style='cursor:pointer;'><h2>Table brand</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='brand.id_brand'>id&#95;brand</a></td>
+		<td> tinyint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='brand.name'>name</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;brand</td>
+		<td> ON id&#95;brand</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='color' onclick='window.scrollTo(60, 810);return false;' style='cursor:pointer;'><h2>Table color</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='color.id_color'>id&#95;color</a></td>
+		<td> tinyint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='color.name'>name</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;color</td>
+		<td> ON id&#95;color</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='salon' onclick='window.scrollTo(60, 615);return false;' style='cursor:pointer;'><h2>Table salon</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='salon.id_salon'>id&#95;salon</a></td>
+		<td> smallint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='salon.id_city'>id&#95;city</a></td>
+		<td> smallint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='salon.address'>address</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;salon</td>
+		<td> ON id&#95;salon</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;salon&#95;city</td>
+		<td> ON id&#95;city</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_salon_city</td>
+		<td > ( id&#95;city ) ref <a href='#city'>city</a> (id&#95;city) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='city' onclick='window.scrollTo(60, 525);return false;' style='cursor:pointer;'><h2>Table city</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='city.id_city'>id&#95;city</a></td>
+		<td> smallint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='city.name'>name</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;city</td>
+		<td> ON id&#95;city</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='body_type' onclick='window.scrollTo(280, 825);return false;' style='cursor:pointer;'><h2>Table body_type</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='body_type.id_body_type'>id&#95;body&#95;type</a></td>
+		<td> tinyint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='body_type.name'>name</a></td>
+		<td> varchar&#40; 100 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;body&#95;type</td>
+		<td> ON id&#95;body&#95;type</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='auto_order' onclick='window.scrollTo(805, 615);return false;' style='cursor:pointer;'><h2>Table auto_order</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='auto_order.id_auto_order'>id&#95;auto&#95;order</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='auto_order.id_rent_auto'>id&#95;rent&#95;auto</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='auto_order.id_salon_end'>id&#95;salon&#95;end</a></td>
+		<td> smallint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto_order.date_start'>date&#95;start</a></td>
+		<td> date   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto_order.date_end'>date&#95;end</a></td>
+		<td> date   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto_order.order_price'>order&#95;price</a></td>
+		<td> double   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;auto&#95;order</td>
+		<td> ON id&#95;auto&#95;order</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;auto&#95;order&#95;rent&#95;auto</td>
+		<td> ON id&#95;rent&#95;auto</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;auto&#95;order&#95;salon</td>
+		<td> ON id&#95;salon&#95;end</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_auto_order_rent_auto</td>
+		<td > ( id&#95;rent&#95;auto ) ref <a href='#rent&#95;auto'>rent&#95;auto</a> (id&#95;rent&#95;auto) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_auto_order_salon</td>
+		<td > ( id&#95;salon&#95;end ) ref <a href='#salon'>salon</a> (id&#95;salon) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='tour_offer' onclick='window.scrollTo(445, 135);return false;' style='cursor:pointer;'><h2>Table tour_offer</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='tour_offer.id_tour_offer'>id&#95;tour&#95;offer</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='tour_offer.id_tour'>id&#95;tour</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='tour_offer.id_bus'>id&#95;bus</a></td>
+		<td> smallint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour_offer.date_start'>date&#95;start</a></td>
+		<td> date   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour_offer.date_end'>date&#95;end</a></td>
+		<td> date   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour_offer.passengers_per_order'>passengers&#95;per&#95;order</a></td>
+		<td> tinyint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour_offer.price'>price</a></td>
+		<td> double   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='tour_offer.hot'>hot</a></td>
+		<td> enum   DEFAULT 'NO' </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;tour&#95;offer</td>
+		<td> ON id&#95;tour&#95;offer</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;tour&#95;offer&#95;bus</td>
+		<td> ON id&#95;bus</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;tour&#95;offer&#95;tour</td>
+		<td> ON id&#95;tour</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_tour_offer_bus</td>
+		<td > ( id&#95;bus ) ref <a href='#bus'>bus</a> (id&#95;bus) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_tour_offer_tour</td>
+		<td > ( id&#95;tour ) ref <a href='#tour'>tour</a> (id&#95;tour) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='auto' onclick='window.scrollTo(115, 705);return false;' style='cursor:pointer;'><h2>Table auto</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='auto.id_auto'>id&#95;auto</a></td>
+		<td> mediumint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='auto.id_brand'>id&#95;brand</a></td>
+		<td> tinyint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto.model'>model</a></td>
+		<td> varchar&#40; 10 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto.year'>year</a></td>
+		<td> year   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto.transmition'>transmition</a></td>
+		<td> enum   DEFAULT 'AUTO' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto.wheel_drive'>wheel&#95;drive</a></td>
+		<td> enum   DEFAULT 'REAR' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto.fuil_type'>fuil&#95;type</a></td>
+		<td> enum   DEFAULT 'PETROL' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='auto.id_color'>id&#95;color</a></td>
+		<td> tinyint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='auto.id_body_type'>id&#95;body&#95;type</a></td>
+		<td> tinyint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='auto.image'>image</a></td>
+		<td> varchar&#40; 400 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;auto</td>
+		<td> ON id&#95;auto</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;auto&#95;body&#95;type</td>
+		<td> ON id&#95;body&#95;type</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;auto&#95;brand</td>
+		<td> ON id&#95;brand</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;auto&#95;color</td>
+		<td> ON id&#95;color</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_auto_body_type</td>
+		<td > ( id&#95;body&#95;type ) ref <a href='#body&#95;type'>body&#95;type</a> (id&#95;body&#95;type) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_auto_brand</td>
+		<td > ( id&#95;brand ) ref <a href='#brand'>brand</a> (id&#95;brand) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_auto_color</td>
+		<td > ( id&#95;color ) ref <a href='#color'>color</a> (id&#95;color) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='hotel_order' onclick='window.scrollTo(805, 405);return false;' style='cursor:pointer;'><h2>Table hotel_order</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='hotel_order.id_hotel_order'>id&#95;hotel&#95;order</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='hotel_order.id_apartment'>id&#95;apartment</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='hotel_order.data_start'>data&#95;start</a></td>
+		<td> date   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='hotel_order.data_end'>data&#95;end</a></td>
+		<td> date   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='hotel_order.order_price'>order&#95;price</a></td>
+		<td> double   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;hotel&#95;order</td>
+		<td> ON id&#95;hotel&#95;order</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;hotel&#95;order&#95;apartment</td>
+		<td> ON id&#95;apartment</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_hotel_order_apartment</td>
+		<td > ( id&#95;apartment ) ref <a href='#apartment'>apartment</a> (id&#95;apartment) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='total_order' onclick='window.scrollTo(1060, 375);return false;' style='cursor:pointer;'><h2>Table total_order</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='total_order.id_order'>id&#95;order</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='total_order.id_customer'>id&#95;customer</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='total_order.id_tour_order'>id&#95;tour&#95;order</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='total_order.id_hotel_order'>id&#95;hotel&#95;order</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#unq'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='total_order.id_auto_order'>id&#95;auto&#95;order</a></td>
+		<td> int   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='total_order.total_price'>total&#95;price</a></td>
+		<td> double   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;total&#95;order</td>
+		<td> ON id&#95;order</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>FK&#95;total&#95;order&#95;auto&#95;order</td>
+		<td> ON id&#95;auto&#95;order</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>FK&#95;total&#95;order&#95;hotel&#95;order</td>
+		<td> ON id&#95;hotel&#95;order</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#unq'/></svg></td><td>FK&#95;total&#95;order&#95;tour&#95;order</td>
+		<td> ON id&#95;tour&#95;order</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;total&#95;order&#95;customer</td>
+		<td> ON id&#95;customer</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_total_order_auto_order</td>
+		<td > ( id&#95;auto&#95;order ) ref <a href='#auto&#95;order'>auto&#95;order</a> (id&#95;auto&#95;order) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_total_order_customer</td>
+		<td > ( id&#95;customer ) ref <a href='#customer'>customer</a> (id&#95;customer) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_total_order_hotel_order</td>
+		<td > ( id&#95;hotel&#95;order ) ref <a href='#hotel&#95;order'>hotel&#95;order</a> (id&#95;hotel&#95;order) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_total_order_tour_order</td>
+		<td > ( id&#95;tour&#95;order ) ref <a href='#tour&#95;order'>tour&#95;order</a> (id&#95;tour&#95;order) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='customer' onclick='window.scrollTo(1240, 330);return false;' style='cursor:pointer;'><h2>Table customer</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='customer.id_customer'>id&#95;customer</a></td>
+		<td> int  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.login'>login</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.password'>password</a></td>
+		<td> varchar&#40; 200 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.name'>name</a></td>
+		<td> varchar&#40; 100 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.surname'>surname</a></td>
+		<td> varchar&#40; 100 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.gender'>gender</a></td>
+		<td> enum   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.birthday'>birthday</a></td>
+		<td> date   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.passport'>passport</a></td>
+		<td> varchar&#40; 9 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.email'>email</a></td>
+		<td> varchar&#40; 100 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.phone_number'>phone&#95;number</a></td>
+		<td> varchar&#40; 50 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='customer.driver_license'>driver&#95;license</a></td>
+		<td> enum   DEFAULT 'No' </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='customer.id_role'>id&#95;role</a></td>
+		<td> tinyint   DEFAULT 1 </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;customer</td>
+		<td> ON id&#95;customer</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;customer&#95;role</td>
+		<td> ON id&#95;role</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_customer_role</td>
+		<td > ( id&#95;role ) ref <a href='#role'>role</a> (id&#95;role) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='role' onclick='window.scrollTo(1120, 615);return false;' style='cursor:pointer;'><h2>Table role</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg><svg width='14' height='14'><use xlink:href='#ref'/></svg></td>
+		<td><a name='role.id_role'>id&#95;role</a></td>
+		<td> tinyint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='role.name'>name</a></td>
+		<td> varchar&#40; 150 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;role</td>
+		<td> ON id&#95;role</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<div class='section-header'><a name='admin' onclick='window.scrollTo(1225, 765);return false;' style='cursor:pointer;'><h2>Table admin</h2></a></div>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'>Columns</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#pk'/></svg></td>
+		<td><a name='admin.id_admin'>id&#95;admin</a></td>
+		<td> tinyint  AUTOINCREMENT  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='admin.login'>login</a></td>
+		<td> varchar&#40; 100 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='admin.password'>password</a></td>
+		<td> varchar&#40; 200 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*<svg width='14' height='14'><use xlink:href='#idx'/></svg><svg width='14' height='14'><use xlink:href='#fk'/></svg></td>
+		<td><a name='admin.id_role'>id&#95;role</a></td>
+		<td> tinyint   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Indexes</th></tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#pk'/></svg></td><td>pk&#95;admin</td>
+		<td> ON id&#95;admin</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td><svg width='14' height='14'><use xlink:href='#idx'/></svg></td><td>FK&#95;admin&#95;role</td>
+		<td> ON id&#95;role</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'>Foreign Keys</th></tr>
+	<tr>
+		<td><svg width='14' height='14'><use xlink:href='#fk'/></svg></td><td>FK_admin_role</td>
+		<td > ( id&#95;role ) ref <a href='#role'>role</a> (id&#95;role) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<p align='right'><a href='http://www.dbschema.com' style='color:#aaa'>Powered by DbSchema</a></p></body></html>

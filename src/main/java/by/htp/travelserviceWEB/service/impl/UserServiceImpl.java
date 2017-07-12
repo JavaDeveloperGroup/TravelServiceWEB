@@ -23,17 +23,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Customer authoriseCustomer(UserTO userDTO) {
-		return daoFactory.getUserService().fetchCustomer(userDTO);
+		return daoFactory.getUserDao().fetchCustomer(userDTO);
 	}
 
 	@Override
 	public Admin authoriseAdmin(UserTO userDTO) {
-		return daoFactory.getUserService().fetchAdmin(userDTO);
+		return daoFactory.getUserDao().fetchAdmin(userDTO);
 	}
 
 	@Override
 	public Customer registrationCustomer(Customer customer) {
-		return daoFactory.getUserService().makeCustomer(customer);
+		return daoFactory.getUserDao().makeCustomer(customer);
 	}
 
 }

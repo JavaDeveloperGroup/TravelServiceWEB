@@ -8,7 +8,7 @@ public class CustomerTO {
 
 	private Integer customerId;
 	private String login;
-	private String password;
+	private transient String password;
 	private String name;
 	private String surname;
 	private String gender;

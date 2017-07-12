@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	
+<!--
+	<appender name="emailAppender" class="org.apache.log4j.net.SMTPAppender">
+	    <param name="BufferSize" value="1024" />
+	    <param name="SMTPHost" value="javacodegeeks.smtp.host" />
+	    <param name="From" value="admin@javacodegeeks.com" />
+	    <param name="To" value="user1@yahoo.com.com,user2@yahoo.com" />
+	    <param name="Subject" value="Log4J XML Configuration Example" />
+	    <layout class="org.apache.log4j.PatternLayout">
+	        <param name="ConversionPattern" value="[%t] %-5p %c - %m%n" />
+	    </layout>
+	    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+	        <param name="LevelMin" value="WARN" />
+	        <param name="LevelMax" value="FATAL" />
+	    </filter>
+	</appender>
+-->
+
+	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="XML: %d{yyyy-MM-dd hh:mm a} %c:[%t] %-5p - %m%n" />
+		</layout>
+	</appender>
+
+ 	<appender name="RFA" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="C:/OneDrive/courses/HTP/web2/travel-service-WEB/logs/rfa.log" />
+		<param name="Threshold" value="TRACE" />
+		<param name="Append" value="false" />
+		<param name="MaxFileSize" value="1KB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="XML: RFA: %d{MM/dd/yyyy HH:mm:ss} %c:[%t] %-5p - %m%n" />
+		</layout>
+	</appender>
+
+  	<appender name="DRFA" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="C:/OneDrive/courses/HTP/web2/travel-service-WEB/logs/drfa.log" />
+		<param name="Threshold" value="INFO" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value=".yyyy-MM-dd-HH"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="XML: DRFA: %d{MM/dd/yyyy HH:mm:ss} %c:[%t] %-5p - %m%n" />
+		</layout>
+	</appender>
+
+ 	<appender name="RFA_HTML" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="C:/OneDrive/courses/HTP/web2/travel-service-WEB/logs/rfa.html" />
+		<param name="Threshold" value="TRACE" />
+		<param name="Append" value="false" />
+		<param name="MaxFileSize" value="2KB" />
+		<param name="MaxBackupIndex" value="3" />
+		<layout class="org.apache.log4j.HTMLLayout">
+		</layout>
+	</appender>
+
+	<root>
+		<level value="TRACE" />
+		<appender-ref ref="Console" />
+ 		<appender-ref ref="RFA" />
+		<appender-ref ref="DRFA" />
+		<appender-ref ref="RFA_HTML" />
+ 	</root>
+
+</log4j:configuration>

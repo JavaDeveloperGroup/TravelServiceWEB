@@ -1,17 +1,16 @@
 package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class Customer implements Serializable {
 
 	private Integer customerId;
 	private String login;
-	private String password;
+	private transient String password;
 	private String name;
 	private String surname;
 	private String gender;
-	private Date birthday;
+	private String birthday;
 	private String passport;
 	private String email;
 	private String phoneNumber;
@@ -21,7 +20,7 @@ public class Customer implements Serializable {
 	public Customer() {}
 
 	public Customer(Integer customerId, String login, String password, String name, String surname, String gender,
-			Date birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {
+			String birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {
 		this.customerId = customerId;
 		this.login = login;
 		this.password = password;
@@ -84,11 +83,11 @@ public class Customer implements Serializable {
 		this.gender = gender;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -131,9 +130,5 @@ public class Customer implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
 	
-	
-	
-
 }

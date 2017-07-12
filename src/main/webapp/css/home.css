@@ -116,13 +116,41 @@ input{
      33.33% { opacity: 1; } 
      44.44% { opacity: 0; } 
      100% { opacity: 0; } 
- } 
- #fadein { 
- position:relative;} 
- #fadein div { font-size: 1.8em;
- position:absolute; left:0; right:0; opacity:0; animation-name: fade; animation-duration: 9s; animation-iteration-count: infinite; margin-top: 20px;} 
- #fadein div img {height:600px; width:100%; }
- #fadein div:nth-child(1) { animation-delay: 0s; } 
- #fadein div:nth-child(2) { animation-delay: 3s; } 
- #fadein div:nth-child(3) { animation-delay: 6s; }
+} 
 
+#fadein { 
+ 	position:relative;
+ } 
+ 
+#fadein div { 
+ 	font-size: 1.8em;
+	position:absolute; 
+ 	left:0; 
+ 	right:0; 
+ 	opacity:0; 
+ 	animation-name: fade; 
+ 	animation-duration: 9s; 
+ 	animation-iteration-count: infinite; 
+ 	margin-top: 20px;
+ } 
+ 
+#fadein div img {
+ 	height:600px; 
+ 	width:100%; 
+ }
+ 
+#fadein div:nth-child(1) { 
+ 	animation-delay: 0s; 
+ } 
+ 	
+ #fadein div:nth-child(2) { 
+ 	animation-delay: 3s; 
+ } 
+ 	
+ #fadein div:nth-child(3) { 
+ 	animation-delay: 6s; 
+ }
+
+update_account {
+	width: 122px;
+}

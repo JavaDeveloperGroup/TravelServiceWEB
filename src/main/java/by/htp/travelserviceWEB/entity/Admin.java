@@ -6,10 +6,16 @@ public class Admin implements Serializable {
 	
 	private Integer adminId;
 	private String login;
-	private String password;
+	private transient String password;
 	private Role role;
 	
 	public Admin() {}
+	
+	public Admin(Integer adminId, String login, Role role) {
+		this.adminId = adminId;
+		this.login = login;
+		this.role = role;
+	}
 
 	public Admin(Integer adminId, String login, String password, Role role) {
 		this.adminId = adminId;

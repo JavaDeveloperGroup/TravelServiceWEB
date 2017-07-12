@@ -6,6 +6,7 @@
 	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
+	<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 	<title>Log in</title>
 </head>
 <body>
@@ -14,10 +15,6 @@
 			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
 				<img src="${pageContext.request.contextPath}/image/logoF.png" width="180">
 			</a>
-			<form name="back" action="${pageContext.request.contextPath}/Controller" method="GET">
-				<input type="hidden" name="command" value="back_page" />
-				<button type="submit">BACK</button>
-			</form>
 			<form name="sign_up" action="${pageContext.request.contextPath}/Controller" method="GET">
 				<input type="hidden" value="sign_up_page" name="command" />
 				<button type="submit">SIGN UP</button>
@@ -28,20 +25,19 @@
 		<div id="heading">
 			<h2>Please, fill in the form to log in!</h2>
 		</div>
-		<font face="monospace" color="black" size="4"> 
-			<b>
-				<td>
-					<c:out value="${msg}" />
-				</td>
-			</b>
-		</font>
+		<div id="heading">
+			<font face="monospace" color="black" size="4"> <b>
+					<td><c:out value="${msg}" /></td>
+				</b>
+			</font>
+		</div>
 		<div id="login_form">
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="log_in" />
 				<p>Login:</p>
-				<input type="text" name="login" value="${login}" placeholder="LOGIN" />
+				<input type="text" name="login" value="user1" placeholder="LOGIN" />
 				<p>Password:</p>
-				<input type="password" name="password" value="${password}" placeholder="PASSWORD"/> 
+				<input type="password" name="password" value="user1Q@q" placeholder="PASSWORD"/> 
 				<br> 
 				<input type="submit" value="Log in" id="subbut"/>
 			</form>
@@ -50,6 +46,5 @@
 			<jsp:include page="/jspf/footer.jspf" />
 		</div>
 	</div>
-
 </body>
 </html>

@@ -14,101 +14,132 @@
 	rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 <title>Auto catalogue</title>
 </head>
 <body>
-<div>
-	<div id="wrapper">
-		<header>
-			<a href="/"><img
-				src="${pageContext.request.contextPath}/image/logoF.png" width="180"></a>
-			<form name="sign_in" action="#" method="get">
-				<button type="submit">SIGN IN</button>
-			</form>
-			<form name="sign_up" action="#" method="get">
-				<button type="submit">SIGN UP</button>
-			</form>
-		</header>
-		<jsp:include page="/jspf/menu.jspf" />
-		<hr>
-		<aside>
-			<nav>
-				<div class="aside-menu">
-					<div class="head-cont">Transmission:</div>
-					<input type="radio" name="transmission" value="auto" id="trans1" /><label
-						for="trans1">Auto</label><br /> <input type="radio"
-						name="transmission" value="manual" id="trans2" /><label
-						for="trans2">Manual</label><br />
-					<hr class="div_tr">
-					<hr>
-					<div class="head-cont">Wheel drive:</div>
-					<input type="checkbox" name="wheel_drive" value="rear" id="wheel1" /><label
-						for="wheel1">Rear</label><br /> <input type="checkbox"
-						name="wheel_drive" value="front" id="wheel2" /><label
-						for="wheel2">Front</label><br /> <input type="checkbox"
-						name="wheel_drive" value="full" id="wheel3" /><label for="wheel3">Full</label><br />
-					<hr class="div_tr">
-					<hr>
-					<div class="head-cont">Fuel type:</div>
-					<input type="checkbox" name="fuel_type" value="petrol" id="fuel1" /><label
-						for="fuel1">Petrol</label><br /> <input type="checkbox"
-						name="fuel_type" value="diesel" id="fuel2" /><label for="fuel2">Diesel</label><br />
-					<input type="checkbox" name="fuel_type" value="gas" id="fuel3" /><label
-						for="fuel3">Gas</label><br /> <input type="checkbox"
-						name="fuel_type" value="electro" id="fuel4" /><label for="fuel4">Electro</label><br />
-					<hr class="div_tr">
-					<hr>
-					<div class="head-cont">Body type:</div>
-					<input type="checkbox" name="body_type" value="sedan" id="body1" /><label
-						for="body1">Sedan</label><br /> <input type="checkbox"
-						name="body_type" value="coupe" id="body2" /><label for="body2">Coupe</label><br />
-					<input type="checkbox" name="body_type" value="suv" id="body3" /><label
-						for="body3">SUV</label><br /> <input type="checkbox"
-						name="body_type" value="hatchback" id="body4" /><label
-						for="body4">Hatchback</label><br />
-					<hr class="div_tr">
-					<hr>
-					<div class="head-cont">Price:</div>
-					<label for="minCost">From: </label> <input type="text" id="minCost"
-						value="0" /> <label for="maxCost">Till: </label> <input
-						type="text" id="maxCost" value="500" />
-					<hr class="div_tr">
-					<div id="slider" style=""></div>
+	<div>
+		<div id="wrapper">
+			<header>
+				<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img
+					src="${pageContext.request.contextPath}/image/logoF.png"
+					width="180"></a>
+				<c:if test="${user == null}">
+					<form name="sign_in"
+						action="${pageContext.request.contextPath}/Controller"
+						method="GET">
+						<input type="hidden" value="log_in_page" name="command" />
+						<button type="submit">SIGN IN</button>
+					</form>
 
+					<form name="sign_up"
+						action="${pageContext.request.contextPath}/Controller"
+						method="GET">
+						<input type="hidden" value="sign_up_page" name="command" />
+						<button type="submit">SIGN UP</button>
+					</form>
+				</c:if>
+				<c:if test="${user != null}">
+					<form name="sign_up"
+						action="${pageContext.request.contextPath}/Controller"
+						method="GET">
+						<input type="hidden" value="log_out" name="command" />
+						<tr>
+							<td>${user.getLogin()}</td>
+						</tr>
+						<button type="submit">LOG OUT</button>
+					</form>
+				</c:if>
+			</header>
+			<jsp:include page="/jspf/menu.jspf" />
+			<hr>
+			<div>
+				<aside>
+					<nav>
+						<div class="aside-menu">
+							<div class="head-cont">Transmission:</div>
+							<input type="radio" name="transmission" value="auto" id="trans1" />
+							<label for="trans1">Auto</label><br /> <input type="radio"
+								name="transmission" value="manual" id="trans2" /> <label
+								for="trans2">Manual</label><br />
+							<hr class="div_tr">
+							<hr>
+							<div class="head-cont">Wheel drive:</div>
+							<input type="checkbox" name="wheel_drive" value="rear"
+								id="wheel1" /> <label for="wheel1">Rear</label><br /> <input
+								type="checkbox" name="wheel_drive" value="front" id="wheel2" />
+							<label for="wheel2">Front</label><br /> <input type="checkbox"
+								name="wheel_drive" value="full" id="wheel3" /> <label
+								for="wheel3">Full</label><br />
+							<hr class="div_tr">
+							<hr>
+							<div class="head-cont">Fuel type:</div>
+							<input type="checkbox" name="fuel_type" value="petrol" id="fuel1" />
+							<label for="fuel1">Petrol</label><br /> <input type="checkbox"
+								name="fuel_type" value="diesel" id="fuel2" /> <label
+								for="fuel2">Diesel</label><br /> <input type="checkbox"
+								name="fuel_type" value="gas" id="fuel3" /> <label for="fuel3">Gas</label><br />
+							<input type="checkbox" name="fuel_type" value="electro"
+								id="fuel4" /> <label for="fuel4">Electro</label><br />
+							<hr class="div_tr">
+							<hr>
+							<div class="head-cont">Body type:</div>
+							<input type="checkbox" name="body_type" value="sedan" id="body1" />
+							<label for="body1">Sedan</label><br /> <input type="checkbox"
+								name="body_type" value="coupe" id="body2" /> <label for="body2">Coupe</label><br />
+							<input type="checkbox" name="body_type" value="suv" id="body3" />
+							<label for="body3">SUV</label><br /> <input type="checkbox"
+								name="body_type" value="hatchback" id="body4" /> <label
+								for="body4">Hatchback</label><br />
+							<hr class="div_tr">
+							<hr>
+							<div class="head-cont">Price:</div>
+							<label for="minCost">From:</label> <input class="inp_price"
+								type="text" id="minCost" name="price_min" value="0" /> <label
+								for="maxCost">Till: </label> <input class="inp_price"
+								type="text" id="maxCost" name="price_max" value="500" />
+							<hr class="div_tr">
+							<div id="slider" style=""></div>
+						</div>
+					</nav>
+				</aside>
+				<div>
+					<form action="${pageContext.request.contextPath}/Controller" method="GET">
+						<input type="hidden" name="command" value="auto_make_order">
+						<div>
+							<table>
+								<tr>
+									<th id="ckeck">
+									<th id="photo">PHOTO</th>
+									<th class="col1">MODEL</th>
+									<th class="col2">CHARACTERISTIC</th>
+									<th class="col4">SALON</th>
+									<th class="col5">PRICE</th>
+								</tr>
+								<c:forEach items="${list_rentAuto}" var="i">
+									<tr>
+										<td><input type="radio" name="id"
+											value="${i.getRentAutoId()}"/></td>
+										<td><img src="${i.getImage()}"></td>
+										<td>${i.getAuto().toStringModel()}</td>
+										<td>${i.getAuto().toStringCharacteristic()}</td>
+										<td>${i.getSalon().toStringAddress()}</td>
+										<td>${i.getPrice()}</td>
+									</tr>
+								</c:forEach>
+							</table>
+							<div style="text-align: center">
+								<input value="ORDER" type="submit">
+							</div>
+						</div>
+					</form>
 				</div>
-			</nav>
-		</aside>
-
-		<table>
-			<tr>
-				<th id="photo">PHOTO</th>
-				<th class="col1">HOTEL</th>
-				<th class="col2">ADDRESS</th>
-				<th class="col3">STAR RATE</th>
-				<th class="col4">NUMBER OF PERSONS</th>
-				<th class="col5">PRICE</th>
-			</tr>
-			<tr>
-				<td><img
-					src="http://res.cloudinary.com/javadevgroup/image/upload/v1497805539/hotel/tv4_vkohcp.jpg"></td>
-				<td>gyyyy</td>
-				<td>ftttt</td>
-				<td>tffff</td>
-				<td>fttt</td>
-				<td>cfff</td>
-			</tr>
-			
-		</table>
-	</div>
-
-		<div id="foot">
+			</div>
+		</div>
+		<div id="foot"> 
 			<jsp:include page="/jspf/footer.jspf" />
 		</div>
 	</div>
-
-	<script src="${pageContext.request.contextPath}/js/slider.js"
-		charset="utf-8"></script>
-
+	<script src="${pageContext.request.contextPath}/js/slider.js" charset="utf-8"></script>
 </body>
 </html>

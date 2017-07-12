@@ -6,6 +6,7 @@
 	<link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
 	<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
+	<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
 	<title>Home page</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
 				<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
 					<img src="${pageContext.request.contextPath}/image/logoF.png" width="180">
 				</a>
-				<c:if test="${customer==null}">
+				<c:if test="${user==null}">
 					<form name="sign_in" action="${pageContext.request.contextPath}/Controller" method="GET">
 						<input type="hidden" value="log_in_page" name="command" />
 						<button type="submit">SIGN IN</button>
@@ -26,21 +27,20 @@
 						<button type="submit">SIGN UP</button>
 					</form>
 				</c:if>
-
-				<c:if test="${customer!=null}">
+				<c:if test="${user!=null}">				
 					<form name="sign_up" action="${pageContext.request.contextPath}/Controller" method="GET">
+					<tr>
+						<a href="${pageContext.request.contextPath}/Controller?command=update_account"><td>${user.getLogin()}</td></a>
+					</tr>
 						<input type="hidden" value="log_out" name="command" />
-						<tr>
-							<td>${customer.getLogin()}</td>
-						</tr>
-						<button type="submit">LOG OUT</button>
+						<button name="log_out" type="submit">LOG OUT</button>
 					</form>
 				</c:if>
 			</div>
 		</header>
 		<jsp:include page="/jspf/menu.jspf" />
 		<hr>
-		<div class="hz" id="fadein">
+		<div id="fadein">
 			<div>
 				<img src="http://res.cloudinary.com/javadevgroup/image/upload/v1497805539/hotel/tv4_vkohcp.jpg">
 				<p>

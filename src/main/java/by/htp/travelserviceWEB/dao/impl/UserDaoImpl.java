@@ -6,8 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.htp.travelserviceWEB.connector.Connector;
-import by.htp.travelserviceWEB.connector.OwnConnection;
+import by.htp.travelserviceWEB.connector.OwnConnectionPool;
 import by.htp.travelserviceWEB.dao.UserDao;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
@@ -16,7 +15,7 @@ import by.htp.travelserviceWEB.entity.dto.UserTO;
 
 public class UserDaoImpl implements UserDao {
 
-	private OwnConnection connector = OwnConnection.getInstance();
+	private OwnConnectionPool connector = OwnConnectionPool.getInstance();
 	private Connection connection;
 
 	private UserDaoImpl() {
@@ -45,39 +44,26 @@ public class UserDaoImpl implements UserDao {
 			while (rs.next()) {
 				Integer customerId = null;
 				String login = null;
-				String password = null;
 				String name = null;
 				String surname = null;
-				String gender = null;
-				Date birthday = null;
-				String passport = null;
-				String email = null;
-				String phoneNumber = null;
 				String driverLicence = null;
-
 				Role role = null;
 				Integer idRole = null;
 				String roleName = null;
 
 				customerId = rs.getInt(1);
 				login = rs.getString(2);
-				password = rs.getString(3);
 				name = rs.getString(4);
 				surname = rs.getString(5);
-				gender = rs.getString(6);
-				birthday = rs.getDate(7);
-				passport = rs.getString(8);
-				email = rs.getString(9);
-				phoneNumber = rs.getString(10);
 				driverLicence = rs.getString(11);
 				idRole = rs.getInt(13);
 				roleName = rs.getString(14);
-
 				role = new Role(idRole, roleName);
-				customer = new Customer(customerId, login, password, name, surname, gender, birthday, passport, email,
-						phoneNumber, driverLicence, role);
+				
+				customer = new Customer(customerId, login, null, name, surname, null, null, null, null,
+						null, driverLicence, role);
 			}
-			connector.getBack(connection);
+			connector.putBack(connection);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,7 +86,7 @@ public class UserDaoImpl implements UserDao {
 			while (rs.next()) {
 				Integer adminId = null;
 				String login = null;
-				String password = null;
+				//String password = null;
 
 				Role role = null;
 				Integer idRole = null;
@@ -108,15 +94,15 @@ public class UserDaoImpl implements UserDao {
 
 				adminId = rs.getInt(1);
 				login = rs.getString(2);
-				password = rs.getString(3);
+				//password = rs.getString(3);
 			
 				idRole = rs.getInt(5);
 				roleName = rs.getString(6);
 
 				role = new Role(idRole, roleName);
-				admin = new Admin(adminId, login, password, role);
+				admin = new Admin(adminId, login, role);
 			}
-			connector.getBack(connection);
+			connector.putBack(connection);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -140,7 +126,7 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(3, customer.getName());
 			ps.setString(4, customer.getSurname());
 			ps.setString(5, customer.getGender());
-			ps.setDate(6, customer.getBirthday());
+			ps.setString(6, customer.getBirthday());
 			ps.setString(7, customer.getPassport());
 			ps.setString(8, customer.getEmail());
 			ps.setString(9, customer.getPhoneNumber());
@@ -152,7 +138,8 @@ public class UserDaoImpl implements UserDao {
 			if (generatedKeys.next()) {
 				customer.setCustomerId(Integer.valueOf(generatedKeys.getInt(1)));
 			}
-			connector.getBack(connection);
+			customer.setRole(new Role(1, "customer"));
+			connector.putBack(connection);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
