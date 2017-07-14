@@ -7,21 +7,21 @@ public class Admin implements Serializable {
 	private Integer adminId;
 	private String login;
 	private transient String password;
-	private Role role;
+	private Integer idRole;
 	
 	public Admin() {}
 	
-	public Admin(Integer adminId, String login, Role role) {
+	public Admin(Integer adminId, String login, Integer role) {
 		this.adminId = adminId;
 		this.login = login;
-		this.role = role;
+		this.idRole = role;
 	}
 
-	public Admin(Integer adminId, String login, String password, Role role) {
+	public Admin(Integer adminId, String login, String password, Integer role) {
 		this.adminId = adminId;
 		this.login = login;
 		this.password = password;
-		this.role = role;
+		this.idRole = role;
 	}
 
 	public Integer getAdminId() {
@@ -48,11 +48,11 @@ public class Admin implements Serializable {
 		this.password = password;
 	}
 
-	public Role getRole() {
-		return role;
+	public Integer getRole() {
+		return idRole;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRole(Integer role) {
+		this.idRole = role;
 	}
 }

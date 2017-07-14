@@ -19,10 +19,10 @@
 	<div>
 		<div id="wrapper">
 			<header>
-				<a href="/"><img
+				<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img
 					src="${pageContext.request.contextPath}/image/logoF.png"
 					width="180"></a>
-				<c:if test="${customer==null}">
+				<c:if test="${user == null}">
 					<form name="sign_in"
 						action="${pageContext.request.contextPath}/Controller"
 						method="GET">
@@ -37,13 +37,13 @@
 						<button type="submit">SIGN UP</button>
 					</form>
 				</c:if>
-				<c:if test="${customer!=null}">
+				<c:if test="${user != null}">
 					<form name="sign_up"
 						action="${pageContext.request.contextPath}/Controller"
 						method="GET">
 						<input type="hidden" value="log_out" name="command" />
 						<tr>
-							<td>${customer.getLogin()}</td>
+							<td>${user.getLogin()}</td>
 						</tr>
 						<button type="submit">LOG OUT</button>
 					</form>

@@ -6,18 +6,18 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class OwnConnection {
+public final class OwnConnectionPool {
 	
 	private ConcurrentHashMap<Connection, Boolean> connections;
 	private int size;
 	private int numberOfConnection;
 	
-	private OwnConnection() {
+	private OwnConnectionPool() {
 		System.out.println(numberOfConnection);
 	}
 	
 	private static class Singleton {
-		private  static final OwnConnection INSTANCE = new OwnConnection();
+		private  static final OwnConnectionPool INSTANCE = new OwnConnectionPool();
 	}
 	
 	{
@@ -26,7 +26,7 @@ public final class OwnConnection {
 		initConnectionPool();
 	}
 	
-	public static OwnConnection getInstance() {
+	public static OwnConnectionPool getInstance() {
 		return Singleton.INSTANCE;
 	}
 	public void initConnectionPool() {
@@ -52,6 +52,8 @@ public final class OwnConnection {
 	}
 
 	public final Connection getConnection() {
+		System.out.println(numberOfConnection + " " + connections.size());
+		
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : connections.entrySet()) {
 			if (!iter.getValue()) {
 				numberOfConnection++;
@@ -70,7 +72,7 @@ public final class OwnConnection {
 		return null;
 	}
 	
-	public final boolean getBack(Connection connection) {
+	public final boolean putBack(Connection connection) {
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : connections.entrySet()) {
 			if (iter.getKey() == connection) {
 				connections.replace(iter.getKey(), false);

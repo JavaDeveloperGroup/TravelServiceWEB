@@ -1,13 +1,15 @@
 package by.htp.travelserviceWEB.filter;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -17,7 +19,6 @@ import javax.servlet.http.HttpSession;
 
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.filter.InitSecurityCommand.Singleton;
 
 public class SecurityCommandFilter implements Filter {
 
@@ -48,9 +49,9 @@ public class SecurityCommandFilter implements Filter {
 			} else {
 				((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 			}
-		} else if (1 == ((Customer)user).getRole().getId() && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
+		} else if (1 == ((Customer)user).getRole() && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else if (1 != ((Admin)user).getRole().getId() && InitSecurityCommand.getInstance().initAdminCommand(command)) {
+		} else if (1 != ((Admin)user).getRole() && InitSecurityCommand.getInstance().initAdminCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else 
 			((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
@@ -62,9 +63,9 @@ public class SecurityCommandFilter implements Filter {
 
 final class InitSecurityCommand {
 	
-	private static final Set<String> customerListCommand = new HashSet<>();
-	private static final Set<String> guestListCommand = new HashSet<>();
-	private static final Set<String> adminListCommand = new HashSet<>();
+	private static final Set<String> customerListCommand = Collections.synchronizedSet(new HashSet<>());
+	private static final Set<String> guestListCommand = Collections.synchronizedSet(new HashSet<>());
+	private static final Set<String> adminListCommand = Collections.synchronizedSet(new HashSet<>());
 	
 	private InitSecurityCommand() {
 		
@@ -86,6 +87,7 @@ final class InitSecurityCommand {
 		customerListCommand.add("auto_make_order");
 		customerListCommand.add("tour_make_order");
 		customerListCommand.add("log_out");
+		customerListCommand.add("update_account");
 	}
 	static {
 		guestListCommand.add("catalog_hotel_page");

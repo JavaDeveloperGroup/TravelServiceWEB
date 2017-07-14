@@ -15,10 +15,6 @@
 			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
 				<img src="${pageContext.request.contextPath}/image/logoF.png" width="180">
 			</a>
-			<form name="back" action="${pageContext.request.contextPath}/Controller" method="GET">
-				<input type="hidden" name="command" value="back_page" />
-				<button type="submit">BACK</button>
-			</form>
 			<form name="sign_up" action="${pageContext.request.contextPath}/Controller" method="GET">
 				<input type="hidden" value="sign_up_page" name="command" />
 				<button type="submit">SIGN UP</button>
@@ -29,13 +25,11 @@
 		<div id="heading">
 			<h2>Please, fill in the form to log in!</h2>
 		</div>
-		<div id="heading">
-			<h2>
-				<font face="monospace" color="black" size="4"> <b>
-						<td><c:out value="${msg}" /></td>
+		<div style="text-align: center;">
+			<font face="monospace" color="black" size="4"> <b>
+					<td> <c:out value="${msg}"/> </td>
 				</b>
-				</font>
-			</h2>
+			</font>
 		</div>
 		<div id="login_form">
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">

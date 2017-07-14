@@ -1,11 +1,8 @@
 /* ----------------------------
-
 	CustomValidation prototype
-
 	- Keeps track of the list of invalidity messages for this input
 	- Keeps track of what validity checks need to be performed for this input
 	- Performs the validity checks and sends feedback to the front end
-
 ---------------------------- */
 
 function CustomValidation(input) {
@@ -76,29 +73,26 @@ CustomValidation.prototype = {
 
 
 /* ----------------------------
-
 	Validity Checks
-
 	The arrays of validity checks for each input
 	Comprised of three things
 		1. isInvalid() - the function to determine if the input fulfills a particular requirement
 		2. invalidityMessage - the error message to display if the field is invalid
 		3. element - The element that states the requirement
-
 ---------------------------- */
 
 var nameValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value.length < 1;
+			return input.value.length < 1 | input.value.length > 50;
 		},
-		invalidityMessage: 'This input needs to be at least 1 character',
+		invalidityMessage: 'This input needs to be at least 1 characters',
 		element: document.querySelector('label[for="name"] .input-requirements li:nth-child(1)')
 	},
 	{
 		isInvalid: function(input) {
 			var illegalCharacters = input.value.match(/[^a-zA-Z]/g);
-			return illegalCharacters ? true : false;
+			return illegalCharacters ? true : false | input.value.length == 0;
 		},
 		invalidityMessage: 'Only letters are allowed',
 		element: document.querySelector('label[for="name"] .input-requirements li:nth-child(2)')
@@ -106,7 +100,7 @@ var nameValidityChecks = [
 	{
 		isInvalid: function(input) {
 			var illegalCharacters = input.value.match(/^[^A-Z]/g);
-			return illegalCharacters ? true : false;
+			return illegalCharacters ? true : false | input.value.length == 0;
 		},
 		invalidityMessage: 'Should start with an uppercase letter',
 		element: document.querySelector('label[for="name"] .input-requirements li:nth-child(3)')
@@ -116,23 +110,23 @@ var nameValidityChecks = [
 var surnameValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value.length < 1;
+			return input.value.length < 1 | input.value.length > 50;
 		},
-		invalidityMessage: 'This input needs to be at least 1 characters',
+		invalidityMessage: 'This input needs to be at least 2 characters',
 		element: document.querySelector('label[for="surname"] .input-requirements li:nth-child(1)')
 	},
 	{
 		isInvalid: function(input) {
 			var illegalCharacters = input.value.match(/[^a-zA-Z]/g);
-			return illegalCharacters ? true : false;
+			return illegalCharacters ? true : false | input.value.length == 0;
 		},
-		invalidityMessage: 'Only letters are allowed in this input Привет, Цовак :)',
+		invalidityMessage: 'Only letters are allowed',
 		element: document.querySelector('label[for="surname"] .input-requirements li:nth-child(2)')
 	},
 	{
 		isInvalid: function(input) {
 			var illegalCharacters = input.value.match(/^[^A-Z]/g);
-			return illegalCharacters ? true : false;
+			return illegalCharacters ? true : false | input.value.length == 0;
 		},
 		invalidityMessage: 'Should start with an uppercase letter',
 		element: document.querySelector('label[for="surname"] .input-requirements li:nth-child(3)')
@@ -142,15 +136,15 @@ var surnameValidityChecks = [
 var usernameValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value.length < 3;
+			return input.value.length < 3 | input.value.length > 20;
 		},
-		invalidityMessage: 'This input needs to be at least 3-20 characters',
+		invalidityMessage: 'This input needs to be at least 3 - 20 characters',
 		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
 	},
 	{
 		isInvalid: function(input) {
 			var illegalCharacters = input.value.match(/[^a-zA-Z0-9]/g);
-			return illegalCharacters ? true : false;
+			return illegalCharacters ? true : false | input.value.length == 0;
 		},
 		invalidityMessage: 'Only letters and numbers are allowed',
 		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
@@ -160,35 +154,35 @@ var usernameValidityChecks = [
 var passwordValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value.length < 8 | input.value.length > 100;
+			return input.value.length < 8 | input.value.length > 20;
 		},
 		invalidityMessage: 'This input needs to be between 8 and 100 characters',
 		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(1)')
 	},
 	{
 		isInvalid: function(input) {
-			return !input.value.match(/[0-9]/g);
+			return !input.value.match(/[0-9]/g) | input.value.length == 0;
 		},
 		invalidityMessage: 'At least 1 number is required',
 		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(2)')
 	},
 	{
 		isInvalid: function(input) {
-			return !input.value.match(/[a-z]/g);
+			return !input.value.match(/[a-z]/g) | input.value.length == 0;
 		},
 		invalidityMessage: 'At least 1 lowercase letter is required',
 		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(3)')
 	},
 	{
 		isInvalid: function(input) {
-			return !input.value.match(/[A-Z]/g);
+			return !input.value.match(/[A-Z]/g) | input.value.length == 0;
 		},
 		invalidityMessage: 'At least 1 uppercase letter is required',
 		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(4)')
 	},
 	{
 		isInvalid: function(input) {
-			return !input.value.match(/[\!\@\#\$\%\^\&\*]/g);
+			return !input.value.match(/[\!\@\#\$\%\^\&\*]/g) | input.value.length == 0;
 		},
 		invalidityMessage: 'You need one of the required special characters',
 		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(5)')
@@ -197,8 +191,8 @@ var passwordValidityChecks = [
 
 var passwordRepeatValidityChecks = [
 	{
-		isInvalid: function() {
-			return passwordRepeatInput.value != passwordInput.value;
+		isInvalid: function(input) {
+			return input.value != passwordInput.value | input.value.length == 0;
 		},
 		invalidityMessage: 'This password needs to match the first one'
 	}
@@ -206,12 +200,9 @@ var passwordRepeatValidityChecks = [
 
 
 /* ----------------------------
-
 	Setup CustomValidation
-
 	Setup the CustomValidation prototype for each input
 	Also sets which array of validity checks to use for that input
-
 ---------------------------- */
 
 var usernameInput = document.getElementById('username');
@@ -236,9 +227,7 @@ surnameInput.CustomValidation = new CustomValidation(surnameInput);
 surnameInput.CustomValidation.validityChecks = surnameValidityChecks;
 
 /* ----------------------------
-
 	Event Listeners
-
 ---------------------------- */
 
 var inputs = document.querySelectorAll('input:not([type="submit"])');

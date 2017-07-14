@@ -1,0 +1,4 @@
+XML: DRFA: 07/15/2017 00:05:51 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-3] INFO  - Log in user1
+XML: DRFA: 07/15/2017 00:08:37 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-7] INFO  - Log in user1
+XML: DRFA: 07/15/2017 00:08:39 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-8] INFO  - Log out user1
+XML: DRFA: 07/15/2017 00:59:56 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-1] INFO  - Sign up usertt

@@ -2,9 +2,9 @@ package by.htp.travelserviceWEB.util;
 
 import org.apache.commons.codec.binary.Base64;
 
-public class Encryption {
+public class EncryptionApache {
 	
-	public Encryption(){}
+	public EncryptionApache(){}
 	
 	public static String base64Code(String password) {
 		byte[] binaryPassword = password.getBytes();

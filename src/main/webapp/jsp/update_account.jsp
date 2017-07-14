@@ -17,21 +17,23 @@
 	<div id="wrapper">
 		<header>
 			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img src="${pageContext.request.contextPath}/image/logoF.png" width="180"></a>
-			<form name="sign_in"
-				action="${pageContext.request.contextPath}/Controller" method="GET">
-				<input type="hidden" value="log_in_page" name="command" />
-				<button type="submit">SIGN IN</button>
+			<form name="sign_in" action="${pageContext.request.contextPath}/Controller" method="GET">
+				<input type="hidden" value="log_out" name="command" />
+				<tr>
+					<td>${user.getLogin()}</td>
+				</tr>
+				<button type="submit">LOG OUT</button>
 			</form>
 		</header>
 		<jsp:include page="/jspf/menu.jspf" />
 		<hr>
 		<div id="heading">
-			<h2><!--<fmt:message key="sign_up_invitation" />--> Please, fill in the form to sign up!</h2>
+			<h2><!--<fmt:message key="sign_up_invitation" />--> Please, fill in the form new data!</h2>
 		</div>
 		<div id="heading">
-			<font face="monospace" color="black" size="4"> <b> 
-				<c:out value="${msg}" />
-			</b>
+			<font face="monospace" color="black" size="4"> <b>
+					<td><c:out value="${msg}" /></td>
+				</b>
 			</font>
 		</div>
 		<div class='reg-form'>
@@ -39,8 +41,8 @@
 				<input type="hidden" name="command" value="sign_up" />
 
 				<div class='form-row'>
-					<label for="name"> <span>Name</span> <input
-						type='text'  id="name" name='name' required>
+					<label for="name"> <span><!--<fmt:message key="first_name" />--> Name </span> <input
+						type='text' <%--value="Yauheni"--%> id="name" name='name' required>
 						<ul class="input-requirements">
 							<li>Should be at least 1 character long.</li>
 							<li>Should only contain letters.</li>
@@ -50,8 +52,8 @@
 				</div>
 
 				<div class='form-row'>
-					<label for="surname"> <span>Surname </span> <input
-						type='text' value="Papovich" id="surname" name='surname' required>
+					<label for="surname"> <span><!--<fmt:message key="second_name" />--> Surname </span> <input
+						type='text' <%--value="Papovich"--%> id="surname" name='surname' required>
 						<ul class="input-requirements">
 							<li>Should be at least 1 characters long.</li>
 							<li>Should only contain letters.</li>
@@ -61,11 +63,11 @@
 				</div>
 
 				<div class='form-row'>
-					<label for="username"> <span>Login</span> <input
-						type='text' value="user" name='login' id="login"
+					<label for="username"> <span><!--<fmt:message key="login" />--> Login </span> <input
+						type='text' <%--value="user"--%> name='login' id="login"
 						required>
 						<ul class="input-requirements">
-							<li>At least 3 - 20 characters long</li>
+							<li>At least 3-20 characters long</li>
 							<li>Must only contain letters and numbers (no special
 								characters)</li>
 						</ul>
@@ -74,20 +76,21 @@
 
 				<div class='form-row'>
 					<label for="password"> <span>Password</span> <input
-						type="password" value="user1Q@q" name='password'
+						type="password" <%--value="user1Q@q"--%> name='password'
 						id="password" required>
 						<ul class="input-requirements">
-							<li>At least 8 characters long (and less than 20 characters)</li>
+							<li>At least 8 characters long (and less than 100 characters)</li>
 							<li>Contains at least 1 number</li>
 							<li>Contains at least 1 lowercase letter</li>
 							<li>Contains at least 1 uppercase letter</li>
-							<li>Contains a special character (e.g. @ !)</li>
+							<li>Contains a special character (!, @, #, $, %, ^, &, *)</li>
 						</ul>
 					</label>
-				</div> 
+				</div>
+
 				<div class='form-row'>
 					<label for="password_repeat"> <span> Repeat Password
-					</span> <input type="password" value="user1Q@q" name='password_repeat'
+					</span> <input type="password" <%--value="user1Q@q"--%> name='repeat_password'
 						id="password_repeat" required>
 					</label>
 				</div>
@@ -114,7 +117,7 @@
 					<label>
 						<span>Birthday</span> 
 						<font size="3">
-							<input value="1999-06-30" type="date" placeholder="Birth date"
+							<input <%--value="1999-06-30"--%> type="date" placeholder="Birth date"
 							title="Format: YYYY-MM-DD" name="birthday" id="birthday"/>
 						</font>
 					</label>
@@ -124,20 +127,20 @@
 				
 				<div class='form-row'>
 					<label>Passport </label> <input 
-						value="AA2222222" name='passport' id="passport" required>
+						<%--value="AA2222222"--%> name='passport' id="passport" required>
 				</div>
 				
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 				
 				<div class='form-row'>
-					<label>Email </label> <input type='email' id="email" value="po@mail.ru"
+					<label>Email </label> <input type='email' id="email" <%--value="po@mail.ru"--%>
 						name='email' required>
 				</div>
 				
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 				
 				<div class='form-row'>
-					<label>Phone </label> <input value="+375293333333" id="phone" 
+					<label>Phone </label> <input <%--value="+375293333333"--%> id="phone" 
 						name='phone_number' required>
 				</div>
 				
@@ -149,8 +152,14 @@
 						<div>
 							<font size="3"> 
 								<select id="driver_licence"	name='driver_licence' style="width: 492px;">
-									<option value="NO">No</option>
-									<option value="YES">Yes</option>
+									<c:if test="${user.getDriverLicence() != 'No'}">
+										<option value="YES">${user.getDriverLicence()}</option>
+										<option value="NO">No</option>
+									</c:if>
+									<c:if test="${user.getDriverLicence() != 'Yes'}">
+										<option value="NO">${user.getDriverLicence()}</option>
+										<option value="YES">Yes</option>
+									</c:if>
 								</select>
 							</font>
 						</div> 

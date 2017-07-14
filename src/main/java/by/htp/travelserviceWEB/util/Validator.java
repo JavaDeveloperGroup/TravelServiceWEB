@@ -41,8 +41,9 @@ public class Validator {
      * @throws ServletException 
      */
     
-    public static boolean registrationCustomer(String login, String password, String repeatPassword, String name, String surname, String birthday, String passport, String email, String phoneNumber) throws ServletException, IOException {
-    	if (!password.equals(repeatPassword)) {
+    public static boolean registrationCustomer(String login, String password, String passwordRepeat, String name, String surname, String birthday, String passport, String email, String phoneNumber) throws ServletException, IOException {
+    	String passw = EncryptionFdl.decrypt(password);
+    	if (!passw.equals(EncryptionFdl.decrypt(passwordRepeat))) {
 			return false;
 		}
 		else if (!checkDate(birthday)) {
@@ -51,7 +52,7 @@ public class Validator {
 		else if(null != login && null != password && null != name && null != surname && null != passport
                 && null != email && null != phoneNumber) {
     		return Pattern.matches(LOGIN_REGEX, login)
-                    && Pattern.matches(PASSWORD_REGEX, password)
+                    && Pattern.matches(PASSWORD_REGEX, passw)
                     && Pattern.matches(STRING_REGEX, name)
                     && Pattern.matches(STRING_REGEX, surname)
                     && Pattern.matches(EMAIL_REGEX, email)
