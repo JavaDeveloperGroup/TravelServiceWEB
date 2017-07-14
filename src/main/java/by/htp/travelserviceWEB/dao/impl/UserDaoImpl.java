@@ -36,32 +36,28 @@ public class UserDaoImpl implements UserDao {
 		try {
 			connection = connector.getConnection();
 			PreparedStatement ps = connection.prepareStatement(
-					"SELECT * FROM customer left join role on customer.id_role = role.id_role where customer.login = ? and customer.password = ?");
+					"SELECT * FROM customer where customer.login = ? and customer.password = ?");
 			ps.setString(1, userDTO.getLogin());
 			ps.setString(2, userDTO.getPassword());
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Integer customerId = null;
-				String login = null;
-				String name = null;
-				String surname = null;
-				String driverLicence = null;
-				Role role = null;
-				Integer idRole = null;
-				String roleName = null;
+				Integer customerId;
+				String login;
+				String name;
+				String surname;
+				String driverLicence;
+				Integer idRole;
 
 				customerId = rs.getInt(1);
 				login = rs.getString(2);
 				name = rs.getString(4);
 				surname = rs.getString(5);
 				driverLicence = rs.getString(11);
-				idRole = rs.getInt(13);
-				roleName = rs.getString(14);
-				role = new Role(idRole, roleName);
+				idRole = rs.getInt(12);
 				
 				customer = new Customer(customerId, login, null, name, surname, null, null, null, null,
-						null, driverLicence, role);
+						null, driverLicence, idRole);
 			}
 			connector.putBack(connection);
 
@@ -78,29 +74,21 @@ public class UserDaoImpl implements UserDao {
 
 		try {
 			connection = connector.getConnection();
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM admin left join role on admin.id_role = role.id_role where admin.login = ? and admin.password = ?");
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM admin where admin.login = ? and admin.password = ?");
 			ps.setString(1, userDTO.getLogin());
 			ps.setString(2, userDTO.getPassword());
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Integer adminId = null;
-				String login = null;
-				//String password = null;
-
-				Role role = null;
-				Integer idRole = null;
-				String roleName = null;
+				Integer adminId;
+				String login;
+				Integer idRole;
 
 				adminId = rs.getInt(1);
 				login = rs.getString(2);
-				//password = rs.getString(3);
-			
 				idRole = rs.getInt(5);
-				roleName = rs.getString(6);
 
-				role = new Role(idRole, roleName);
-				admin = new Admin(adminId, login, role);
+				admin = new Admin(adminId, login, idRole);
 			}
 			connector.putBack(connection);
 
@@ -136,9 +124,10 @@ public class UserDaoImpl implements UserDao {
 			
 			ResultSet generatedKeys = ps.getGeneratedKeys();
 			if (generatedKeys.next()) {
-				customer.setCustomerId(Integer.valueOf(generatedKeys.getInt(1)));
+				customer.setCustomerId(Integer.valueOf(generatedKeys.getInt(1)));		
 			}
-			customer.setRole(new Role(1, "customer"));
+			customer.setRole(1);	
+			
 			connector.putBack(connection);
 			
 		} catch (SQLException e) {

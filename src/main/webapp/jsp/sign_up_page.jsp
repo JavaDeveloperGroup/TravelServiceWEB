@@ -38,9 +38,9 @@
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="sign_up" />
 
-				<!-- <div class='form-row'>
-					<label for="name"> <span><fmt:message key="first_name" /> Name </span> <input
-						type='text' value="Yauheni" id="name" name='name' required>
+				<div class='form-row'>
+					<label for="name"> <span>Name</span> <input
+						type='text'  id="name" name='name' required>
 						<ul class="input-requirements">
 							<li>Should be at least 1 character long.</li>
 							<li>Should only contain letters.</li>
@@ -50,7 +50,7 @@
 				</div>
 
 				<div class='form-row'>
-					<label for="surname"> <span><fmt:message key="second_name" /> Surname </span> <input
+					<label for="surname"> <span>Surname </span> <input
 						type='text' value="Papovich" id="surname" name='surname' required>
 						<ul class="input-requirements">
 							<li>Should be at least 1 characters long.</li>
@@ -61,11 +61,11 @@
 				</div>
 
 				<div class='form-row'>
-					<label for="username"> <span><fmt:message key="login" /> Login </span> <input
+					<label for="username"> <span>Login</span> <input
 						type='text' value="user" name='login' id="login"
 						required>
 						<ul class="input-requirements">
-							<li>At least 3-20 characters long</li>
+							<li>At least 3 - 20 characters long</li>
 							<li>Must only contain letters and numbers (no special
 								characters)</li>
 						</ul>
@@ -77,64 +77,17 @@
 						type="password" value="user1Q@q" name='password'
 						id="password" required>
 						<ul class="input-requirements">
-							<li>At least 8 characters long (and less than 100 characters)</li>
-							<li>Contains at least 1 number</li>
-							<li>Contains at least 1 lowercase letter</li>
-							<li>Contains at least 1 uppercase letter</li>
-							<li>Contains a special character (!, @, #, $, %, ^, &, *)</li>
-						</ul>
-					</label>
-				</div> -->
-				<div class='form-row'>
-					<label for="name"> <span><!--<fmt:message key="first_name" />--> Name </span> <input
-						type='text' value="Yauheni" id="name" name='name' required>
-						<ul class="input-requirements">
-							<li>Should be at least 2 characters long.</li>
-							<li>Should only contain letters.</li>
-							<li>Should start with an uppercase letter.</li>
-						</ul>
-					</label>
-				</div>
-
-				<div class='form-row'>
-					<label for="surname"> <span><!--<fmt:message key="second_name" />--> Surname </span> <input
-						type='text' value="Papovich" id="surname" name='surname' required>
-						<ul class="input-requirements">
-							<li>Should be at least 2 characters long.</li>
-							<li>Should only contain letters.</li>
-							<li>Should start with an uppercase letter.</li>
-						</ul>
-					</label>
-				</div>
-
-				<div class='form-row'>
-					<label for="username"> <span><!--<fmt:message key="login" />--> Login </span> <input
-						type='text' pattern="[a-zA-Z0-9]{3-8}" value="user" name='login' id="username"
-						required>
-						<ul class="input-requirements">
-							<li>At least 3 characters long</li>
-							<li>Must only contain letters and numbers (no special
-								characters)</li>
-						</ul>
-					</label>
-				</div>
-
-				<div class='form-row'>
-					<label for="password"> <span>Password</span> <input
-						type="password" value="user1Q@q" name='password'
-						id="password" required>
-						<ul class="input-requirements">
-							<li>At least 8 characters long (and less than 100 characters)</li>
+							<li>At least 8 characters long (and less than 20 characters)</li>
 							<li>Contains at least 1 number</li>
 							<li>Contains at least 1 lowercase letter</li>
 							<li>Contains at least 1 uppercase letter</li>
 							<li>Contains a special character (e.g. @ !)</li>
 						</ul>
 					</label>
-				</div>
+				</div> 
 				<div class='form-row'>
 					<label for="password_repeat"> <span> Repeat Password
-					</span> <input type="password" value="user1Q@q" name='repeat_password'
+					</span> <input type="password" value="user1Q@q" name='password_repeat'
 						id="password_repeat" required>
 					</label>
 				</div>

@@ -15,12 +15,12 @@ public class Customer implements Serializable {
 	private String email;
 	private String phoneNumber;
 	private String driverLicence;
-	private Role role;
+	private Integer idRole;
 	
 	public Customer() {}
 
 	public Customer(Integer customerId, String login, String password, String name, String surname, String gender,
-			String birthday, String passport, String email, String phoneNumber, String driverLicence, Role role) {
+			String birthday, String passport, String email, String phoneNumber, String driverLicence, Integer role) {
 		this.customerId = customerId;
 		this.login = login;
 		this.password = password;
@@ -32,7 +32,7 @@ public class Customer implements Serializable {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.driverLicence = driverLicence;
-		this.role = role;
+		this.idRole = role;
 	}
 
 	public Integer getCustomerId() {
@@ -123,12 +123,12 @@ public class Customer implements Serializable {
 		this.driverLicence = driverLicence;
 	}
 
-	public Role getRole() {
-		return role;
+	public Integer getRole() {
+		return idRole;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRole(Integer role) {
+		this.idRole = role;
 	}
 	
 }

@@ -25,9 +25,9 @@
 		<div id="heading">
 			<h2>Please, fill in the form to log in!</h2>
 		</div>
-		<div id="heading">
+		<div style="text-align: center;">
 			<font face="monospace" color="black" size="4"> <b>
-					<td><c:out value="${msg}" /></td>
+					<td> <c:out value="${msg}"/> </td>
 				</b>
 			</font>
 		</div>

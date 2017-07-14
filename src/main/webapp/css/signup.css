@@ -56,8 +56,9 @@ hr {
     height: 2px;
     margin: 0;
     padding: 0;
-   }
-   #heading {
+  }
+  
+#heading {
 	margin: 5%;
 	padding-left: 20px;
 	text-align: center;
@@ -89,9 +90,7 @@ h2 {
 	hspace: 10;
 	font-family: 'Oswald', sans-serif;
 	font-weight: bold;
-	font-size: 1.5em;
-	line-height: 150%;
-	
+	font-size: 1.5em;	
 }
 
 .reg-form {
@@ -129,7 +128,7 @@ h2 {
 /*pasted from example*/
 
 .input-requirements {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-style: italic;
   text-align: left;
   list-style: disc;
@@ -182,9 +181,9 @@ input[type="submit"]:focus {
 
 /* Custom ------------------ */
 
-input:not([type="submit"]):valid {
+/* input:not([type="submit"]):valid {
   border-color: #2ecc71;
-}
+} */
 
 /* Hide and show related .input-requirements when interacting with input */
 
@@ -200,4 +199,6 @@ input:not([type="submit"]):active + .input-requirements {
   max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
   transition: max-height 1s ease-in;
 }
-
+li {
+	height: 24px;
+}

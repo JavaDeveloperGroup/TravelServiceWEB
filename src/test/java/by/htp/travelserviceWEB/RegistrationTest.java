@@ -26,8 +26,6 @@ public class RegistrationTest {
 		inputData("Sergeo", "Parkhanovich", "Dubina", "qwertyQ@", "qwerty1Q@", "09101990", "AT1234567", "parkh@mail.ru", "+37529222222");
 		
 		clickIdElement("go");
-		
-	
 	}
 	
 	public void clickNameElement(String nameElement) {
