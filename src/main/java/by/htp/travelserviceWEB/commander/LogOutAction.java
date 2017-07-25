@@ -22,7 +22,9 @@ public class LogOutAction implements CommandAction {
 		
 		//produce session
 		HttpSession httpSession = request.getSession();
-						
+		
+		System.out.println(request.getHeader("referer"));
+		
 		log.info("Log out " + ((Customer)httpSession.getAttribute("user")).getLogin());
 
 		request.getSession(false);

@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.7.18-log - MySQL Community Server (GPL)
--- Server OS:                    Win64
--- HeidiSQL Version:             9.4.0.5125
+-- Хост:                         127.0.0.1
+-- Версия сервера:               5.7.18-log - MySQL Community Server (GPL)
+-- Операционная система:         Win64
+-- HeidiSQL Версия:              9.4.0.5125
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,12 +12,12 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for travelservice
+-- Дамп структуры базы данных travelservice
 DROP DATABASE IF EXISTS `travelservice`;
 CREATE DATABASE IF NOT EXISTS `travelservice` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `travelservice`;
 
--- Dumping structure for table travelservice.admin
+-- Дамп структуры для таблица travelservice.admin
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id_admin` tinyint(4) NOT NULL AUTO_INCREMENT,
@@ -29,16 +29,16 @@ CREATE TABLE IF NOT EXISTS `admin` (
   CONSTRAINT `FK_admin_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.admin: ~3 rows (approximately)
+-- Дамп данных таблицы travelservice.admin: ~3 rows (приблизительно)
 DELETE FROM `admin`;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`id_admin`, `login`, `password`, `id_role`) VALUES
-	(1, 'tour', 'dG91cg==', 2),
-	(2, 'hotel', 'aG90ZWw=', 3),
-	(3, 'auto', 'YXV0bw==', 4);
+	(1, 'tour', 'ÚØ¹×', 2),
+	(2, 'hotel', 'ÎØ¸ÊØ', 3),
+	(3, 'auto', 'ÇÞ¸Ô', 4);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.apartment
+-- Дамп структуры для таблица travelservice.apartment
 DROP TABLE IF EXISTS `apartment`;
 CREATE TABLE IF NOT EXISTS `apartment` (
   `id_apartment` int(11) NOT NULL AUTO_INCREMENT,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   CONSTRAINT `FK_apartment_room` FOREIGN KEY (`id_room`) REFERENCES `room` (`id_room`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.apartment: ~26 rows (approximately)
+-- Дамп данных таблицы travelservice.apartment: ~26 rows (приблизительно)
 DELETE FROM `apartment`;
 /*!40000 ALTER TABLE `apartment` DISABLE KEYS */;
 INSERT INTO `apartment` (`id_apartment`, `id_hotel`, `id_room`, `room_capacity`, `price`, `status`, `image`) VALUES
@@ -87,7 +87,7 @@ INSERT INTO `apartment` (`id_apartment`, `id_hotel`, `id_room`, `room_capacity`,
 	(26, 5, 4, 1, 45.00, 'FREE', 'http://res.cloudinary.com/javadevgroup/image/upload/v1497853427/hotel/1tvcon.jpg');
 /*!40000 ALTER TABLE `apartment` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.auto
+-- Дамп структуры для таблица travelservice.auto
 DROP TABLE IF EXISTS `auto`;
 CREATE TABLE IF NOT EXISTS `auto` (
   `id_auto` mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `auto` (
   CONSTRAINT `FK_auto_color` FOREIGN KEY (`id_color`) REFERENCES `color` (`id_color`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.auto: ~6 rows (approximately)
+-- Дамп данных таблицы travelservice.auto: ~6 rows (приблизительно)
 DELETE FROM `auto`;
 /*!40000 ALTER TABLE `auto` DISABLE KEYS */;
 INSERT INTO `auto` (`id_auto`, `id_brand`, `model`, `year`, `transmition`, `wheel_drive`, `fuil_type`, `id_color`, `id_body_type`, `image`) VALUES
@@ -121,7 +121,7 @@ INSERT INTO `auto` (`id_auto`, `id_brand`, `model`, `year`, `transmition`, `whee
 	(6, 2, 'AMG', '2015', 'MANUAL', 'REAR', 'ELECTRO', 3, 4, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Mercedes-AMG-C63S-Coupe_wqxpnc.jpg');
 /*!40000 ALTER TABLE `auto` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.auto_order
+-- Дамп структуры для таблица travelservice.auto_order
 DROP TABLE IF EXISTS `auto_order`;
 CREATE TABLE IF NOT EXISTS `auto_order` (
   `id_auto_order` int(11) NOT NULL AUTO_INCREMENT,
@@ -137,12 +137,12 @@ CREATE TABLE IF NOT EXISTS `auto_order` (
   CONSTRAINT `FK_auto_order_salon` FOREIGN KEY (`id_salon_end`) REFERENCES `salon` (`id_salon`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.auto_order: ~0 rows (approximately)
+-- Дамп данных таблицы travelservice.auto_order: ~0 rows (приблизительно)
 DELETE FROM `auto_order`;
 /*!40000 ALTER TABLE `auto_order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `auto_order` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.body_type
+-- Дамп структуры для таблица travelservice.body_type
 DROP TABLE IF EXISTS `body_type`;
 CREATE TABLE IF NOT EXISTS `body_type` (
   `id_body_type` tinyint(4) NOT NULL AUTO_INCREMENT,
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `body_type` (
   PRIMARY KEY (`id_body_type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.body_type: ~4 rows (approximately)
+-- Дамп данных таблицы travelservice.body_type: ~4 rows (приблизительно)
 DELETE FROM `body_type`;
 /*!40000 ALTER TABLE `body_type` DISABLE KEYS */;
 INSERT INTO `body_type` (`id_body_type`, `name`) VALUES
@@ -160,7 +160,7 @@ INSERT INTO `body_type` (`id_body_type`, `name`) VALUES
 	(4, 'Coupe');
 /*!40000 ALTER TABLE `body_type` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.brand
+-- Дамп структуры для таблица travelservice.brand
 DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
   `id_brand` tinyint(4) NOT NULL AUTO_INCREMENT,
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
   PRIMARY KEY (`id_brand`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.brand: ~3 rows (approximately)
+-- Дамп данных таблицы travelservice.brand: ~3 rows (приблизительно)
 DELETE FROM `brand`;
 /*!40000 ALTER TABLE `brand` DISABLE KEYS */;
 INSERT INTO `brand` (`id_brand`, `name`) VALUES
@@ -177,7 +177,7 @@ INSERT INTO `brand` (`id_brand`, `name`) VALUES
 	(3, 'Ford');
 /*!40000 ALTER TABLE `brand` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.bus
+-- Дамп структуры для таблица travelservice.bus
 DROP TABLE IF EXISTS `bus`;
 CREATE TABLE IF NOT EXISTS `bus` (
   `id_bus` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `bus` (
   PRIMARY KEY (`id_bus`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.bus: ~4 rows (approximately)
+-- Дамп данных таблицы travelservice.bus: ~4 rows (приблизительно)
 DELETE FROM `bus`;
 /*!40000 ALTER TABLE `bus` DISABLE KEYS */;
 INSERT INTO `bus` (`id_bus`, `name`, `capacity`, `registration_number`) VALUES
@@ -197,7 +197,7 @@ INSERT INTO `bus` (`id_bus`, `name`, `capacity`, `registration_number`) VALUES
 	(8, 'Scania', 30, 'AH 6027-7');
 /*!40000 ALTER TABLE `bus` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.city
+-- Дамп структуры для таблица travelservice.city
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE IF NOT EXISTS `city` (
   `id_city` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `city` (
   PRIMARY KEY (`id_city`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.city: ~4 rows (approximately)
+-- Дамп данных таблицы travelservice.city: ~4 rows (приблизительно)
 DELETE FROM `city`;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
 INSERT INTO `city` (`id_city`, `name`) VALUES
@@ -215,7 +215,7 @@ INSERT INTO `city` (`id_city`, `name`) VALUES
 	(4, 'Vitebsk');
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.color
+-- Дамп структуры для таблица travelservice.color
 DROP TABLE IF EXISTS `color`;
 CREATE TABLE IF NOT EXISTS `color` (
   `id_color` tinyint(4) NOT NULL AUTO_INCREMENT,
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `color` (
   PRIMARY KEY (`id_color`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.color: ~5 rows (approximately)
+-- Дамп данных таблицы travelservice.color: ~5 rows (приблизительно)
 DELETE FROM `color`;
 /*!40000 ALTER TABLE `color` DISABLE KEYS */;
 INSERT INTO `color` (`id_color`, `name`) VALUES
@@ -234,7 +234,7 @@ INSERT INTO `color` (`id_color`, `name`) VALUES
 	(5, 'silver');
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.customer
+-- Дамп структуры для таблица travelservice.customer
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `id_customer` int(11) NOT NULL AUTO_INCREMENT,
@@ -242,29 +242,31 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `password` varchar(200) NOT NULL,
   `name` varchar(100) NOT NULL,
   `surname` varchar(100) NOT NULL,
-  `gender` enum('MALE','FEMALE') NOT NULL,
+  `gender` enum('Male','Female') NOT NULL,
   `birthday` date NOT NULL,
   `passport` varchar(9) NOT NULL,
   `email` varchar(100) NOT NULL,
   `phone_number` varchar(50) NOT NULL,
-  `driver_license` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `driver_licence` enum('Yes','No') NOT NULL DEFAULT 'No',
   `id_role` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_customer`),
+  UNIQUE KEY `passport` (`passport`),
+  UNIQUE KEY `login` (`login`),
   KEY `FK_customer_role` (`id_role`),
   CONSTRAINT `FK_customer_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.customer: ~3 rows (approximately)
+-- Дамп данных таблицы travelservice.customer: ~3 rows (приблизительно)
 DELETE FROM `customer`;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` (`id_customer`, `login`, `password`, `name`, `surname`, `gender`, `birthday`, `passport`, `email`, `phone_number`, `driver_license`, `id_role`) VALUES
-	(1, 'user0', 'dXNlcjFRQHE=', 'Tsovak', 'Palakian', 'MALE', '2017-06-05', 'sdf', 'tsovak@gmail.com', '+375257018079', 'No', 1),
-	(2, 'user1', 'dXNlcjFRQHE=', 'Zhenya', 'Popovich', 'MALE', '2017-06-05', 'ds', 'zhenya@gmail.com', '+375297261647', 'Yes', 1),
-	(3, 'user2', 'dXNlcjFRQHE=', 'Dasha', 'Bortnik', 'FEMALE', '2017-06-11', 'df', 'dasha@gmail.com', '+375299218769', 'Yes', 1),
-	(4, 'user', 'dXNlcjFRQHE=', 'Yauheni', 'Papovich', 'MALE', '2017-06-30', 'AA2222222', 'po@mail.ru', '333333333', 'No', 1);
+INSERT INTO `customer` (`id_customer`, `login`, `password`, `name`, `surname`, `gender`, `birthday`, `passport`, `email`, `phone_number`, `driver_licence`, `id_role`) VALUES
+	(1, 'user0', 'ÛÜ©×ºq', 'Tsovak', 'Palakian', 'Male', '2017-06-05', 'sdf', 'tsovak@gmail.com', '375257018079', 'No', 1),
+	(2, 'user1', 'ÛÜ©×ºq', 'Zhenya', 'Popovich', 'Male', '2017-06-05', 'ds', 'zhenya@gmail.com', '375297261647', 'Yes', 1),
+	(3, 'user2', 'ÛÜ©×ºq', 'Dasha', 'Bortnik', 'Female', '2017-06-11', 'df3', 'dasha@gmail.com', '375299218769', 'Yes', 1),
+	(4, 'user4', 'ÛÜ©×ºq', 'Mhjbjb', 'Lhihiu', 'Male', '1999-06-30', 'AA2222222', 'po@mail.ru', '+375293333333', 'No', 1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.hotel
+-- Дамп структуры для таблица travelservice.hotel
 DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
   `id_hotel` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -277,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `hotel` (
   CONSTRAINT `FK_hotel_city` FOREIGN KEY (`id_city`) REFERENCES `city` (`id_city`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.hotel: ~10 rows (approximately)
+-- Дамп данных таблицы travelservice.hotel: ~10 rows (приблизительно)
 DELETE FROM `hotel`;
 /*!40000 ALTER TABLE `hotel` DISABLE KEYS */;
 INSERT INTO `hotel` (`id_hotel`, `id_city`, `title`, `stars`, `address`) VALUES
@@ -293,7 +295,7 @@ INSERT INTO `hotel` (`id_hotel`, `id_city`, `title`, `stars`, `address`) VALUES
 	(10, 1, '"Victoria"', '4', '59 Pobediteley Ave.');
 /*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.hotel_order
+-- Дамп структуры для таблица travelservice.hotel_order
 DROP TABLE IF EXISTS `hotel_order`;
 CREATE TABLE IF NOT EXISTS `hotel_order` (
   `id_hotel_order` int(11) NOT NULL AUTO_INCREMENT,
@@ -306,12 +308,12 @@ CREATE TABLE IF NOT EXISTS `hotel_order` (
   CONSTRAINT `FK_hotel_order_apartment` FOREIGN KEY (`id_apartment`) REFERENCES `apartment` (`id_apartment`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.hotel_order: ~0 rows (approximately)
+-- Дамп данных таблицы travelservice.hotel_order: ~0 rows (приблизительно)
 DELETE FROM `hotel_order`;
 /*!40000 ALTER TABLE `hotel_order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `hotel_order` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.rent_auto
+-- Дамп структуры для таблица travelservice.rent_auto
 DROP TABLE IF EXISTS `rent_auto`;
 CREATE TABLE IF NOT EXISTS `rent_auto` (
   `id_rent_auto` int(11) NOT NULL AUTO_INCREMENT,
@@ -326,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `rent_auto` (
   CONSTRAINT `FK_rent_auto_salon` FOREIGN KEY (`id_salon_start`) REFERENCES `salon` (`id_salon`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.rent_auto: ~6 rows (approximately)
+-- Дамп данных таблицы travelservice.rent_auto: ~6 rows (приблизительно)
 DELETE FROM `rent_auto`;
 /*!40000 ALTER TABLE `rent_auto` DISABLE KEYS */;
 INSERT INTO `rent_auto` (`id_rent_auto`, `id_auto`, `id_salon_start`, `status`, `price`) VALUES
@@ -338,7 +340,7 @@ INSERT INTO `rent_auto` (`id_rent_auto`, `id_auto`, `id_salon_start`, `status`, 
 	(6, 5, 1, 'FREE', 35.00);
 /*!40000 ALTER TABLE `rent_auto` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.role
+-- Дамп структуры для таблица travelservice.role
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
   `id_role` tinyint(4) NOT NULL AUTO_INCREMENT,
@@ -346,7 +348,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   PRIMARY KEY (`id_role`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.role: ~5 rows (approximately)
+-- Дамп данных таблицы travelservice.role: ~5 rows (приблизительно)
 DELETE FROM `role`;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
 INSERT INTO `role` (`id_role`, `name`) VALUES
@@ -357,7 +359,7 @@ INSERT INTO `role` (`id_role`, `name`) VALUES
 	(5, 'vip_customer');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.room
+-- Дамп структуры для таблица travelservice.room
 DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
   `id_room` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -367,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   PRIMARY KEY (`id_room`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.room: ~8 rows (approximately)
+-- Дамп данных таблицы travelservice.room: ~8 rows (приблизительно)
 DELETE FROM `room`;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
 INSERT INTO `room` (`id_room`, `tv`, `balcony`, `conditioner`) VALUES
@@ -381,7 +383,7 @@ INSERT INTO `room` (`id_room`, `tv`, `balcony`, `conditioner`) VALUES
 	(8, 'Yes', 'No', 'Yes');
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.salon
+-- Дамп структуры для таблица travelservice.salon
 DROP TABLE IF EXISTS `salon`;
 CREATE TABLE IF NOT EXISTS `salon` (
   `id_salon` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -392,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `salon` (
   CONSTRAINT `FK_salon_city` FOREIGN KEY (`id_city`) REFERENCES `city` (`id_city`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.salon: ~5 rows (approximately)
+-- Дамп данных таблицы travelservice.salon: ~5 rows (приблизительно)
 DELETE FROM `salon`;
 /*!40000 ALTER TABLE `salon` DISABLE KEYS */;
 INSERT INTO `salon` (`id_salon`, `id_city`, `address`) VALUES
@@ -403,7 +405,7 @@ INSERT INTO `salon` (`id_salon`, `id_city`, `address`) VALUES
 	(5, 4, '17 Mayakovsky Str.');
 /*!40000 ALTER TABLE `salon` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.total_order
+-- Дамп структуры для таблица travelservice.total_order
 DROP TABLE IF EXISTS `total_order`;
 CREATE TABLE IF NOT EXISTS `total_order` (
   `id_order` int(11) NOT NULL AUTO_INCREMENT,
@@ -423,12 +425,12 @@ CREATE TABLE IF NOT EXISTS `total_order` (
   CONSTRAINT `FK_total_order_tour_order` FOREIGN KEY (`id_tour_order`) REFERENCES `tour_order` (`id_tour_order`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.total_order: ~0 rows (approximately)
+-- Дамп данных таблицы travelservice.total_order: ~0 rows (приблизительно)
 DELETE FROM `total_order`;
 /*!40000 ALTER TABLE `total_order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `total_order` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.tour
+-- Дамп структуры для таблица travelservice.tour
 DROP TABLE IF EXISTS `tour`;
 CREATE TABLE IF NOT EXISTS `tour` (
   `id_tour` int(11) NOT NULL AUTO_INCREMENT,
@@ -440,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `tour` (
   PRIMARY KEY (`id_tour`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.tour: ~15 rows (approximately)
+-- Дамп данных таблицы travelservice.tour: ~15 rows (приблизительно)
 DELETE FROM `tour`;
 /*!40000 ALTER TABLE `tour` DISABLE KEYS */;
 INSERT INTO `tour` (`id_tour`, `destination`, `name`, `type`, `description`, `image`) VALUES
@@ -461,7 +463,7 @@ INSERT INTO `tour` (`id_tour`, `destination`, `name`, `type`, `description`, `im
 	(18, 'Sosny', 'Sosny Sanatorium', 'REST', 'Sosny is one of the best belausian sanatoriums with 40-years experience in  resort therapy.', 'http://res.cloudinary.com/javadevgroup/image/upload/v1497429713/tourpics/sosny_v9ielg.jpg');
 /*!40000 ALTER TABLE `tour` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.tour_offer
+-- Дамп структуры для таблица travelservice.tour_offer
 DROP TABLE IF EXISTS `tour_offer`;
 CREATE TABLE IF NOT EXISTS `tour_offer` (
   `id_tour_offer` int(11) NOT NULL AUTO_INCREMENT,
@@ -479,7 +481,7 @@ CREATE TABLE IF NOT EXISTS `tour_offer` (
   CONSTRAINT `FK_tour_offer_tour` FOREIGN KEY (`id_tour`) REFERENCES `tour` (`id_tour`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.tour_offer: ~15 rows (approximately)
+-- Дамп данных таблицы travelservice.tour_offer: ~15 rows (приблизительно)
 DELETE FROM `tour_offer`;
 /*!40000 ALTER TABLE `tour_offer` DISABLE KEYS */;
 INSERT INTO `tour_offer` (`id_tour_offer`, `id_tour`, `id_bus`, `date_start`, `date_end`, `passengers_per_order`, `price`, `hot`) VALUES
@@ -500,7 +502,7 @@ INSERT INTO `tour_offer` (`id_tour_offer`, `id_tour`, `id_bus`, `date_start`, `d
 	(25, 18, 1, '2017-07-21', '2017-06-28', 24, 95.00, 'NO');
 /*!40000 ALTER TABLE `tour_offer` ENABLE KEYS */;
 
--- Dumping structure for table travelservice.tour_order
+-- Дамп структуры для таблица travelservice.tour_order
 DROP TABLE IF EXISTS `tour_order`;
 CREATE TABLE IF NOT EXISTS `tour_order` (
   `id_tour_order` int(4) NOT NULL AUTO_INCREMENT,
@@ -512,7 +514,7 @@ CREATE TABLE IF NOT EXISTS `tour_order` (
   CONSTRAINT `FK_tour_order_tour_offer` FOREIGN KEY (`id_tour_offer`) REFERENCES `tour_offer` (`id_tour_offer`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table travelservice.tour_order: ~0 rows (approximately)
+-- Дамп данных таблицы travelservice.tour_order: ~0 rows (приблизительно)
 DELETE FROM `tour_order`;
 /*!40000 ALTER TABLE `tour_order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tour_order` ENABLE KEYS */;

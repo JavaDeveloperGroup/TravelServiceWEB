@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="/WEB-INF/outputCookieDataTag.tld" prefix="fdl" %>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -10,6 +11,19 @@
 	<title>Log in</title>
 </head>
 <body>
+<%-- <%@page import="by.htp.travelserviceWEB.util.EncryptionFdl"%>
+<% 	
+	Cookie[] cookies = request.getCookies();
+	if(cookies.length > 1) {
+		request.setAttribute("login", cookies[0].getValue());
+		request.setAttribute("password", EncryptionFdl.decrypt(cookies[1].getValue()));
+	}
+%> --%>
+<% 	
+	Cookie[] cookies = request.getCookies();
+	
+	request.setAttribute("cookies", cookies);
+%>
 	<div id="wrapper">
 		<header>
 			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
@@ -23,7 +37,7 @@
 		<jsp:include page="/jspf/menu.jspf" />
 		<hr>
 		<div id="heading">
-			<h2>Please, fill in the form to log in!</h2>
+			<h2>Please, fill in the form to log in!</h2>	
 		</div>
 		<div style="text-align: center;">
 			<font face="monospace" color="black" size="4"> <b>
@@ -35,9 +49,9 @@
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="log_in" />
 				<p>Login:</p>
-				<input type="text" name="login" value="user1" placeholder="LOGIN" />
+				<input type="text" name="login" value=<fdl:name value="login"/> <%-- "${login}" --%> /> <%-- <fdl:name value="login"/> --%>
 				<p>Password:</p>
-				<input type="password" name="password" value="user1Q@q" placeholder="PASSWORD"/> 
+				<input type="password" name="password" value=<fdl:name value="password"/> <%-- "${password}" --%>/> 
 				<br> 
 				<input type="submit" value="Log in" id="subbut"/>
 			</form>

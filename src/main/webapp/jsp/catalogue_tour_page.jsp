@@ -38,14 +38,12 @@
 					</form>
 				</c:if>
 				<c:if test="${user != null}">
-					<form name="sign_up"
-						action="${pageContext.request.contextPath}/Controller"
-						method="GET">
+					<form name="sign_up" action="${pageContext.request.contextPath}/Controller" method="GET">
+					<tr>
+						<a href="${pageContext.request.contextPath}/Controller?command=update_account_page"><td>${user.getLogin()}</td></a>
+					</tr>
 						<input type="hidden" value="log_out" name="command" />
-						<tr>
-							<td>${user.getLogin()}</td>
-						</tr>
-						<button type="submit">LOG OUT</button>
+						<button name="log_out" type="submit">LOG OUT</button>
 					</form>
 				</c:if>
 			</header>

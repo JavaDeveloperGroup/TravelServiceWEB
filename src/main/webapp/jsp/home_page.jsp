@@ -30,7 +30,7 @@
 				<c:if test="${user!=null}">				
 					<form name="sign_up" action="${pageContext.request.contextPath}/Controller" method="GET">
 					<tr>
-						<a href="${pageContext.request.contextPath}/Controller?command=update_account"><td>${user.getLogin()}</td></a>
+						<a href="${pageContext.request.contextPath}/Controller?command=update_account_page"><td>${user.getLogin()}</td></a>
 					</tr>
 						<input type="hidden" value="log_out" name="command" />
 						<button name="log_out" type="submit">LOG OUT</button>

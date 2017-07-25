@@ -4,6 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 import org.apache.log4j.Logger;
 
@@ -17,6 +18,7 @@ public class LogInAction implements CommandAction {
 	
 	private ServiceFactory serviceFactory; 
 	private static final Logger log = Logger.getLogger(LogInAction.class);
+	private Customer customer;
 	
 	public LogInAction() {
 		serviceFactory = ServiceFactory.getInstance();
@@ -25,7 +27,6 @@ public class LogInAction implements CommandAction {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String page;		
-		Customer customer;
 		Admin admin;
 		UserTO userDTO;
 		
@@ -47,18 +48,24 @@ public class LogInAction implements CommandAction {
 				return page;
 			}
 			httpSession.setAttribute("user", admin);
-		
+			log.info("Log in admin " + admin.getLogin());
 			page = "jsp/admin_page.jsp";
 		}
 		else {
 			httpSession.setAttribute("user", customer);
-			
-			response.addCookie(new Cookie("log", login));
-			response.addCookie(new Cookie("passw", passwordEncrypt));
-
+			//input data in Cookie
+			inputCookie(request, response);
+			log.info("Log in customer " + customer.getLogin());
 			page = "jsp/home_page.jsp";
 		}
-		log.info("Log in " + ((Customer)httpSession.getAttribute("user")).getLogin());
+		
+		System.out.println(request.getHeader("referer"));
+		
 		return page;
+	}
+	
+	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
+		response.addCookie(new Cookie("login", this.customer.getLogin()));
+		response.addCookie(new Cookie("password", this.customer.getPassword()));
 	}
 }

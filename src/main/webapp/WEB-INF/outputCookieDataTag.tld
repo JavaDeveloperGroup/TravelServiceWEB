@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd">
+  <tlib-version>1.0</tlib-version>
+    <short-name>fdl</short-name>
+    <uri>/WEB-INF/outputCookieDataTag</uri>
+    <tag>
+        <name>name</name>
+        <tag-class>by.htp.travelserviceWEB.OutputCookieDataTag</tag-class>
+        <body-content>empty</body-content>
+        <info>This Tag output data from Cookie file</info>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <description>Provide a display data</description>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

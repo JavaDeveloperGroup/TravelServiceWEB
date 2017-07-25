@@ -149,8 +149,8 @@
 						<div>
 							<font size="3"> 
 								<select id="driver_licence"	name='driver_licence' style="width: 492px;">
-									<option value="NO">No</option>
-									<option value="YES">Yes</option>
+									<option value="no">No</option>
+									<option value="yes">Yes</option>
 								</select>
 							</font>
 						</div> 

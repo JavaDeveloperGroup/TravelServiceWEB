@@ -87,6 +87,7 @@ final class InitSecurityCommand {
 		customerListCommand.add("auto_make_order");
 		customerListCommand.add("tour_make_order");
 		customerListCommand.add("log_out");
+		customerListCommand.add("update_account_page");
 		customerListCommand.add("update_account");
 	}
 	static {

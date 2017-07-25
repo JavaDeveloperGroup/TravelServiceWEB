@@ -27,15 +27,15 @@ public class Validator {
     /**
      * Checks input information for a new user account
      *
-     * @param login        LOGIN_REGEX
-     * @param password     PASSWORD_REGEX
-     * @param password
-     * @param name         STRING_REGEX
-     * @param surname      STRING_REGEX
+     * @param login           LOGIN_REGEX
+     * @param password        PASSWORD_REGEX
+     * @param passwordRepeat
+     * @param name            STRING_REGEX
+     * @param surname         STRING_REGEX
      * @param birthday
-     * @param passport     PASSPORT_REGEX
-     * @param email        EMAIL_REGEX
-     * @param phoneNumber  PHONE_NUMBER_REGEX
+     * @param passport        PASSPORT_REGEX
+     * @param email           EMAIL_REGEX
+     * @param phoneNumber     PHONE_NUMBER_REGEX
      * @return boolean true, if the information is correct
      * @throws IOException 
      * @throws ServletException 
