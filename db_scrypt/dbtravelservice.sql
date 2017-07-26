@@ -13,12 +13,10 @@
 
 
 -- Дамп структуры базы данных travelservice
-DROP DATABASE IF EXISTS `travelservice`;
 CREATE DATABASE IF NOT EXISTS `travelservice` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `travelservice`;
 
 -- Дамп структуры для таблица travelservice.admin
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id_admin` tinyint(4) NOT NULL AUTO_INCREMENT,
   `login` varchar(100) NOT NULL,
@@ -39,7 +37,6 @@ INSERT INTO `admin` (`id_admin`, `login`, `password`, `id_role`) VALUES
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.apartment
-DROP TABLE IF EXISTS `apartment`;
 CREATE TABLE IF NOT EXISTS `apartment` (
   `id_apartment` int(11) NOT NULL AUTO_INCREMENT,
   `id_hotel` smallint(6) NOT NULL,
@@ -88,7 +85,6 @@ INSERT INTO `apartment` (`id_apartment`, `id_hotel`, `id_room`, `room_capacity`,
 /*!40000 ALTER TABLE `apartment` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.auto
-DROP TABLE IF EXISTS `auto`;
 CREATE TABLE IF NOT EXISTS `auto` (
   `id_auto` mediumint(9) NOT NULL AUTO_INCREMENT,
   `id_brand` tinyint(4) NOT NULL,
@@ -122,7 +118,6 @@ INSERT INTO `auto` (`id_auto`, `id_brand`, `model`, `year`, `transmition`, `whee
 /*!40000 ALTER TABLE `auto` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.auto_order
-DROP TABLE IF EXISTS `auto_order`;
 CREATE TABLE IF NOT EXISTS `auto_order` (
   `id_auto_order` int(11) NOT NULL AUTO_INCREMENT,
   `id_rent_auto` int(11) NOT NULL,
@@ -143,7 +138,6 @@ DELETE FROM `auto_order`;
 /*!40000 ALTER TABLE `auto_order` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.body_type
-DROP TABLE IF EXISTS `body_type`;
 CREATE TABLE IF NOT EXISTS `body_type` (
   `id_body_type` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -161,7 +155,6 @@ INSERT INTO `body_type` (`id_body_type`, `name`) VALUES
 /*!40000 ALTER TABLE `body_type` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.brand
-DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
   `id_brand` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -178,7 +171,6 @@ INSERT INTO `brand` (`id_brand`, `name`) VALUES
 /*!40000 ALTER TABLE `brand` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.bus
-DROP TABLE IF EXISTS `bus`;
 CREATE TABLE IF NOT EXISTS `bus` (
   `id_bus` smallint(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -198,7 +190,6 @@ INSERT INTO `bus` (`id_bus`, `name`, `capacity`, `registration_number`) VALUES
 /*!40000 ALTER TABLE `bus` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.city
-DROP TABLE IF EXISTS `city`;
 CREATE TABLE IF NOT EXISTS `city` (
   `id_city` smallint(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -216,7 +207,6 @@ INSERT INTO `city` (`id_city`, `name`) VALUES
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.color
-DROP TABLE IF EXISTS `color`;
 CREATE TABLE IF NOT EXISTS `color` (
   `id_color` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -235,7 +225,6 @@ INSERT INTO `color` (`id_color`, `name`) VALUES
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.customer
-DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `id_customer` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(50) NOT NULL,
@@ -252,9 +241,11 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`id_customer`),
   UNIQUE KEY `passport` (`passport`),
   UNIQUE KEY `login` (`login`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `phone_number` (`phone_number`),
   KEY `FK_customer_role` (`id_role`),
   CONSTRAINT `FK_customer_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы travelservice.customer: ~3 rows (приблизительно)
 DELETE FROM `customer`;
@@ -262,12 +253,10 @@ DELETE FROM `customer`;
 INSERT INTO `customer` (`id_customer`, `login`, `password`, `name`, `surname`, `gender`, `birthday`, `passport`, `email`, `phone_number`, `driver_licence`, `id_role`) VALUES
 	(1, 'user0', 'ÛÜ©×ºq', 'Tsovak', 'Palakian', 'Male', '2017-06-05', 'sdf', 'tsovak@gmail.com', '375257018079', 'No', 1),
 	(2, 'user1', 'ÛÜ©×ºq', 'Zhenya', 'Popovich', 'Male', '2017-06-05', 'ds', 'zhenya@gmail.com', '375297261647', 'Yes', 1),
-	(3, 'user2', 'ÛÜ©×ºq', 'Dasha', 'Bortnik', 'Female', '2017-06-11', 'df3', 'dasha@gmail.com', '375299218769', 'Yes', 1),
-	(4, 'user4', 'ÛÜ©×ºq', 'Mhjbjb', 'Lhihiu', 'Male', '1999-06-30', 'AA2222222', 'po@mail.ru', '+375293333333', 'No', 1);
+	(3, 'user2', 'ÛÜ©×ºq', 'Dasha', 'Bortnik', 'Female', '2017-06-11', 'df3', 'dasha@gmail.com', '375299218769', 'Yes', 1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.hotel
-DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (
   `id_hotel` smallint(6) NOT NULL AUTO_INCREMENT,
   `id_city` smallint(6) NOT NULL,
@@ -296,7 +285,6 @@ INSERT INTO `hotel` (`id_hotel`, `id_city`, `title`, `stars`, `address`) VALUES
 /*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.hotel_order
-DROP TABLE IF EXISTS `hotel_order`;
 CREATE TABLE IF NOT EXISTS `hotel_order` (
   `id_hotel_order` int(11) NOT NULL AUTO_INCREMENT,
   `id_apartment` int(11) NOT NULL,
@@ -314,7 +302,6 @@ DELETE FROM `hotel_order`;
 /*!40000 ALTER TABLE `hotel_order` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.rent_auto
-DROP TABLE IF EXISTS `rent_auto`;
 CREATE TABLE IF NOT EXISTS `rent_auto` (
   `id_rent_auto` int(11) NOT NULL AUTO_INCREMENT,
   `id_auto` mediumint(9) NOT NULL,
@@ -341,7 +328,6 @@ INSERT INTO `rent_auto` (`id_rent_auto`, `id_auto`, `id_salon_start`, `status`, 
 /*!40000 ALTER TABLE `rent_auto` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.role
-DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
   `id_role` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
@@ -360,7 +346,6 @@ INSERT INTO `role` (`id_role`, `name`) VALUES
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.room
-DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
   `id_room` smallint(6) NOT NULL AUTO_INCREMENT,
   `tv` enum('Yes','No') NOT NULL DEFAULT 'Yes',
@@ -384,7 +369,6 @@ INSERT INTO `room` (`id_room`, `tv`, `balcony`, `conditioner`) VALUES
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.salon
-DROP TABLE IF EXISTS `salon`;
 CREATE TABLE IF NOT EXISTS `salon` (
   `id_salon` smallint(6) NOT NULL AUTO_INCREMENT,
   `id_city` smallint(6) NOT NULL,
@@ -406,7 +390,6 @@ INSERT INTO `salon` (`id_salon`, `id_city`, `address`) VALUES
 /*!40000 ALTER TABLE `salon` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.total_order
-DROP TABLE IF EXISTS `total_order`;
 CREATE TABLE IF NOT EXISTS `total_order` (
   `id_order` int(11) NOT NULL AUTO_INCREMENT,
   `id_customer` int(11) NOT NULL,
@@ -431,7 +414,6 @@ DELETE FROM `total_order`;
 /*!40000 ALTER TABLE `total_order` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.tour
-DROP TABLE IF EXISTS `tour`;
 CREATE TABLE IF NOT EXISTS `tour` (
   `id_tour` int(11) NOT NULL AUTO_INCREMENT,
   `destination` varchar(500) NOT NULL,
@@ -464,7 +446,6 @@ INSERT INTO `tour` (`id_tour`, `destination`, `name`, `type`, `description`, `im
 /*!40000 ALTER TABLE `tour` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.tour_offer
-DROP TABLE IF EXISTS `tour_offer`;
 CREATE TABLE IF NOT EXISTS `tour_offer` (
   `id_tour_offer` int(11) NOT NULL AUTO_INCREMENT,
   `id_tour` int(11) NOT NULL,
@@ -503,7 +484,6 @@ INSERT INTO `tour_offer` (`id_tour_offer`, `id_tour`, `id_bus`, `date_start`, `d
 /*!40000 ALTER TABLE `tour_offer` ENABLE KEYS */;
 
 -- Дамп структуры для таблица travelservice.tour_order
-DROP TABLE IF EXISTS `tour_order`;
 CREATE TABLE IF NOT EXISTS `tour_order` (
   `id_tour_order` int(4) NOT NULL AUTO_INCREMENT,
   `id_tour_offer` int(4) NOT NULL,

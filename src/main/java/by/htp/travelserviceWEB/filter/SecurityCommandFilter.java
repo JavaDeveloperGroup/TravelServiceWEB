@@ -49,9 +49,9 @@ public class SecurityCommandFilter implements Filter {
 			} else {
 				((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 			}
-		} else if (1 == ((Customer)user).getRole() && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
+		} else if ("Customer".equals(user.getClass().getSimpleName()) && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else if (1 != ((Admin)user).getRole() && InitSecurityCommand.getInstance().initAdminCommand(command)) {
+		} else if ("Admin".equals(user.getClass().getSimpleName()) && InitSecurityCommand.getInstance().initAdminCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else 
 			((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");

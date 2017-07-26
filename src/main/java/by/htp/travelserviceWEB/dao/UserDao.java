@@ -9,6 +9,6 @@ import by.htp.travelserviceWEB.entity.dto.UserTO;
 public interface UserDao {
 	Customer fetchCustomer(UserTO userDTO);
 	Admin fetchAdmin(UserTO userDTO);
-	Customer makeCustomer(Customer customer);
+	Customer makeCustomer(Customer customer) throws SQLException;
 	Customer updateAccountCustomer(Customer customer) throws SQLException;
 }

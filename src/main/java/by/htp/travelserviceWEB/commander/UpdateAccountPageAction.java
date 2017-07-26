@@ -15,8 +15,6 @@ public class UpdateAccountPageAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/update_account_page.jsp";
 		
-		System.out.println(request.getHeader("referer"));
-		
 		return page;
 	}
 

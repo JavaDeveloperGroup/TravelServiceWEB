@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Customer registrationCustomer(Customer customer) {
+	public Customer registrationCustomer(Customer customer) throws SQLException {
 		return daoFactory.getUserDao().makeCustomer(customer);
 	}
 

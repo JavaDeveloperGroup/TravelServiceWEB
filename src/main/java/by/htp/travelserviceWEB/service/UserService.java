@@ -11,6 +11,6 @@ public interface UserService {
 
 	Customer authoriseCustomer(UserTO userDTO);
 	Admin authoriseAdmin(UserTO userDTO);
-	Customer registrationCustomer(Customer customer);
+	Customer registrationCustomer(Customer customer) throws SQLException;
 	Customer updateAccountCustomer(Customer customer) throws SQLException;
 }

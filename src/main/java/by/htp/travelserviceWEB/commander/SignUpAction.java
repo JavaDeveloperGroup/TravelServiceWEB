@@ -1,6 +1,7 @@
 package by.htp.travelserviceWEB.commander;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -61,30 +62,33 @@ public class SignUpAction implements CommandAction {
 	}
 	
 	private String getPage(HttpServletRequest request, HttpServletResponse response) {
-		Customer customer;
+		Customer customer = null;
 		
 		httpSession = request.getSession();
-		customer = serviceFactory.getUserService().authoriseCustomer(userTO);	
-		if (customer == null) {
-			Admin admin = null;
-			admin = serviceFactory.getUserService().authoriseAdmin(userTO);
-			if (admin == null) {
+
+		Admin admin = null;
+		admin = serviceFactory.getUserService().authoriseAdmin(userTO);
+		if (admin == null) {
+			try {
 				customer = serviceFactory.getUserService().registrationCustomer(this.customer);
-				httpSession.setAttribute("user", customer);
-				//input data in Cookie
-				inputCookie(request, response);
-				page = "jsp/home_page.jsp";
-			}
-			else {
+			} catch (SQLException e) {
 				request.setAttribute("msg", "There is a user with such login.");
 				page = "jsp/sign_up_page.jsp";
+				log.info("Sign up is fail " + this.customer.getLogin());
+				return page;
 			}
+			httpSession.setAttribute("user", customer);
+			// input data in Cookie
+			inputCookie(request, response);
+			log.info("Sign up " + customer.getLogin());
+			page = "jsp/home_page.jsp";
+			return page;
 		} else {
 			request.setAttribute("msg", "There is a user with such login.");
 			page = "jsp/sign_up_page.jsp";
+			log.info("Sign up is fail " + this.customer.getLogin());
+			return page;
 		}
-		log.info("Sign up " + ((Customer)httpSession.getAttribute("user")).getLogin());
-		return page;
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {

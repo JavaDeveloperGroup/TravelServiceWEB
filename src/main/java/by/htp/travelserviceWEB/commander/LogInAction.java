@@ -27,7 +27,7 @@ public class LogInAction implements CommandAction {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String page;		
-		Admin admin;
+		Admin admin = null;
 		UserTO userDTO;
 		
 		//produce session
@@ -49,13 +49,14 @@ public class LogInAction implements CommandAction {
 			}
 			httpSession.setAttribute("user", admin);
 			log.info("Log in admin " + admin.getLogin());
-			page = "jsp/admin_page.jsp";
+			page = "jsp/home_page.jsp";
 		}
 		else {
 			httpSession.setAttribute("user", customer);
 			//input data in Cookie
 			inputCookie(request, response);
-			log.info("Log in customer " + customer.getLogin());
+			//log.info("Log in customer " + customer.getLogin());
+			log.info("Log out " + (admin != null ? "admin" + admin.getLogin() : "customer" + customer.getLogin()));
 			page = "jsp/home_page.jsp";
 		}
 		

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ public class UpdateAccountAction implements CommandAction {
 
 	private ServiceFactory serviceFactory;
 	private static final Logger log = Logger.getLogger(LogInAction.class);
+	private Customer customer;
 
 	public UpdateAccountAction() {
 		serviceFactory = ServiceFactory.getInstance();
@@ -28,10 +30,11 @@ public class UpdateAccountAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = request.getHeader("referer");
+		String page;
+		
+		System.out.println(request.getHeader("referer"));
 		
 		HttpSession httpSession = request.getSession();
-		Customer customer;
 		UserTO userTO;
 		
 		String login = request.getParameter("login");
@@ -56,9 +59,15 @@ public class UpdateAccountAction implements CommandAction {
 			userTO = new UserTO(login, password);
 			
 			customer = new Customer(((Customer)httpSession.getAttribute("user")).getCustomerId(), login, password, name, surname, gender, birthday, passport, email,
-					phoneNumber, driverLicence, ((Customer)httpSession.getAttribute("user")).getRole());
+					phoneNumber, driverLicence, ((Customer)httpSession.getAttribute("user")).getIdRole());
 			try {
 				serviceFactory.getUserService().updateAccountCustomer(customer);
+				httpSession.setAttribute("user", customer);
+				// input data in Cookie
+				inputCookie(request, response);
+				page = "jsp/home_page.jsp";
+				log.info("Update account " + customer.getLogin());
+				return page;
 			}
 			catch (SQLException e) {
 				page = "jsp/update_account_page.jsp";
@@ -66,8 +75,11 @@ public class UpdateAccountAction implements CommandAction {
 				log.info("Update account is fail " + ((Customer)httpSession.getAttribute("user")).getLogin());
 				return page;
 			}
-			log.info("Update account " + ((Customer)httpSession.getAttribute("user")).getLogin());
-			return page;
 		}
+	}
+	
+	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
+		response.addCookie(new Cookie("login", this.customer.getLogin()));
+		response.addCookie(new Cookie("password", this.customer.getPassword()));
 	}
 }

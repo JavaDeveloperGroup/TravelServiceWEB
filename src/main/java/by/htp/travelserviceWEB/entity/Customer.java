@@ -20,7 +20,7 @@ public class Customer implements Serializable {
 	public Customer() {}
 
 	public Customer(Integer customerId, String login, String password, String name, String surname, String gender,
-			String birthday, String passport, String email, String phoneNumber, String driverLicence, Integer role) {
+			String birthday, String passport, String email, String phoneNumber, String driverLicence, Integer idRole) {
 		this.customerId = customerId;
 		this.login = login;
 		this.password = password;
@@ -32,7 +32,7 @@ public class Customer implements Serializable {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.driverLicence = driverLicence;
-		this.idRole = role;
+		this.idRole = idRole;
 	}
 
 	public Integer getCustomerId() {
@@ -123,12 +123,12 @@ public class Customer implements Serializable {
 		this.driverLicence = driverLicence;
 	}
 
-	public Integer getRole() {
+	public Integer getIdRole() {
 		return idRole;
 	}
 
-	public void setRole(Integer role) {
-		this.idRole = role;
+	public void setIdRole(Integer idRole) {
+		this.idRole = idRole;
 	}
 	
 }

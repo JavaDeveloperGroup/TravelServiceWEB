@@ -29,6 +29,7 @@ public class UserDaoImpl implements UserDao {
 		return Singletone.INSTANCE;
 	}
 
+	@Override
 	public Customer fetchCustomer(UserTO userDTO) {
 
 		Customer customer = null;
@@ -67,6 +68,7 @@ public class UserDaoImpl implements UserDao {
 		return customer;
 	}
 
+	@Override
 	public Admin fetchAdmin(UserTO userDTO) {
 
 		Admin admin = null;
@@ -94,9 +96,10 @@ public class UserDaoImpl implements UserDao {
 		return admin;
 	}
 
-	public Customer makeCustomer(Customer customer) {
+	@Override
+	public Customer makeCustomer(Customer customer) throws SQLException {
 		
-		try {
+	
 			connection = connector.getConnection();
 			PreparedStatement ps = connection.prepareStatement("INSERT INTO travelservice.customer "
 				+ "(login, password, name, surname, gender, "
@@ -123,10 +126,7 @@ public class UserDaoImpl implements UserDao {
 			}
 			
 			connector.putBack(connection);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		return customer;
 	}
 
@@ -136,19 +136,20 @@ public class UserDaoImpl implements UserDao {
 		connection = connector.getConnection();
 		PreparedStatement ps = connection.prepareStatement("UPDATE `travelservice`.`customer` SET `password`=?, `name`=?, `surname`=?, `gender`=?, `birthday`=?, `passport`=?, `email`=?, `phone_driver`=?, `driver_licence`=? WHERE  `id_customer`=?;");
 		
-		ps.setString(1, customer.getLogin());
-		ps.setString(2, customer.getPassword());
-		ps.setString(3, customer.getName());
-		ps.setString(4, customer.getSurname());
-		ps.setString(5, customer.getGender());
-		ps.setString(6, customer.getBirthday());
-		ps.setString(7, customer.getPassport());
-		ps.setString(8, customer.getEmail());
-		ps.setString(9, customer.getPhoneNumber());
-		ps.setString(10, customer.getDriverLicence());
+		ps.setString(10, String.valueOf(customer.getCustomerId()));
+		ps.setString(1, customer.getPassword());
+		ps.setString(2, customer.getName());
+		ps.setString(3, customer.getSurname());
+		ps.setString(4, customer.getGender());
+		ps.setString(5, customer.getBirthday());
+		ps.setString(6, customer.getPassport());
+		ps.setString(7, customer.getEmail());
+		ps.setString(8, customer.getPhoneNumber());
+		ps.setString(9, customer.getDriverLicence());
 		
 		ps.executeUpdate(); 	
 		
+		connector.putBack(connection);
 		return customer;
 	}
 }
