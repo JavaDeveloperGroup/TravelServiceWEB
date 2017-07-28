@@ -15,15 +15,11 @@
 <% 	
 	Cookie[] cookies = request.getCookies();
 	if(cookies.length > 1) {
-		request.setAttribute("login", cookies[0].getValue());
-		request.setAttribute("passw", cookies[1].getValue());
+		request.setAttribute("log", cookies[0].getValue());
+		request.setAttribute("passw", EncryptionFdl.decoder(cookies[1].getValue()));
 	}
 %> --%>
 
-<% 	
-	Cookie[] cookies = request.getCookies();
-	request.setAttribute("cookies", cookies);
-%>
 	<div id="wrapper">
 		<header>
 			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
@@ -70,9 +66,9 @@
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="log_in" />
 				<p>Login:</p>
-				<input type="text" name="login" value=<fdl:name value1="log" value2="<%=request%>"/> <%-- "${login}" --%> /> <%-- <fdl:name value="login"/> --%>
+				<input type="text" name="login" value="<fdl:name value1="log" value2="<%=request%>"/>"/>
 				<p>Password:</p>
-				<input type="password" name="password" value=<fdl:name value1="passw" value2="<%=request%>"/><%-- "${password}" --%> /> 
+				<input type="password" name="password" value="<fdl:name value1="passw" value2="<%=request%>"/>"/> 
 				<br> 
 				<input type="submit" value="Log in" id="subbut"/>
 			</form>

@@ -12,11 +12,11 @@ public final class ReturnToTheOriginalPage {
 		String page;
 		HttpSession httpSession = request.getSession();
 		String nameCommandFromSession = (String) httpSession.getAttribute("originalPage");
-		if(nameCommandFromOriginalPage.matches(".*(command).*")) {
-			page = new String(new StringBuffer().append("jsp/").append(nameCommandFromOriginalPage.substring(55)).append(".jsp"));
-		}
-		else if(nameCommandFromSession != null) {
+		if(nameCommandFromSession != null) {
 			page = nameCommandFromSession;
+		}
+		else if(nameCommandFromOriginalPage.matches(".*(command).*")) {
+			page = new String(new StringBuffer().append("jsp/").append(nameCommandFromOriginalPage.substring(55)).append(".jsp"));
 		}
 		else
 			page = "jsp/home_page.jsp";

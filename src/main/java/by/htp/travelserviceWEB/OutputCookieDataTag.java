@@ -40,16 +40,20 @@ public final class OutputCookieDataTag extends  TagSupport implements DynamicAtt
     			if(login != null) {
     				value = cookies[0].getValue();
     			}
-    			else if("passw" != null) {
+    			else if(password != null) {
     				value = EncryptionFdl.decrypt(cookies[1].getValue());
     			}
     		}
-    		login = null;
-    		password = null;
-            pageContext.getOut().print(value);
+    		if(value != null) {
+    			pageContext.getOut().print(value);
+    		}
         } catch(IOException ioException) {
             throw new JspException("Error: " + ioException.getMessage());
         }       
+        finally {
+        	login = null;
+    		password = null;
+		}
         return SKIP_BODY;
     }
 	
