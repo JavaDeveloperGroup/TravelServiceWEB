@@ -15,6 +15,7 @@ import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.dto.UserTO;
 import by.htp.travelserviceWEB.service.factory.ServiceFactory;
 import by.htp.travelserviceWEB.util.EncryptionFdl;
+import by.htp.travelserviceWEB.util.ReturnToTheOriginalPage;
 import by.htp.travelserviceWEB.util.Validator;
 
 public class UpdateAccountAction implements CommandAction {
@@ -31,8 +32,6 @@ public class UpdateAccountAction implements CommandAction {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String page;
-		
-		System.out.println(request.getHeader("referer"));
 		
 		HttpSession httpSession = request.getSession();
 		UserTO userTO;
@@ -65,7 +64,7 @@ public class UpdateAccountAction implements CommandAction {
 				httpSession.setAttribute("user", customer);
 				// input data in Cookie
 				inputCookie(request, response);
-				page = "jsp/home_page.jsp";
+				page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
 				log.info("Update account " + customer.getLogin());
 				return page;
 			}

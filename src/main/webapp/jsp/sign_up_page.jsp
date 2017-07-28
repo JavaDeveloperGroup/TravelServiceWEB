@@ -23,7 +23,28 @@
 				<button type="submit">SIGN IN</button>
 			</form>
 		</header>
-		<jsp:include page="/jspf/menu.jspf" />
+		<hr>
+		<div class="menu_center">
+			<nav>
+				<ul class="top-menu">
+					<li id="about"><a href="/home/">ABOUT US</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=tour_catalogue_page">TOUR
+							CATALOGUE</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue_page">HOTEL
+							CATALOGUE</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=auto_catalogue_page">CAR
+							CATALOGUE</a></li>
+					<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
+				</ul>
+				<select id="lang">
+					<option value="RU">RUSSIAN</option>
+					<option selected value="EN"€>ENGLISH</option>
+				</select>
+			</nav>
+		</div>
 		<hr>
 		<div id="heading">
 			<h2><!--<fmt:message key="sign_up_invitation" />--> Please, fill in the form to sign up!</h2>

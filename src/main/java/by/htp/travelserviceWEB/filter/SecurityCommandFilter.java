@@ -80,9 +80,9 @@ final class InitSecurityCommand {
 	}
 	
 	static {
-		customerListCommand.add("hotel_catalog_page");
-		customerListCommand.add("auto_catalog_page");
-		customerListCommand.add("tour_catalog_page");
+		customerListCommand.add("hotel_catalogue_page");
+		customerListCommand.add("auto_catalogue_page");
+		customerListCommand.add("tour_catalogue_page");
 		customerListCommand.add("hotel_make_order");
 		customerListCommand.add("auto_make_order");
 		customerListCommand.add("tour_make_order");
@@ -91,18 +91,18 @@ final class InitSecurityCommand {
 		customerListCommand.add("update_account");
 	}
 	static {
-		guestListCommand.add("catalog_hotel_page");
-		guestListCommand.add("catalog_auto_page");
-		guestListCommand.add("catalog_tour_page");
+		guestListCommand.add("hotel_catalogue_page");
+		guestListCommand.add("auto_catalogue_page");
+		guestListCommand.add("tour_catalogue_page");
 		guestListCommand.add("log_in_page");
 		guestListCommand.add("sign_up_page");
 		guestListCommand.add("log_in");
 		guestListCommand.add("sign_up");
 	}
 	static {
-		adminListCommand.add("catalog_hotel_page");
-		adminListCommand.add("catalog_auto_page");
-		adminListCommand.add("catalog_tour_page");
+		adminListCommand.add("hotel_catalogue_page");
+		adminListCommand.add("auto_catalogue_page");
+		adminListCommand.add("tour_catalogue_page");
 		adminListCommand.add("admin_page");
 		adminListCommand.add("log_out");
 	}

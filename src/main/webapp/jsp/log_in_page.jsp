@@ -16,12 +16,12 @@
 	Cookie[] cookies = request.getCookies();
 	if(cookies.length > 1) {
 		request.setAttribute("login", cookies[0].getValue());
-		request.setAttribute("password", EncryptionFdl.decrypt(cookies[1].getValue()));
+		request.setAttribute("passw", cookies[1].getValue());
 	}
 %> --%>
+
 <% 	
 	Cookie[] cookies = request.getCookies();
-	
 	request.setAttribute("cookies", cookies);
 %>
 	<div id="wrapper">
@@ -34,7 +34,28 @@
 				<button type="submit">SIGN UP</button>
 			</form>
 		</header>
-		<jsp:include page="/jspf/menu.jspf" />
+		<hr>
+		<div class="menu_center">
+			<nav>
+				<ul class="top-menu">
+					<li id="about"><a href="/home/">ABOUT US</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=tour_catalogue_page">TOUR
+							CATALOGUE</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue_page">HOTEL
+							CATALOGUE</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=auto_catalogue_page">CAR
+							CATALOGUE</a></li>
+					<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
+				</ul>
+				<select id="lang">
+					<option value="RU">RUSSIAN</option>
+					<option selected value="EN">ENGLISH</option>
+				</select>
+			</nav>
+		</div>s
 		<hr>
 		<div id="heading">
 			<h2>Please, fill in the form to log in!</h2>	
@@ -49,9 +70,9 @@
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="log_in" />
 				<p>Login:</p>
-				<input type="text" name="login" value=<fdl:name value="login"/> <%-- "${login}" --%> /> <%-- <fdl:name value="login"/> --%>
+				<input type="text" name="login" value=<fdl:name value1="log" value2="<%=request%>"/> <%-- "${login}" --%> /> <%-- <fdl:name value="login"/> --%>
 				<p>Password:</p>
-				<input type="password" name="password" value=<fdl:name value="password"/> <%-- "${password}" --%>/> 
+				<input type="password" name="password" value=<fdl:name value1="passw" value2="<%=request%>"/><%-- "${password}" --%> /> 
 				<br> 
 				<input type="submit" value="Log in" id="subbut"/>
 			</form>

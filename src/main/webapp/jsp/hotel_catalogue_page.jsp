@@ -1,19 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<link href="${pageContext.request.contextPath}/css/catalogue.css"
-	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/menu.css"
-	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/catalogue.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/menu.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/slider.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
-<title>Tour page</title>
+<title>Hotel page</title>
 </head>
 <body>
 	<div>
@@ -21,18 +18,14 @@
 			<header>
 				<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img
 					src="${pageContext.request.contextPath}/image/logoF.png"
-					width="180"></a>
+					width="180"> </a>
 				<c:if test="${user == null}">
-					<form name="sign_in"
-						action="${pageContext.request.contextPath}/Controller"
-						method="GET">
+					<form name="sign_in" action="${pageContext.request.contextPath}/Controller" method="GET">
 						<input type="hidden" value="log_in_page" name="command" />
 						<button type="submit">SIGN IN</button>
 					</form>
 
-					<form name="sign_up"
-						action="${pageContext.request.contextPath}/Controller"
-						method="GET">
+					<form name="sign_up" action="${pageContext.request.contextPath}/Controller"	method="GET">
 						<input type="hidden" value="sign_up_page" name="command" />
 						<button type="submit">SIGN UP</button>
 					</form>
@@ -47,35 +40,43 @@
 					</form>
 				</c:if>
 			</header>
-			<jsp:include page="/jspf/menu.jspf" />
+			<hr>
+			<div class="menu_center">
+				<nav>
+					<ul class="top-menu">
+						<li id="about"><a href="/home/">ABOUT US</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/Controller?command=tour_catalogue_page">TOUR
+								CATALOGUE</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue_page">HOTEL
+								CATALOGUE</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/Controller?command=auto_catalogue_page">CAR
+								CATALOGUE</a></li>
+						<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
+					</ul>
+					<select id="lang">
+						<option value="RU">RUSSIAN</option>
+						<option selected value="EN">ENGLISH</option>
+					</select>
+				</nav>
+			</div>
 			<hr>
 			<div>
 				<aside>
 					<nav>
 						<div class="aside-menu">
-							<div class="head-cont">Travel type:</div>
-							<input type="checkbox" name="travel_type" value="rest"
-								id="travel1" /><label for="travel1">Rest</label><br /> <input
-								type="checkbox" name="travel_type" value="trip" id="travel2" /><label
-								for="travel2">Trip</label> <br /> <input type="checkbox"
-								name="travel_type" value="shop" id="travel3" /><label
-								for="travel3">Shop</label>
+							<div class="head-cont">Star rate:</div>
+							<input type="checkbox" name="id_stars" value="3" />3 &#9733; (Cat. B)</td> <br />
+							<input type="checkbox" name="id_stars" value="4" />4 &#9733; (Cat. A)</td> <br />
+							<input type="checkbox" name="id_stars" value="5" />5 &#9733; (Cat. De Luxe)</td>
 							<hr>
-							<div class="head-cont">Hot tours only:</div>
-							<input type="radio" name="hot" value="yes" id="hot1" /><label
-								for="hot1">Yes</label><br /> <input type="radio" name="hot"
-								value="no" id="hot2" /><label for="hot2">No</label><br />
-							<hr>
-							<div class="head-cont">Start date:</div>
-							<label for="start1">From</label>
-							<div>
-								<input type="date" name="calendar_start" id="start1">
-							</div>
-							<div>
-							<label for="start2">Till</label>
-							</div>
-							 <input type="date"
-								name="calendar_end" id="start2">
+							<div class="head-cont">Number of persons:</div>
+							<input type="radio" name="id_num_persons" value="1" />1 (single)</td> <br />
+							<input type="radio" name="id_num_persons" value="2" />2 (double)</td> <br />
+							<input type="radio" name="id_num_persons" value="3" />2 + 1	additional bed</td> <br />
+							<input type="radio" name="id_num_persons" value="4" />2 + 2	additional beds</td>
 							<hr>
 							<div class="head-cont">Price:</div>
 							<label for="minCost" >From:</label> 
@@ -88,31 +89,28 @@
 					</nav>
 				</aside>
 				<div>
-					<form action="${pageContext.request.contextPath}/Controller"
-						method="GET">
-						<input type="hidden" name="command" value="tour_make_order">
+					<form action="${pageContext.request.contextPath}/Controller" method="GET">
+						<input type="hidden" name="command" value="hotel_make_order">
 						<div>
 							<table>
 								<tr>
-									<th id="check">
+									<th id="ckeck">
 									<th id="photo">PHOTO</th>
-									<th id="col1">TOUR</th>
-									<th id="col6">TYPE</th>
-									<th id="col2">DESCRIPTION</th>
-									<th id="col3">DATES</th>
-									<th id="col4">FREE PLACES</th>
-									<th id="col5">PRICE</th>
+									<th class="col1">HOTEL</th>
+									<th class="col2">ADDRESS</th>
+									<th class="col3">STAR RATE</th>
+									<th class="col4">NUMBER OF PERSONS</th>
+									<th class="col5">PRICE</th>
 								</tr>
 								<c:forEach items="${list_apartment}" var="i">
 									<tr>
 										<td><input type="radio" name="id"
-											value="${i.getTourOfferId()}" /></td>
+											value="${i.getApartmentId()}"/></td>
 										<td><img src="${i.getImage()}"></td>
-										<td>${i.getTour().toStringTour()}</td>
-										<td>${i.getTour().getType()}</td>
-										<td>${i.getTour().getDescription()}</td>
-										<td>${i.toStringDates()}</td>
-										<td>${i.getPessengersPerOrder()}</td>
+										<td>${i.getHotel().getTitle()}</td>
+										<td>${i.getHotel().toStringAddress()}</td>
+										<td>${i.getHotel().getStars()}</td>
+										<td>${i.getRoom().getCapacity()}</td>
 										<td>${i.getPrice()}</td>
 									</tr>
 								</c:forEach>

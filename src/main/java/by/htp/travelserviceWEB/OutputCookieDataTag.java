@@ -5,33 +5,58 @@ import java.io.IOException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
+
+import org.apache.taglibs.standard.tag.common.core.OutSupport;
 
 import by.htp.travelserviceWEB.util.EncryptionFdl;
 
-public class OutputCookieDataTag extends TagSupport{
-
-	private static final long serialVersionUID = 886367702143691823L;
-	private String value;
+public final class OutputCookieDataTag extends  TagSupport implements DynamicAttributes{
 	
-	public void setValue(String nameData) {
-			if("login".equals(nameData)) 
-				value = "login";
-			else if ("password".equals(nameData))
-				value = "password";
-		
+	private String login;
+	private String password;
+	private String value;
+	private HttpServletRequest request;
+
+	@Override
+	public void setDynamicAttribute(String arg0, String arg1, Object arg2) throws JspException {
+		if("log".equals(arg2)) {
+			login = (String)arg2;
+		}
+		else if("passw".equals(arg2)) {
+			password = (String)arg2;
+		}
+		else if("value2".equals(arg1)) {
+			request = (HttpServletRequest)arg2;
+		}
 	}
 	
 	@Override
-	public int doStartTag() throws JspException {
+    public int doStartTag() throws JspException {
         try {
-            JspWriter out = pageContext.getOut();   
-            out.print(value);
-            
-        } catch(IOException ioe) {
-            throw new JspException("Error: " + ioe.getMessage());
+        	Cookie[] cookies = request.getCookies();
+    		if(cookies.length > 1) {
+    			if(login != null) {
+    				value = cookies[0].getValue();
+    			}
+    			else if("passw" != null) {
+    				value = EncryptionFdl.decrypt(cookies[1].getValue());
+    			}
+    		}
+    		login = null;
+    		password = null;
+            pageContext.getOut().print(value);
+        } catch(IOException ioException) {
+            throw new JspException("Error: " + ioException.getMessage());
         }       
         return SKIP_BODY;
     }
+	
+	/*public void setValue(Object...cokies) {
+		Cookie[] cookies = (Cookie[]) cokies;
+		if(cookies.length > 1) {
+			this.value = EncryptionFdl.decrypt(cookies[1].getValue());
+		}
+	}*/
 }

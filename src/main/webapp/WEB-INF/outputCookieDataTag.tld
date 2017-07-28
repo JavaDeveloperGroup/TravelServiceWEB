@@ -9,12 +9,13 @@
         <name>name</name>
         <tag-class>by.htp.travelserviceWEB.OutputCookieDataTag</tag-class>
         <body-content>empty</body-content>
+        <dynamic-attributes>true</dynamic-attributes>
         <info>This Tag output data from Cookie file</info>
-        <attribute>
+        <!-- <attribute>
             <name>value</name>
             <required>true</required>
             <description>Provide a display data</description>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute> -->
     </tag>
 </taglib>

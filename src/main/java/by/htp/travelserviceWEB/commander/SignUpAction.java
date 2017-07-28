@@ -16,6 +16,7 @@ import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.dto.UserTO;
 import by.htp.travelserviceWEB.service.factory.ServiceFactory;
 import by.htp.travelserviceWEB.util.EncryptionFdl;
+import by.htp.travelserviceWEB.util.ReturnToTheOriginalPage;
 import by.htp.travelserviceWEB.util.Validator;
 
 public class SignUpAction implements CommandAction {
@@ -81,7 +82,8 @@ public class SignUpAction implements CommandAction {
 			// input data in Cookie
 			inputCookie(request, response);
 			log.info("Sign up " + customer.getLogin());
-			page = "jsp/home_page.jsp";
+			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+			httpSession.setAttribute("originalPage",  null);
 			return page;
 		} else {
 			request.setAttribute("msg", "There is a user with such login.");
@@ -92,7 +94,7 @@ public class SignUpAction implements CommandAction {
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
-		response.addCookie(new Cookie("login", this.customer.getLogin()));
-		response.addCookie(new Cookie("password", this.customer.getPassword()));
+		response.addCookie(new Cookie("log", this.customer.getLogin()));
+		response.addCookie(new Cookie("passw", this.customer.getPassword()));
 	}
 }

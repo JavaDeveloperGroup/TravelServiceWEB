@@ -13,6 +13,7 @@ import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.dto.UserTO;
 import by.htp.travelserviceWEB.service.factory.ServiceFactory;
 import by.htp.travelserviceWEB.util.EncryptionFdl;
+import by.htp.travelserviceWEB.util.ReturnToTheOriginalPage;
 
 public class LogInAction implements CommandAction {
 	
@@ -49,24 +50,22 @@ public class LogInAction implements CommandAction {
 			}
 			httpSession.setAttribute("user", admin);
 			log.info("Log in admin " + admin.getLogin());
-			page = "jsp/home_page.jsp";
+			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+			httpSession.setAttribute("originalPage",  null);
 		}
 		else {
 			httpSession.setAttribute("user", customer);
 			//input data in Cookie
 			inputCookie(request, response);
-			//log.info("Log in customer " + customer.getLogin());
 			log.info("Log out " + (admin != null ? "admin" + admin.getLogin() : "customer" + customer.getLogin()));
-			page = "jsp/home_page.jsp";
+			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+			httpSession.setAttribute("originalPage",  null);
 		}
-		
-		System.out.println(request.getHeader("referer"));
-		
 		return page;
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
-		response.addCookie(new Cookie("login", this.customer.getLogin()));
-		response.addCookie(new Cookie("password", this.customer.getPassword()));
+		response.addCookie(new Cookie("log", this.customer.getLogin()));
+		response.addCookie(new Cookie("passw", this.customer.getPassword()));
 	}
 }

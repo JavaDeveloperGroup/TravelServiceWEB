@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.htp.travelserviceWEB.connector.OwnConnectionPool;
+import by.htp.travelserviceWEB.connector.ConnectionPool;
 import by.htp.travelserviceWEB.dao.UserDao;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
@@ -15,7 +15,7 @@ import by.htp.travelserviceWEB.entity.dto.UserTO;
 
 public class UserDaoImpl implements UserDao {
 
-	private OwnConnectionPool connector = OwnConnectionPool.getInstance();
+	private ConnectionPool connector = ConnectionPool.getInstance();
 	private Connection connection;
 
 	private UserDaoImpl() {
