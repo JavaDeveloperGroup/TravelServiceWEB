@@ -2,8 +2,12 @@ package by.htp.travelserviceWEB.entity.auto;
 
 import java.io.Serializable;
 
-public class Salon implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
 
+public class Salon implements Entity, Serializable {
+
+	private static final long serialVersionUID = 5541491372792262379L;
+	
 	private Integer salonId;
 	private String city;
 	private String address;
@@ -39,5 +43,4 @@ public class Salon implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 }

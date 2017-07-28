@@ -1,31 +1,29 @@
 package by.htp.travelserviceWEB.entity.dto;
 
-import java.sql.Date;
+import java.io.Serializable;
 
-import by.htp.travelserviceWEB.entity.Role;
+import by.htp.travelserviceWEB.entity.Entity;
 
-public class CustomerTO {
-
-	private Integer customerId;
-	private String login;
-	private transient String password;
+public class CustomerTO extends CustomerTOLP implements EntityTO, Serializable {
+	
+	private static final long serialVersionUID = -5155826831396257723L;
+	
 	private String name;
 	private String surname;
 	private String gender;
-	private Date birthday;
+	private String birthday;
 	private String passport;
 	private String email;
 	private String phoneNumber;
 	private String driverLicense;
-	private Role role;
+	private Integer roleId;
 	
 	public CustomerTO() {}
 
-	public CustomerTO(Integer customerId, String login, String password, String name, String surname, String gender,
-			Date birthday, String passport, String email, String phoneNumber, String driverLicense, Role role) {
-		this.customerId = customerId;
-		this.login = login;
-		this.password = password;
+	public CustomerTO(String login, String password, String name, String surname, String gender, String birthday,
+			String passport, String email, String phoneNumber, String driverLicense, Integer roleId) {
+		
+		super(login, password);
 		this.name = name;
 		this.surname = surname;
 		this.gender = gender;
@@ -34,31 +32,7 @@ public class CustomerTO {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.driverLicense = driverLicense;
-		this.role = role;
-	}
-
-	public Integer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+		this.roleId = roleId;
 	}
 
 	public String getName() {
@@ -85,11 +59,11 @@ public class CustomerTO {
 		this.gender = gender;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -125,16 +99,18 @@ public class CustomerTO {
 		this.driverLicense = driverLicense;
 	}
 
-	public Role getRole() {
-		return role;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 
-	
-	
-	
-
+	@Override
+	public String toString() {
+		return "CustomerTO [name=" + name + ", surname=" + surname + ", gender=" + gender + ", birthday=" + birthday
+				+ ", passport=" + passport + ", email=" + email + ", phoneNumber=" + phoneNumber + ", driverLicense="
+				+ driverLicense + ", roleId=" + roleId + "]" + super.toString();
+	}
 }

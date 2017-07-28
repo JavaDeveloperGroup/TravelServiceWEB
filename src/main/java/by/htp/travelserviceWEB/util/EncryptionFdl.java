@@ -7,6 +7,16 @@ public class EncryptionFdl{
 	private static final String KEY = "fiDeliO";
 	private static Integer dataLength = null;
 	
+	public static String encrypt(String data) {
+		String code = getEncryptData(dataInArrayInt(data), keyArrayInt());
+		return code;
+	}
+	
+	public static String decrypt(String data) {
+		data = getDecryptData(dataInArrayInt(data), keyArrayInt());
+		return data;
+	}
+	
 	private static int[] dataInArrayInt(String data) {
 		char[] dataArrayChar = data.toCharArray();
 		dataLength = dataArrayChar.length;
@@ -53,15 +63,5 @@ public class EncryptionFdl{
 			dataDecryptArrayChar[i] = (char) (dataArrayInt[i] - keyArrayInt[i]);
 		}
 		return new String(dataDecryptArrayChar);
-	}
-	
-	public static String encrypt(String data) {
-		String code = getEncryptData(dataInArrayInt(data), keyArrayInt());
-		return code;
-	}
-	
-	public static String decrypt(String data) {
-		data = getDecryptData(dataInArrayInt(data), keyArrayInt());
-		return data;
 	}
 }

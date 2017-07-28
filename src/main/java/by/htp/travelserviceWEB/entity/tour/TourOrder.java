@@ -2,18 +2,23 @@ package by.htp.travelserviceWEB.entity.tour;
 
 import java.io.Serializable;
 
-public class TourOrder implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
 
+public class TourOrder implements Entity, Serializable {
+	
+	private static final long serialVersionUID = -5081473045420067064L;
+	
 	private Integer tourOrderId;
-	private TourOffer tourOffer;
+	private Integer tourOfferId;
 	private Integer personNumber;
 	private Double orderPrice;
 	
 	public TourOrder() {}
 
-	public TourOrder(Integer tourOrderId, TourOffer tourOffer, Integer personNumber, Double orderPrice) {
+	public TourOrder(Integer tourOrderId, Integer tourOfferId, Integer personNumber, Double orderPrice) {
+		super();
 		this.tourOrderId = tourOrderId;
-		this.tourOffer = tourOffer;
+		this.tourOfferId = tourOfferId;
 		this.personNumber = personNumber;
 		this.orderPrice = orderPrice;
 	}
@@ -26,12 +31,12 @@ public class TourOrder implements Serializable {
 		this.tourOrderId = tourOrderId;
 	}
 
-	public TourOffer getTourOffer() {
-		return tourOffer;
+	public Integer getTourOfferId() {
+		return tourOfferId;
 	}
 
-	public void setTourOffer(TourOffer tourOffer) {
-		this.tourOffer = tourOffer;
+	public void setTourOfferId(Integer tourOfferId) {
+		this.tourOfferId = tourOfferId;
 	}
 
 	public Integer getPersonNumber() {
@@ -49,6 +54,4 @@ public class TourOrder implements Serializable {
 	public void setOrderPrice(Double orderPrice) {
 		this.orderPrice = orderPrice;
 	}
-	
-	
 }

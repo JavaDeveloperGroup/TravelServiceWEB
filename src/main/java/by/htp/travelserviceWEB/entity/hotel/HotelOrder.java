@@ -3,23 +3,29 @@ package by.htp.travelserviceWEB.entity.hotel;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class HotelOrder implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class HotelOrder implements Entity, Serializable {
+
+	private static final long serialVersionUID = -7482817679472393605L;
 	
 	private Integer hotelOrderId;
-	private Apartment apartment;
+	private Integer apartmentId;
 	private Date dateStart;
 	private Date dateEnd;
 	private Double orderPrice;
 	
 	public HotelOrder() {}
 
-	public HotelOrder(Integer hotelOrderId, Apartment apartment, Date dateStart, Date dateEnd, Double orderPrice) {
+	public HotelOrder(Integer hotelOrderId, Integer apartmentId, Date dateStart, Date dateEnd, Double orderPrice) {
+		super();
 		this.hotelOrderId = hotelOrderId;
-		this.apartment = apartment;
+		this.apartmentId = apartmentId;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.orderPrice = orderPrice;
 	}
+
 
 	public Integer getHotelOrderId() {
 		return hotelOrderId;
@@ -29,12 +35,12 @@ public class HotelOrder implements Serializable {
 		this.hotelOrderId = hotelOrderId;
 	}
 
-	public Apartment getApartment() {
-		return apartment;
+	public Integer getApartmentId() {
+		return apartmentId;
 	}
 
-	public void setApartment(Apartment apartment) {
-		this.apartment = apartment;
+	public void setApartmentId(Integer apartmentId) {
+		this.apartmentId = apartmentId;
 	}
 
 	public Date getDateStart() {
@@ -60,6 +66,4 @@ public class HotelOrder implements Serializable {
 	public void setOrderPrice(Double orderPrice) {
 		this.orderPrice = orderPrice;
 	}
-	
-	
 }

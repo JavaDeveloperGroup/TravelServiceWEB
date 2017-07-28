@@ -1,11 +1,12 @@
 package by.htp.travelserviceWEB.commander;
 
+import java.awt.List;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.LinkedList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,80 +15,68 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import by.htp.travelserviceWEB.entity.Admin;
-import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.Role;
-import by.htp.travelserviceWEB.entity.dto.UserTO;
-import by.htp.travelserviceWEB.service.factory.ServiceFactory;
-import by.htp.travelserviceWEB.util.EncryptionApache;
+import by.htp.travelserviceWEB.entity.Entity;
+import by.htp.travelserviceWEB.entity.EntityAll;
+import by.htp.travelserviceWEB.entity.dto.AdminTO;
+import by.htp.travelserviceWEB.entity.dto.CustomerTO;
+import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
+import by.htp.travelserviceWEB.service.CustomerService;
+import by.htp.travelserviceWEB.service.impl.CustomerServiceImpl;
 import by.htp.travelserviceWEB.util.EncryptionFdl;
 import by.htp.travelserviceWEB.util.Validator;
 
+import static by.htp.travelserviceWEB.util.ConstantValue.*;
+import static by.htp.travelserviceWEB.util.Formatter.*;
+
+
 public class SignUpAction implements CommandAction {
 
-	private ServiceFactory serviceFactory;
 	private static final Logger log = Logger.getLogger(LogInAction.class);
 	
 	private HttpSession httpSession;
-	private Customer customer;
-	private UserTO userTO;
+	private CustomerTO customerTO;
+	private CustomerTOLP customerTOLP;
 	private String page;
+	
+	private CustomerService customerService;
+	{
+		customerService = CustomerServiceImpl.getInstance();
+	}
 
 	public SignUpAction() {
-		serviceFactory = ServiceFactory.getInstance();
+		customerTO = new CustomerTO();
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login;
-		String password;
-		String passwordRepeat;
-		String name;
-		String surname;
-		String gender;
-		String birthday;
-		String passport;
-		String email;
-		String phoneNumber;
-		String driverLicence;
-		login = request.getParameter("login");
-		name = request.getParameter("name");
-		surname = request.getParameter("surname");
-		password = EncryptionFdl.encrypt(request.getParameter("password"));
-		passwordRepeat = EncryptionFdl.encrypt(request.getParameter("password_repeat"));
-		passport = request.getParameter("passport");
-		email = request.getParameter("email");
-		phoneNumber = request.getParameter("phone_number");
-		birthday = request.getParameter("birthday");
-		gender = request.getParameter("gender");
-		driverLicence = request.getParameter("driver_licence");
+	public String execute(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		
-		if (!Validator.registrationCustomer(login, password, passwordRepeat, name, surname, birthday, passport, email, phoneNumber)) {
+		customerTO = (CustomerTO) newInstance(request, customerTO);
+		customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
+		        
+        String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSinUp.get(listOfParametersForSinUp.size() - 1)));
+        
+		if (!Validator.registrationCustomer(customerTO, passwordRepeatEncrypt)) {
 			page = "jsp/sign_up_page.jsp";
 			request.setAttribute("msg", "Incorrect data entry.");
 			return page;
 		}
 		else {
-			//create userTO
-			userTO = new UserTO(login, password);
-			
-			customer = new Customer(null, login, password, name, surname, gender, birthday, passport, email,
-					phoneNumber, driverLicence, null);
+			customerTOLP = new CustomerTOLP(customerTO.getLogin(), customerTO.getPassword());
 			return getPage(request, response);
 		}
 	}
 	
 	private String getPage(HttpServletRequest request, HttpServletResponse response) {
-		Customer customer;
+		CustomerTO customerTO = null;
 		httpSession = request.getSession();
-		customer = serviceFactory.getUserService().authoriseCustomer(userTO);	
-		if (customer == null) {
-			Admin admin = null;
-			admin = serviceFactory.getUserService().authoriseAdmin(userTO);
-			if (admin == null) {
-				customer = serviceFactory.getUserService().registrationCustomer(this.customer);
-				httpSession.setAttribute("user", this.customer);
-				//input data in Cookie
+		customerTO = customerService.authoriseCustomer(customerTO, customerTOLP);	
+		if (customerTO == null) {
+			AdminTO adminTO = null;
+			adminTO = customerService.authoriseAdmin(adminTO, customerTOLP);
+			if (adminTO == null) {
+				customerTO = customerService.registrationCustomer(this.customerTO);
+				httpSession.setAttribute("user", this.customerTO);
 				inputCookie(request, response);
 				page = "jsp/home_page.jsp";
 			}
@@ -99,14 +88,38 @@ public class SignUpAction implements CommandAction {
 			request.setAttribute("msg", "There is a user with such login.");
 			page = "jsp/sign_up_page.jsp";
 		}
-		log.info("Sign up " + ((Customer)httpSession.getAttribute("user")).getLogin());
+		//log.info("Sign up " + ((Customer)httpSession.getAttribute("user")).getLogin());
 		return page;
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
-		Cookie cookieLog = new Cookie("login", this.customer.getLogin());
-		response.addCookie(cookieLog);
-		Cookie cookiePass = new Cookie("password", EncryptionFdl.encrypt(request.getParameter("password")));
-		response.addCookie(cookiePass);
+		response.addCookie(new Cookie("login", this.customerTO.getLogin()));
+		response.addCookie(new Cookie("password", this.customerTO.getPassword()));
+	}
+	
+	private Object newInstance(HttpServletRequest request, EntityAll entityAll) {
+		Object obj = null;
+		try {
+			obj =  getConstructor(entityAll)[1].newInstance(parameters(request, entityAll));
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return obj;
+	}
+	
+	private Object[] parameters(HttpServletRequest request, EntityAll entityAll) {
+		Object[] obj = new Object[getParameterTypes(entityAll).length];
+		System.out.println("obj.lenght " + obj.length);
+		int i = 0;
+		for (String value : listOfParametersForSinUp) {
+			if (i < listOfParametersForSinUp.size() - 1) {}
+			obj[i] = request.getParameter(value);
+			i++;
+		}
+		obj[10] = 1;
+		System.out.println("obj.lenght " + obj.length);
+		return obj;
 	}
 }

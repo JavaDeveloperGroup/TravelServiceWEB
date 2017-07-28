@@ -2,7 +2,11 @@ package by.htp.travelserviceWEB.entity.tour;
 
 import java.io.Serializable;
 
-public class Tour implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class Tour implements Entity, Serializable {
+
+	private static final long serialVersionUID = 7243675348959479801L;
 	
 	private Integer tourId;
 	private String destination;
@@ -69,5 +73,4 @@ public class Tour implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
 }

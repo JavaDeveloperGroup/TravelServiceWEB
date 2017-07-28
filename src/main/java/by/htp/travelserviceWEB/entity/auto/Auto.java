@@ -1,34 +1,41 @@
 package by.htp.travelserviceWEB.entity.auto;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.sql.Date;
+import java.util.List;
 
-public class Auto implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class Auto implements Entity, Serializable {
+
+	private static final long serialVersionUID = -4441682023481983611L;
 	
 	private Integer autoId;
-	private String title;
+	private Integer brandId;
 	private String model;
 	private Date year;
 	private String transmition;
-	private String wheelDdrive;
+	private String wheelDrive;
 	private String fuilType;
-	private Color color;
-	private BodyType bodyType;
+	private Integer colorId;
+	private Integer bodyTypeId;
 	private String image;
 	
 	public Auto() {}
-
-	public Auto(Integer autoId, String title, String model, Date year, String transmition, String wheelDdrive,
-			String fuilType, Color color, BodyType bodyType, String image) {
+	
+	public Auto(Integer autoId, Integer brandId, String model, Date year, String transmition, String wheelDrive,
+			String fuilType, Integer colorId, Integer bodyTypeId, String image) {
+		super();
 		this.autoId = autoId;
-		this.title = title;
+		this.brandId = brandId;
 		this.model = model;
 		this.year = year;
 		this.transmition = transmition;
-		this.wheelDdrive = wheelDdrive;
+		this.wheelDrive = wheelDrive;
 		this.fuilType = fuilType;
-		this.color = color;
-		this.bodyType = bodyType;
+		this.colorId = colorId;
+		this.bodyTypeId = bodyTypeId;
 		this.image = image;
 	}
 
@@ -40,12 +47,12 @@ public class Auto implements Serializable {
 		this.autoId = autoId;
 	}
 
-	public String getTitle() {
-		return title;
+	public Integer getBrandId() {
+		return brandId;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
 	}
 
 	public String getModel() {
@@ -72,12 +79,12 @@ public class Auto implements Serializable {
 		this.transmition = transmition;
 	}
 
-	public String getWheelDdrive() {
-		return wheelDdrive;
+	public String getWheelDrive() {
+		return wheelDrive;
 	}
 
-	public void setWheelDdrive(String wheelDdrive) {
-		this.wheelDdrive = wheelDdrive;
+	public void setWheelDrive(String wheelDrive) {
+		this.wheelDrive = wheelDrive;
 	}
 
 	public String getFuilType() {
@@ -88,20 +95,20 @@ public class Auto implements Serializable {
 		this.fuilType = fuilType;
 	}
 
-	public Color getColor() {
-		return color;
+	public Integer getColorId() {
+		return colorId;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
+	public void setColorId(Integer colorId) {
+		this.colorId = colorId;
 	}
 
-	public BodyType getBodyType() {
-		return bodyType;
+	public Integer getBodyTypeId() {
+		return bodyTypeId;
 	}
 
-	public void setBodyType(BodyType bodyType) {
-		this.bodyType = bodyType;
+	public void setBodyTypeId(Integer bodyTypeId) {
+		this.bodyTypeId = bodyTypeId;
 	}
 
 	public String getImage() {
@@ -111,5 +118,8 @@ public class Auto implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

@@ -2,7 +2,11 @@ package by.htp.travelserviceWEB.entity.auto;
 
 import java.io.Serializable;
 
-public class Color implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class Color implements Entity, Serializable {
+
+	private static final long serialVersionUID = 386245534420143167L;
 	
 	private Integer colorId;
 	private String name;

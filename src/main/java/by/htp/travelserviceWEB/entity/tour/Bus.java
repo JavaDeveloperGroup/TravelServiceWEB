@@ -2,7 +2,11 @@ package by.htp.travelserviceWEB.entity.tour;
 
 import java.io.Serializable;
 
-public class Bus implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class Bus implements Entity, Serializable {
+
+	private static final long serialVersionUID = -1758796477872868795L;
 	
 	private Integer busId;
 	private String name;

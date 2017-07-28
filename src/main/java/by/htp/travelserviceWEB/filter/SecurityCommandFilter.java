@@ -1,10 +1,8 @@
 package by.htp.travelserviceWEB.filter;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Set;
 
 import javax.servlet.Filter;
@@ -49,9 +47,9 @@ public class SecurityCommandFilter implements Filter {
 			} else {
 				((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 			}
-		} else if (1 == ((Customer)user).getRole() && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
+		} else if (1 == ((Customer)user).getRoleId() && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else if (1 != ((Admin)user).getRole() && InitSecurityCommand.getInstance().initAdminCommand(command)) {
+		} else if (1 != ((Admin)user).getRoleId() && InitSecurityCommand.getInstance().initAdminCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else 
 			((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");

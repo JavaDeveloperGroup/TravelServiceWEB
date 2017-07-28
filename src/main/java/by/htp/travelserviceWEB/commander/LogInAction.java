@@ -7,58 +7,62 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import by.htp.travelserviceWEB.entity.Admin;
-import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.dto.UserTO;
-import by.htp.travelserviceWEB.service.factory.ServiceFactory;
+import by.htp.travelserviceWEB.entity.dto.AdminTO;
+import by.htp.travelserviceWEB.entity.dto.CustomerTO;
+import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
+import by.htp.travelserviceWEB.service.CustomerService;
+import by.htp.travelserviceWEB.service.impl.CustomerServiceImpl;
 import by.htp.travelserviceWEB.util.EncryptionFdl;
 
 public class LogInAction implements CommandAction {
 	
-	private ServiceFactory serviceFactory; 
 	private static final Logger log = Logger.getLogger(LogInAction.class);
+	private CustomerTO customerTO;
 	
-	public LogInAction() {
-		serviceFactory = ServiceFactory.getInstance();
+	private CustomerService customerService;
+	{
+		customerService = CustomerServiceImpl.getInstance();
 	}
+	
+	public LogInAction() {}
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String page;		
-		Customer customer;
-		Admin admin;
-		UserTO userDTO;
+		AdminTO adminTO = null;
+		CustomerTOLP userDTO;
 		
-		//produce session
 		HttpSession httpSession = request.getSession();
 		
-		//create userTO
 		String login = request.getParameter("login");
 		String passwordEncrypt = EncryptionFdl.encrypt(request.getParameter("password"));
-		userDTO = new UserTO(login, passwordEncrypt);
+		userDTO = new CustomerTOLP(login, passwordEncrypt);
 	
-		customer = serviceFactory.getUserService().authoriseCustomer(userDTO);
+		customerTO = customerService.authoriseCustomer(customerTO, userDTO);
+		System.out.println(customerTO.getName());
 		
-		if (customer == null) {
-			admin = serviceFactory.getUserService().authoriseAdmin(userDTO);
-			if (admin == null) {
+		if (customerTO == null) {
+			adminTO = customerService.authoriseAdmin(adminTO, userDTO);
+			if (adminTO == null) {
 				request.setAttribute("msg", "There is no user with such login.");
 				page = "jsp/log_in_page.jsp";		
 				return page;
 			}
-			httpSession.setAttribute("user", admin);
-		
+			httpSession.setAttribute("user", adminTO);
+			log.info("Log in admin " + adminTO.getLogin());
 			page = "jsp/admin_page.jsp";
 		}
 		else {
-			httpSession.setAttribute("user", customer);
-			
-			response.addCookie(new Cookie("log", login));
-			response.addCookie(new Cookie("passw", passwordEncrypt));
-
+			httpSession.setAttribute("user", customerTO);
+			inputCookie(request, response);
+			log.info("Log in customer " + customerTO.getLogin());
 			page = "jsp/home_page.jsp";
 		}
-		log.info("Log in " + ((Customer)httpSession.getAttribute("user")).getLogin());
 		return page;
+	}
+	
+	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
+		response.addCookie(new Cookie("login", this.customerTO.getLogin()));
+		response.addCookie(new Cookie("password", this.customerTO.getPassword()));
 	}
 }

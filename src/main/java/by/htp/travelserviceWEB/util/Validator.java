@@ -7,7 +7,8 @@ import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+
+import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 
 /**
  * The class checks all input information
@@ -41,25 +42,29 @@ public class Validator {
      * @throws ServletException 
      */
     
-    public static boolean registrationCustomer(String login, String password, String passwordRepeat, String name, String surname, String birthday, String passport, String email, String phoneNumber) throws ServletException, IOException {
-    	String passw = EncryptionFdl.decrypt(password);
+    public static boolean registrationCustomer(CustomerTO customerTO, String passwordRepeat) 
+    		throws ServletException, IOException {
+    	
+    	String passw = EncryptionFdl.decrypt(customerTO.getPassword());
+    	
     	if (!passw.equals(EncryptionFdl.decrypt(passwordRepeat))) {
 			return false;
-		}
-		else if (!checkDate(birthday)) {
+		} else if (!checkDate(customerTO.getBirthday())) {
 			return false;
-		}
-		else if(null != login && null != password && null != name && null != surname && null != passport
-                && null != email && null != phoneNumber) {
-    		return Pattern.matches(LOGIN_REGEX, login)
+		} else if(null != customerTO.getLogin() && null != customerTO.getPassword() 
+					&& null != customerTO.getName() && null != customerTO.getSurname() 
+					&& null != customerTO.getPassport() && null != customerTO.getEmail() 
+					&& null != customerTO.getPhoneNumber()) {
+			
+    		return Pattern.matches(LOGIN_REGEX, customerTO.getLogin())
                     && Pattern.matches(PASSWORD_REGEX, passw)
-                    && Pattern.matches(STRING_REGEX, name)
-                    && Pattern.matches(STRING_REGEX, surname)
-                    && Pattern.matches(EMAIL_REGEX, email)
-                    && Pattern.matches(PASSPORT_REGEX, passport)
-                    && Pattern.matches(PHONE_NUMBER_REGEX, phoneNumber);
-    	}
-    	else {
+                    && Pattern.matches(STRING_REGEX, customerTO.getName())
+                    && Pattern.matches(STRING_REGEX, customerTO.getSurname())
+                    && Pattern.matches(EMAIL_REGEX, customerTO.getEmail())
+                    && Pattern.matches(PASSPORT_REGEX, customerTO.getPassport())
+                    && Pattern.matches(PHONE_NUMBER_REGEX, customerTO.getPhoneNumber());
+    		
+    	} else {
     		return false;
     	}
     }
@@ -68,16 +73,17 @@ public class Validator {
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 		long d1 = 0;
 		long d2 = 0;
+		
 		try {
 			d1 = formater.parse(birthday).getTime();
 			d2 = formater.parse(formater.format(new Date())).getTime();
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
+		
 		if (((18 * 365) + 4) > Math.abs((d2 - d1) / (1000 * 60 * 60 * 24)) && d1 < d2) {
 			return false;
-		}
-		else 
+		} else 
 			return true;
 	}
 }
