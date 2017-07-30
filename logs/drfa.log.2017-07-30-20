@@ -1,0 +1,9 @@
+XML: DRFA: 07/30/2017 20:48:39 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-6] INFO  - Log out customer user1
+XML: DRFA: 07/30/2017 20:48:41 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-2] INFO  - Log out customer user1
+XML: DRFA: 07/30/2017 20:48:45 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-4] INFO  - Log out customer user1
+XML: DRFA: 07/30/2017 20:48:48 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-7] INFO  - Log out customer user1
+XML: DRFA: 07/30/2017 20:49:04 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-2] INFO  - Log in admin hotel
+XML: DRFA: 07/30/2017 20:49:07 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-4] INFO  - Log out admin hotel
+XML: DRFA: 07/30/2017 20:58:35 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-6] INFO  - Log out customer user1
+XML: DRFA: 07/30/2017 20:58:44 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-10] INFO  - Log out customer user1
+XML: DRFA: 07/30/2017 20:58:54 by.htp.travelserviceWEB.commander.LogInAction:[http-nio-8080-exec-1] INFO  - Log out customer user1

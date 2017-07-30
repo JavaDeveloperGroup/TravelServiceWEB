@@ -56,11 +56,4 @@ public final class OutputCookieDataTag extends  TagSupport implements DynamicAtt
 		}
         return SKIP_BODY;
     }
-	
-	/*public void setValue(Object...cokies) {
-		Cookie[] cookies = (Cookie[]) cokies;
-		if(cookies.length > 1) {
-			this.value = EncryptionFdl.decrypt(cookies[1].getValue());
-		}
-	}*/
 }

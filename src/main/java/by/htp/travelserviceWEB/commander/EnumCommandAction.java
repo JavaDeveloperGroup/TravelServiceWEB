@@ -2,6 +2,7 @@ package by.htp.travelserviceWEB.commander;
 
 public enum EnumCommandAction {
 	
+	
 	LOG_IN {
 		@Override
 		public CommandAction getCommantAction() {

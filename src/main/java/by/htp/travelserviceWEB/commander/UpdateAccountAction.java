@@ -66,15 +66,14 @@ public class UpdateAccountAction implements CommandAction {
 				inputCookie(request, response);
 				page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
 				log.info("Update account " + customer.getLogin());
-				return page;
 			}
 			catch (SQLException e) {
 				page = "jsp/update_account_page.jsp";
 				request.setAttribute("msg", "There is a user with such data.");
 				log.info("Update account is fail " + ((Customer)httpSession.getAttribute("user")).getLogin());
-				return page;
 			}
 		}
+		return page;
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {

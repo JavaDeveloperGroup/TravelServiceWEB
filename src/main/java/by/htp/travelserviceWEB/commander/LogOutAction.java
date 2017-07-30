@@ -22,14 +22,12 @@ public class LogOutAction implements CommandAction {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
-		
-		//produce session
-		HttpSession httpSession = request.getSession();
+		String page = "jsp/home_page.jsp";
 
+		HttpSession httpSession = request.getSession();
 		Object user = httpSession.getAttribute("user");
 		
-		log.info("Log out " + ("Admin".equals(user.getClass().getSimpleName()) ? "admin " + ((Admin)user).getLogin() : "customer" + ((Customer)user).getLogin()));
+		log.info("Log out " + ("Admin".equals(user.getClass().getSimpleName()) ? "admin " + ((Admin)user).getLogin() : "customer " + ((Customer)user).getLogin()));
 
 		request.getSession(false);
 		if (request.getSession() != null) {

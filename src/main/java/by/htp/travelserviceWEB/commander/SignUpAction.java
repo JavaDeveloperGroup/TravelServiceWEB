@@ -73,10 +73,7 @@ public class SignUpAction implements CommandAction {
 			try {
 				customer = serviceFactory.getUserService().registrationCustomer(this.customer);
 			} catch (SQLException e) {
-				request.setAttribute("msg", "There is a user with such login.");
-				page = "jsp/sign_up_page.jsp";
-				log.info("Sign up is fail " + this.customer.getLogin());
-				return page;
+				page = getPageOnErrorInputData(request);
 			}
 			httpSession.setAttribute("user", customer);
 			// input data in Cookie
@@ -84,13 +81,17 @@ public class SignUpAction implements CommandAction {
 			log.info("Sign up " + customer.getLogin());
 			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
 			httpSession.setAttribute("originalPage",  null);
-			return page;
 		} else {
-			request.setAttribute("msg", "There is a user with such login.");
-			page = "jsp/sign_up_page.jsp";
-			log.info("Sign up is fail " + this.customer.getLogin());
-			return page;
+			page = getPageOnErrorInputData(request);
 		}
+		return page;
+	}
+	
+	private String getPageOnErrorInputData(HttpServletRequest request){
+		request.setAttribute("msg", "There is a user with such login.");
+		page = "jsp/sign_up_page.jsp";
+		log.info("Sign up is fail " + this.customer.getLogin());
+		return page;
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {

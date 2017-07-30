@@ -49,18 +49,16 @@ public class LogInAction implements CommandAction {
 				return page;
 			}
 			httpSession.setAttribute("user", admin);
-			log.info("Log in admin " + admin.getLogin());
-			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
-			httpSession.setAttribute("originalPage",  null);
 		}
 		else {
 			httpSession.setAttribute("user", customer);
 			//input data in Cookie
 			inputCookie(request, response);
-			log.info("Log out " + (admin != null ? "admin" + admin.getLogin() : "customer" + customer.getLogin()));
-			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
-			httpSession.setAttribute("originalPage",  null);
 		}
+		
+		page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+		httpSession.setAttribute("originalPage",  null);
+		log.info("Log in " + (admin != null ? "admin " + admin.getLogin() : "customer " + customer.getLogin()));
 		return page;
 	}
 	
