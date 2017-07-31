@@ -73,7 +73,7 @@ public class SignUpAction implements CommandAction {
 			try {
 				customer = serviceFactory.getUserService().registrationCustomer(this.customer);
 			} catch (SQLException e) {
-				page = getPageOnErrorInputData(request);
+				return getPageOnErrorInputData(request);
 			}
 			httpSession.setAttribute("user", customer);
 			// input data in Cookie

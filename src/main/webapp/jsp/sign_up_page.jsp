@@ -47,7 +47,7 @@
 		</div>
 		<hr>
 		<div id="heading">
-			<h2><!--<fmt:message key="sign_up_invitation" />--> Please, fill in the form to sign up!</h2>
+			<h2>Please, fill in the form to sign up!</h2>
 		</div>
 		<div id="heading">
 			<font face="monospace" color="black" size="4"> <b> 
@@ -58,10 +58,10 @@
 		<div class='reg-form'>
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="sign_up" />
-
+				
 				<div class='form-row'>
 					<label for="name"> <span>Name</span> <input
-						type='text'  id="name" name='name' required>
+						type='text' value="Yauheni" id="name" name='name' required>
 						<ul class="input-requirements">
 							<li>Should be at least 1 character long.</li>
 							<li>Should only contain letters.</li>
@@ -69,7 +69,7 @@
 						</ul>
 					</label>
 				</div>
-
+				
 				<div class='form-row'>
 					<label for="surname"> <span>Surname </span> <input
 						type='text' value="Papovich" id="surname" name='surname' required>
@@ -91,8 +91,8 @@
 								characters)</li>
 						</ul>
 					</label>
-				</div>
-
+				</div>			
+				
 				<div class='form-row'>
 					<label for="password"> <span>Password</span> <input
 						type="password" value="user1Q@q" name='password'
@@ -105,14 +105,15 @@
 							<li>Contains a special character (e.g. @ !)</li>
 						</ul>
 					</label>
-				</div> 
+				</div>
+				
 				<div class='form-row'>
 					<label for="password_repeat"> <span> Repeat Password
 					</span> <input type="password" value="user1Q@q" name='password_repeat'
 						id="password_repeat" required>
 					</label>
 				</div>
-				
+
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 
 				<div class='form-row' id="selectgender">
