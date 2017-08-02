@@ -4,10 +4,12 @@ import java.io.Serializable;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
-public class CustomerTO extends CustomerTOLP implements EntityTO, Serializable {
+public class CustomerTO implements Entity, Serializable {
 	
 	private static final long serialVersionUID = -5155826831396257723L;
 	
+	private String login;
+	private String password;
 	private String name;
 	private String surname;
 	private String gender;
@@ -20,10 +22,13 @@ public class CustomerTO extends CustomerTOLP implements EntityTO, Serializable {
 	
 	public CustomerTO() {}
 
-	public CustomerTO(String login, String password, String name, String surname, String gender, String birthday,
-			String passport, String email, String phoneNumber, String driverLicense, Integer roleId) {
+	public CustomerTO(String login, String password, String name, 
+					  String surname, String gender, String birthday,
+					  String passport, String email, String phoneNumber, 
+					  String driverLicense, Integer roleId) {
 		
-		super(login, password);
+		this.login = login;
+		this.password = password;
 		this.name = name;
 		this.surname = surname;
 		this.gender = gender;
@@ -33,6 +38,22 @@ public class CustomerTO extends CustomerTOLP implements EntityTO, Serializable {
 		this.phoneNumber = phoneNumber;
 		this.driverLicense = driverLicense;
 		this.roleId = roleId;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
@@ -105,12 +126,5 @@ public class CustomerTO extends CustomerTOLP implements EntityTO, Serializable {
 
 	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
-	}
-
-	@Override
-	public String toString() {
-		return "CustomerTO [name=" + name + ", surname=" + surname + ", gender=" + gender + ", birthday=" + birthday
-				+ ", passport=" + passport + ", email=" + email + ", phoneNumber=" + phoneNumber + ", driverLicense="
-				+ driverLicense + ", roleId=" + roleId + "]" + super.toString();
 	}
 }

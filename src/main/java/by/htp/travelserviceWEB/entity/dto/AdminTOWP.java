@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
-public class AdminTO implements EntityTO, Serializable {
+
+public class AdminTOWP implements Entity, Serializable {
 	
 	private static final long serialVersionUID = -6191394259691941922L;
 	
@@ -12,9 +13,9 @@ public class AdminTO implements EntityTO, Serializable {
 	private String login;
 	private Integer roleId;
 	
-	public AdminTO() {}
+	public AdminTOWP() {}
 	
-	public AdminTO(Integer adminId, String login, Integer roleId) {
+	public AdminTOWP(Integer adminId, String login, Integer roleId) {
 		this.adminId = adminId;
 		this.login = login;
 		this.roleId = roleId;
@@ -43,4 +44,11 @@ public class AdminTO implements EntityTO, Serializable {
 	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
+
+	@Override
+	public String toString() {
+		return "AdminTOWP [adminId=" + adminId + ", login=" + login + ", roleId=" + roleId + "]";
+	}
+	
+	
 }

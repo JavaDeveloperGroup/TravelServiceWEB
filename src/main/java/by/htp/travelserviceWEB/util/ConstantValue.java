@@ -12,19 +12,19 @@ public final class ConstantValue {
 	public static final String PAGE_CATALOG_HOTEL = "/catalog_hotel.jsp";
 	public static final String PAGE_CATALOG_AUTO = "/catalog_auto.jsp";
 	public static final String PAGE_CATALOG_TOUR = "/catalog_tour.jsp";
-	public static final List<String> listOfParametersForSinUp = new LinkedList<>();
+	public static final List<String> listOfParametersForSignUp = new LinkedList<>();
 	static {
-		listOfParametersForSinUp.add("login");		
-		listOfParametersForSinUp.add("password");
-		listOfParametersForSinUp.add("name");
-		listOfParametersForSinUp.add("surname");
-		listOfParametersForSinUp.add("gender");
-		listOfParametersForSinUp.add("birthday");
-		listOfParametersForSinUp.add("passport");
-		listOfParametersForSinUp.add("email");
-		listOfParametersForSinUp.add("phone_number");
-		listOfParametersForSinUp.add("driver_licence");
-		listOfParametersForSinUp.add("password_repeat");
+		listOfParametersForSignUp.add("login");		
+		listOfParametersForSignUp.add("password");
+		listOfParametersForSignUp.add("name");
+		listOfParametersForSignUp.add("surname");
+		listOfParametersForSignUp.add("gender");
+		listOfParametersForSignUp.add("birthday");
+		listOfParametersForSignUp.add("passport");
+		listOfParametersForSignUp.add("email");
+		listOfParametersForSignUp.add("phone_number");
+		listOfParametersForSignUp.add("driver_licence");
+		listOfParametersForSignUp.add("password_repeat");
 	}
 	
 	

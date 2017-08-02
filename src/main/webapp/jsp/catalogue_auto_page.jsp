@@ -14,8 +14,13 @@
 	rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
+<link
+	href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png"
+	rel="shortcut icon" type="image/png">
 <title>Auto catalogue</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+	charset="utf-8"></script>
 </head>
 <body>
 	<div>
@@ -104,42 +109,17 @@
 					</nav>
 				</aside>
 				<div>
-					<form action="${pageContext.request.contextPath}/Controller" method="GET">
-						<input type="hidden" name="command" value="auto_make_order">
-						<div>
-							<table>
-								<tr>
-									<th id="ckeck">
-									<th id="photo">PHOTO</th>
-									<th class="col1">MODEL</th>
-									<th class="col2">CHARACTERISTIC</th>
-									<th class="col4">SALON</th>
-									<th class="col5">PRICE</th>
-								</tr>
-								<c:forEach items="${list_rentAuto}" var="i">
-									<tr>
-										<td><input type="radio" name="id"
-											value="${i.getRentAutoId()}"/></td>
-										<td><img src="${i.getImage()}"></td>
-										<td>${i.getAuto().toStringModel()}</td>
-										<td>${i.getAuto().toStringCharacteristic()}</td>
-										<td>${i.getSalon().toStringAddress()}</td>
-										<td>${i.getPrice()}</td>
-									</tr>
-								</c:forEach>
-							</table>
-							<div style="text-align: center">
-								<input value="ORDER" type="submit">
-							</div>
-						</div>
-					</form>
+					<h2>The table will be here someday!</h2>
 				</div>
+
 			</div>
 		</div>
-		<div id="foot"> 
+		<div id="foot">
 			<jsp:include page="/jspf/footer.jspf" />
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/js/slider.js" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/js/slider.js"
+		charset="utf-8"></script>
+
 </body>
 </html>

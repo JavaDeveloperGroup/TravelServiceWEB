@@ -9,7 +9,7 @@ import by.htp.travelserviceWEB.connector.ConnectionPool;
 import by.htp.travelserviceWEB.dao.CustomerDao;
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.dto.AdminTO;
+import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.sqlbuilder.Query;
@@ -35,83 +35,54 @@ public class CustomerDaoImpl implements CustomerDao {
 		return Singletone.INSTANCE;
 	}
 
-	public CustomerTO fetchCustomer(CustomerTO customerTO, CustomerTOLP userDTO) {
-		CustomerTO customer1 = null;
+	public Customer fetchCustomer(CustomerTOLP customerTOLP) {	
+		Customer customer = new Customer();
 
 		try {
-			connection = connector.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
-					"SELECT * FROM customer where customer.login = ? and customer.password = ?");
-			ps.setString(1, userDTO.getLogin());
-			ps.setString(2, userDTO.getPassword());
-			ResultSet rs = ps.executeQuery();
+			Select select = new QueryBuilder().selectFetchUser(customer, customerTOLP).fetchCustomerOrAdmin();
+			ResultSet rs = select.resultSet(select.toString());
 
-			while (rs.next()) {
-				String login;
-				String name;
-				String surname;
-				String driverLicence;
-				Integer idRole;
+			customer = (Customer)query.getInstanceWithDataFromSQL(rs, customer);
 
-				login = rs.getString(2);
-				name = rs.getString(4);
-				surname = rs.getString(5);
-				driverLicence = rs.getString(11);
-				idRole = rs.getInt(12);
-				
-				customer1 = new CustomerTO(login, null, name, surname, null, null, null, null,
-						null, driverLicence, idRole);
-			}
+		} catch (SecurityException | ClassNotFoundException | SQLException | IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return customer;
+		
+	}
+
+	public AdminTOWP fetchAdmin(CustomerTOLP customerTOLP) {
+		AdminTOWP adminTOWP = new AdminTOWP();
+		
+		try {
+			Select select = new QueryBuilder().selectFetchUser(adminTOWP, customerTOLP).fetchCustomerOrAdmin();
+			System.out.println(select.toString());
+			ResultSet rs = select.resultSet(select.toString());
 			
-			connector.putBack(connection);
-
-		} catch (SQLException e) {
+			
+			adminTOWP = (AdminTOWP)query.getInstanceWithDataFromSQL(rs, adminTOWP);	
+			    
+		} catch (SecurityException | ClassNotFoundException | SQLException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
-
-		return customer1;
+		
+		return adminTOWP;
 	}
 
-	public AdminTO fetchAdmin(AdminTO admin, CustomerTOLP customerTOLP) {
-
-		AdminTO admin1 = null;
-		Select select = new QueryBuilder().selectFetchUser(new Admin(), customerTOLP, customerTOLP);
-		System.out.println(select.getSelectQuery());
-
+	public Customer makeCustomer(CustomerTO customerTO) {	
+		Admin admin = new Admin();
+		Customer customer = new Customer();
+		Insert insert = null;
 		try {
-			connection = connector.getConnection();
-			PreparedStatement ps = connection.prepareStatement(
-					"SELECT * FROM admin where admin.login = ? and admin.password = ?");
-			ps.setString(1, customerTOLP.getLogin());
-			ps.setString(2, customerTOLP.getPassword());
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				Integer adminId;
-				String login;
-				Integer roleId;
-
-				adminId = rs.getInt(1);
-				login = rs.getString(2);
-				roleId = rs.getInt(4);
-				System.out.println(login);
-
-				admin1 = new AdminTO(adminId, login, roleId);
-			}
-			connector.putBack(connection);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+			insert = new QueryBuilder().insert(customerTO).getQuery();
+		} catch (SecurityException | ClassNotFoundException | IllegalArgumentException | IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-
-		return admin1;
-	}
-
-	public CustomerTO makeCustomer(CustomerTO customerTO) {
-			Customer cust = new Customer();
-		try {
-			Insert insert = new QueryBuilder().insert(customerTO, cust);
-			System.out.println(insert.getInsertQuery());
-			query.prepareStatement(insert.getInsertQuery()).executeUpdate();
+		System.out.println(insert.toString());
+		try (PreparedStatement preparedStatement = query.prepareStatement(insert.toString())){	
+			
+			preparedStatement.executeUpdate();
 			
 			/*Customer customer;
 			customer = (Customer) customerTO;
@@ -127,12 +98,11 @@ public class CustomerDaoImpl implements CustomerDao {
 			}
 			customer.setRoleId(1);	*/
 			
-			connector.putBack(connection);
-			
 		} catch (SQLException | SecurityException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return customerTO;
+		
+		return customer;
 	}
 }
 

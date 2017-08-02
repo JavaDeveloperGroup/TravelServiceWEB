@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.sqlbuilder.update;
 
-import by.htp.travelserviceWEB.entity.EntityAll;
+import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.sqlbuilder.Query;
 import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
 
@@ -12,54 +12,47 @@ import java.util.Map;
 public class Update extends QueryBuilder {
 
 	private final Query query;
-	private EntityAll entityAll;
-	private EntityAll entityAllCompare;
-    private Map<String, Object> columnsAndValues;
+	private final Entity entity;
+    private final Map<String, Object> columnsAndValues;
 	private String conditionAnd;
     private String conditionOr;
 
-	public Update (Query query, EntityAll entityAll) {
+	public Update (Query query, Entity entity) {
 		this.query = query;
-		this.entityAll = entityAll;
+		this.entity = entity;
 		this.query.append("UPDATE ");
-        this.query.append(getClassName(entityAll));
+        this.query.append(getClassName(entity));
         this.query.append(" SET ");
 		this.columnsAndValues = new LinkedHashMap<>();
 	}
-
-	public Update set() {
-        try {
-            listOfEntityFieldsAndValues(entityAll, entityAllCompare, columnsAndValues);
-            query.append(stringWhere(columnsAndValues));
-        } catch (IllegalAccessException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return this;
-	}
-
+	
 	public Update and(String condition) {
 	    this.conditionAnd = condition;
-        buildAnd();
+	    query.append(" AND " + conditionAnd);
 		return this;
 	}
 
 	public Update or(String condition) {
 	    this.conditionOr = condition;
-        buildOr();
+	    query.append(" OR " + conditionOr);
         return this;
     }
+	
+	@Override
+	public Update getQuery() 
+			throws SecurityException, ClassNotFoundException, 
+			IllegalArgumentException, IllegalAccessException {
 
-	public String getUpdateQuery() {
-        query.append(";");
+		listOfEntityFieldsAndValues(entity, columnsAndValues);
+		query.append(stringWhereForUpdateAndDelete(entity, columnsAndValues));
+		
+        return this;
+	}
+	
+	@Override
+	public String toString() {
 		return query.getSQLQuery().toString();
 	}
 
-    private void buildAnd() {
-        query.append(" AND " + conditionAnd);
-    }
-
-    private void buildOr() {
-        query.append(" OR " + conditionOr);
-    }
 }
 

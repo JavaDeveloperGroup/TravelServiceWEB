@@ -2,7 +2,8 @@ package by.htp.travelserviceWEB.service.impl;
 
 import by.htp.travelserviceWEB.dao.CustomerDao;
 import by.htp.travelserviceWEB.dao.impl.CustomerDaoImpl;
-import by.htp.travelserviceWEB.entity.dto.AdminTO;
+import by.htp.travelserviceWEB.entity.Customer;
+import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.service.CustomerService;
@@ -24,17 +25,17 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public CustomerTO authoriseCustomer(CustomerTO customerTO, CustomerTOLP customerTOLP) {
-		return customerDao.fetchCustomer(customerTO, customerTOLP);
+	public Customer authoriseCustomer(CustomerTOLP customerTOLP) {
+		return customerDao.fetchCustomer(customerTOLP);
 	}
 
 	@Override
-	public AdminTO authoriseAdmin(AdminTO admin, CustomerTOLP customerTOLP) {
-		return customerDao.fetchAdmin(admin, customerTOLP);
+	public AdminTOWP authoriseAdmin(CustomerTOLP customerTOLP) {
+		return customerDao.fetchAdmin(customerTOLP);
 	}
 
 	@Override
-	public CustomerTO registrationCustomer(CustomerTO customerTO) {
+	public Customer registrationCustomer(CustomerTO customerTO) {
 		return customerDao.makeCustomer(customerTO);
 	}
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
-public class CustomerTOLP implements EntityTO, Serializable {
+public class CustomerTOLP implements Entity, Serializable {
 
 	private static final long serialVersionUID = 8767626149082718938L;
 	

@@ -14,7 +14,7 @@ public class Auto implements Entity, Serializable {
 	private Integer autoId;
 	private Integer brandId;
 	private String model;
-	private Date year;
+	private String year;
 	private String transmition;
 	private String wheelDrive;
 	private String fuilType;
@@ -24,7 +24,7 @@ public class Auto implements Entity, Serializable {
 	
 	public Auto() {}
 	
-	public Auto(Integer autoId, Integer brandId, String model, Date year, String transmition, String wheelDrive,
+	public Auto(Integer autoId, Integer brandId, String model, String year, String transmition, String wheelDrive,
 			String fuilType, Integer colorId, Integer bodyTypeId, String image) {
 		super();
 		this.autoId = autoId;
@@ -63,11 +63,11 @@ public class Auto implements Entity, Serializable {
 		this.model = model;
 	}
 
-	public Date getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(Date year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
