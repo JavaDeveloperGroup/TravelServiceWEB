@@ -10,21 +10,23 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
-import by.htp.travelserviceWEB.service.CustomerService;
 import by.htp.travelserviceWEB.service.impl.CustomerServiceImpl;
 import by.htp.travelserviceWEB.util.EncryptionFdl;
+import by.htp.travelserviceWEB.util.ReturnToTheOriginalPage;
 import by.htp.travelserviceWEB.util.Validator;
 
 import static by.htp.travelserviceWEB.util.ConstantValue.*;
 import static by.htp.travelserviceWEB.util.Formatter.*;
 
-
 public class SignUpAction implements CommandAction {
 
+	private CustomerServiceImpl customerService;
 	private static final Logger log = Logger.getLogger(LogInAction.class);
 	
 	private HttpSession httpSession;
@@ -32,8 +34,6 @@ public class SignUpAction implements CommandAction {
 	private Customer customer;
 	private CustomerTOLP customerTOLP;
 	private String page;
-	
-	private CustomerService customerService;
 
 	public SignUpAction() {
 		customerService = CustomerServiceImpl.getInstance();
@@ -42,51 +42,56 @@ public class SignUpAction implements CommandAction {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		customerTO = (CustomerTO)newInstance(request, customerTO);
+		customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
+		          
+		String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSignUp.get(listOfParametersForSignUp.size() - 1)));
 		
-		customerTO = (CustomerTO) newInstance(request, customerTO);
-        customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
-		        
-        String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSignUp.get(listOfParametersForSignUp.size() - 1)));
-        
 		if (!Validator.registrationCustomer(customerTO, passwordRepeatEncrypt)) {
 			page = "jsp/sign_up_page.jsp";
 			request.setAttribute("msg", "Incorrect data entry.");
 			return page;
 		}
 		else {
+			//create customerTOLP
 			customerTOLP = new CustomerTOLP(customerTO.getLogin(), customerTO.getPassword());
 			return getPage(request, response);
 		}
 	}
-
+	
 	private String getPage(HttpServletRequest request, HttpServletResponse response) {
 		httpSession = request.getSession();
-		customer = customerService.authoriseCustomer(customerTOLP);	
-		if (customer.getCustomerId() == null) {
-			AdminTOWP adminTOWP = null;
-			adminTOWP = customerService.authoriseAdmin(customerTOLP);
-			if (adminTOWP.getAdminId() == null) {
+		AdminTOWP adminTOWP;
+		adminTOWP = customerService.authoriseAdmin(customerTOLP);
+		if (adminTOWP == null) {
+			try {
 				customer = customerService.registrationCustomer(this.customerTO);
-				httpSession.setAttribute("user", this.customer);
-				inputCookie(request, response);
-				page = "jsp/home_page.jsp";
+			} catch (MySQLIntegrityConstraintViolationException e) {
+				return getPageOnErrorInputData(request);
 			}
-			else {
-				request.setAttribute("msg", "There is a user with such login.");
-				page = "jsp/sign_up_page.jsp";
-			}
+			
+			httpSession.setAttribute("user", this.customer);
+			// input data in Cookie
+			inputCookie(request, response);
+			log.info("Sign up " + this.customer.getLogin());
+			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+			httpSession.setAttribute("originalPage",  null);
 		} else {
-			request.setAttribute("msg", "There is a user with such login.");
-			page = "jsp/sign_up_page.jsp";
+			page = getPageOnErrorInputData(request);
 		}
-		//log.info("Sign up " + ((Customer)httpSession.getAttribute("user")).getLogin());
+		return page;
+	}
+	
+	private String getPageOnErrorInputData(HttpServletRequest request){
+		request.setAttribute("msg", "There is a user with such login.");
+		page = "jsp/sign_up_page.jsp";
+		log.info("Sign up is fail " + this.customer.getLogin());
 		return page;
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
-		response.addCookie(new Cookie("login", this.customerTO.getLogin()));
-		response.addCookie(new Cookie("password", this.customerTO.getPassword()));
+		response.addCookie(new Cookie("log", this.customer.getLogin()));
+		response.addCookie(new Cookie("passw", this.customer.getPassword()));
 	}
 }

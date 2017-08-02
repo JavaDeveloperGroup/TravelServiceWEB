@@ -239,15 +239,12 @@ public abstract class Formatter {
 		Class<?>[] types = getConstructor(entity)[1].getParameterTypes();
 		
 		for (int i = 0; i < object.length; i++) {
-			System.out.println("start : " + object[i].getClass());
 			if ("java.lang.Integer".equals(types[i].getName())) {
 				object[i] = (Integer) object[i];
 			} else {
 				object[i] = object[i].toString();
 			}
-			System.out.println("finish : " + object[i].getClass());
 		}
-		System.out.println("------------------------------------------------------------------");
 		return object;
 	}
 	

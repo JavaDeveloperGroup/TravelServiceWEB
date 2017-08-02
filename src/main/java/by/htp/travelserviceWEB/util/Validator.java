@@ -3,11 +3,13 @@ package by.htp.travelserviceWEB.util;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 
+import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 
 /**
@@ -42,12 +44,11 @@ public class Validator {
      * @throws ServletException 
      */
     
-    public static boolean registrationCustomer(CustomerTO customerTO, String passwordRepeat) 
+    public static boolean registrationCustomer(Entity entity, String passwordRepeat) 
     		throws ServletException, IOException {
+    	/*String passwordRepeat = EncryptionFdl.decrypt(customerTO.getPassword());
     	
-    	String passw = EncryptionFdl.decrypt(customerTO.getPassword());
-    	
-    	if (!passw.equals(EncryptionFdl.decrypt(passwordRepeat))) {
+    	if (!passwordRepeat.equals(EncryptionFdl.decrypt(passwordRepeat))) {
 			return false;
 		} else if (!checkDate(customerTO.getBirthday())) {
 			return false;
@@ -57,7 +58,7 @@ public class Validator {
 					&& null != customerTO.getPhoneNumber()) {
 			
     		return Pattern.matches(LOGIN_REGEX, customerTO.getLogin())
-                    && Pattern.matches(PASSWORD_REGEX, passw)
+                    && Pattern.matches(PASSWORD_REGEX, passwordRepeat)
                     && Pattern.matches(STRING_REGEX, customerTO.getName())
                     && Pattern.matches(STRING_REGEX, customerTO.getSurname())
                     && Pattern.matches(EMAIL_REGEX, customerTO.getEmail())
@@ -66,7 +67,8 @@ public class Validator {
     		
     	} else {
     		return false;
-    	}
+    	}*/
+    	return false;
     }
     
     private static boolean checkDate(String birthday) throws ServletException, IOException {

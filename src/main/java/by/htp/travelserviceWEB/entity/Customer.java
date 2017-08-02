@@ -16,7 +16,7 @@ public class Customer implements Entity, Serializable {
 	private String passport;
 	private String email;
 	private String phoneNumber;
-	private String driverLicense;
+	private String driverLicence;
 	private Integer roleId;
 	
 	public Customer() {}
@@ -24,7 +24,7 @@ public class Customer implements Entity, Serializable {
 	public Customer(Integer customerId, String login, String password, 
 					String name, String surname, String gender,
 					String birthday, String passport, String email, 
-					String phoneNumber, String driverLicense, Integer roleId) {
+					String phoneNumber, String driverLicence, Integer roleId) {
 		
 		this.customerId = customerId;
 		this.login = login;
@@ -36,7 +36,7 @@ public class Customer implements Entity, Serializable {
 		this.passport = passport;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.driverLicense = driverLicense;
+		this.driverLicence = driverLicence;
 		this.roleId = roleId;
 		
 	}
@@ -121,12 +121,12 @@ public class Customer implements Entity, Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getDriverLicense() {
-		return driverLicense;
+	public String getDriverLicence() {
+		return driverLicence;
 	}
 
-	public void setDriverLicense(String driverLicense) {
-		this.driverLicense = driverLicense;
+	public void setDriverLicence(String driverLicence) {
+		this.driverLicence = driverLicence;
 	}
 
 	public Integer getRoleId() {
@@ -141,10 +141,12 @@ public class Customer implements Entity, Serializable {
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", login=" + login + ", password=" + password + ", name=" + name
 				+ ", surname=" + surname + ", gender=" + gender + ", birthday=" + birthday + ", passport=" + passport
-				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", driverLicense=" + driverLicense + ", roleId="
+				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", driverLicence=" + driverLicence + ", roleId="
 				+ roleId + "]";
 	}
 
-	
-	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

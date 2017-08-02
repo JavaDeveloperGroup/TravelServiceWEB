@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="/WEB-INF/outputCookieDataTag.tld" prefix="fdl" %>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -10,6 +11,7 @@
 	<title>Log in</title>
 </head>
 <body>
+
 	<div id="wrapper">
 		<header>
 			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
@@ -20,10 +22,31 @@
 				<button type="submit">SIGN UP</button>
 			</form>
 		</header>
-		<jsp:include page="/jspf/menu.jspf" />
+		<hr>
+		<div class="menu_center">
+			<nav>
+				<ul class="top-menu">
+					<li id="about"><a href="/home/">ABOUT US</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=tour_catalogue_page">TOUR
+							CATALOGUE</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue_page">HOTEL
+							CATALOGUE</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/Controller?command=auto_catalogue_page">CAR
+							CATALOGUE</a></li>
+					<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
+				</ul>
+				<select id="lang">
+					<option value="RU">RUSSIAN</option>
+					<option selected value="EN">ENGLISH</option>
+				</select>
+			</nav>
+		</div>s
 		<hr>
 		<div id="heading">
-			<h2>Please, fill in the form to log in!</h2>
+			<h2>Please, fill in the form to log in!</h2>	
 		</div>
 		<div style="text-align: center;">
 			<font face="monospace" color="black" size="4"> <b>
@@ -35,9 +58,9 @@
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
 				<input type="hidden" name="command" value="log_in" />
 				<p>Login:</p>
-				<input type="text" name="login" value="user1" placeholder="LOGIN" />
+				<input type="text" name="login" value="<fdl:name value1="log" value2="<%=request%>"/>"/>
 				<p>Password:</p>
-				<input type="password" name="password" value="user1Q@q" placeholder="PASSWORD"/> 
+				<input type="password" name="password" value="<fdl:name value1="passw" value2="<%=request%>"/>"/> 
 				<br> 
 				<input type="submit" value="Log in" id="subbut"/>
 			</form>

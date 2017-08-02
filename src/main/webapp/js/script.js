@@ -151,6 +151,24 @@ var usernameValidityChecks = [
 	}
 ];
 
+/*var usernameValidityChecks = [
+	{
+		isInvalid: function(input) {
+			return input.value.length < 3;
+		},
+		invalidityMessage: 'This input needs to be at least 3 characters',
+		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
+	},
+	{
+		isInvalid: function(input) {
+			var illegalCharacters = input.value.match(/[^a-zA-Z0-9]/g);
+			return illegalCharacters ? true : false;
+		},
+		invalidityMessage: 'Only letters and numbers are allowed',
+		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
+	}
+];*/
+
 var passwordValidityChecks = [
 	{
 		isInvalid: function(input) {
@@ -198,14 +216,13 @@ var passwordRepeatValidityChecks = [
 	}
 ];
 
-
 /* ----------------------------
 	Setup CustomValidation
 	Setup the CustomValidation prototype for each input
 	Also sets which array of validity checks to use for that input
 ---------------------------- */
 
-var usernameInput = document.getElementById('username');
+var usernameInput = document.getElementById('login');
 var passwordInput = document.getElementById('password');
 var passwordRepeatInput = document.getElementById('password_repeat');
 var nameInput = document.getElementById('name');

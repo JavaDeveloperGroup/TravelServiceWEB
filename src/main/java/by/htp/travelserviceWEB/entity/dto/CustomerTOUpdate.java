@@ -4,48 +4,28 @@ import java.io.Serializable;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
-public class CustomerTO implements Entity, Serializable {
+public class CustomerTOUpdate implements Entity, Serializable {
 	
 	private static final long serialVersionUID = -5155826831396257723L;
 	
-	private String login;
 	private String password;
-	private String name;
-	private String surname;
 	private String gender;
 	private String birthday;
-	private String passport;
 	private String email;
 	private String phoneNumber;
 	private String driverLicence;
-	private Integer roleId;
 	
-	public CustomerTO() {}
+	public CustomerTOUpdate() {}
 
-	public CustomerTO(String login, String password, String name, 
-					  String surname, String gender, String birthday,
-					  String passport, String email, String phoneNumber, 
-					  String driverLicence, Integer roleId) {
-		
-		this.login = login;
+	public CustomerTOUpdate(String password, String gender, String birthday, String email, String phoneNumber,
+			String driverLicence) {
+		super();
 		this.password = password;
-		this.name = name;
-		this.surname = surname;
 		this.gender = gender;
 		this.birthday = birthday;
-		this.passport = passport;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.driverLicence = driverLicence;
-		this.roleId = roleId;
-	}
-	
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getPassword() {
@@ -54,22 +34,6 @@ public class CustomerTO implements Entity, Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
 	}
 
 	public String getGender() {
@@ -86,14 +50,6 @@ public class CustomerTO implements Entity, Serializable {
 
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
-	}
-
-	public String getPassport() {
-		return passport;
-	}
-
-	public void setPassport(String passport) {
-		this.passport = passport;
 	}
 
 	public String getEmail() {
@@ -116,15 +72,7 @@ public class CustomerTO implements Entity, Serializable {
 		return driverLicence;
 	}
 
-	public void setDriverLicence(String driverLicenсe) {
-		this.driverLicence = driverLicenсe;
-	}
-
-	public Integer getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
+	public void setDriverLicence(String driverLicence) {
+		this.driverLicence = driverLicence;
 	}
 }

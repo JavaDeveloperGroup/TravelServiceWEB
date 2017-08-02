@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import org.junit.Before;
 import org.junit.Ignore;
 
-import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 import by.htp.travelserviceWEB.util.Validator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,52 +16,58 @@ import org.junit.runner.RunWith;
 @RunWith (ProjectRunner.class)
 public class ValidatorTest {
 	
+	private String login;
+	private String password;
 	private String repeatPassword;
-	private CustomerTO customerTO;
+	private String name;
+	private String surname;
+	private String birthday;
+	private String passport;
+	private String email;
+	private String phoneNumber;
 	
 	@Before
 	public void inputValitAllDataField() {
-		customerTO = new CustomerTO("User", "fidelio1Q@", "Ivan", "Ivanov", "MEN", 
-				"2000-02-02", "AB1234567", "ivan_ivanov@a1qa.by", "+375293333333", "AA 0000000", 1);
-		
+		login = "User";
+		password = "fidelio1Q@";
 		repeatPassword = "fidelio1Q@";
+		name = "Ivan";
+		surname = "Ivanov";
+		birthday = "19-02-1999";
+		passport = "AB1234567";
+		email = "popovich@a1qa.by";
+		phoneNumber = "+375293333333";
 	}
 	
 	@Test (timeout = 50)
 	public void validAllDataField() throws ServletException, IOException {
-		assertEquals(true, Validator.registrationCustomer(customerTO, repeatPassword));
+		//assertEquals(true, Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber));
 	}
 	
 	@Test (timeout = 50)
 	public void notValidAllDataField() throws ServletException, IOException {
-		
-		customerTO.setLogin("");
-		customerTO.setPassword("");
-		customerTO.setName("");
-		customerTO.setSurname("");
-		customerTO.setGender("");
-		customerTO.setBirthday("");
-		customerTO.setPassport("");
-		customerTO.setEmail("");
-		customerTO.setPhoneNumber("");
-		customerTO.setDriverLicense("");
-		customerTO.setRoleId(0);
+		login = "";
+		password = "";
 		repeatPassword = "";
-
-		assertEquals(true, Validator.registrationCustomer(customerTO, repeatPassword));
+		name = "";
+		surname = "";
+		passport = "";
+		email = "";
+		phoneNumber = "";
+		//assertEquals(true, Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber));
 	}
 	
 	@Ignore
 	@Test (timeout = 50)
 	public void notValidEmailField() throws ServletException, IOException {
-		customerTO.setEmail("ivan_ivanov@a1qa.by");
-		assertEquals(true, Validator.registrationCustomer(customerTO, repeatPassword));
+		email = "popovich@a1qa";
+		//assertEquals(true, Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber));
 	}
 	
 	@Test (timeout = 50)
 	public void notValidPasswField() throws ServletException, IOException {
-		customerTO.setPassword("fidelio1Q");
-		assertEquals(true, Validator.registrationCustomer(customerTO, repeatPassword));
+		password = "fidelio1Q";
+		//assertEquals(true, Validator.registrationCustomer(login, password, repeatPassword, name, surname, birthday, passport, email, phoneNumber));
 	}
 	
 	/*@AfterClass

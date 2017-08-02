@@ -2,6 +2,7 @@ package by.htp.travelserviceWEB.commander;
 
 public enum EnumCommandAction {
 	
+	
 	LOG_IN {
 		@Override
 		public CommandAction getCommantAction() {
@@ -42,6 +43,24 @@ public enum EnumCommandAction {
 		@Override
 		public CommandAction getCommantAction() {
 			return new UpdateAccountAction();
+		}
+	},
+	HOTEL_CATALOGUE_PAGE{
+		@Override
+		public CommandAction getCommantAction() {
+			return new HotelCataloguePageAction();
+		}
+	},
+	AUTO_CATALOGUE_PAGE{
+		@Override
+		public CommandAction getCommantAction() {
+			return new AutoCataloguePageAction();
+		}
+	},
+	TOUR_CATALOGUE_PAGE{
+		@Override
+		public CommandAction getCommantAction() {
+			return new TourCataloguePageAction();
 		}
 	};
 	

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 import by.htp.travelserviceWEB.connector.ConnectionPool;
 import by.htp.travelserviceWEB.entity.Entity;
@@ -14,11 +13,10 @@ import static by.htp.travelserviceWEB.util.Formatter.*;
 public class Query {
 	
 	private final ConnectionPool connector = ConnectionPool.getInstance();
-	private final Connection connection;
+	private Connection connection;
 	private final StringBuilder sql;
 	
 	public Query() {
-		connection = connector.getConnection();
 		sql = new StringBuilder();
 	}
 	
@@ -35,17 +33,16 @@ public class Query {
 	
 	public final ResultSet resultSet(String sqlQuery) 
 			throws SQLException, SecurityException, ClassNotFoundException {
-		ResultSet resultSet;
 		PreparedStatement statement = prepareStatement(sqlQuery);
 
-		resultSet = statement.executeQuery();
+		ResultSet resultSet = statement.executeQuery();
 		
 		return resultSet;
 	}
 	
 	public final PreparedStatement prepareStatement(String sqlQuery)
 			throws SQLException, SecurityException, ClassNotFoundException {
-
+		connection = connector.getConnection();
 		PreparedStatement statement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS);
 		connector.putBack(connection);
 

@@ -6,23 +6,27 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class ConnectionPool {
+public final class OwnConnection {
 	
 	private ConcurrentHashMap<Connection, Boolean> connections;
 	private int size;
 	private int numberOfConnection;
 	
-	private ConnectionPool() {
-		this.size = 1;
-		this.numberOfConnection = 0;
-		initConnectionPool();
+	private OwnConnection() {
+		System.out.println(numberOfConnection);
 	}
 	
 	private static class Singleton {
-		private  static final ConnectionPool INSTANCE = new ConnectionPool();
+		private  static final OwnConnection INSTANCE = new OwnConnection();
 	}
 	
-	public static ConnectionPool getInstance() {
+	{
+		this.size = 5;
+		this.numberOfConnection = 1;
+		initConnectionPool();
+	}
+	
+	public static OwnConnection getInstance() {
 		return Singleton.INSTANCE;
 	}
 	public void initConnectionPool() {
@@ -47,26 +51,29 @@ public final class ConnectionPool {
 		}
 	}
 
-	public final Connection getConnection() {		
+	public final Connection getConnection() {
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : connections.entrySet()) {
 			if (!iter.getValue()) {
-				connections.replace(iter.getKey(), true);
 				numberOfConnection++;
+				if (numberOfConnection == size) {
+					size += 10;
+					initConnectionPool();
+				}
+				connections.replace(iter.getKey(), true);
 				return iter.getKey();
-			} else if (numberOfConnection == size) {
+			}
+			if (numberOfConnection == size) {
 				size += 1;
 				initConnectionPool();
-				getConnection();
 			}
 		}
 		return null;
 	}
 	
-	public final boolean putBack(Connection connection) {
+	public final boolean getBack(Connection connection) {
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : connections.entrySet()) {
 			if (iter.getKey() == connection) {
 				connections.replace(iter.getKey(), false);
-				numberOfConnection--;
 				return true;
 			}
 		}

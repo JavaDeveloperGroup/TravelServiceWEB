@@ -1,8 +1,10 @@
 package by.htp.travelserviceWEB.filter;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 import javax.servlet.Filter;
@@ -47,9 +49,9 @@ public class SecurityCommandFilter implements Filter {
 			} else {
 				((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 			}
-		} else if (1 == ((Customer)user).getRoleId() && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
+		} else if ("Customer".equals(user.getClass().getSimpleName()) && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else if (1 != ((Admin)user).getRoleId() && InitSecurityCommand.getInstance().initAdminCommand(command)) {
+		} else if ("Admin".equals(user.getClass().getSimpleName()) && InitSecurityCommand.getInstance().initAdminCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else 
 			((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
@@ -78,28 +80,29 @@ final class InitSecurityCommand {
 	}
 	
 	static {
-		customerListCommand.add("hotel_catalog_page");
-		customerListCommand.add("auto_catalog_page");
-		customerListCommand.add("tour_catalog_page");
+		customerListCommand.add("hotel_catalogue_page");
+		customerListCommand.add("auto_catalogue_page");
+		customerListCommand.add("tour_catalogue_page");
 		customerListCommand.add("hotel_make_order");
 		customerListCommand.add("auto_make_order");
 		customerListCommand.add("tour_make_order");
 		customerListCommand.add("log_out");
+		customerListCommand.add("update_account_page");
 		customerListCommand.add("update_account");
 	}
 	static {
-		guestListCommand.add("catalog_hotel_page");
-		guestListCommand.add("catalog_auto_page");
-		guestListCommand.add("catalog_tour_page");
+		guestListCommand.add("hotel_catalogue_page");
+		guestListCommand.add("auto_catalogue_page");
+		guestListCommand.add("tour_catalogue_page");
 		guestListCommand.add("log_in_page");
 		guestListCommand.add("sign_up_page");
 		guestListCommand.add("log_in");
 		guestListCommand.add("sign_up");
 	}
 	static {
-		adminListCommand.add("catalog_hotel_page");
-		adminListCommand.add("catalog_auto_page");
-		adminListCommand.add("catalog_tour_page");
+		adminListCommand.add("hotel_catalogue_page");
+		adminListCommand.add("auto_catalogue_page");
+		adminListCommand.add("tour_catalogue_page");
 		adminListCommand.add("admin_page");
 		adminListCommand.add("log_out");
 	}

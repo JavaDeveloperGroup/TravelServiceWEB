@@ -1,5 +1,9 @@
 package by.htp.travelserviceWEB.service.impl;
 
+import java.sql.SQLException;
+
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import by.htp.travelserviceWEB.dao.CustomerDao;
 import by.htp.travelserviceWEB.dao.impl.CustomerDaoImpl;
 import by.htp.travelserviceWEB.entity.Customer;
@@ -35,7 +39,13 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer registrationCustomer(CustomerTO customerTO) {
+	public Customer registrationCustomer(CustomerTO customerTO) throws MySQLIntegrityConstraintViolationException {
 		return customerDao.makeCustomer(customerTO);
+	}
+
+	@Override
+	public Customer updateAccountCustomer(Customer customer) throws MySQLIntegrityConstraintViolationException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

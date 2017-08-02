@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import by.htp.travelserviceWEB.connector.ConnectionPool;
 import by.htp.travelserviceWEB.dao.CustomerDao;
 import by.htp.travelserviceWEB.entity.Admin;
@@ -16,6 +18,8 @@ import by.htp.travelserviceWEB.sqlbuilder.Query;
 import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
 import by.htp.travelserviceWEB.sqlbuilder.insert.Insert;
 import by.htp.travelserviceWEB.sqlbuilder.select.Select;
+import by.htp.travelserviceWEB.sqlbuilder.update.Update;
+import by.htp.travelserviceWEB.util.TestClass;
 
 public class CustomerDaoImpl implements CustomerDao {
 
@@ -76,29 +80,36 @@ public class CustomerDaoImpl implements CustomerDao {
 		try {
 			insert = new QueryBuilder().insert(customerTO).getQuery();
 		} catch (SecurityException | ClassNotFoundException | IllegalArgumentException | IllegalAccessException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println(insert.toString());
 		try (PreparedStatement preparedStatement = query.prepareStatement(insert.toString())){	
 			
 			preparedStatement.executeUpdate();
 			
-			/*Customer customer;
-			customer = (Customer) customerTO;
-			customer.setCustomerId(17);
-			System.out.println(customer);*/
-			
-			
-			/*ResultSet generatedKeys;
-			generatedKeys = query.prepareStatement(insert.getInsertQuery()).getGeneratedKeys();
-
+			ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 			if (generatedKeys.next()) {
-				//customer.setCustomerId(Integer.valueOf(generatedKeys.getInt(1)));		
+				customer.setCustomerId(Integer.valueOf(generatedKeys.getInt(1)));
 			}
-			customer.setRoleId(1);	*/
 			
 		} catch (SQLException | SecurityException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return customer;
+	}
+
+	@Override
+	public Customer updateAccountCustomer(Customer customer) throws MySQLIntegrityConstraintViolationException {
+
+		//"UPDATE `travelservice`.`customer` SET `password`=?, `name`=?, `surname`=?, `gender`=?, `birthday`=?, `passport`=?, `email`=?, `phone_driver`=?, `driver_licence`=? WHERE `id_customer`=?;");
+		try {
+			Update update = new QueryBuilder().update(customer).getQuery();
+			try (PreparedStatement preparedStatement = query.prepareStatement(update.toString())) {
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SecurityException | ClassNotFoundException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
 		

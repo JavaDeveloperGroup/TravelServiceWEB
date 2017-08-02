@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import by.htp.travelserviceWEB.entity.Customer;
+import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 
 public class LogOutAction implements CommandAction {
 	
@@ -18,12 +19,12 @@ public class LogOutAction implements CommandAction {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String page = "index.jsp";
-		
-		//produce session
+		String page = "jsp/home_page.jsp";
+
 		HttpSession httpSession = request.getSession();
-						
-		log.info("Log out " + ((Customer)httpSession.getAttribute("user")).getLogin());
+		Object user = httpSession.getAttribute("user");
+		
+		log.info("Log out " + ("AdminTOWP".equals(user.getClass().getSimpleName()) ? "admin " + ((AdminTOWP)user).getLogin() : "customer " + ((Customer)user).getLogin()));
 
 		request.getSession(false);
 		if (request.getSession() != null) {

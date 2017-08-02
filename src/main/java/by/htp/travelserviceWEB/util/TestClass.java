@@ -42,16 +42,13 @@ public class TestClass {
 	
 	public void test() {
 		Auto insertAuto = new Auto(0, 3, "X5", "1999", "AUTO", "FULL", "PETROL", 3, 2, 
-								   "http://res.cloudinary.com/javadevgroup/image/upload"
-								   + "/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg");
+								   "http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg");
 		
 		Auto updateAuto = new Auto(17, 3, "Mustang", "1999", "AUTO", "FULL", "PETROL", 3, 2, 
-								   "http://res.cloudinary.com/javadevgroup/image/upload"
-								   + "/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg");
+								   "http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg");
 		
 		Auto deleteAuto = new Auto(12, 3, "X5", "1999", "AUTO", "FULL", "PETROL", 3, 2, 
-								   "http://res.cloudinary.com/javadevgroup/image/upload"
-								   + "/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg");
+								   "http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg");
 		
 		Customer customer = new Customer(1, "loginCust", "passwordCuss", 
 										 "nameCuss", "surnameCuss", "MALE", 
@@ -76,29 +73,32 @@ public class TestClass {
 		Select selectCustomer = null;
 		
 		try {
+			
+			int a = 0;
+			int b = a++;
+			int c = ++b;
+			
+			System.out.println(b + " : " + c);
 			insert = new QueryBuilder().insert(insertAuto).getQuery();
 			update = new QueryBuilder().update(updateAuto).getQuery();
 			delete = new QueryBuilder().delete(deleteAuto).getQuery();
 			selectAdmin = new QueryBuilder().selectFetchUser(admin, customerTOLP).fetchCustomerOrAdmin();
 			selectCustomer = new QueryBuilder().selectFetchUser(customerTO, customerTOLP).fetchCustomerOrAdmin();
 			
-			System.out.println(selectAdmin.toString());
 			selectAdmin.resultSet(selectAdmin.toString());
 			System.out.println("Success!");
 			
-			System.out.println(selectCustomer.toString());
 			selectCustomer.resultSet(selectCustomer.toString());
 			System.out.println("Success!");
 			
-			System.out.println(insert.toString());
 			insert.prepareStatement(insert.toString()).executeUpdate();
 			System.out.println("Success!");
 
 			System.out.println(update.toString());
+			System.out.println(update.toString());
 			update.prepareStatement(update.toString()).executeUpdate();
 			System.out.println("Success!");
-
-			System.out.println(delete.toString());
+		
 			delete.prepareStatement(delete.toString()).executeUpdate();
 			System.out.println("Success!");
 			

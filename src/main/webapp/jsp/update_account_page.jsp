@@ -17,10 +17,12 @@
 	<div id="wrapper">
 		<header>
 			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img src="${pageContext.request.contextPath}/image/logoF.png" width="180"></a>
-			<form name="sign_in"
-				action="${pageContext.request.contextPath}/Controller" method="GET">
-				<input type="hidden" value="log_in_page" name="command" />
-				<button type="submit">SIGN IN</button>
+			<form name="sign_in" action="${pageContext.request.contextPath}/Controller" method="GET">
+				<input type="hidden" value="log_out" name="command" />
+				<tr>
+					<td>${user.getLogin()}</td>
+				</tr>
+				<button type="submit">LOG OUT</button>
 			</form>
 		</header>
 		<hr>
@@ -47,73 +49,53 @@
 		</div>
 		<hr>
 		<div id="heading">
-			<h2>Please, fill in the form to sign up!</h2>
+			<h2>Please, fill in the form new data!</h2>
 		</div>
 		<div id="heading">
-			<font face="monospace" color="black" size="4"> <b> 
-				<c:out value="${msg}" />
-			</b>
+			<font face="monospace" color="black" size="4"> <b>
+					<td><c:out value="${msg}" /></td>
+				</b>
 			</font>
 		</div>
 		<div class='reg-form'>
 			<form action="${pageContext.request.contextPath}/Controller" method="POST">
-				<input type="hidden" name="command" value="sign_up" />
-				
-				<div class='form-row'>
-					<label for="name"> <span>Name</span> <input
-						type='text' value="Yauheni" id="name" name='name' required>
-						<ul class="input-requirements">
-							<li>Should be at least 1 character long.</li>
-							<li>Should only contain letters.</li>
-							<li>Should start with an uppercase letter.</li>
-						</ul>
-					</label>
-				</div>
-				
-				<div class='form-row'>
-					<label for="surname"> <span>Surname </span> <input
-						type='text' value="Papovich" id="surname" name='surname' required>
-						<ul class="input-requirements">
-							<li>Should be at least 1 characters long.</li>
-							<li>Should only contain letters.</li>
-							<li>Should start with an uppercase letter.</li>
-						</ul>
-					</label>
-				</div>
+				<input type="hidden" name="command" value="update_account" />
 
 				<div class='form-row'>
-					<label for="username"> <span>Login</span> <input
-						type='text' value="user" name='login' id="login"
-						required>
-						<ul class="input-requirements">
-							<li>At least 3 - 20 characters long</li>
-							<li>Must only contain letters and numbers (no special
-								characters)</li>
-						</ul>
-					</label>
-				</div>			
-				
-				<div class='form-row'>
-					<label for="password"> <span>Password</span> <input
-						type="password" value="user1Q@q" name='password'
+					<label for="password"> <span>Old password</span> <input
+						type="password" <%--value="user1Q@q"--%> name='password'
 						id="password" required>
 						<ul class="input-requirements">
-							<li>At least 8 characters long (and less than 20 characters)</li>
+							<li>At least 8 characters long (and less than 100 characters)</li>
 							<li>Contains at least 1 number</li>
 							<li>Contains at least 1 lowercase letter</li>
 							<li>Contains at least 1 uppercase letter</li>
-							<li>Contains a special character (e.g. @ !)</li>
+							<li>Contains a special character (!, @, #, $, %, ^, &, *)</li>
+						</ul>
+					</label>
+				</div>
+
+				<div class='form-row'>
+					<label for="password"> <span>New password</span> <input
+						type="password" <%--value="user1Q@q"--%> name='password'
+						id="password" required>
+						<ul class="input-requirements">
+							<li>At least 8 characters long (and less than 100 characters)</li>
+							<li>Contains at least 1 number</li>
+							<li>Contains at least 1 lowercase letter</li>
+							<li>Contains at least 1 uppercase letter</li>
+							<li>Contains a special character (!, @, #, $, %, ^, &, *)</li>
 						</ul>
 					</label>
 				</div>
 				
 				<div class='form-row'>
-					<label for="password_repeat"> <span> Repeat Password
-					</span> <input type="password" value="user1Q@q" name='password_repeat'
+					<label for="password_repeat"> <span>Repeat password
+					</span> <input type="password" <%--value="user1Q@q"--%> name='repeat_password'
 						id="password_repeat" required>
 					</label>
 				</div>
-
+				
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 
 				<div class='form-row' id="selectgender">
@@ -121,9 +103,14 @@
 						<div> 
 							<font size="3">
 								<select id="gender" name='gender' style="width: 492px;">				
-									<!-- <option selected disabled value="male">Choose here</option>-->
-									<option value="male">Male</option>
-									<option value="female">Female</option>
+									<c:if test="${user.getGender() != 'Male'}">
+										<option value="Female">${user.getGender()}</option>
+										<option value="Male">Male</option>
+									</c:if>
+									<c:if test="${user.getGender() != 'Female'}">
+										<option value="Male">${user.getGender()}</option>
+										<option value="Female">Female</option>
+									</c:if>
 								</select>
 							</font>
 						</div>
@@ -136,7 +123,7 @@
 					<label>
 						<span>Birthday</span> 
 						<font size="3">
-							<input value="1999-06-30" type="date" placeholder="Birth date"
+							<input value="${user.getBirthday()}" type="date" placeholder="Birth date"
 							title="Format: YYYY-MM-DD" name="birthday" id="birthday"/>
 						</font>
 					</label>
@@ -145,22 +132,15 @@
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 				
 				<div class='form-row'>
-					<label>Passport </label> <input 
-						value="AA2222222" name='passport' id="passport" required>
-				</div>
-				
-				<div style="width: 100%; height: 1px; clear: both;"></div>
-				
-				<div class='form-row'>
-					<label>Email </label> <input type='email' id="email" value="po@mail.ru"
+					<label>Email </label> <input type='email' id="email" value="${user.getEmail()}"
 						name='email' required>
 				</div>
 				
 				<div style="width: 100%; height: 1px; clear: both;"></div>
 				
 				<div class='form-row'>
-					<label>Phone </label> <input value="+375293333333" id="phone" 
-						name='phone_number' required>
+					<label>Phone </label> <input id="phone" 
+						name='phone_number' value="${user.getPhoneNumber()}" required>
 				</div>
 				
 				<div style="width: 100%; height: 1px; clear: both;"></div>
@@ -171,8 +151,14 @@
 						<div>
 							<font size="3"> 
 								<select id="driver_licence"	name='driver_licence' style="width: 492px;">
-									<option value="no">No</option>
-									<option value="yes">Yes</option>
+									<c:if test="${user.getDriverLicence() != 'No'}">
+										<option value="Yes">${user.getDriverLicence()}</option>
+										<option value="No">No</option>
+									</c:if>
+									<c:if test="${user.getDriverLicence() != 'Yes'}">
+										<option value="No">${user.getDriverLicence()}</option>
+										<option value="Yes">Yes</option>
+									</c:if>
 								</select>
 							</font>
 						</div> 
