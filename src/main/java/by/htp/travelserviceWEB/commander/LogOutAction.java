@@ -11,7 +11,7 @@ import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 
 public class LogOutAction implements CommandAction {
 	
-	private static final Logger log = Logger.getLogger(LogInAction.class);
+	private static final Logger log = Logger.getLogger(LogOutAction.class);
 	
 	public LogOutAction() {
 		super();

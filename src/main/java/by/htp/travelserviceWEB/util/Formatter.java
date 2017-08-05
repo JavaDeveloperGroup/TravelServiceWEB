@@ -251,16 +251,19 @@ public abstract class Formatter {
 		
 		Object[] obj = new Object[getParameterTypes(entity).length];
 		int i = 0;
-		if(obj.length == 2) {
+		if (obj.length == 2) {
 			for (String value : listOfParametersForLogIn) {
 				obj[i] = request.getParameter(value);
 				i++;
 			}
 			return obj;
-		}/* else if(obj.length == 12) {
-			
-		}*/ 
-		else {
+		} else if (obj.length == 6) {
+			for (String value : listOfParametersForUpdateData) {
+				obj[i] = request.getParameter(value);
+				i++;
+			}
+			return obj;
+		} else {
 			for (String value : listOfParametersForSignUp) {
 				 /*if (i < listOfParametersForSignUp.size() - 1) {
 				 

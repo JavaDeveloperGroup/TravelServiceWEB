@@ -62,36 +62,36 @@
 				<input type="hidden" name="command" value="update_account" />
 
 				<div class='form-row'>
-					<label for="password"> <span>Old password</span> <input
-						type="password" <%--value="user1Q@q"--%> name='password'
-						id="password" required>
+					<label for="old_password"> <span>Old password</span> <input
+						type="password" <%--value="user1Q@q"--%> name='old_password'
+						id="old_password" required>
 						<ul class="input-requirements">
-							<li>At least 8 characters long (and less than 100 characters)</li>
+							<li>At least 8 characters long (and less than 20 characters)</li>
 							<li>Contains at least 1 number</li>
 							<li>Contains at least 1 lowercase letter</li>
 							<li>Contains at least 1 uppercase letter</li>
-							<li>Contains a special character (!, @, #, $, %, ^, &, *)</li>
+							<li>Contains a special character (e.g. @ !)</li>
 						</ul>
 					</label>
 				</div>
 
 				<div class='form-row'>
-					<label for="password"> <span>New password</span> <input
-						type="password" <%--value="user1Q@q"--%> name='password'
-						id="password" required>
+					<label for="new_password"> <span>New password</span> <input
+						type="password" <%--value="user1Q@q"--%> name='new_password'
+						id="new_password" required>
 						<ul class="input-requirements">
-							<li>At least 8 characters long (and less than 100 characters)</li>
+							<li>At least 8 characters long (and less than 20 characters)</li>
 							<li>Contains at least 1 number</li>
 							<li>Contains at least 1 lowercase letter</li>
 							<li>Contains at least 1 uppercase letter</li>
-							<li>Contains a special character (!, @, #, $, %, ^, &, *)</li>
+							<li>Contains a special character (e.g. @ !)</li>
 						</ul>
 					</label>
 				</div>
 				
 				<div class='form-row'>
 					<label for="password_repeat"> <span>Repeat password
-					</span> <input type="password" <%--value="user1Q@q"--%> name='repeat_password'
+					</span> <input type="password" <%--value="user1Q@q"--%> name='password_repeat'
 						id="password_repeat" required>
 					</label>
 				</div>
@@ -180,7 +180,7 @@
 		</div>
 	</div>
 
-	<script src="${pageContext.request.contextPath}/js/script.js" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/js/scriptUpdate.js" charset="utf-8"></script>
 
 </body>
 </html>

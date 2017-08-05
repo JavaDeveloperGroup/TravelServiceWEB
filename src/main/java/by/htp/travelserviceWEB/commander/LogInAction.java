@@ -33,7 +33,7 @@ public final class LogInAction implements CommandAction {
 				
 		CustomerTOLP customerTOLP = new CustomerTOLP();
 		
-		System.out.println(EncryptionFdl.encrypt(request.getParameter("password")));
+		//System.out.println(EncryptionFdl.encrypt(request.getParameter("password")));
 		
 		//produce session
 		HttpSession httpSession = request.getSession();

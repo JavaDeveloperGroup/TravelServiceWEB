@@ -128,8 +128,8 @@
 								<font size="3"> <select id="gender" name='gender'
 									style="width: 492px;">
 										<!-- <option selected disabled value="male">Choose here</option>-->
-										<option value="male">Male</option>
-										<option value="female">Female</option>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
 								</select>
 								</font>
 							</div> </label>
@@ -176,8 +176,8 @@
 							<div>
 								<font size="3"> <select id="driver_licence"
 									name='driver_licence' style="width: 492px;">
-										<option value="no">No</option>
-										<option value="yes">Yes</option>
+										<option value="No">No</option>
+										<option value="Yes">Yes</option>
 								</select>
 								</font>
 							</div>
@@ -199,7 +199,7 @@
 			<jsp:include page="/jspf/footer.jspf" />
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/js/script.js"
+	<script src="${pageContext.request.contextPath}/js/scriptSignUp.js"
 		charset="utf-8"></script>
 </body>
 </html>

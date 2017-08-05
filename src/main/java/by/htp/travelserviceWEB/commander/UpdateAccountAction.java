@@ -25,7 +25,7 @@ import static by.htp.travelserviceWEB.util.Formatter.*;
 public class UpdateAccountAction implements CommandAction {
 
 	private CustomerService customerService;
-	private static final Logger log = Logger.getLogger(LogInAction.class);
+	private static final Logger log = Logger.getLogger(UpdateAccountAction.class);
 	private Customer customer;
 	private CustomerTOUpdate customerTOUpdate;
 
@@ -49,34 +49,38 @@ public class UpdateAccountAction implements CommandAction {
 		} catch (CloneNotSupportedException e1) {
 			e1.printStackTrace();
 		}*/
-		
+		String oldPassword = EncryptionFdl.encrypt(request.getParameter("old_password"));
 		String passwordRepeat = request.getParameter("password_repeat");
 		
-		if (!Validator.checkForCorrentInputDataCustomer(customerTOUpdate, passwordRepeat)) {
-			page = "jsp/update_account_page.jsp";
-			request.setAttribute("msg", "Incorrect data entry.");
-			return page;
-		}
-		else {
-			customer.setPassport(EncryptionFdl.encrypt(customerTOUpdate.getPassword()));
-			customer.setGender(customerTOUpdate.getGender());
-			customer.setBirthday(customerTOUpdate.getBirthday());
-			customer.setEmail(customerTOUpdate.getEmail());
-			customer.setPhoneNumber(customerTOUpdate.getPhoneNumber());
-			customer.setDriverLicence(customerTOUpdate.getDriverLicence());
-			try {
-				customerService.updateAccountCustomer(customer);
-			}
-			catch (SQLException e) {
+		if (oldPassword.equals(customer.getPassword())) {
+			if (!Validator.checkForCorrentInputDataCustomer(customerTOUpdate, passwordRepeat)) {
 				page = "jsp/update_account_page.jsp";
-				request.setAttribute("msg", "There is a user with such data.");
-				log.info("Update account is fail " + ((Customer)httpSession.getAttribute("user")).getLogin());
+				request.setAttribute("msg", "Incorrect data entry.");
+				return page;
+			} else {
+				customer.setPassword(customerTOUpdate.getPassword());
+				customer.setGender(customerTOUpdate.getGender());
+				customer.setBirthday(customerTOUpdate.getBirthday());
+				customer.setEmail(customerTOUpdate.getEmail());
+				customer.setPhoneNumber(customerTOUpdate.getPhoneNumber());
+				customer.setDriverLicence(customerTOUpdate.getDriverLicence());
+				try {
+					customerService.updateAccountCustomer(customer);
+				} catch (SQLException e) {
+					page = "jsp/update_account_page.jsp";
+					request.setAttribute("msg", "There is a user with such data.");
+					log.info("Update account is fail " + customer.getLogin());
+				}
+				httpSession.setAttribute("user", customer);
+				// input data in Cookie
+				inputCookie(request, response);
+				page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+				log.info("Update account " + customer.getLogin());
+				return page;
 			}
-			httpSession.setAttribute("user", customer);
-			// input data in Cookie
-			inputCookie(request, response);
-			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
-			log.info("Update account " + customer.getLogin());
+		} else {
+			page = "jsp/update_account_page.jsp";
+			request.setAttribute("msg", "Invalid old password entered.");
 			return page;
 		}
 	}

@@ -24,13 +24,21 @@ public final class ConstantValue {
 		listOfParametersForSignUp.add("email");
 		listOfParametersForSignUp.add("phone_number");
 		listOfParametersForSignUp.add("driver_licence");
-		listOfParametersForSignUp.add("password_repeat");
+		//listOfParametersForSignUp.add("password_repeat");
 	}
 	public static final List<String> listOfParametersForLogIn = new LinkedList<>();
 	static {
 		listOfParametersForLogIn.add("login");		
 		listOfParametersForLogIn.add("password");
 	}
-	
+	public static final List<String> listOfParametersForUpdateData = new LinkedList<>();
+	static {	
+		listOfParametersForUpdateData.add("new_password");
+		listOfParametersForUpdateData.add("gender");
+		listOfParametersForUpdateData.add("birthday");
+		listOfParametersForUpdateData.add("email");
+		listOfParametersForUpdateData.add("phone_number");
+		listOfParametersForUpdateData.add("driver_licence");
+	}
 	
 }

@@ -28,7 +28,7 @@ import static by.htp.travelserviceWEB.util.Formatter.*;
 public class SignUpAction implements CommandAction {
 
 	private CustomerService customerService;
-	private static final Logger log = Logger.getLogger(LogInAction.class);
+	private static final Logger log = Logger.getLogger(SignUpAction.class);
 	
 	private HttpSession httpSession;
 	private CustomerTO customerTO;
@@ -44,7 +44,7 @@ public class SignUpAction implements CommandAction {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		customerTO = (CustomerTO)newInstance(request, customerTO);
+		customerTO = (CustomerTO) newInstance(request, customerTO);
 		//customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
 		          
 		//String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSignUp.get(listOfParametersForSignUp.size() - 1)));
