@@ -151,24 +151,6 @@ var usernameValidityChecks = [
 	}
 ];
 
-/*var usernameValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 3;
-		},
-		invalidityMessage: 'This input needs to be at least 3 characters',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^a-zA-Z0-9]/g);
-			return illegalCharacters ? true : false;
-		},
-		invalidityMessage: 'Only letters and numbers are allowed',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
-	}
-];*/
-
 var passwordValidityChecks = [
 	{
 		isInvalid: function(input) {
@@ -204,6 +186,12 @@ var passwordValidityChecks = [
 		},
 		invalidityMessage: 'You need one of the required special characters',
 		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(5)')
+	},
+	{
+		isInvalid: function(input) {
+			return passwordRepeatInput.value.length == 0 & input.value != passwordRepeatInput.value;
+		},
+		invalidityMessage: 'Repeat this password'
 	}
 ];
 

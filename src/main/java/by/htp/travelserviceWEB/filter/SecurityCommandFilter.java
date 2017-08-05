@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import by.htp.travelserviceWEB.entity.Admin;
 import by.htp.travelserviceWEB.entity.Customer;
+import by.htp.travelserviceWEB.util.EncryptionFdl;
 
 public class SecurityCommandFilter implements Filter {
 
@@ -49,9 +50,9 @@ public class SecurityCommandFilter implements Filter {
 			} else {
 				((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 			}
-		} else if ("Customer".equals(user.getClass().getSimpleName()) && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
+		} else if ("Customer".equals(user.getClass().getSimpleName().subSequence(0, 8)) && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
-		} else if ("Admin".equals(user.getClass().getSimpleName()) && InitSecurityCommand.getInstance().initAdminCommand(command)) {
+		} else if ("Admin".equals(user.getClass().getSimpleName().substring(0, 5)) && InitSecurityCommand.getInstance().initAdminCommand(command)) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else 
 			((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");

@@ -20,7 +20,6 @@ import by.htp.travelserviceWEB.util.EncryptionFdl;
 import by.htp.travelserviceWEB.util.ReturnToTheOriginalPage;
 import by.htp.travelserviceWEB.util.Validator;
 
-import static by.htp.travelserviceWEB.util.ConstantValue.*;
 import static by.htp.travelserviceWEB.util.Formatter.*;
 
 public class UpdateAccountAction implements CommandAction {
@@ -41,38 +40,45 @@ public class UpdateAccountAction implements CommandAction {
 		String page;
 		CustomerTOLP customerTOLP;
 		HttpSession httpSession = request.getSession();
-		Customer customer = (Customer)httpSession.getAttribute("user");
-		Customer copyCustomer = null;
-		try {
+		customer = (Customer)httpSession.getAttribute("user");
+		//Customer copyCustomer = null;
+		customerTOUpdate = (CustomerTOUpdate) newInstance(request, customerTOUpdate);
+		
+		/*try {
 			copyCustomer = (Customer) customer.clone();
 		} catch (CloneNotSupportedException e1) {
 			e1.printStackTrace();
-		}
-		//copyCustomer = 
+		}*/
 		
-		String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSignUp.get(listOfParametersForSignUp.size() - 1)));
+		String passwordRepeat = request.getParameter("password_repeat");
 		
-		if (!Validator.registrationCustomer(customerTOUpdate, passwordRepeatEncrypt)) {
+		if (!Validator.checkForCorrentInputDataCustomer(customerTOUpdate, passwordRepeat)) {
 			page = "jsp/update_account_page.jsp";
 			request.setAttribute("msg", "Incorrect data entry.");
 			return page;
 		}
 		else {
+			customer.setPassport(EncryptionFdl.encrypt(customerTOUpdate.getPassword()));
+			customer.setGender(customerTOUpdate.getGender());
+			customer.setBirthday(customerTOUpdate.getBirthday());
+			customer.setEmail(customerTOUpdate.getEmail());
+			customer.setPhoneNumber(customerTOUpdate.getPhoneNumber());
+			customer.setDriverLicence(customerTOUpdate.getDriverLicence());
 			try {
 				customerService.updateAccountCustomer(customer);
-				httpSession.setAttribute("user", customer);
-				// input data in Cookie
-				inputCookie(request, response);
-				page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
-				log.info("Update account " + customer.getLogin());
 			}
 			catch (SQLException e) {
 				page = "jsp/update_account_page.jsp";
 				request.setAttribute("msg", "There is a user with such data.");
 				log.info("Update account is fail " + ((Customer)httpSession.getAttribute("user")).getLogin());
 			}
+			httpSession.setAttribute("user", customer);
+			// input data in Cookie
+			inputCookie(request, response);
+			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+			log.info("Update account " + customer.getLogin());
+			return page;
 		}
-		return page;
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {

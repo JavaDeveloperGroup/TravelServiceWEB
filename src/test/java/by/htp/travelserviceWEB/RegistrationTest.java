@@ -11,20 +11,24 @@ public class RegistrationTest {
 	
 	@Test
 	public void userCreateNewAccount() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\popo\\.m2\\repository\\org\\seleniumhq\\selenium\\SeleniumGecko\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\popo\\.m2\\repository\\org\\seleniumhq\\selenium\\SeleniumGecko\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get("http://localhost:8080/travelservice/");
-		clickNameElement("sign_up");
-		
+		Thread.sleep(5000);
+		//clickNameElement("sign_up");
+		clickIdElement("sign_up");
+		Thread.sleep(5000);
 		//correct data
 		inputData("Sergeo", "Parkhanovich", "Dubina", "qwerty1Q@", "qwerty1Q@", "09101990", "AT1234567", "parkh@mail.ru", "+37529222222");
-		
+		Thread.sleep(5000);
 		clickIdElement("go");
+		Thread.sleep(5000);
 		clickNameElement("log_out");
-		
+		Thread.sleep(5000);
 		//incorrect password
 		inputData("Sergeo", "Parkhanovich", "Dubina", "qwertyQ@", "qwerty1Q@", "09101990", "AT1234567", "parkh@mail.ru", "+37529222222");
-		
+		Thread.sleep(5000);
 		clickIdElement("go");
 	}
 	

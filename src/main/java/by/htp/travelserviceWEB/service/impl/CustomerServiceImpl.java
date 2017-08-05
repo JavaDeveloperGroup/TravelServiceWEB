@@ -40,12 +40,23 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer registrationCustomer(CustomerTO customerTO) throws MySQLIntegrityConstraintViolationException {
-		return customerDao.makeCustomer(customerTO);
+		Customer customer = customerDao.makeCustomer(customerTO);
+		customer.setLogin(customerTO.getLogin());
+		customer.setPassword(customerTO.getPassword());
+		customer.setName(customerTO.getName());
+		customer.setSurname(customerTO.getSurname());
+		customer.setBirthday(customerTO.getBirthday());
+		customer.setGender(customerTO.getGender());
+		customer.setPassport(customerTO.getPassport());
+		customer.setEmail(customerTO.getEmail());
+		customer.setPhoneNumber(customerTO.getPhoneNumber());
+		customer.setDriverLicence(customerTO.getDriverLicence());
+		customer.setRoleId(customerTO.getRoleId());
+		return customer;
 	}
 
 	@Override
 	public Customer updateAccountCustomer(Customer customer) throws MySQLIntegrityConstraintViolationException {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDao.updateAccountCustomer(customer);
 	}
 }

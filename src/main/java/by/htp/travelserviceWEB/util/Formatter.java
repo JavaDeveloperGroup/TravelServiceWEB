@@ -4,9 +4,7 @@ import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.sqlbuilder.Query;
 
-import static by.htp.travelserviceWEB.util.ConstantValue.listOfParametersForSignUp;
-import static by.htp.travelserviceWEB.util.Formatter.getConstructor;
-import static by.htp.travelserviceWEB.util.Formatter.getParameterTypes;
+import static by.htp.travelserviceWEB.util.ConstantValue.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -253,14 +251,25 @@ public abstract class Formatter {
 		
 		Object[] obj = new Object[getParameterTypes(entity).length];
 		int i = 0;
-		for (String value : listOfParametersForSignUp) {
-			if (i < listOfParametersForSignUp.size() - 1) {
-				
+		if(obj.length == 2) {
+			for (String value : listOfParametersForLogIn) {
+				obj[i] = request.getParameter(value);
+				i++;
 			}
-			obj[i] = request.getParameter(value);
-			i++;
+			return obj;
+		}/* else if(obj.length == 12) {
+			
+		}*/ 
+		else {
+			for (String value : listOfParametersForSignUp) {
+				 /*if (i < listOfParametersForSignUp.size() - 1) {
+				 
+				 }*/
+				obj[i] = request.getParameter(value);
+				i++;
+			}
+			obj[10] = 1;
+			return obj;
 		}
-		obj[10] = 1;
-		return obj;
 	}
 }

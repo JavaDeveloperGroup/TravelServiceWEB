@@ -26,6 +26,11 @@ public final class ConstantValue {
 		listOfParametersForSignUp.add("driver_licence");
 		listOfParametersForSignUp.add("password_repeat");
 	}
+	public static final List<String> listOfParametersForLogIn = new LinkedList<>();
+	static {
+		listOfParametersForLogIn.add("login");		
+		listOfParametersForLogIn.add("password");
+	}
 	
 	
 }

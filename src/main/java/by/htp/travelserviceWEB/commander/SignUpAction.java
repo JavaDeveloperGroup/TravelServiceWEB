@@ -1,6 +1,7 @@
 package by.htp.travelserviceWEB.commander;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -16,17 +17,17 @@ import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
+import by.htp.travelserviceWEB.service.CustomerService;
 import by.htp.travelserviceWEB.service.impl.CustomerServiceImpl;
 import by.htp.travelserviceWEB.util.EncryptionFdl;
 import by.htp.travelserviceWEB.util.ReturnToTheOriginalPage;
 import by.htp.travelserviceWEB.util.Validator;
 
-import static by.htp.travelserviceWEB.util.ConstantValue.*;
 import static by.htp.travelserviceWEB.util.Formatter.*;
 
 public class SignUpAction implements CommandAction {
 
-	private CustomerServiceImpl customerService;
+	private CustomerService customerService;
 	private static final Logger log = Logger.getLogger(LogInAction.class);
 	
 	private HttpSession httpSession;
@@ -44,16 +45,18 @@ public class SignUpAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		customerTO = (CustomerTO)newInstance(request, customerTO);
-		customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
+		//customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
 		          
-		String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSignUp.get(listOfParametersForSignUp.size() - 1)));
+		//String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSignUp.get(listOfParametersForSignUp.size() - 1)));
+		String passwordRepeat = request.getParameter("password_repeat");
 		
-		if (!Validator.registrationCustomer(customerTO, passwordRepeatEncrypt)) {
+		if (!Validator.checkForCorrentInputDataCustomer(customerTO, passwordRepeat)) {
 			page = "jsp/sign_up_page.jsp";
 			request.setAttribute("msg", "Incorrect data entry.");
 			return page;
 		}
 		else {
+			customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
 			//create customerTOLP
 			customerTOLP = new CustomerTOLP(customerTO.getLogin(), customerTO.getPassword());
 			return getPage(request, response);
@@ -67,26 +70,27 @@ public class SignUpAction implements CommandAction {
 		if (adminTOWP == null) {
 			try {
 				customer = customerService.registrationCustomer(this.customerTO);
+				httpSession.setAttribute("user", customer);
+				// input data in Cookie
+				inputCookie(request, response);
+				log.info("Sign up " + customer.getLogin());
+				page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+				httpSession.setAttribute("originalPage",  null);
+				request.setAttribute("user", customer);
 			} catch (MySQLIntegrityConstraintViolationException e) {
-				return getPageOnErrorInputData(request);
+				log.info("Sign up is fail " + e.toString());
+				page = getPageOnErrorInputData(request);
 			}
-			
-			httpSession.setAttribute("user", this.customer);
-			// input data in Cookie
-			inputCookie(request, response);
-			log.info("Sign up " + this.customer.getLogin());
-			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
-			httpSession.setAttribute("originalPage",  null);
 		} else {
+			log.info("Sign up is fail");
 			page = getPageOnErrorInputData(request);
 		}
 		return page;
 	}
 	
 	private String getPageOnErrorInputData(HttpServletRequest request){
-		request.setAttribute("msg", "There is a user with such login.");
+		request.setAttribute("msg", "There is a user with such data.");
 		page = "jsp/sign_up_page.jsp";
-		log.info("Sign up is fail " + this.customer.getLogin());
 		return page;
 	}
 	

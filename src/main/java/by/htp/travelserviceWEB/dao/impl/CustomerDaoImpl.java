@@ -39,6 +39,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		return Singletone.INSTANCE;
 	}
 
+	@Override
 	public Customer fetchCustomer(CustomerTOLP customerTOLP) {	
 		Customer customer = new Customer();
 
@@ -54,17 +55,16 @@ public class CustomerDaoImpl implements CustomerDao {
 		return customer;
 		
 	}
-
+	
+	@Override
 	public AdminTOWP fetchAdmin(CustomerTOLP customerTOLP) {
 		AdminTOWP adminTOWP = new AdminTOWP();
 		
 		try {
 			Select select = new QueryBuilder().selectFetchUser(adminTOWP, customerTOLP).fetchCustomerOrAdmin();
-			System.out.println(select.toString());
 			ResultSet rs = select.resultSet(select.toString());
-			
-			
-			adminTOWP = (AdminTOWP)query.getInstanceWithDataFromSQL(rs, adminTOWP);	
+					
+			adminTOWP = (AdminTOWP)query.getInstanceWithDataFromSQL(rs, adminTOWP);				
 			    
 		} catch (SecurityException | ClassNotFoundException | SQLException | IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
@@ -72,8 +72,9 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 		return adminTOWP;
 	}
-
-	public Customer makeCustomer(CustomerTO customerTO) {	
+	
+	@Override
+	public Customer makeCustomer(CustomerTO customerTO) throws MySQLIntegrityConstraintViolationException{	
 		Admin admin = new Admin();
 		Customer customer = new Customer();
 		Insert insert = null;
@@ -93,6 +94,8 @@ public class CustomerDaoImpl implements CustomerDao {
 			
 		} catch (SQLException | SecurityException | ClassNotFoundException e) {
 			e.printStackTrace();
+			if(e instanceof MySQLIntegrityConstraintViolationException)
+				throw new MySQLIntegrityConstraintViolationException();
 		}
 		
 		return customer;

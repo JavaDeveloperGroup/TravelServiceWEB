@@ -3,7 +3,6 @@ package by.htp.travelserviceWEB.util;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -11,6 +10,8 @@ import javax.servlet.ServletException;
 
 import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.dto.CustomerTO;
+import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
+import by.htp.travelserviceWEB.entity.dto.CustomerTOUpdate;
 
 /**
  * The class checks all input information
@@ -44,31 +45,47 @@ public class Validator {
      * @throws ServletException 
      */
     
-    public static boolean registrationCustomer(Entity entity, String passwordRepeat) 
+    public static boolean checkForCorrentInputDataCustomer(Entity entity, String passwordRepeat) 
     		throws ServletException, IOException {
-    	/*String passwordRepeat = EncryptionFdl.decrypt(customerTO.getPassword());
     	
-    	if (!passwordRepeat.equals(EncryptionFdl.decrypt(passwordRepeat))) {
-			return false;
-		} else if (!checkDate(customerTO.getBirthday())) {
-			return false;
-		} else if(null != customerTO.getLogin() && null != customerTO.getPassword() 
-					&& null != customerTO.getName() && null != customerTO.getSurname() 
-					&& null != customerTO.getPassport() && null != customerTO.getEmail() 
-					&& null != customerTO.getPhoneNumber()) {
-			
-    		return Pattern.matches(LOGIN_REGEX, customerTO.getLogin())
-                    && Pattern.matches(PASSWORD_REGEX, passwordRepeat)
-                    && Pattern.matches(STRING_REGEX, customerTO.getName())
-                    && Pattern.matches(STRING_REGEX, customerTO.getSurname())
-                    && Pattern.matches(EMAIL_REGEX, customerTO.getEmail())
-                    && Pattern.matches(PASSPORT_REGEX, customerTO.getPassport())
-                    && Pattern.matches(PHONE_NUMBER_REGEX, customerTO.getPhoneNumber());
+    	if(entity instanceof CustomerTO) {
+    		CustomerTO customer = (CustomerTO)entity;
+    		if (!customer.getPassword().equals(passwordRepeat) | !checkDate(customer.getBirthday())) {
+    			return false;
+    		} else if (null != customer.getLogin() && null != customer.getPassword() 
+    					&& null != customer.getName() && null != customer.getSurname() 
+    					&& null != customer.getPassport() && null != customer.getEmail() 
+    					&& null != customer.getPhoneNumber()) {
+    			
+        		return Pattern.matches(LOGIN_REGEX, customer.getLogin())
+                        && Pattern.matches(PASSWORD_REGEX, customer.getPassword())
+                        && Pattern.matches(STRING_REGEX, customer.getName())
+                        && Pattern.matches(STRING_REGEX, customer.getSurname())
+                        && Pattern.matches(EMAIL_REGEX, customer.getEmail())
+                        && Pattern.matches(PASSPORT_REGEX, customer.getPassport())
+                        && Pattern.matches(PHONE_NUMBER_REGEX, customer.getPhoneNumber());
+        		
+        	} else {
+        		return false;
+        	}
     		
-    	} else {
+    	} else if (entity instanceof CustomerTOUpdate){
+    		CustomerTOUpdate customer = (CustomerTOUpdate)entity;
+    		if (!customer.getPassword().equals(passwordRepeat) | !checkDate(customer.getBirthday())) {
+    			return false;
+    		} else if (null != customer.getPassword() && null != customer.getEmail() 
+    					&& null != customer.getPhoneNumber()) {
+    			
+        		return Pattern.matches(PASSWORD_REGEX, customer.getPassword())
+                        && Pattern.matches(EMAIL_REGEX, customer.getEmail())
+                        && Pattern.matches(PHONE_NUMBER_REGEX, customer.getPhoneNumber());
+        		
+        	} else {
+        		return false;
+        	}
+    	} else
     		return false;
-    	}*/
-    	return false;
+    	
     }
     
     private static boolean checkDate(String birthday) throws ServletException, IOException {
@@ -88,5 +105,13 @@ public class Validator {
 		} else 
 			return true;
 	}
+    
+    public static boolean checkForCorrentInputDataAuthoriseUser(CustomerTOLP customerTOLP) {
+    	if (null != customerTOLP.getLogin() && null != customerTOLP.getPassword())
+    		return Pattern.matches(LOGIN_REGEX, customerTOLP.getLogin())
+    				&& Pattern.matches(PASSWORD_REGEX, customerTOLP.getPassword()); 
+    	else
+    		return false;
+    }
 }
 
