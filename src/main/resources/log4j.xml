@@ -26,13 +26,13 @@
 	</appender>
 
  	<appender name="RFA" class="org.apache.log4j.RollingFileAppender">
-		<param name="File" value="C:/Users/popo/OneDrive/courses/TravelServiseWEB/travel-service-WEB/logs/rfa.log" />
+		<param name="File" value="${catalina.base}../../../../../travel-service-WEB/logs/rfa.log" />
 		<param name="Threshold" value="TRACE" />
 		<param name="Append" value="false" />
 		<param name="MaxFileSize" value="1MB" />
 		<param name="MaxBackupIndex" value="3" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="XML: RFA: [%t] %-5p %c - %m%n" />
+			<param name="ConversionPattern" value="XML: RFA: %d{yyyy-MM-dd hh:mm a} [%t] %-5p %c - %m%n" />
 		</layout>
 	</appender>
 
@@ -60,8 +60,8 @@
 		<level value="TRACE" />
 		<appender-ref ref="Console" />
  		<appender-ref ref="RFA" />
-		<appender-ref ref="DRFA" />
-		<appender-ref ref="RFA_HTML" />
+		<!-- <appender-ref ref="DRFA" />
+		<appender-ref ref="RFA_HTML" /> -->
  	</root>
 
 </log4j:configuration>

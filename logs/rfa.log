@@ -1,4 +1,0 @@
-XML: RFA: [http-nio-8080-exec-13] INFO  by.htp.travelserviceWEB.commander.LogOutAction - Log out customer user1
-XML: RFA: [http-nio-8080-exec-2] INFO  by.htp.travelserviceWEB.commander.LogInAction - Log in customer user1
-XML: RFA: [http-nio-8080-exec-19] INFO  by.htp.travelserviceWEB.commander.UpdateAccountAction - Update account user1
-XML: RFA: [http-nio-8080-exec-22] INFO  by.htp.travelserviceWEB.commander.LogOutAction - Log out customer user1

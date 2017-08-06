@@ -1,5 +1,7 @@
 package by.htp.travelserviceWEB.commander;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +35,7 @@ public final class LogInAction implements CommandAction {
 				
 		CustomerTOLP customerTOLP = new CustomerTOLP();
 		
-		//System.out.println(EncryptionFdl.encrypt(request.getParameter("password")));
+		System.out.println(EncryptionFdl.encrypt(request.getParameter("password")));
 		
 		//produce session
 		HttpSession httpSession = request.getSession();
@@ -76,7 +78,6 @@ public final class LogInAction implements CommandAction {
 				+ (adminTOWP != null ? "admin " + adminTOWP.getLogin() : "customer " + customerTOLP.getLogin()));
 		request.setAttribute("user", httpSession.getAttribute("user"));
 		return page;
-		
 	}
 	
 	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
