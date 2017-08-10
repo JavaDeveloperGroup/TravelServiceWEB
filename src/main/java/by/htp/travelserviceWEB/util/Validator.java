@@ -45,12 +45,12 @@ public class Validator {
      * @throws ServletException 
      */
     
-    public static boolean checkForCorrentInputDataCustomer(Entity entity, String passwordRepeat) 
+    public static boolean checkForCorrentInputDataCustomer(Entity entity, String repeatPassword) 
     		throws ServletException, IOException {
     	
     	if(entity instanceof CustomerTO) {
     		CustomerTO customer = (CustomerTO)entity;
-    		if (!customer.getPassword().equals(passwordRepeat) | !checkDate(customer.getBirthday())) {
+    		if (!customer.getPassword().equals(repeatPassword) | !checkDate(customer.getBirthday())) {
     			return false;
     		} else if (null != customer.getLogin() && null != customer.getPassword() 
     					&& null != customer.getName() && null != customer.getSurname() 
@@ -71,7 +71,7 @@ public class Validator {
     		
     	} else if (entity instanceof CustomerTOUpdate){
     		CustomerTOUpdate customer = (CustomerTOUpdate)entity;
-    		if (!customer.getPassword().equals(passwordRepeat) | !checkDate(customer.getBirthday())) {
+    		if (!customer.getPassword().equals(repeatPassword) | !checkDate(customer.getBirthday())) {
     			return false;
     		} else if (null != customer.getPassword() && null != customer.getEmail() 
     					&& null != customer.getPhoneNumber()) {

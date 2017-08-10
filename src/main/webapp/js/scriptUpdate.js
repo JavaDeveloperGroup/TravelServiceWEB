@@ -81,111 +81,79 @@ CustomValidation.prototype = {
 		3. element - The element that states the requirement
 ---------------------------- */
 
-var nameValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 1 | input.value.length > 50;
-		},
-		invalidityMessage: 'This input needs to be at least 1 characters',
-		element: document.querySelector('label[for="name"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^a-zA-Z]/g);
-			return illegalCharacters ? true : false | input.value.length == 0;
-		},
-		invalidityMessage: 'Only letters are allowed',
-		element: document.querySelector('label[for="name"] .input-requirements li:nth-child(2)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/^[^A-Z]/g);
-			return illegalCharacters ? true : false | input.value.length == 0;
-		},
-		invalidityMessage: 'Should start with an uppercase letter',
-		element: document.querySelector('label[for="name"] .input-requirements li:nth-child(3)')
-	}
-];
-
-var surnameValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 1 | input.value.length > 50;
-		},
-		invalidityMessage: 'This input needs to be at least 2 characters',
-		element: document.querySelector('label[for="surname"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^a-zA-Z]/g);
-			return illegalCharacters ? true : false | input.value.length == 0;
-		},
-		invalidityMessage: 'Only letters are allowed',
-		element: document.querySelector('label[for="surname"] .input-requirements li:nth-child(2)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/^[^A-Z]/g);
-			return illegalCharacters ? true : false | input.value.length == 0;
-		},
-		invalidityMessage: 'Should start with an uppercase letter',
-		element: document.querySelector('label[for="surname"] .input-requirements li:nth-child(3)')
-	}
-];
-
-var usernameValidityChecks = [
-	{
-		isInvalid: function(input) {
-			return input.value.length < 3 | input.value.length > 20;
-		},
-		invalidityMessage: 'This input needs to be at least 3 - 20 characters',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
-	},
-	{
-		isInvalid: function(input) {
-			var illegalCharacters = input.value.match(/[^a-zA-Z0-9]/g);
-			return illegalCharacters ? true : false | input.value.length == 0;
-		},
-		invalidityMessage: 'Only letters and numbers are allowed',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
-	}
-];
-
-var passwordValidityChecks = [
+var oldPasswordValidityChecks = [
 	{
 		isInvalid: function(input) {
 			return input.value.length < 8 | input.value.length > 20;
 		},
 		invalidityMessage: 'This input needs to be between 8 and 100 characters',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(1)')
+		element: document.querySelector('label[for="old_password"] .input-requirements li:nth-child(1)')
 	},
 	{
 		isInvalid: function(input) {
 			return !input.value.match(/[0-9]/g) | input.value.length == 0;
 		},
 		invalidityMessage: 'At least 1 number is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(2)')
+		element: document.querySelector('label[for="old_password"] .input-requirements li:nth-child(2)')
 	},
 	{
 		isInvalid: function(input) {
 			return !input.value.match(/[a-z]/g) | input.value.length == 0;
 		},
 		invalidityMessage: 'At least 1 lowercase letter is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(3)')
+		element: document.querySelector('label[for="old_password"] .input-requirements li:nth-child(3)')
 	},
 	{
 		isInvalid: function(input) {
 			return !input.value.match(/[A-Z]/g) | input.value.length == 0;
 		},
 		invalidityMessage: 'At least 1 uppercase letter is required',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(4)')
+		element: document.querySelector('label[for="old_password"] .input-requirements li:nth-child(4)')
 	},
 	{
 		isInvalid: function(input) {
 			return !input.value.match(/[\!\@\#\$\%\^\&\*]/g) | input.value.length == 0;
 		},
 		invalidityMessage: 'You need one of the required special characters',
-		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(5)')
+		element: document.querySelector('label[for="old_password"] .input-requirements li:nth-child(5)')
+	}
+];
+
+var newPasswordValidityChecks = [
+	{
+		isInvalid: function(input) {
+			return input.value.length < 8 | input.value.length > 20;
+		},
+		invalidityMessage: 'This input needs to be between 8 and 100 characters',
+		element: document.querySelector('label[for="new_password"] .input-requirements li:nth-child(1)')
+	},
+	{
+		isInvalid: function(input) {
+			return !input.value.match(/[0-9]/g) | input.value.length == 0;
+		},
+		invalidityMessage: 'At least 1 number is required',
+		element: document.querySelector('label[for="new_password"] .input-requirements li:nth-child(2)')
+	},
+	{
+		isInvalid: function(input) {
+			return !input.value.match(/[a-z]/g) | input.value.length == 0;
+		},
+		invalidityMessage: 'At least 1 lowercase letter is required',
+		element: document.querySelector('label[for="new_password"] .input-requirements li:nth-child(3)')
+	},
+	{
+		isInvalid: function(input) {
+			return !input.value.match(/[A-Z]/g) | input.value.length == 0;
+		},
+		invalidityMessage: 'At least 1 uppercase letter is required',
+		element: document.querySelector('label[for="new_password"] .input-requirements li:nth-child(4)')
+	},
+	{
+		isInvalid: function(input) {
+			return !input.value.match(/[\!\@\#\$\%\^\&\*]/g) | input.value.length == 0;
+		},
+		invalidityMessage: 'You need one of the required special characters',
+		element: document.querySelector('label[for="new_password"] .input-requirements li:nth-child(5)')
 	},
 	{
 		isInvalid: function(input) {
@@ -198,7 +166,7 @@ var passwordValidityChecks = [
 var passwordRepeatValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value != passwordInput.value | input.value.length == 0;
+			return input.value != oldPasswordInput.value | input.value.length == 0;
 		},
 		invalidityMessage: 'This password needs to match the first one'
 	}
@@ -210,26 +178,18 @@ var passwordRepeatValidityChecks = [
 	Also sets which array of validity checks to use for that input
 ---------------------------- */
 
-var usernameInput = document.getElementById('login');
-var passwordInput = document.getElementById('password');
+var oldPasswordInput = document.getElementById('old_password');
+var newPasswordInput = document.getElementById('new_password');
 var passwordRepeatInput = document.getElementById('password_repeat');
-var nameInput = document.getElementById('name');
-var surnameInput = document.getElementById('surname');
 
-usernameInput.CustomValidation = new CustomValidation(usernameInput);
-usernameInput.CustomValidation.validityChecks = usernameValidityChecks;
+oldPasswordInput.CustomValidation = new CustomValidation(oldPasswordInput);
+oldPasswordInput.CustomValidation.validityChecks = oldPasswordValidityChecks;
 
-passwordInput.CustomValidation = new CustomValidation(passwordInput);
-passwordInput.CustomValidation.validityChecks = passwordValidityChecks;
+newPasswordInput.CustomValidation = new CustomValidation(newPasswordInput);
+newPasswordInput.CustomValidation.validityChecks = newPasswordValidityChecks;
 
 passwordRepeatInput.CustomValidation = new CustomValidation(passwordRepeatInput);
 passwordRepeatInput.CustomValidation.validityChecks = passwordRepeatValidityChecks;
-
-nameInput.CustomValidation = new CustomValidation(nameInput);
-nameInput.CustomValidation.validityChecks = nameValidityChecks;
-
-surnameInput.CustomValidation = new CustomValidation(surnameInput);
-surnameInput.CustomValidation.validityChecks = surnameValidityChecks;
 
 /* ----------------------------
 	Event Listeners

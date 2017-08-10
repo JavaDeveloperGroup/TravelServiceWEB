@@ -126,5 +126,5 @@ public class CustomerTO implements Entity, Serializable {
 
 	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
-	}
+	}	
 }

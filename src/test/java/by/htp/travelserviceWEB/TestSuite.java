@@ -5,8 +5,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	RegistrationTest.class,
-	ValidatorTest.class
+	RegistrationTestSelenium.class,
+	ValidatorTestJUnit.class
 })
 public class TestSuite {
 

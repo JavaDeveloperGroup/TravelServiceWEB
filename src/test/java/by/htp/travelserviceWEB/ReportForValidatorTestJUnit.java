@@ -4,10 +4,10 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-public class RunValidatorTestClass {
+public class ReportForValidatorTestJUnit {
 	
 	public static void main(String[] args) {
-		Result result = JUnitCore.runClasses(ValidatorTest.class); //set to run test
+		Result result = JUnitCore.runClasses(ValidatorTestJUnit.class); //set to run test
 		//how many successful tests
 		System.out.println("Total number of tests " + result.getRunCount());
 		//how many failed tests
