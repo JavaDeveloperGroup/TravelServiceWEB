@@ -62,6 +62,7 @@
 				<form action="${pageContext.request.contextPath}/Controller"
 					method="POST">
 					<input type="hidden" name="command" value="sign_up" />
+					<input type="hidden" name="id_role" value="1" />
 
 					<div class='form-row'>
 						<label for="name"> <span>Name</span> <input type='text'

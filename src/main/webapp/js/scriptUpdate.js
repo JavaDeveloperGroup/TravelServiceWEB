@@ -154,13 +154,13 @@ var newPasswordValidityChecks = [
 		},
 		invalidityMessage: 'You need one of the required special characters',
 		element: document.querySelector('label[for="new_password"] .input-requirements li:nth-child(5)')
-	},
+	}/*,
 	{
 		isInvalid: function(input) {
-			return passwordRepeatInput.value.length == 0 & input.value != passwordRepeatInput.value;
+			return passwordRepeatInput.value.length != 0 & input.value != passwordRepeatInput.value;
 		},
 		invalidityMessage: 'Repeat this password'
-	}
+	}*/
 ];
 
 var passwordRepeatValidityChecks = [

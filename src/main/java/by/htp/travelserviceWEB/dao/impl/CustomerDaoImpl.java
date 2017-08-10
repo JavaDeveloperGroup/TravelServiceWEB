@@ -80,6 +80,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		Insert insert = null;
 		try {
 			insert = new QueryBuilder().insert(customerTO).getQuery();
+			//System.out.println(insert.toString());
 		} catch (SecurityException | ClassNotFoundException | IllegalArgumentException | IllegalAccessException e1) {
 			e1.printStackTrace();
 		}
@@ -89,7 +90,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			
 			ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 			if (generatedKeys.next()) {
-				customer.setCustomerId(Integer.valueOf(generatedKeys.getInt(1)));
+				customer.setCustomerId(Integer.valueOf(generatedKeys.getString(1)));
 			}
 			
 		} catch (SQLException | SecurityException | ClassNotFoundException e) {

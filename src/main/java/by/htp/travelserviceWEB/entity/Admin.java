@@ -9,11 +9,11 @@ public class Admin implements Entity, Serializable {
 	private Integer adminId;
 	private String login;
 	private transient String password;
-	private Integer roleId;
+	private String roleId;
 	
 	public Admin() {}
 
-	public Admin(Integer adminId, String login, String password, Integer roleId) {
+	public Admin(Integer adminId, String login, String password, String roleId) {
 		this.adminId = adminId;
 		this.login = login;
 		this.password = password;
@@ -44,11 +44,11 @@ public class Admin implements Entity, Serializable {
 		this.password = password;
 	}
 
-	public Integer getRoleId() {
+	public String getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(Integer roleId) {
+	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
 }

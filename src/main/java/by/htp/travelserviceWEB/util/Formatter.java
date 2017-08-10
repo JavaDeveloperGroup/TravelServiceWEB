@@ -250,29 +250,20 @@ public abstract class Formatter {
 			throws SecurityException, ClassNotFoundException {
 		
 		Object[] obj = new Object[getParameterTypes(entity).length];
+		System.out.println(entity.getClass().getSimpleName().toLowerCase());
 		int i = 0;
-		if (obj.length == 2) {
-			for (String value : listOfParametersForLogIn) {
-				obj[i] = request.getParameter(value);
-				i++;
-			}
-			return obj;
-		} else if (obj.length == 6) {
-			for (String value : listOfParametersForUpdateData) {
-				obj[i] = request.getParameter(value);
-				i++;
-			}
-			return obj;
-		} else {
-			for (String value : listOfParametersForSignUp) {
-				 /*if (i < listOfParametersForSignUp.size() - 1) {
-				 
-				 }*/
-				obj[i] = request.getParameter(value);
-				i++;
-			}
-			obj[10] = 1;
-			return obj;
+
+		for (String value : allListsParameters.get(entity.getClass().getSimpleName().toLowerCase())) {
+			obj[i] = request.getParameter(value);
+			i++;
 		}
+
+		/*
+		 * if (i < listOfParametersForSignUp.size() - 1) {
+		 * 
+		 * }
+		 */
+
+		return obj;
 	}
 }

@@ -28,7 +28,7 @@ public class ValidatorTestJUnit {
 	private String email;
 	private String phoneNumber;
 	private String driverLicence;
-	private Integer roleId;
+	private String roleId;
 	//private CustomerTO сustomerTO = new CustomerTO(login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicence, roleId);
 	
 	@Before
@@ -44,7 +44,7 @@ public class ValidatorTestJUnit {
 		email = "popovich@a1qa.by";
 		phoneNumber = "+375293333333";
 		driverLicence = "No";
-		roleId = 1;
+		roleId = "1";
 	}
 	
 	@Test (timeout = 500)

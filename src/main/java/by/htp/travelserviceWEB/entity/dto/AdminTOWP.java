@@ -11,11 +11,11 @@ public class AdminTOWP implements Entity, Serializable {
 	
 	private Integer adminId;
 	private String login;
-	private Integer roleId;
+	private String roleId;
 	
 	public AdminTOWP() {}
 	
-	public AdminTOWP(Integer adminId, String login, Integer roleId) {
+	public AdminTOWP(Integer adminId, String login, String roleId) {
 		this.adminId = adminId;
 		this.login = login;
 		this.roleId = roleId;
@@ -37,11 +37,11 @@ public class AdminTOWP implements Entity, Serializable {
 		this.login = login;
 	}
 
-	public Integer getRoleId() {
+	public String getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(Integer roleId) {
+	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
 
