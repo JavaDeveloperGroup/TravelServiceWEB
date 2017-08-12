@@ -253,8 +253,8 @@ public abstract class Formatter {
 		System.out.println(entity.getClass().getSimpleName().toLowerCase());
 		int i = 0;
 
-		for (String value : allListsParameters.get(entity.getClass().getSimpleName().toLowerCase())) {
-			obj[i] = request.getParameter(value);
+		for (Object value : allListsParameters.get(entity.getClass().getSimpleName().toLowerCase())) {
+			obj[i] = request.getParameter(value.toString());
 			i++;
 		}
 

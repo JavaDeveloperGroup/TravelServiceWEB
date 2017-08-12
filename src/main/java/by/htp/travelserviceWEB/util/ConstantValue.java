@@ -14,10 +14,10 @@ public final class ConstantValue {
 	public static final String PAGE_CATALOG_HOTEL = "/catalog_hotel.jsp";
 	public static final String PAGE_CATALOG_AUTO = "/catalog_auto.jsp";
 	public static final String PAGE_CATALOG_TOUR = "/catalog_tour.jsp";
-	public static final Map<String, List<String>> allListsParameters = new ConcurrentHashMap<String, List<String>>();
+	public static final Map<String, List<Object>> allListsParameters = new ConcurrentHashMap<String, List<Object>>();
 	//private static final List<String> listOfParametersForSignUp = new LinkedList<>();
 	static {
-		List<String> listOfParametersForSignUp = new LinkedList<>();
+		List<Object> listOfParametersForSignUp = new LinkedList<>();
 		listOfParametersForSignUp.add("login");		
 		listOfParametersForSignUp.add("password");
 		listOfParametersForSignUp.add("name");
@@ -33,14 +33,14 @@ public final class ConstantValue {
 	}
 	//public static final List<String> listOfParametersForLogIn = new LinkedList<>();
 	static {
-		List<String> listOfParametersForLogIn = new LinkedList<>();
+		List<Object> listOfParametersForLogIn = new LinkedList<>();
 		listOfParametersForLogIn.add("login");		
 		listOfParametersForLogIn.add("password");
 		allListsParameters.put("customertolp", listOfParametersForLogIn);
 	}
 	//public static final List<String> listOfParametersForUpdateData = new LinkedList<>();
 	static {	
-		List<String> listOfParametersForUpdateData = new LinkedList<>();
+		List<Object> listOfParametersForUpdateData = new LinkedList<>();
 		listOfParametersForUpdateData.add("new_password");
 		listOfParametersForUpdateData.add("gender");
 		listOfParametersForUpdateData.add("birthday");

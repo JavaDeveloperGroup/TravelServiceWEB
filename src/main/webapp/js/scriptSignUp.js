@@ -198,7 +198,7 @@ var passwordValidityChecks = [
 var passwordRepeatValidityChecks = [
 	{
 		isInvalid: function(input) {
-			return input.value != passwordInput.value | input.value.length == 0;
+			return /*input.value != passwordInput.value | */input.value.length == 0;
 		},
 		invalidityMessage: 'This password needs to match the first one'
 	}
