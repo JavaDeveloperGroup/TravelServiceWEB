@@ -1,5 +1,5 @@
-XML: RFA: 2017-08-12 06:33 PM [http-nio-8080-exec-11] INFO  by.htp.travelserviceWEB.commander.UpdateAccountAction - Update account user1
-XML: RFA: 2017-08-12 06:35 PM [http-nio-8080-exec-12] INFO  by.htp.travelserviceWEB.commander.LogOutAction - Log out customer user1
-XML: RFA: 2017-08-12 06:42 PM [http-nio-8080-exec-12] INFO  by.htp.travelserviceWEB.commander.SignUpAction - Sign up user00
-XML: RFA: 2017-08-12 06:44 PM [http-nio-8080-exec-15] INFO  by.htp.travelserviceWEB.commander.UpdateAccountAction - Update account user00
-XML: RFA: 2017-08-12 06:45 PM [http-nio-8080-exec-19] INFO  by.htp.travelserviceWEB.commander.LogOutAction - Log out customer user00
+XML: RFA: 2017-08-12 10:44 PM [http-nio-8080-exec-8] INFO  by.htp.travelserviceWEB.commander.LogInAction - Log in customer user1
+XML: RFA: 2017-08-12 10:44 PM [http-nio-8080-exec-1] INFO  by.htp.travelserviceWEB.commander.UpdateAccountAction - Update account user1
+XML: RFA: 2017-08-12 10:45 PM [http-nio-8080-exec-4] INFO  by.htp.travelserviceWEB.commander.LogOutAction - Log out customer user1
+XML: RFA: 2017-08-12 10:46 PM [http-nio-8080-exec-9] INFO  by.htp.travelserviceWEB.commander.SignUpAction - Sign up user21
+XML: RFA: 2017-08-12 10:47 PM [http-nio-8080-exec-10] INFO  by.htp.travelserviceWEB.commander.LogOutAction - Log out customer user21

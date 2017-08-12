@@ -4,8 +4,7 @@ import by.htp.travelserviceWEB.dao.hotel.ApartmentDao;
 
 public class ApartmentDaoImpl implements ApartmentDao {
 
-	private ApartmentDaoImpl() {
-	}
+	private ApartmentDaoImpl() {}
 
 	private static class Singletone {
 		private static final ApartmentDaoImpl INSTANCE = new ApartmentDaoImpl();
