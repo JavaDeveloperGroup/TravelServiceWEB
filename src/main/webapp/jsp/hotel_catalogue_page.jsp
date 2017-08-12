@@ -15,64 +15,17 @@
 <body>
 	<div>
 		<div id="wrapper">
-			<header>
-				<div>
-					<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
-						<img src="${pageContext.request.contextPath}/image/logoF.png"
-						width="180">
-					</a>
-					<c:if test="${user == null}">
-						<form name="sign_in" id="sign_in"
-							action="${pageContext.request.contextPath}/Controller"
-							method="GET">
-							<input type="hidden" value="log_in_page" name="command" />
-							<button type="submit">SIGN IN</button>
-						</form>
-
-						<form name="sign_up" id="sign_up"
-							action="${pageContext.request.contextPath}/Controller"
-							method="GET">
-							<input type="hidden" value="sign_up_page" name="command" />
-							<button type="submit">SIGN UP</button>
-						</form>
-					</c:if>
-					<c:if test="${user != null}">
-						<c:if
-							test="${user.getClass().getSimpleName().subSequence(0, 5) == 'Admin'}">
-							<form name="sign_up"
-								action="${pageContext.request.contextPath}/Controller"
-								method="GET">
-								<tr>
-									<td>${user.getLogin()}</td>
-								</tr>
-								<input type="hidden" value="log_out" name="command" />
-								<button name="log_out" type="submit">LOG OUT</button>
-							</form>
-						</c:if>
-
-						<c:if
-							test="${user.getClass().getSimpleName().subSequence(0, 8) == 'Customer'}">
-							<form name="sign_up"
-								action="${pageContext.request.contextPath}/Controller"
-								method="GET">
-								<tr>
-									<a
-										href="${pageContext.request.contextPath}/Controller?command=update_account_page"><td>${user.getLogin()}</td></a>
-								</tr>
-								<input type="hidden" value="log_out" name="command" />
-								<button name="log_out" type="submit">LOG OUT</button>
-							</form>
-						</c:if>
-					</c:if>
-				</div>
-			</header>
+		
+			<%@include file="../jspf/header_default.jspf" %>
+			
 			<hr>
 			
 			<div class="menu_center">
-				<%@include file="menu.jsp" %>
+				<%@include file="../jspf/menu.jspf" %>
 			</div>
 			
 			<hr>
+
 			<div>
 				<aside>
 					<nav>

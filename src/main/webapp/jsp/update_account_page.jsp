@@ -15,38 +15,13 @@
 </head>
 <body>
 	<div id="wrapper">
-		<header>
-			<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img src="${pageContext.request.contextPath}/image/logoF.png" width="180"></a>
-			<form name="sign_in" action="${pageContext.request.contextPath}/Controller" method="GET">
-				<input type="hidden" value="log_out" name="command" />
-				<tr>
-					<td>${user.getLogin()}</td>
-				</tr>
-				<button type="submit">LOG OUT</button>
-			</form>
-		</header>
+		<%@include file="../jspf/header_update_account.jspf" %>>
 		<hr>
+		
 		<div class="menu_center">
-			<nav>
-				<ul class="top-menu">
-					<li id="about"><a href="/home/">ABOUT US</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/Controller?command=tour_catalogue_page">TOUR
-							CATALOGUE</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue_page">HOTEL
-							CATALOGUE</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/Controller?command=auto_catalogue_page">CAR
-							CATALOGUE</a></li>
-					<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
-				</ul>
-				<select id="lang">
-					<option value="RU">RUSSIAN</option>
-					<option selected value="EN"€>ENGLISH</option>
-				</select>
-			</nav>
+			<%@include file="../jspf/menu.jspf" %> />
 		</div>
+		
 		<hr>
 		<div id="heading">
 			<h2>Please, fill in the form new data!</h2>

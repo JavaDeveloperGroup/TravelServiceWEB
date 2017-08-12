@@ -1,0 +1,10 @@
+<header>
+	<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"> 
+	<img src="${pageContext.request.contextPath}/image/logoF.png" width="180">
+	</a>
+	<form name="sign_up"
+		action="${pageContext.request.contextPath}/Controller" method="GET">
+		<input type="hidden" value="sign_up_page" name="command" />
+		<button type="submit">SIGN UP</button>
+	</form>
+</header>

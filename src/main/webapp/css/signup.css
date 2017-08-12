@@ -2,16 +2,14 @@
 header {
 	padding: 10px 0 0 0;
 }
-form[name="back"] {
-	float: right;
-}
+
 form[name="sign_in"] {
 	float: right;
 }
 
 header{
 	font: 14px 'Oswald', sans-serif;
-	font-weight: bold;
+	/* font-weight: bold; */
 }
 body {
 	color: #8f8f8f;

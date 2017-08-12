@@ -1,0 +1,10 @@
+<header>
+	<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
+	<img src="${pageContext.request.contextPath}/image/logoF.png" width="180">
+	</a>
+	<form name="sign_in"
+		action="${pageContext.request.contextPath}/Controller" method="GET">
+		<input type="hidden" value="log_in_page" name="command" />
+		<button type="submit">LOG IN</button>
+	</form>
+</header>

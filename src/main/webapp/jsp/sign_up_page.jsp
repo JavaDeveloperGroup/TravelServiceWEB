@@ -16,20 +16,11 @@
 <body>
 	<div>
 		<div id="wrapper">
-			<header>
-				<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img
-					src="${pageContext.request.contextPath}/image/logoF.png"
-					width="180"></a>
-				<form name="sign_in"
-					action="${pageContext.request.contextPath}/Controller" method="GET">
-					<input type="hidden" value="log_in_page" name="command" />
-					<button type="submit">SIGN IN</button>
-				</form>
-			</header>
+			<%@include file="../jspf/header_sign_up.jspf" %>
 			<hr>
 			
 			<div class="menu_center">
-				<jsp:include page="menu.jsp" />
+				<%@include file="../jspf/menu.jspf" %>
 			</div>
 			
 			<hr>

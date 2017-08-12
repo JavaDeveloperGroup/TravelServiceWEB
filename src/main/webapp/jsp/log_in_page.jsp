@@ -13,21 +13,11 @@
 <body>
 	<div>
 		<div id="wrapper">
-			<header>
-				<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
-					<img src="${pageContext.request.contextPath}/image/logoF.png"
-					width="180">
-				</a>
-				<form name="sign_up"
-					action="${pageContext.request.contextPath}/Controller" method="GET">
-					<input type="hidden" value="sign_up_page" name="command" />
-					<button type="submit">SIGN UP</button>
-				</form>
-			</header>
+			<%@include file="../jspf/header_log_in.jspf" %>
 			<hr>
 			
 			<div class="menu_center">
-				<jsp:include page="menu.jsp" />
+				<%@include file="../jspf/menu.jspf" %>
 			</div>
 			
 			<hr>

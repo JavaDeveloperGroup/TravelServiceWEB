@@ -38,9 +38,7 @@ p {
 header {
 	padding: 10px 0 0 0;
 }
-form[name="back"] {
-	float: right;
-}
+
 form[name="sign_up"] {
 	float: right;
 }

@@ -1,0 +1,12 @@
+<header>
+	<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img
+		src="${pageContext.request.contextPath}/image/logoF.png" width="180"></a>
+	<form name="sign_in"
+		action="${pageContext.request.contextPath}/Controller" method="GET">
+		<input type="hidden" value="log_out" name="command" />
+		<tr>
+			<td>${user.getLogin()}</td>
+		</tr>
+		<button type="submit">LOG OUT</button>
+	</form>
+</header>
