@@ -9,14 +9,14 @@ public class Salon implements Entity, Serializable {
 	private static final long serialVersionUID = 5541491372792262379L;
 	
 	private Integer salonId;
-	private String city;
+	private Integer cityId;
 	private String address;
 	
 	public Salon() {}
 
-	public Salon(Integer salonId, String city, String address) {
+	public Salon(Integer salonId, Integer cityId, String address) {
 		this.salonId = salonId;
-		this.city = city;
+		this.cityId = cityId;
 		this.address = address;
 	}
 
@@ -28,12 +28,12 @@ public class Salon implements Entity, Serializable {
 		this.salonId = salonId;
 	}
 
-	public String getCity() {
-		return city;
+	public Integer getCityId() {
+		return cityId;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
 	}
 
 	public String getAddress() {

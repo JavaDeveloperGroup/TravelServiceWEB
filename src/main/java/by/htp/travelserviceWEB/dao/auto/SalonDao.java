@@ -1,5 +1,11 @@
 package by.htp.travelserviceWEB.dao.auto;
 
-public interface SalonDao {
+import java.util.List;
 
+import by.htp.travelserviceWEB.entity.Entity;
+
+public interface SalonDao {
+	
+	List<Entity> fetchSalonName(Entity entity);
+	
 }

@@ -11,28 +11,58 @@ import java.util.Map;
 
 public final class Delete extends QueryBuilder {
 
-	private final Query query;
-	private final Entity entity;
-	private final Map<String, Object> columnsAndValues;
-	private String conditionAnd;
-	private String conditionOr;
+	private Query query;
+	private Entity entity;
+	private Map<String, Object> columnsAndValues;
+	
+	public Delete (Query query) {
+		this.query = query;
+		this.query.append("DELETE ");
+	}
 	
 	public Delete (Query query, Entity entity) {
-		this.query = query;
+		this(query);
 		this.entity = entity;
-		this.query.append("DELETE FROM ").append(getClassName(entity));
+		this.query.append(" FROM ");
+		this.query.append(getClassName(entity));
 		this.columnsAndValues = new LinkedHashMap<>();
 	}
 	
+	public Delete all() {
+		this.query.append(" * ");
+		return this;
+	}
+	
+	public Delete from() {
+		this.query.append(" FROM ");
+		return this;
+	}
+	
+	public Delete where(String ... conditions) {
+		return this;
+	}
+	
+	public Delete table(String tableName, String ... tableNames) {
+		return this;
+	}
+	
+	public Delete orderBy(String columnName) {
+		this.query.append(columnName);
+		return this;
+	}
+	
+	public Delete limit(String count) {
+		this.query.append(count);
+		return this;
+	}
+	
 	public Delete and(String condition) {
-		this.conditionAnd = condition;
-		query.append(" AND " + conditionAnd);
+		query.append(" AND " + condition);
 		return this;
 	}
 
 	public Delete or(String condition) {
-		this.conditionAnd = condition;
-		query.append(" OR " + conditionOr);
+		query.append(" OR " + condition);
 		return this;
 	}
 	
@@ -49,7 +79,7 @@ public final class Delete extends QueryBuilder {
 	
 	@Override
 	public String toString() {
-		return query.getSQLQuery().toString();
+		return query.getSQLQuery();
 	}
 }
 

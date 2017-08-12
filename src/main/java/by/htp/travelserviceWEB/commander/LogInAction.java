@@ -1,7 +1,5 @@
 package by.htp.travelserviceWEB.commander;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

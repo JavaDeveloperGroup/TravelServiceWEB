@@ -2,18 +2,23 @@ package by.htp.travelserviceWEB.sqlbuilder.builder;
 
 import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
+import by.htp.travelserviceWEB.sqlbuilder.GlobalMethod;
 import by.htp.travelserviceWEB.sqlbuilder.Query;
 import by.htp.travelserviceWEB.sqlbuilder.delete.Delete;
 import by.htp.travelserviceWEB.sqlbuilder.insert.Insert;
 import by.htp.travelserviceWEB.sqlbuilder.select.Select;
 import by.htp.travelserviceWEB.sqlbuilder.update.Update;
 
-public class QueryBuilder extends Query{
+public class QueryBuilder extends GlobalMethod {
 	
 	private final Query query;
 
 	public QueryBuilder() {
 		this.query = new Query();
+	}
+	
+	public final Select select() {
+		return new Select(query);
 	}
 	
 	public final Select select(Entity entity) {

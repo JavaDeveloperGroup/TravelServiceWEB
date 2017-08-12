@@ -1,1 +1,5 @@
-XML: RFA: 2017-08-12 04:26 PM [http-nio-8080-exec-8] INFO  by.htp.travelserviceWEB.commander.SignUpAction - Sign up is fail com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException
+XML: RFA: 2017-08-12 06:33 PM [http-nio-8080-exec-11] INFO  by.htp.travelserviceWEB.commander.UpdateAccountAction - Update account user1
+XML: RFA: 2017-08-12 06:35 PM [http-nio-8080-exec-12] INFO  by.htp.travelserviceWEB.commander.LogOutAction - Log out customer user1
+XML: RFA: 2017-08-12 06:42 PM [http-nio-8080-exec-12] INFO  by.htp.travelserviceWEB.commander.SignUpAction - Sign up user00
+XML: RFA: 2017-08-12 06:44 PM [http-nio-8080-exec-15] INFO  by.htp.travelserviceWEB.commander.UpdateAccountAction - Update account user00
+XML: RFA: 2017-08-12 06:45 PM [http-nio-8080-exec-19] INFO  by.htp.travelserviceWEB.commander.LogOutAction - Log out customer user00

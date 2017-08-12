@@ -14,22 +14,39 @@ import java.util.Map;
 public final class Select extends QueryBuilder {
 
 	private final Query query;
-	private final Map<String, Object> entityMap;
-	private final Map<String, Object> conditionsMap;
-	private final Entity entity;
+	private Map<String, Object> entityMap;
+	private Map<String, Object> conditionsMap;
+	private Entity entity;
+	private Entity[] entities;
 	private CustomerTOLP customerTOLP;
 	
-	public Select (Query query, Entity entity) {
+	public Select (Query query) {
 		this.query = query;
-		this.entity = entity;
 		this.query.append("SELECT ");
 		this.entityMap = new LinkedHashMap<>();
 		this.conditionsMap = new LinkedHashMap<>();
 	}
 	
+	public Select (Query query, Entity entity) {
+		this(query);
+		this.entity = entity;
+	}
+	
 	public Select (Query query, Entity entity, CustomerTOLP customerTOLP) {
 		this(query, entity);
 		this.customerTOLP = customerTOLP;
+	}
+	
+	public Select (Query query, Entity ... entities) {
+		this(query);
+		this.entities = entities;
+	}
+	
+	public Select all() {
+		query.append(" * ")
+			 .append("FROM ")
+			 .append(entity.getClass().getSimpleName().toLowerCase());
+		return this;
 	}
 
 	public Select from() {
@@ -43,6 +60,10 @@ public final class Select extends QueryBuilder {
 		fieldsAndValuesListFormation(entity, customerTOLP, entityMap, conditionsMap);
 		fromWhere(query, entity, entityMap);
 		fromWhereForChecking(query, entity, conditionsMap);
+		return this;
+	}
+	
+	public Select and() {
 		return this;
 	}
 	

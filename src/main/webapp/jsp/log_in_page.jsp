@@ -25,28 +25,11 @@
 				</form>
 			</header>
 			<hr>
+			
 			<div class="menu_center">
-				<nav>
-					<ul class="top-menu">
-						<li id="about"><a href="/home/">ABOUT US</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/Controller?command=tour_catalogue_page">TOUR
-								CATALOGUE</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue_page">HOTEL
-								CATALOGUE</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/Controller?command=auto_catalogue_page">CAR
-								CATALOGUE</a></li>
-						<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
-					</ul>
-					<select id="lang">
-						<option value="RU">RUSSIAN</option>
-						<option selected value="EN">ENGLISH</option>
-					</select>
-				</nav>
+				<jsp:include page="menu.jsp" />
 			</div>
-			s
+			
 			<hr>
 			<div id="heading">
 				<h2>Please, fill in the form to log in!</h2>
