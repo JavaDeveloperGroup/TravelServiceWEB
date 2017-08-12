@@ -1,29 +1,32 @@
 package by.htp.travelserviceWEB.entity.dto;
 
-import java.sql.Date;
+import java.io.Serializable;
 
-import by.htp.travelserviceWEB.entity.Role;
+import by.htp.travelserviceWEB.entity.Entity;
 
-public class CustomerTO {
-
-	private Integer customerId;
+public class CustomerTO implements Entity, Serializable {
+	
+	private static final long serialVersionUID = -5155826831396257723L;
+	
 	private String login;
-	private transient String password;
+	private String password;
 	private String name;
 	private String surname;
 	private String gender;
-	private Date birthday;
+	private String birthday;
 	private String passport;
 	private String email;
 	private String phoneNumber;
-	private String driverLicense;
-	private Role role;
+	private String driverLicence;
+	private Integer roleId;
 	
 	public CustomerTO() {}
 
-	public CustomerTO(Integer customerId, String login, String password, String name, String surname, String gender,
-			Date birthday, String passport, String email, String phoneNumber, String driverLicense, Role role) {
-		this.customerId = customerId;
+	public CustomerTO(String login, String password, String name, 
+					  String surname, String gender, String birthday,
+					  String passport, String email, String phoneNumber, 
+					  String driverLicence, Integer roleId) {
+		
 		this.login = login;
 		this.password = password;
 		this.name = name;
@@ -33,18 +36,10 @@ public class CustomerTO {
 		this.passport = passport;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.driverLicense = driverLicense;
-		this.role = role;
+		this.driverLicence = driverLicence;
+		this.roleId = roleId;
 	}
-
-	public Integer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
-	}
-
+	
 	public String getLogin() {
 		return login;
 	}
@@ -85,11 +80,11 @@ public class CustomerTO {
 		this.gender = gender;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -117,24 +112,19 @@ public class CustomerTO {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getDriverLicense() {
-		return driverLicense;
+	public String getDriverLicence() {
+		return driverLicence;
 	}
 
-	public void setDriverLicense(String driverLicense) {
-		this.driverLicense = driverLicense;
+	public void setDriverLicence(String driverLicenсe) {
+		this.driverLicence = driverLicenсe;
 	}
 
-	public Role getRole() {
-		return role;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	
-	
-	
-
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}	
 }

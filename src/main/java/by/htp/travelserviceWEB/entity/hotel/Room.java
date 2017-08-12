@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Room implements Serializable {
 	
+	private static final long serialVersionUID = -1767898336508143177L;
+	
 	private Integer roomId;
 	private Integer capacity;
 	private String tv;

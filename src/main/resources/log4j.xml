@@ -26,42 +26,42 @@
 	</appender>
 
  	<appender name="RFA" class="org.apache.log4j.RollingFileAppender">
-		<param name="File" value="C:/OneDrive/courses/HTP/web2/travel-service-WEB/logs/rfa.log" />
+		<param name="File" value="${catalina.base}../../../../../travel-service-WEB/logs/rfa.log" />
 		<param name="Threshold" value="TRACE" />
 		<param name="Append" value="false" />
-		<param name="MaxFileSize" value="1KB" />
+		<param name="MaxFileSize" value="1MB" />
 		<param name="MaxBackupIndex" value="3" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="XML: RFA: %d{MM/dd/yyyy HH:mm:ss} %c:[%t] %-5p - %m%n" />
+			<param name="ConversionPattern" value="XML: RFA: %d{yyyy-MM-dd hh:mm a} [%t] %-5p %c - %m%n" />
 		</layout>
 	</appender>
 
-  	<appender name="DRFA" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="C:/OneDrive/courses/HTP/web2/travel-service-WEB/logs/drfa.log" />
+  	<!-- <appender name="DRFA" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="C:/Users/popo/OneDrive/courses/TravelServiseWEB/travel-service-WEB/logs/drfa.log" />
 		<param name="Threshold" value="INFO" />
 		<param name="Append" value="true" />
 		<param name="DatePattern" value=".yyyy-MM-dd-HH"/>
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="XML: DRFA: %d{MM/dd/yyyy HH:mm:ss} %c:[%t] %-5p - %m%n" />
+			<param name="ConversionPattern" value="XML: DRFA: %d{ISO8601} [%-5p][%-16.16t][%32.32c] - %m%n" />
 		</layout>
 	</appender>
 
  	<appender name="RFA_HTML" class="org.apache.log4j.RollingFileAppender">
-		<param name="File" value="C:/OneDrive/courses/HTP/web2/travel-service-WEB/logs/rfa.html" />
+		<param name="File" value="rfa.html" />
 		<param name="Threshold" value="TRACE" />
 		<param name="Append" value="false" />
 		<param name="MaxFileSize" value="2KB" />
 		<param name="MaxBackupIndex" value="3" />
 		<layout class="org.apache.log4j.HTMLLayout">
 		</layout>
-	</appender>
+	</appender> -->
 
 	<root>
 		<level value="TRACE" />
 		<appender-ref ref="Console" />
  		<appender-ref ref="RFA" />
-		<appender-ref ref="DRFA" />
-		<appender-ref ref="RFA_HTML" />
+		<!-- <appender-ref ref="DRFA" />
+		<appender-ref ref="RFA_HTML" /> -->
  	</root>
 
 </log4j:configuration>

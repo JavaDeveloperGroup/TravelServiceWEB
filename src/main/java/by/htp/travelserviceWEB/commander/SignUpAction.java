@@ -11,86 +11,86 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import by.htp.travelserviceWEB.entity.Admin;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.entity.dto.UserTO;
-import by.htp.travelserviceWEB.service.factory.ServiceFactory;
+import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
+import by.htp.travelserviceWEB.entity.dto.CustomerTO;
+import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
+import by.htp.travelserviceWEB.service.CustomerService;
+import by.htp.travelserviceWEB.service.impl.CustomerServiceImpl;
 import by.htp.travelserviceWEB.util.EncryptionFdl;
 import by.htp.travelserviceWEB.util.ReturnToTheOriginalPage;
 import by.htp.travelserviceWEB.util.Validator;
 
+import static by.htp.travelserviceWEB.util.Formatter.*;
+
 public class SignUpAction implements CommandAction {
 
-	private ServiceFactory serviceFactory;
-	private static final Logger log = Logger.getLogger(LogInAction.class);
+	private CustomerService customerService;
+	private static final Logger log = Logger.getLogger(SignUpAction.class);
 	
 	private HttpSession httpSession;
+	private CustomerTO customerTO;
 	private Customer customer;
-	private UserTO userTO;
+	private CustomerTOLP customerTOLP;
 	private String page;
 
 	public SignUpAction() {
-		serviceFactory = ServiceFactory.getInstance();
+		customerService = CustomerServiceImpl.getInstance();
+		customer = new Customer();
+		customerTO = new CustomerTO();
 	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("login");
-		String name = request.getParameter("name");
-		String surname = request.getParameter("surname");
-		String passwordEncrypt = EncryptionFdl.encrypt(request.getParameter("password"));
-		String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter("password_repeat"));
-		String passport = request.getParameter("passport");
-		String email = request.getParameter("email");
-		String phoneNumber = request.getParameter("phone_number");
-		String birthday = request.getParameter("birthday");
-		String gender = request.getParameter("gender");
-		String driverLicence = request.getParameter("driver_licence");
+		customerTO = (CustomerTO) newInstance(request, customerTO);
+		//customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
+		          
+		//String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSignUp.get(listOfParametersForSignUp.size() - 1)));
+		String passwordRepeat = request.getParameter("password_repeat");
 		
-		if (!Validator.registrationCustomer(login, passwordEncrypt, passwordRepeatEncrypt, name, surname, birthday, passport, email, phoneNumber)) {
+		if (!Validator.checkForCorrentInputDataCustomer(customerTO, passwordRepeat)) {
 			page = "jsp/sign_up_page.jsp";
 			request.setAttribute("msg", "Incorrect data entry.");
 			return page;
 		}
 		else {
-			//create userTO
-			userTO = new UserTO(login, passwordEncrypt);
-			
-			customer = new Customer(null, login, passwordEncrypt, name, surname, gender, birthday, passport, email,
-					phoneNumber, driverLicence, 1);
+			customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
+			//create customerTOLP
+			customerTOLP = new CustomerTOLP(customerTO.getLogin(), customerTO.getPassword());
 			return getPage(request, response);
 		}
 	}
 	
 	private String getPage(HttpServletRequest request, HttpServletResponse response) {
-		Customer customer = null;
-		
 		httpSession = request.getSession();
-
-		Admin admin = null;
-		admin = serviceFactory.getUserService().authoriseAdmin(userTO);
-		if (admin == null) {
+		AdminTOWP adminTOWP;
+		adminTOWP = customerService.authoriseAdmin(customerTOLP);
+		if (adminTOWP == null) {
 			try {
-				customer = serviceFactory.getUserService().registrationCustomer(this.customer);
-			} catch (SQLException e) {
-				return getPageOnErrorInputData(request);
+				customer = customerService.registrationCustomer(this.customerTO);
+				httpSession.setAttribute("user", customer);
+				// input data in Cookie
+				inputCookie(request, response);
+				log.info("Sign up " + customer.getLogin());
+				page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
+				httpSession.setAttribute("originalPage",  null);
+				request.setAttribute("user", customer);
+			} catch (MySQLIntegrityConstraintViolationException e) {
+				log.info("Sign up is fail " + e.toString());
+				page = getPageOnErrorInputData(request);
 			}
-			httpSession.setAttribute("user", customer);
-			// input data in Cookie
-			inputCookie(request, response);
-			log.info("Sign up " + customer.getLogin());
-			page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
-			httpSession.setAttribute("originalPage",  null);
 		} else {
+			log.info("Sign up is fail");
 			page = getPageOnErrorInputData(request);
 		}
 		return page;
 	}
 	
 	private String getPageOnErrorInputData(HttpServletRequest request){
-		request.setAttribute("msg", "There is a user with such login.");
+		request.setAttribute("msg", "There is a user with such data.");
 		page = "jsp/sign_up_page.jsp";
-		log.info("Sign up is fail " + this.customer.getLogin());
 		return page;
 	}
 	

@@ -2,7 +2,11 @@ package by.htp.travelserviceWEB.entity.auto;
 
 import java.io.Serializable;
 
-public class BodyType implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class BodyType implements Entity, Serializable {
+	
+	private static final long serialVersionUID = -3257032929240728054L;
 	
 	private Integer bodyTypeId;
 	private String name;

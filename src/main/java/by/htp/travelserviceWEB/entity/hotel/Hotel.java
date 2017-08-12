@@ -2,19 +2,23 @@ package by.htp.travelserviceWEB.entity.hotel;
 
 import java.io.Serializable;
 
-public class Hotel implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
 
+public class Hotel implements Entity, Serializable {
+    
+	private static final long serialVersionUID = 5090134385701563726L;
+	
 	private Integer hotelId;
-	private String city;
+	private Integer cityId;
 	private String title;
 	private String stars;
 	private String address;
 	
 	public Hotel() {}
 
-	public Hotel(Integer hotelId, String city, String title, String stars, String address) {
+	public Hotel(Integer hotelId, Integer cityId, String title, String stars, String address) {
 		this.hotelId = hotelId;
-		this.city = city;
+		this.cityId = cityId;
 		this.title = title;
 		this.stars = stars;
 		this.address = address;
@@ -27,13 +31,13 @@ public class Hotel implements Serializable {
 	public void setHotelId(Integer hotelId) {
 		this.hotelId = hotelId;
 	}
-	
-	public String getCity() {
-		return city;
+
+	public Integer getCityId() {
+		return cityId;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
 	}
 
 	public String getTitle() {
@@ -59,6 +63,4 @@ public class Hotel implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
 }

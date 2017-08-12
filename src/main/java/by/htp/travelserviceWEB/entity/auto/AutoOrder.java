@@ -3,22 +3,27 @@ package by.htp.travelserviceWEB.entity.auto;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class AutoOrder implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class AutoOrder implements Entity, Serializable {
+
+	private static final long serialVersionUID = 3555269189198727873L;
 	
 	private Integer autoOrderId;
-	private Auto autoRent;
-	private Salon salonEnd;
+	private Integer rentAutoId;
+	private Integer salonEndId;
 	private Date dateStart;
 	private Date dateEnd;
 	private Double orderPrice;
 	
 	public AutoOrder() {}
 
-	public AutoOrder(Integer autoOrderId, Auto autoRent, Salon salonEnd, Date dateStart, Date dateEnd,
+	public AutoOrder(Integer autoOrderId, Integer rentAutoId, Integer salonEndId, Date dateStart, Date dateEnd,
 			Double orderPrice) {
+		super();
 		this.autoOrderId = autoOrderId;
-		this.autoRent = autoRent;
-		this.salonEnd = salonEnd;
+		this.rentAutoId = rentAutoId;
+		this.salonEndId = salonEndId;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.orderPrice = orderPrice;
@@ -32,20 +37,20 @@ public class AutoOrder implements Serializable {
 		this.autoOrderId = autoOrderId;
 	}
 
-	public Auto getAutoRent() {
-		return autoRent;
+	public Integer getRentAutoId() {
+		return rentAutoId;
 	}
 
-	public void setAutoRent(Auto autoRent) {
-		this.autoRent = autoRent;
+	public void setRentAutoId(Integer rentAutoId) {
+		this.rentAutoId = rentAutoId;
 	}
 
-	public Salon getSalonEnd() {
-		return salonEnd;
+	public Integer getSalonEndId() {
+		return salonEndId;
 	}
 
-	public void setSalonEnd(Salon salonEnd) {
-		this.salonEnd = salonEnd;
+	public void setSalonEndId(Integer salonEndId) {
+		this.salonEndId = salonEndId;
 	}
 
 	public Date getDateStart() {
@@ -71,5 +76,4 @@ public class AutoOrder implements Serializable {
 	public void setOrderPrice(Double orderPrice) {
 		this.orderPrice = orderPrice;
 	}
-	
 }

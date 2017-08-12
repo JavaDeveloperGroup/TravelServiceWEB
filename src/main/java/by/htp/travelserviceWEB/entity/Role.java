@@ -2,7 +2,9 @@ package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
 
-public class Role implements Serializable {
+public class Role implements Entity, Serializable {
+	
+	private static final long serialVersionUID = -8433033484775232825L;
 	
 	private Integer roleId;
 	private String name;
@@ -29,5 +31,4 @@ public class Role implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 }

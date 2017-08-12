@@ -7,7 +7,7 @@
     <uri>/WEB-INF/outputCookieDataTag</uri>
     <tag>
         <name>name</name>
-        <tag-class>by.htp.travelserviceWEB.OutputCookieDataTag</tag-class>
+        <tag-class>by.htp.travelserviceWEB.util.OutputCookieDataTag</tag-class>
         <body-content>empty</body-content>
         <dynamic-attributes>true</dynamic-attributes>
         <info>This Tag output data from Cookie file</info>

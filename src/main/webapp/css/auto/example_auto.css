@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.auto_wrapper {
+	height: 500px;
+	padding-top: 3px;
+}
+.resul_form {
+	height: 94%;
+
+	width: 400px;
+
+	background-color: transparent;
+	padding-left: 1%;
+	border-radius: 5px;
+	background-color: blue;
+	margin-left: 10%;
+
+}
+.block_title h2 {
+	padding-top: 5%;
+	text-align: center;
+	color: white;
+	font-family: courier;
+	text-transform: uppercase;
+}
+li {
+	list-style-type: none;
+}

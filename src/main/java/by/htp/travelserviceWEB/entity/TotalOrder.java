@@ -2,31 +2,19 @@ package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
 
-import by.htp.travelserviceWEB.entity.auto.AutoOrder;
-import by.htp.travelserviceWEB.entity.hotel.HotelOrder;
-import by.htp.travelserviceWEB.entity.tour.TourOrder;
+public class TotalOrder implements Entity, Serializable {
 
-public class TotalOrder implements Serializable {
+	private static final long serialVersionUID = -3473581271208949383L;
 	
 	private Integer orderId;
-	private Customer customer;
-	private TourOrder tourOrder;
-	private HotelOrder hotelOrder;
-	private AutoOrder autoOrder;
+	private Integer customerId;
+	private Integer tourOrderId;
+	private Integer hotelOrderId;
+	private Integer autoOrderId;
 	private Double totalPrice;
 	
 	public TotalOrder() {}
-
-	public TotalOrder(Integer orderId, Customer customer, TourOrder tourOrder, HotelOrder hotelOrder,
-			AutoOrder autoOrder, Double totalPrice) {
-		this.orderId = orderId;
-		this.customer = customer;
-		this.tourOrder = tourOrder;
-		this.hotelOrder = hotelOrder;
-		this.autoOrder = autoOrder;
-		this.totalPrice = totalPrice;
-	}
-
+	
 	public Integer getOrderId() {
 		return orderId;
 	}
@@ -35,36 +23,36 @@ public class TotalOrder implements Serializable {
 		this.orderId = orderId;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Integer getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
-	public TourOrder getTourOrder() {
-		return tourOrder;
+	public Integer getTourOrderId() {
+		return tourOrderId;
 	}
 
-	public void setTourOrder(TourOrder tourOrder) {
-		this.tourOrder = tourOrder;
+	public void setTourOrderId(Integer tourOrderId) {
+		this.tourOrderId = tourOrderId;
 	}
 
-	public HotelOrder getHotelOrder() {
-		return hotelOrder;
+	public Integer getHotelOrderId() {
+		return hotelOrderId;
 	}
 
-	public void setHotelOrder(HotelOrder hotelOrder) {
-		this.hotelOrder = hotelOrder;
+	public void setHotelOrderId(Integer hotelOrderId) {
+		this.hotelOrderId = hotelOrderId;
 	}
 
-	public AutoOrder getAutoOrder() {
-		return autoOrder;
+	public Integer getAutoOrderId() {
+		return autoOrderId;
 	}
 
-	public void setAutoOrder(AutoOrder autoOrder) {
-		this.autoOrder = autoOrder;
+	public void setAutoOrderId(Integer autoOrderId) {
+		this.autoOrderId = autoOrderId;
 	}
 
 	public Double getTotalPrice() {
@@ -73,5 +61,5 @@ public class TotalOrder implements Serializable {
 
 	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
-	}
+	}	
 }

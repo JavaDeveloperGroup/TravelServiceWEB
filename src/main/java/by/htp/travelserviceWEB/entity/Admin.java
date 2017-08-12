@@ -2,26 +2,22 @@ package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
 
-public class Admin implements Serializable {
+public class Admin implements Entity, Serializable {
+	
+	private static final long serialVersionUID = -6191394259691941922L;
 	
 	private Integer adminId;
 	private String login;
 	private transient String password;
-	private Integer idRole;
+	private Integer roleId;
 	
 	public Admin() {}
-	
-	public Admin(Integer adminId, String login, Integer idRole) {
-		this.adminId = adminId;
-		this.login = login;
-		this.idRole = idRole;
-	}
 
-	public Admin(Integer adminId, String login, String password, Integer idRole) {
+	public Admin(Integer adminId, String login, String password, Integer roleId) {
 		this.adminId = adminId;
 		this.login = login;
 		this.password = password;
-		this.idRole = idRole;
+		this.roleId = roleId;
 	}
 
 	public Integer getAdminId() {
@@ -48,11 +44,11 @@ public class Admin implements Serializable {
 		this.password = password;
 	}
 
-	public Integer getIdRole() {
-		return idRole;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public void setIdRole(Integer idRole) {
-		this.idRole = idRole;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
 }

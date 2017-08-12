@@ -5,8 +5,7 @@ import javax.servlet.http.HttpSession;
 
 public final class ReturnToTheOriginalPage {
 
-	private ReturnToTheOriginalPage() {
-	}
+	private ReturnToTheOriginalPage() {	}
 
 	public static String getOriginalPage(String nameCommandFromOriginalPage, HttpServletRequest request) {
 		String page;

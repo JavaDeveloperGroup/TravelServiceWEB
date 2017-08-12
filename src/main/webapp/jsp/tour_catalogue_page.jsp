@@ -8,67 +8,77 @@
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/menu.css"
 	rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/footer.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/css/slider.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/css/footer.css"
+	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/slider.css"
+	rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
+<link
+	href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png"
+	rel="shortcut icon" type="image/png">
 <title>Tour page</title>
 </head>
 <body>
 	<div>
 		<div id="wrapper">
 			<header>
-				<a href="${pageContext.request.contextPath}/jsp/home_page.jsp"><img
-					src="${pageContext.request.contextPath}/image/logoF.png"
-					width="180"></a>
-				<c:if test="${user == null}">
-					<form name="sign_in"
-						action="${pageContext.request.contextPath}/Controller"
-						method="GET">
-						<input type="hidden" value="log_in_page" name="command" />
-						<button type="submit">SIGN IN</button>
-					</form>
+				<div>
+					<a href="${pageContext.request.contextPath}/jsp/home_page.jsp">
+						<img src="${pageContext.request.contextPath}/image/logoF.png"
+						width="180">
+					</a>
+					<c:if test="${user == null}">
+						<form name="sign_in" id="sign_in"
+							action="${pageContext.request.contextPath}/Controller"
+							method="GET">
+							<input type="hidden" value="log_in_page" name="command" />
+							<button type="submit">SIGN IN</button>
+						</form>
 
-					<form name="sign_up"
-						action="${pageContext.request.contextPath}/Controller"
-						method="GET">
-						<input type="hidden" value="sign_up_page" name="command" />
-						<button type="submit">SIGN UP</button>
-					</form>
-				</c:if>
-				<c:if test="${user != null}">
-					<form name="sign_up" action="${pageContext.request.contextPath}/Controller" method="GET">
-					<tr>
-						<a href="${pageContext.request.contextPath}/Controller?command=update_account_page"><td>${user.getLogin()}</td></a>
-					</tr>
-						<input type="hidden" value="log_out" name="command" />
-						<button name="log_out" type="submit">LOG OUT</button>
-					</form>
-				</c:if>
+						<form name="sign_up" id="sign_up"
+							action="${pageContext.request.contextPath}/Controller"
+							method="GET">
+							<input type="hidden" value="sign_up_page" name="command" />
+							<button type="submit">SIGN UP</button>
+						</form>
+					</c:if>
+					<c:if test="${user != null}">
+						<c:if
+							test="${user.getClass().getSimpleName().subSequence(0, 5) == 'Admin'}">
+							<form name="sign_up"
+								action="${pageContext.request.contextPath}/Controller"
+								method="GET">
+								<tr>
+									<td>${user.getLogin()}</td>
+								</tr>
+								<input type="hidden" value="log_out" name="command" />
+								<button name="log_out" type="submit">LOG OUT</button>
+							</form>
+						</c:if>
+
+						<c:if
+							test="${user.getClass().getSimpleName().subSequence(0, 8) == 'Customer'}">
+							<form name="sign_up"
+								action="${pageContext.request.contextPath}/Controller"
+								method="GET">
+								<tr>
+									<a
+										href="${pageContext.request.contextPath}/Controller?command=update_account_page"><td>${user.getLogin()}</td></a>
+								</tr>
+								<input type="hidden" value="log_out" name="command" />
+								<button name="log_out" type="submit">LOG OUT</button>
+							</form>
+						</c:if>
+					</c:if>
+				</div>
 			</header>
 			<hr>
+			
 			<div class="menu_center">
-				<nav>
-					<ul class="top-menu">
-						<li id="about"><a href="/home/">ABOUT US</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/Controller?command=tour_catalogue_page">TOUR
-								CATALOGUE</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/Controller?command=hotel_catalogue_page">HOTEL
-								CATALOGUE</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/Controller?command=auto_catalogue_page">CAR
-								CATALOGUE</a></li>
-						<li><a href="mailto:info@fidelio.com">EMAIL US</a></li>
-					</ul>
-					<select id="lang">
-						<option value="RU">RUSSIAN</option>
-						<option selected value="EN">ENGLISH</option>
-					</select>
-				</nav>
+				<jsp:include page="menu.jsp" />
 			</div>
+			
 			<hr>
 			<div>
 				<aside>
@@ -93,16 +103,15 @@
 								<input type="date" name="calendar_start" id="start1">
 							</div>
 							<div>
-							<label for="start2">Till</label>
+								<label for="start2">Till</label>
 							</div>
-							 <input type="date"
-								name="calendar_end" id="start2">
+							<input type="date" name="calendar_end" id="start2">
 							<hr>
 							<div class="head-cont">Price:</div>
-							<label for="minCost" >From:</label> 
-							<input class="inp_price" type="text" id="minCost" name="price_min" value="0" /> 
-							<label for="maxCost">Till: </label> 
-							<input class="inp_price" type="text" id="maxCost" name="price_max" value="500" />
+							<label for="minCost">From:</label> <input class="inp_price"
+								type="text" id="minCost" name="price_min" value="0" /> <label
+								for="maxCost">Till: </label> <input class="inp_price"
+								type="text" id="maxCost" name="price_max" value="500" />
 							<hr class="div_tr">
 							<div id="slider" style=""></div>
 						</div>
@@ -150,6 +159,7 @@
 			<jsp:include page="/jspf/footer.jspf" />
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/js/slider.js" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/js/slider.js"
+		charset="utf-8"></script>
 </body>
 </html>

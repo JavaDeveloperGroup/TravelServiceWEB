@@ -4,13 +4,14 @@ import by.htp.travelserviceWEB.dao.auto.AutoOrderDao;
 
 public class AutoOrderDaoImpl implements AutoOrderDao {
 
-private AutoOrderDaoImpl() {}
-
-private static class Singletone{
-private static final AutoOrderDaoImpl INSTANCE = new AutoOrderDaoImpl();
+	private AutoOrderDaoImpl() {
 	}
 
-public static AutoOrderDaoImpl getInstance() {
-return Singletone.INSTANCE;
-}
+	private static class Singletone {
+		private static final AutoOrderDaoImpl INSTANCE = new AutoOrderDaoImpl();
+	}
+
+	public static AutoOrderDaoImpl getInstance() {
+		return Singletone.INSTANCE;
+	}
 }

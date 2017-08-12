@@ -2,23 +2,19 @@ package by.htp.travelserviceWEB.entity.auto;
 
 import java.io.Serializable;
 
-public class RentAuto implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class RentAuto implements Entity, Serializable {
+	
+	private static final long serialVersionUID = 8541399466349920329L;
 	
 	private Integer rentAutoId;
-	private Auto auto;
-	private Salon salonStart;
+	private Integer autoId;
+	private Integer salonStartId;
 	private String status;
 	private Double price;
 	
 	public RentAuto() {}
-
-	public RentAuto(Integer rentAutoId, Auto auto, Salon salonStart, String status, Double price) {
-		this.rentAutoId = rentAutoId;
-		this.auto = auto;
-		this.salonStart = salonStart;
-		this.status = status;
-		this.price = price;
-	}
 
 	public Integer getRentAutoId() {
 		return rentAutoId;
@@ -28,20 +24,20 @@ public class RentAuto implements Serializable {
 		this.rentAutoId = rentAutoId;
 	}
 
-	public Auto getAuto() {
-		return auto;
+	public Integer getAutoId() {
+		return autoId;
 	}
 
-	public void setAuto(Auto auto) {
-		this.auto = auto;
+	public void setAutoId(Integer autoId) {
+		this.autoId = autoId;
 	}
 
-	public Salon getSalonStart() {
-		return salonStart;
+	public Integer getSalonStartId() {
+		return salonStartId;
 	}
 
-	public void setSalonStart(Salon salonStart) {
-		this.salonStart = salonStart;
+	public void setSalonStartId(Integer salonStartId) {
+		this.salonStartId = salonStartId;
 	}
 
 	public String getStatus() {
@@ -58,6 +54,5 @@ public class RentAuto implements Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-	
+	}	
 }

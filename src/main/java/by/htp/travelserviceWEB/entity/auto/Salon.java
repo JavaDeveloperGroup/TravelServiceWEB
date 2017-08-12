@@ -2,17 +2,21 @@ package by.htp.travelserviceWEB.entity.auto;
 
 import java.io.Serializable;
 
-public class Salon implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
 
+public class Salon implements Entity, Serializable {
+
+	private static final long serialVersionUID = 5541491372792262379L;
+	
 	private Integer salonId;
-	private String city;
+	private Integer cityId;
 	private String address;
 	
 	public Salon() {}
 
-	public Salon(Integer salonId, String city, String address) {
+	public Salon(Integer salonId, Integer cityId, String address) {
 		this.salonId = salonId;
-		this.city = city;
+		this.cityId = cityId;
 		this.address = address;
 	}
 
@@ -24,12 +28,12 @@ public class Salon implements Serializable {
 		this.salonId = salonId;
 	}
 
-	public String getCity() {
-		return city;
+	public Integer getCityId() {
+		return cityId;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
 	}
 
 	public String getAddress() {
@@ -39,5 +43,4 @@ public class Salon implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 }

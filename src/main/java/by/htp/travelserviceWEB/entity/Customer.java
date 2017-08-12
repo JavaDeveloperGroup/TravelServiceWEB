@@ -2,11 +2,13 @@ package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
 
-public class Customer implements Serializable {
+public class Customer implements Entity, Serializable {
 
+	private static final long serialVersionUID = 1114361367677869178L;
+	
 	private Integer customerId;
 	private String login;
-	private transient String password;
+	private String password;
 	private String name;
 	private String surname;
 	private String gender;
@@ -15,12 +17,15 @@ public class Customer implements Serializable {
 	private String email;
 	private String phoneNumber;
 	private String driverLicence;
-	private Integer idRole;
+	private Integer roleId;
 	
 	public Customer() {}
 
-	public Customer(Integer customerId, String login, String password, String name, String surname, String gender,
-			String birthday, String passport, String email, String phoneNumber, String driverLicence, Integer idRole) {
+	public Customer(Integer customerId, String login, String password, 
+					String name, String surname, String gender,
+					String birthday, String passport, String email, 
+					String phoneNumber, String driverLicence, Integer roleId) {
+		
 		this.customerId = customerId;
 		this.login = login;
 		this.password = password;
@@ -32,7 +37,8 @@ public class Customer implements Serializable {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.driverLicence = driverLicence;
-		this.idRole = idRole;
+		this.roleId = roleId;
+		
 	}
 
 	public Integer getCustomerId() {
@@ -123,12 +129,24 @@ public class Customer implements Serializable {
 		this.driverLicence = driverLicence;
 	}
 
-	public Integer getIdRole() {
-		return idRole;
+	public Integer getRoleId() {
+		return roleId;
 	}
 
-	public void setIdRole(Integer idRole) {
-		this.idRole = idRole;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", login=" + login + ", password=" + password + ", name=" + name
+				+ ", surname=" + surname + ", gender=" + gender + ", birthday=" + birthday + ", passport=" + passport
+				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", driverLicence=" + driverLicence + ", roleId="
+				+ roleId + "]";
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

@@ -13,16 +13,13 @@ public final class ConnectionPool {
 	private int numberOfConnection;
 	
 	private ConnectionPool() {
+		this.size = 1;
+		this.numberOfConnection = 0;
+		initConnectionPool();
 	}
 	
 	private static class Singleton {
 		private  static final ConnectionPool INSTANCE = new ConnectionPool();
-	}
-	
-	{
-		this.size = 5;
-		this.numberOfConnection = 1;
-		initConnectionPool();
 	}
 	
 	public static ConnectionPool getInstance() {
@@ -53,17 +50,13 @@ public final class ConnectionPool {
 	public final Connection getConnection() {		
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : connections.entrySet()) {
 			if (!iter.getValue()) {
-				numberOfConnection++;
-				if (numberOfConnection == size) {
-					size += 10;
-					initConnectionPool();
-				}
 				connections.replace(iter.getKey(), true);
+				numberOfConnection++;
 				return iter.getKey();
-			}
-			if (numberOfConnection == size) {
+			} else if (numberOfConnection == size) {
 				size += 1;
 				initConnectionPool();
+				getConnection();
 			}
 		}
 		return null;
@@ -73,6 +66,7 @@ public final class ConnectionPool {
 		for (ConcurrentHashMap.Entry<Connection, Boolean> iter : connections.entrySet()) {
 			if (iter.getKey() == connection) {
 				connections.replace(iter.getKey(), false);
+				numberOfConnection--;
 				return true;
 			}
 		}

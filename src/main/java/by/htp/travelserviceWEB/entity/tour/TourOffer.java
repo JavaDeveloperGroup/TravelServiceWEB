@@ -3,11 +3,15 @@ package by.htp.travelserviceWEB.entity.tour;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class TourOffer implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class TourOffer implements Entity, Serializable {
+
+	private static final long serialVersionUID = 940704752182144652L;
 	
 	private Integer offerId;
-	private Tour tour;
-	private Bus bus;
+	private Integer tourId;
+	private Integer busId;
 	private Date dateStart;
 	private Date dateEnd;
 	private Integer pessengersPerOrder;
@@ -16,18 +20,19 @@ public class TourOffer implements Serializable {
 	
 	public TourOffer() {}
 
-	public TourOffer(Integer offerId, Tour tour, Bus bus, Date dateStart, Date dateEnd, Integer pessengersPerOrder,
-			Double price, String hot) {
+	public TourOffer(Integer offerId, Integer tourId, Integer busId, Date dateStart, Date dateEnd,
+			Integer pessengersPerOrder, Double price, String hot) {
+		super();
 		this.offerId = offerId;
-		this.tour = tour;
-		this.bus = bus;
+		this.tourId = tourId;
+		this.busId = busId;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 		this.pessengersPerOrder = pessengersPerOrder;
 		this.price = price;
 		this.hot = hot;
 	}
-
+	
 	public Integer getOfferId() {
 		return offerId;
 	}
@@ -36,20 +41,20 @@ public class TourOffer implements Serializable {
 		this.offerId = offerId;
 	}
 
-	public Tour getTour() {
-		return tour;
+	public Integer getTourId() {
+		return tourId;
 	}
 
-	public void setTour(Tour tour) {
-		this.tour = tour;
+	public void setTourId(Integer tourId) {
+		this.tourId = tourId;
 	}
 
-	public Bus getBus() {
-		return bus;
+	public Integer getBusId() {
+		return busId;
 	}
 
-	public void setBus(Bus bus) {
-		this.bus = bus;
+	public void setBusId(Integer busId) {
+		this.busId = busId;
 	}
 
 	public Date getDateStart() {
@@ -91,5 +96,4 @@ public class TourOffer implements Serializable {
 	public void setHot(String hot) {
 		this.hot = hot;
 	}
-	
 }
