@@ -53,18 +53,18 @@ public class TestClass {
 		Customer customer = new Customer(1, "loginCust", "passwordCuss", 
 										 "nameCuss", "surnameCuss", "MALE", 
 										 "1988-04-17", "passportCuss", "emailCuss", 
-										 "phone_numberCuss", "No", "1");
+										 "phone_numberCuss", "No", 1);
 		
-		Admin admin = new Admin(1, "loginAdmin", "passwordAdmin", "2");
+		Admin admin = new Admin(1, "loginAdmin", "passwordAdmin", 2);
 		
-		AdminTOWP adminTOWP = new AdminTOWP(1, "loginAdminTO", "1");
+		AdminTOWP adminTOWP = new AdminTOWP(1, "loginAdminTO", 1);
 		
 		CustomerTOLP customerTOLP = new CustomerTOLP("loginCustTOLP", "passwordCussTOLP");
 		
 		CustomerTO customerTO = new CustomerTO("loginCustTO", "passwordCussTO",
 											   "nameCussTO", "surnameCussTO", "MALE",
 											   "1988-04-17", "passportCussTO", "emailCussTO",
-											   "phone_numberCussTO", "No", "1");
+											   "phone_numberCussTO", "No", 1);
 		
 		Insert insert = null;
 		Update update = null;

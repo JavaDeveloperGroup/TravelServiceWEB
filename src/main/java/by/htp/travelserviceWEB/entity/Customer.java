@@ -17,14 +17,14 @@ public class Customer implements Entity, Serializable {
 	private String email;
 	private String phoneNumber;
 	private String driverLicence;
-	private String roleId;
+	private Integer roleId;
 	
 	public Customer() {}
 
 	public Customer(Integer customerId, String login, String password, 
 					String name, String surname, String gender,
 					String birthday, String passport, String email, 
-					String phoneNumber, String driverLicence, String roleId) {
+					String phoneNumber, String driverLicence, Integer roleId) {
 		
 		this.customerId = customerId;
 		this.login = login;
@@ -129,11 +129,11 @@ public class Customer implements Entity, Serializable {
 		this.driverLicence = driverLicence;
 	}
 
-	public String getRoleId() {
+	public Integer getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(String roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
 

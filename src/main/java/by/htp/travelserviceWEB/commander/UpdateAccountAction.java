@@ -58,7 +58,7 @@ public class UpdateAccountAction implements CommandAction {
 				request.setAttribute("msg", "Incorrect data entry.");
 				return page;
 			} else {
-				customer.setPassword(customerTOUpdate.getPassword());
+				customer.setPassword(EncryptionFdl.encrypt(customerTOUpdate.getPassword()));
 				customer.setGender(customerTOUpdate.getGender());
 				customer.setBirthday(customerTOUpdate.getBirthday());
 				customer.setEmail(customerTOUpdate.getEmail());

@@ -252,9 +252,8 @@ public abstract class Formatter {
 		Object[] obj = new Object[getParameterTypes(entity).length];
 		System.out.println(entity.getClass().getSimpleName().toLowerCase());
 		int i = 0;
-
 		for (Object value : allListsParameters.get(entity.getClass().getSimpleName().toLowerCase())) {
-			obj[i] = request.getParameter(value.toString());
+			obj[i] = castValue(request, value);
 			i++;
 		}
 
@@ -264,6 +263,16 @@ public abstract class Formatter {
 		 * }
 		 */
 
+		return obj;
+	}
+	
+	private static Object castValue(HttpServletRequest request, Object value) {
+		Object obj = null;
+		if ((value.toString()).matches("id_.*")) {
+			obj = Integer.parseInt(request.getParameter(value.toString()));
+		} else {
+			obj = request.getParameter(value.toString());
+		}
 		return obj;
 	}
 }
