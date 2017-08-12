@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import by.htp.travelserviceWEB.entity.Customer;
+import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
+import static by.htp.travelserviceWEB.util.Formatter.*;
 
 public class LogOutAction implements CommandAction {
 	
@@ -24,7 +26,7 @@ public class LogOutAction implements CommandAction {
 		HttpSession httpSession = request.getSession();
 		Object user = httpSession.getAttribute("user");
 		
-		log.info("Log out " + ("AdminTOWP".equals(user.getClass().getSimpleName()) ? "admin " + ((AdminTOWP)user).getLogin() : "customer " + ((Customer)user).getLogin()));
+		log.info("Log out " + ("admin".equals(getClassName((Entity)user)) ? "admin " + ((AdminTOWP)user).getLogin() : "customer " + ((Customer)user).getLogin()));
 
 		request.getSession(false);
 		if (request.getSession() != null) {

@@ -225,7 +225,7 @@ public abstract class Formatter {
 		
 		Object obj = null;
 		try {
-			obj =  getConstructor(entity)[1].newInstance(typeCast(entity, object));
+			obj =  getConstructor(entity)[1].newInstance(getValuesForEntity(entity, object));
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException 
 				| InvocationTargetException	| SecurityException | ClassNotFoundException e) {	
 			e.printStackTrace();
@@ -233,9 +233,13 @@ public abstract class Formatter {
 		return obj;
 	}
 	
-	private static Object[] typeCast(Entity entity, Object[] object) throws SecurityException, ClassNotFoundException {
+	private static Object[] getValuesForEntity(Entity entity, Object[] object) throws SecurityException, ClassNotFoundException {
 		Class<?>[] types = getConstructor(entity)[1].getParameterTypes();
-		
+	
+		return castValueFromDatabase(types, object);
+	}
+	
+	private static Object[] castValueFromDatabase(Class<?>[] types, Object[] object) {
 		for (int i = 0; i < object.length; i++) {
 			if ("java.lang.Integer".equals(types[i].getName())) {
 				object[i] = (Integer) object[i];
@@ -253,20 +257,14 @@ public abstract class Formatter {
 		System.out.println(entity.getClass().getSimpleName().toLowerCase());
 		int i = 0;
 		for (Object value : allListsParameters.get(entity.getClass().getSimpleName().toLowerCase())) {
-			obj[i] = castValue(request, value);
+			obj[i] = castValueFromRequest(request, value);
 			i++;
 		}
-
-		/*
-		 * if (i < listOfParametersForSignUp.size() - 1) {
-		 * 
-		 * }
-		 */
 
 		return obj;
 	}
 	
-	private static Object castValue(HttpServletRequest request, Object value) {
+	private static Object castValueFromRequest(HttpServletRequest request, Object value) {
 		Object obj = null;
 		if ((value.toString()).matches("id_.*")) {
 			obj = Integer.parseInt(request.getParameter(value.toString()));
