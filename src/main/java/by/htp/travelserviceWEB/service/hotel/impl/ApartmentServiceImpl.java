@@ -25,6 +25,6 @@ public class ApartmentServiceImpl implements ApartmentService {
 
 	@Override
 	public List<Entity> fillingListByTheApartments(Entity entity) {
-		return apartmentDao.fetchApartmentName(entity);
+		return apartmentDao.fetchListOfTheApartments(entity);
 	}
 }
