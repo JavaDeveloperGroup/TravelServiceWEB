@@ -59,7 +59,7 @@
 						</div>
 					</nav>
 				</aside>
-				<div>
+				<div class="table">
 					<form action="${pageContext.request.contextPath}/Controller"
 						method="GET">
 						<input type="hidden" name="command" value="hotel_make_order">
@@ -74,16 +74,16 @@
 									<th class="col4">NUMBER OF PERSONS</th>
 									<th class="col5">PRICE</th>
 								</tr>
-								<c:forEach items="${list_apartment}" var="i">
+								<c:forEach items="${APARTMENT_LIST}" var="a">
 									<tr>
 										<td><input type="radio" name="id"
-											value="${i.getApartmentId()}" /></td>
-										<td><img src="${i.getImage()}"></td>
-										<td>${i.getHotel().getTitle()}</td>
-										<td>${i.getHotel().toStringAddress()}</td>
-										<td>${i.getHotel().getStars()}</td>
-										<td>${i.getRoom().getCapacity()}</td>
-										<td>${i.getPrice()}</td>
+											value="${a.getApartmentId()}" /></td>
+										<td><img src="${a.getImage()}"></td>
+										<td>${HOTEL_MAP.get(a.getHotelId()).toString()}</td>
+										<td>${ROOM_MAP.get(a.getRoomId()).toString()}</td>
+										<td>${a.getRoomCapacity()}</td>
+										<td>${a.getStatus()}</td>
+										<td>${a.getPrice()}</td>
 									</tr>
 								</c:forEach>
 							</table>

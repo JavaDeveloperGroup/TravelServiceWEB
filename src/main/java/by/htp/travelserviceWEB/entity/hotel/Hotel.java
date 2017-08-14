@@ -63,4 +63,11 @@ public class Hotel implements Entity, Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	@Override
+	public String toString() {
+		return " " + title + " " + stars + " stars " + address + " ";
+	}
+	
+	
 }
