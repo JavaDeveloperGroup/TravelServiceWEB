@@ -2,12 +2,17 @@ package by.htp.travelserviceWEB.service.auto.impl;
 
 import java.util.List;
 
+import by.htp.travelserviceWEB.dao.auto.ColorDao;
+import by.htp.travelserviceWEB.dao.auto.impl.ColorDaoImpl;
 import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.service.auto.ColorService;
 
 public class ColorServiceImpl implements ColorService {
 
+	private ColorDao colorDao;
+	
 	private ColorServiceImpl() {
+		colorDao = ColorDaoImpl.getInstance();
 	}
 
 	private static class Singletone {
@@ -20,7 +25,6 @@ public class ColorServiceImpl implements ColorService {
 
 	@Override
 	public List<Entity> fillingListByTheColors(Entity entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return colorDao.fetchListOfTheColors(entity);
 	}
 }

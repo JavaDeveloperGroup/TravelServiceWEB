@@ -2,12 +2,17 @@ package by.htp.travelserviceWEB.service.auto.impl;
 
 import java.util.List;
 
+import by.htp.travelserviceWEB.dao.auto.BodyTypeDao;
+import by.htp.travelserviceWEB.dao.auto.impl.BodyTypeDaoImpl;
 import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.service.auto.BodyTypeService;
 
 public class BodyTypeServiceImpl implements BodyTypeService {
 
+	private BodyTypeDao bodyTypeDao;
+	
 	private BodyTypeServiceImpl() {
+		bodyTypeDao = BodyTypeDaoImpl.getInstance();
 	}
 
 	private static class Singletone {
@@ -20,7 +25,6 @@ public class BodyTypeServiceImpl implements BodyTypeService {
 
 	@Override
 	public List<Entity> fillingListByTheBodyTypes(Entity entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return bodyTypeDao.fetchListOfTheBodyTypes(entity);
 	}
 }

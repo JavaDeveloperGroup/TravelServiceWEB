@@ -24,7 +24,7 @@ public class FetchCityAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = "jsp/auto_catalogue_page_sorting.jsp";
+		String page = "jsp/index.jsp";
 		
 		List<Entity> list = cityService.fillingListByTheCities(new City());
 		request.setAttribute("city_list", list);

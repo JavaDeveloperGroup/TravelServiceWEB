@@ -26,7 +26,7 @@ public class FetchRoomAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = "jsp/hotel_catalogue_page.jsp";
+		String page = "jsp/index.jsp";
 		
 		List<Entity> list = roomService.fillingListByTheRooms(new Room());
 		Map<Integer, Room> map = new HashMap<Integer, Room>();

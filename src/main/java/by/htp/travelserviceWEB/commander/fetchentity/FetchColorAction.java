@@ -24,7 +24,7 @@ public class FetchColorAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = "jsp/auto_catalogue_page_sorting.jsp";
+		String page = "jsp/index.jsp";
 		
 		List<Entity> list = colorService.fillingListByTheColors(new Color());
 		request.setAttribute("color_list", list);

@@ -10,11 +10,9 @@ import by.htp.travelserviceWEB.service.hotel.RoomService;
 public class RoomServiceImpl implements RoomService {
 	
 	private RoomDao roomDao;
-	{
-		roomDao = RoomDaoImpl.getInstance();
-	}
 
 	private RoomServiceImpl() {
+		roomDao = RoomDaoImpl.getInstance();
 	}
 
 	private static class Singletone {

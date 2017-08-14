@@ -26,7 +26,7 @@ public class FetchHotelAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = "jsp/hotel_catalogue_page.jsp";
+		String page = "jsp/index.jsp";
 		
 		List<Entity> list = hotelService.fillingListByTheHotels(new Hotel());
 		Map<Integer, Hotel> map = new HashMap<Integer, Hotel>();

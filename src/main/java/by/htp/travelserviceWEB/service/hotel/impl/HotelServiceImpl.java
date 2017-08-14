@@ -10,11 +10,9 @@ import by.htp.travelserviceWEB.service.hotel.HotelService;
 public class HotelServiceImpl implements HotelService {
 	
 	private HotelDao hotelDao;
-	{
-		hotelDao = HotelDaoImpl.getInstance();
-	}
 
 	private HotelServiceImpl() {
+		hotelDao = HotelDaoImpl.getInstance();
 	}
 
 	private static class Singletone {
