@@ -2,21 +2,27 @@ package by.htp.travelserviceWEB.entity.hotel;
 
 import java.io.Serializable;
 
-public class Apartment implements Serializable{
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class Apartment implements Entity, Serializable{
+	
+	private static final long serialVersionUID = -9172516631779393125L;
 	
 	private Integer apartmentId;
-	private Hotel hotel;
-	private Room room;
+	private Integer hotelId;
+	private Integer roomId;
+	private Integer roomCapacity;
 	private Double price;
 	private String status;
 	private String image;
 	
 	public Apartment() {}
 
-	public Apartment(Integer apartmentId, Hotel hotel, Room room, Double price, String status, String image) {
+	public Apartment(Integer apartmentId, Integer id_hotel, Integer id_room, Integer roomCapacity, Double price, String status, String image) {
 		this.apartmentId = apartmentId;
-		this.hotel = hotel;
-		this.room = room;
+		this.hotelId = id_hotel;
+		this.roomId = id_room;
+		this.roomCapacity = roomCapacity;
 		this.price = price;
 		this.status = status;
 		this.image = image;
@@ -30,20 +36,28 @@ public class Apartment implements Serializable{
 		this.apartmentId = apartmentId;
 	}
 
-	public Hotel getHotel() {
-		return hotel;
+	public Integer getHotelId() {
+		return hotelId;
 	}
 
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
+	public void setHotelId(Integer id_hotel) {
+		this.hotelId = id_hotel;
 	}
 
-	public Room getRoom() {
-		return room;
+	public Integer getRoomId() {
+		return roomId;
 	}
 
-	public void setRoom(Room room) {
-		this.room = room;
+	public void setRoomId(Integer id_room) {
+		this.roomId = id_room;
+	}
+
+	public Integer getRoomCapacity() {
+		return roomCapacity;
+	}
+
+	public void setRoomCapacity(Integer roomCapacity) {
+		this.roomCapacity = roomCapacity;
 	}
 
 	public Double getPrice() {

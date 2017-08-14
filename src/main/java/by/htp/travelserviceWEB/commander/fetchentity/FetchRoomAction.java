@@ -12,28 +12,32 @@ import javax.servlet.http.HttpServletResponse;
 import by.htp.travelserviceWEB.commander.CommandAction;
 import by.htp.travelserviceWEB.entity.City;
 import by.htp.travelserviceWEB.entity.Entity;
+import by.htp.travelserviceWEB.entity.hotel.Hotel;
+import by.htp.travelserviceWEB.entity.hotel.Room;
 import by.htp.travelserviceWEB.service.CityService;
+import by.htp.travelserviceWEB.service.hotel.RoomService;
+import by.htp.travelserviceWEB.service.hotel.impl.RoomServiceImpl;
 import by.htp.travelserviceWEB.service.impl.CityServiceImpl;
 
-public class FetchCityAction implements CommandAction {
+public class FetchRoomAction implements CommandAction {
 	
-	private CityService cityService;
+	private RoomService roomService;
 	
-	public FetchCityAction() {
-		cityService = CityServiceImpl.getInstance();
+	public FetchRoomAction() {
+		roomService = RoomServiceImpl.getInstance();
 	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = "jsp/auto_catalogue_page.jsp";
+		String page = "jsp/hotel_catalogue_page.jsp";
 		
-		List<Entity> list = cityService.fillingSelectPickUpCity(new City());
-		Map<Integer, City> map = new HashMap<Integer, City>();
-		for(Entity city : list) {
-			map.put(((City)city).getCityId(), (City) city);
+		List<Entity> list = roomService.fillingSelectPickUpRoom(new Room());
+		Map<Integer, Room> map = new HashMap<Integer, Room>();
+		for(Entity room : list) {
+			map.put(((Room)room).getRoomId(), (Room) room);
 		}
-		request.setAttribute("CITY_MAP", map);
+		request.setAttribute("ROOM_MAP", map);
 		
 		return page;
 	}

@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+html, body {
+    height: 100%;
+}
+
 body {
 	color: #8f8f8f;
 	font: 12px Tahoma, sans-serif;
@@ -9,7 +13,7 @@ body {
 }
 
 button {
-	color: black ;
+	color: black;
 	background-color: silver;
 	border: none;
 	height: 32px;
@@ -17,15 +21,14 @@ button {
 	border-radius: 6px;
 	margin: 35px 15px;
 	padding: 0px 15px;
-	box-shadow: 0.2em 0.2em 3px rgba(122,122,122,0.5);
-	
+	box-shadow: 0.2em 0.2em 3px rgba(122, 122, 122, 0.5);
 }
 
 button:hover {
-	color: orange ;
+	color: orange;
 	background-color: gray;
 	font-weight: bold;
-	box-shadow: -0.2em -0.2em 3px rgba(122,122,122,0.5);
+	box-shadow: -0.2em -0.2em 3px rgba(122, 122, 122, 0.5);
 }
 
 #wrapper {
@@ -46,14 +49,14 @@ form[name="sign_up"] {
 }
 
 hr {
-    border: none;
-    background-color: orange; 
-    color: orange; 
-    height: 2px;
-    margin: 0;
-    padding: 0;
+	border: none;
+	background-color: orange;
+	color: orange;
+	height: 2px;
+	margin: 0;
+	padding: 0;
 }
-     
+
 #heading {
 	margin: 2%;
 	padding-left: 20px;
@@ -68,12 +71,12 @@ h2 {
 	padding: 0 10px;
 }
 
-input{
+input {
 	text-align: center;
 	border-radius: 6px;
 }
 
-.inp_price{
+.inp_price {
 	width: 200px;
 }
 
@@ -84,7 +87,7 @@ aside {
 	margin-bottom: 20px;
 }
 
-.head-cont{
+.head-cont {
 	margin-top: 15px;
 	margin-bottom: 10px;
 	font-size: 1.5em;
@@ -92,64 +95,69 @@ aside {
 }
 
 table {
-border-spacing: 0 10px;
-font-family: 'Oswald', sans-serif;
-font-weight: bold;
-margin-top: 10px;
+	border-spacing: 0 0px;
+	font-family: 'Oswald', sans-serif;
+	font-weight: bold;
+	margin-top: 10px;
+	padding-bottom: 10px;
 }
 
-th {
-padding: 10px 20px;
-background: lightgray;
-border: 1px solid gray; 
-font-size: 0.8em;
-font-color: black;
-}
-
-td {
-vertical-align: middle;
-padding: 10px;
-font-size: 14px;
-text-align: center;
-border: 1px solid;
-font-color: black;
-}
-
-#photo{
+.table img {
 	width: 100px;
 }
 
-.fixed{
+th {
+	padding: 1px 2px;
+	background: lightgray;
+	border: 1px solid gray;
+	font-size: 0.8em;
+	font-color: black;
+}
+
+td {
+	vertical-align: middle;
+	padding: 2px;
+	font-size: 14px;
+	text-align: center;
+	border: 1px solid;
+	font-color: black;
+}
+
+#photo {
+	width: 100px;
+}
+
+.fixed {
 	width: 50px;
 }
 
-div input [type="date"]{
-	width:80%;
+div input [type="date"] {
+	width: 80%;
 	font-size: 60%;
 }
 
-.aside-menu label{
-	font-size:1.3em;
+.aside-menu label {
+	font-size: 1.3em;
 }
 
-.div_tr{
+.div_tr {
 	height: 10px;
 	background-color: #f8f8f8;
 	opacity: 0;
 }
 
-.col3{
+.col3 {
 	width: 50px;
 }
 
-.col4{
-	width:50px;
+.col4 {
+	width: 50px;
 }
 
 .col5 {
-	width:50px;
+	width: 50px;
 }
 
 .col6 {
-	width:50px;
+	width: 50px;
 }

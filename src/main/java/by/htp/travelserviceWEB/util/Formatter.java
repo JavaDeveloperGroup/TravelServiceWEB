@@ -243,6 +243,8 @@ public abstract class Formatter {
 		for (int i = 0; i < object.length; i++) {
 			if ("java.lang.Integer".equals(types[i].getName())) {
 				object[i] = (Integer) object[i];
+			} else if ("java.lang.Double".equals(types[i].getName())) {
+				object[i] = (Double) object[i];
 			} else {
 				object[i] = object[i].toString();
 			}
