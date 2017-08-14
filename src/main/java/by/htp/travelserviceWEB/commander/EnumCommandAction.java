@@ -9,61 +9,67 @@ public enum EnumCommandAction {
 			return new LogInAction();
 		}
 	},
-	LOG_OUT{
+	LOG_OUT {
 		@Override
 		public CommandAction getCommantAction() {
 			return new LogOutAction();
 		}
 	},
-	LOG_IN_PAGE{
+	LOG_IN_PAGE {
 		@Override
 		public CommandAction getCommantAction() {
 			return new LogInPageAction();
 		}
 	},
-	SIGN_UP_PAGE{
+	SIGN_UP_PAGE {
 		@Override
 		public CommandAction getCommantAction() {
 			return new SignUpPageAction();
 		}
 	},
-	SIGN_UP{
+	SIGN_UP {
 		@Override
 		public CommandAction getCommantAction() {
 			return new SignUpAction();
 		}
 	},
-	UPDATE_ACCOUNT_PAGE{
+	UPDATE_ACCOUNT_PAGE {
 		@Override
 		public CommandAction getCommantAction() {
 			return new UpdateAccountPageAction();
 		}
 	},
-	UPDATE_ACCOUNT{
+	UPDATE_ACCOUNT {
 		@Override
 		public CommandAction getCommantAction() {
 			return new UpdateAccountAction();
 		}
 	},
-	HOTEL_CATALOGUE_PAGE{
+	HOTEL_CATALOGUE_PAGE {
 		@Override
 		public CommandAction getCommantAction() {
 			return new HotelCataloguePageAction();
 		}
 	},
-	AUTO_CATALOGUE_PAGE{
+	AUTO_CATALOGUE_SORTING_PAGE {
 		@Override
 		public CommandAction getCommantAction() {
-			return new AutoCataloguePageAction();
+			return new AutoCatalogSortingPageAction();
 		}
 	},
-	TOUR_CATALOGUE_PAGE{
+	TOUR_CATALOGUE_PAGE {
 		@Override
 		public CommandAction getCommantAction() {
 			return new TourCataloguePageAction();
 		}
+	},
+	AUTO_SORT_SOLON_PAGE {
+		@Override
+		public CommandAction getCommantAction() {
+			return new AutoSortSolonPageAction();
+		}
 	};
 	
 	public abstract CommandAction getCommantAction();
-
+	
 }
