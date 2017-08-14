@@ -30,8 +30,8 @@ public class FetchCityAction implements CommandAction {
 		
 		List<Entity> list = cityService.fillingSelectPickUpCity(new City());
 		Map<Integer, City> map = new HashMap<Integer, City>();
-		for(Entity city : list) {
-			map.put(((City)city).getCityId(), (City) city);
+		for(Entity entity : list) {
+			map.put(((City)entity).getCityId(), (City) entity);
 		}
 		request.setAttribute("CITY_MAP", map);
 		

@@ -95,15 +95,17 @@ aside {
 }
 
 table {
-	border-spacing: 0 0px;
+	/* border-spacing: 0 0px; */
 	font-family: 'Oswald', sans-serif;
 	font-weight: bold;
 	margin-top: 10px;
-	padding-bottom: 10px;
+	/* padding-bottom: 10px; */
+	border-collapse: collapse;
 }
 
 .table img {
-	width: 100px;
+	width: 300px;
+	height: 200px;
 }
 
 th {
@@ -119,8 +121,10 @@ td {
 	padding: 2px;
 	font-size: 14px;
 	text-align: center;
-	border: 1px solid;
+	/* border: 1px solid; */
 	font-color: black;
+	/* border: 1px solid #d8d8d8; */
+	border-bottom: 2px solid lightgray;
 }
 
 #photo {
@@ -160,4 +164,8 @@ div input [type="date"] {
 
 .col6 {
 	width: 50px;
+}
+
+#line {
+	color: gray;
 }

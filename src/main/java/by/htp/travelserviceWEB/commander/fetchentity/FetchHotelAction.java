@@ -29,13 +29,13 @@ public class FetchHotelAction implements CommandAction {
 		String page = "jsp/hotel_catalogue_page.jsp";
 		
 		List<Entity> list = hotelService.fillingSelectPickUpHotel(new Hotel());
-		Map<Integer, Hotel> map = new HashMap<Integer, Hotel>();
-		for(Entity hotel : list) {
-			map.put(((Hotel)hotel).getHotelId(), (Hotel) hotel);
+		
+		Map<Integer, Entity> map = new HashMap<Integer, Entity>();
+		for(Entity entity : list) {
+			map.put(((Hotel)entity).getHotelId(), (Hotel) entity);
 		}
 		request.setAttribute("HOTEL_MAP", map);
 		
 		return page;
 	}
-
 }

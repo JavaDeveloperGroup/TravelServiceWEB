@@ -24,7 +24,7 @@ public class ApartmentDaoImpl implements ApartmentDao {
 	@Override
 	public List<Entity> fetchApartmentName(Entity entity) {
 		Select select = new QueryBuilder().select(entity).all();
-		System.out.println(select.toString());
+		
 		ResultSet rs = null;
 		List<Entity> list = null;
 		
