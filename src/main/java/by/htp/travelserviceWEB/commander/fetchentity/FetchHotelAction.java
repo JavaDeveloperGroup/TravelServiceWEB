@@ -28,7 +28,7 @@ public class FetchHotelAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/hotel_catalogue_page.jsp";
 		
-		List<Entity> list = hotelService.fillingSelectPickUpHotel(new Hotel());
+		List<Entity> list = hotelService.fillingListByTheHotels(new Hotel());
 		Map<Integer, Hotel> map = new HashMap<Integer, Hotel>();
 		for(Entity hotel : list) {
 			map.put(((Hotel)hotel).getHotelId(), (Hotel) hotel);

@@ -1,10 +1,8 @@
 package by.htp.travelserviceWEB.filter;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Set;
 
 import javax.servlet.Filter;
@@ -16,10 +14,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import by.htp.travelserviceWEB.entity.Admin;
-import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.util.EncryptionFdl;
 
 public class SecurityCommandFilter implements Filter {
 

@@ -23,7 +23,7 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
-	public List<Entity> fetchRoomName(Entity entity) {
+	public List<Entity> fetchListOfTheRooms(Entity entity) {
 		Select select = new QueryBuilder().select(entity).all();
 		System.out.println(select.toString());
 		

@@ -10,14 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.CommandAction;
-import by.htp.travelserviceWEB.entity.City;
 import by.htp.travelserviceWEB.entity.Entity;
-import by.htp.travelserviceWEB.entity.hotel.Hotel;
 import by.htp.travelserviceWEB.entity.hotel.Room;
-import by.htp.travelserviceWEB.service.CityService;
 import by.htp.travelserviceWEB.service.hotel.RoomService;
 import by.htp.travelserviceWEB.service.hotel.impl.RoomServiceImpl;
-import by.htp.travelserviceWEB.service.impl.CityServiceImpl;
 
 public class FetchRoomAction implements CommandAction {
 	
@@ -32,7 +28,7 @@ public class FetchRoomAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/hotel_catalogue_page.jsp";
 		
-		List<Entity> list = roomService.fillingSelectPickUpRoom(new Room());
+		List<Entity> list = roomService.fillingListByTheRooms(new Room());
 		Map<Integer, Room> map = new HashMap<Integer, Room>();
 		for(Entity room : list) {
 			map.put(((Room)room).getRoomId(), (Room) room);

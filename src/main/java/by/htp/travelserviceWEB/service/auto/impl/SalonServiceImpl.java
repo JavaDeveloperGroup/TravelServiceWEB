@@ -25,7 +25,7 @@ public class SalonServiceImpl implements SalonService {
 	}
 
 	@Override
-	public List<Entity> fillingSelectPickUpSalon(Entity entity) {
-		return salonDao.fetchSalonName(entity);
+	public List<Entity> fillingListByTheSolons(Entity entity) {
+		return salonDao.fetchListOfTheSalons(entity);
 	}
 }

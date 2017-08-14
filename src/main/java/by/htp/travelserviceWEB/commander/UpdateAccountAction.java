@@ -38,6 +38,7 @@ public class UpdateAccountAction implements CommandAction {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String page;
+		@SuppressWarnings("unused")
 		CustomerTOLP customerTOLP;
 		HttpSession httpSession = request.getSession();
 		customer = (Customer)httpSession.getAttribute("user");

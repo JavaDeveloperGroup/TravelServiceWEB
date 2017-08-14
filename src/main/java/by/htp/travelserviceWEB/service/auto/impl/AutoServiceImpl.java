@@ -1,16 +1,26 @@
 package by.htp.travelserviceWEB.service.auto.impl;
 
+import java.util.List;
+
+import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.service.auto.AutoService;
 
 public class AutoServiceImpl implements AutoService {
 
-private AutoServiceImpl() {}
-
-private static class Singletone{
-private static final AutoServiceImpl INSTANCE = new AutoServiceImpl();
+	private AutoServiceImpl() {
 	}
 
-public static AutoServiceImpl getInstance() {
-return Singletone.INSTANCE;
-}
+	private static class Singletone {
+		private static final AutoServiceImpl INSTANCE = new AutoServiceImpl();
+	}
+
+	public static AutoServiceImpl getInstance() {
+		return Singletone.INSTANCE;
+	}
+
+	@Override
+	public List<Entity> fillingListByTheAutoes(Entity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

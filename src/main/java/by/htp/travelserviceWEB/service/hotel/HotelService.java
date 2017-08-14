@@ -6,6 +6,6 @@ import by.htp.travelserviceWEB.entity.Entity;
 
 public interface HotelService {
 	
-	List<Entity> fillingSelectPickUpHotel(Entity entity);
+	List<Entity> fillingListByTheHotels(Entity entity);
 
 }

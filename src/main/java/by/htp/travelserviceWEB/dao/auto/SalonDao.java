@@ -6,6 +6,6 @@ import by.htp.travelserviceWEB.entity.Entity;
 
 public interface SalonDao {
 	
-	List<Entity> fetchSalonName(Entity entity);
+	List<Entity> fetchListOfTheSalons(Entity entity);
 	
 }

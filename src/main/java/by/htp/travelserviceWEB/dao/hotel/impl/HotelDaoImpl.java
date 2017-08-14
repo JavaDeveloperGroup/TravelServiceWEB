@@ -23,7 +23,7 @@ public class HotelDaoImpl implements HotelDao {
 	}
 
 	@Override
-	public List<Entity> fetchHotelName(Entity entity) {
+	public List<Entity> fetchListOfTheHotels(Entity entity) {
 		Select select = new QueryBuilder().select(entity).all();
 		System.out.println(select.toString());
 		ResultSet rs = null;

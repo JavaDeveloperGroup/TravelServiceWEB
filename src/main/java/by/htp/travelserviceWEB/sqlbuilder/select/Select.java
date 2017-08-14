@@ -17,7 +17,6 @@ public final class Select extends QueryBuilder {
 	private Map<String, Object> entityMap;
 	private Map<String, Object> conditionsMap;
 	private Entity entity;
-	private Entity[] entities;
 	private CustomerTOLP customerTOLP;
 	
 	public Select (Query query) {
@@ -35,11 +34,6 @@ public final class Select extends QueryBuilder {
 	public Select (Query query, Entity entity, CustomerTOLP customerTOLP) {
 		this(query, entity);
 		this.customerTOLP = customerTOLP;
-	}
-	
-	public Select (Query query, Entity ... entities) {
-		this(query);
-		this.entities = entities;
 	}
 	
 	public Select all() {

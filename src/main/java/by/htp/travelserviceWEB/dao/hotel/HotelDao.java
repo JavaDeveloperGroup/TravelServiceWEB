@@ -6,6 +6,6 @@ import by.htp.travelserviceWEB.entity.Entity;
 
 public interface HotelDao {
 	
-	List<Entity> fetchHotelName(Entity entity);
+	List<Entity> fetchListOfTheHotels(Entity entity);
 
 }

@@ -23,10 +23,10 @@ public class CityServiceImpl implements CityService {
 	public static CityServiceImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
-	
+
 	@Override
-	public List<Entity> fillingSelectPickUpCity(Entity entity) {
-		return cityDao.fetchCityName(entity);
+	public List<Entity> fillingListByTheCities(Entity entity) {
+		return cityDao.fetchListOfTheCities(entity);
 	}
 	
 }

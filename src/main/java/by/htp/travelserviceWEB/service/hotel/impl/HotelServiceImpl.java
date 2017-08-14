@@ -26,7 +26,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<Entity> fillingSelectPickUpHotel(Entity entity) {
-		return hotelDao.fetchHotelName(entity);
+	public List<Entity> fillingListByTheHotels(Entity entity) {
+		return hotelDao.fetchListOfTheHotels(entity);
 	}
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
-public interface ColorDao {
+public interface BrandDao {
 
-	List<Entity> fetchListOfTheColors(Entity entity);
+	List<Entity> fetchListOfTheBrands(Entity entity);
 	
 }

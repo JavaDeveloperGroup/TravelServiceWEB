@@ -23,7 +23,7 @@ public class SalonDaoImpl implements SalonDao {
 	}
 
 	@Override
-	public List<Entity> fetchSalonName(Entity entity) {
+	public List<Entity> fetchListOfTheSalons(Entity entity) {
 		Select select = new QueryBuilder().select(entity).all();
 		System.out.println(select.toString());
 		ResultSet rs = null;

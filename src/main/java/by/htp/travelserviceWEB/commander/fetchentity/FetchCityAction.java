@@ -1,9 +1,7 @@
 package by.htp.travelserviceWEB.commander.fetchentity;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,14 +24,10 @@ public class FetchCityAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = "jsp/auto_catalogue_page.jsp";
+		String page = "jsp/auto_catalogue_page_sorting.jsp";
 		
-		List<Entity> list = cityService.fillingSelectPickUpCity(new City());
-		Map<Integer, City> map = new HashMap<Integer, City>();
-		for(Entity city : list) {
-			map.put(((City)city).getCityId(), (City) city);
-		}
-		request.setAttribute("CITY_MAP", map);
+		List<Entity> list = cityService.fillingListByTheCities(new City());
+		request.setAttribute("city_list", list);
 		
 		return page;
 	}

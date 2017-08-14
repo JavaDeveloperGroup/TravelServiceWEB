@@ -1,27 +1,24 @@
 package by.htp.travelserviceWEB.commander.fetchentity;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.CommandAction;
-import by.htp.travelserviceWEB.entity.City;
 import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.auto.Auto;
-import by.htp.travelserviceWEB.service.CityService;
-import by.htp.travelserviceWEB.service.impl.CityServiceImpl;
+import by.htp.travelserviceWEB.service.auto.AutoService;
+import by.htp.travelserviceWEB.service.auto.impl.AutoServiceImpl;
 
 public class FetchAutoAction implements CommandAction {
 	
-	private CityService cityService;
+	private AutoService autoService;
 	
 	public FetchAutoAction() {
-		cityService = CityServiceImpl.getInstance();
+		autoService = AutoServiceImpl.getInstance();
 	}
 
 	@Override
@@ -29,12 +26,9 @@ public class FetchAutoAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/auto_catalogue_page_sorting.jsp";
 		
-		List<Entity> list = cityService.fillingSelectPickUpCity(new Auto());
-		Map<Integer, Auto> map = new HashMap<Integer, Auto>();
-		for(Entity entity : list) {
-			map.put(((Auto)entity).getAutoId(), (Auto) entity);
-		}
-		request.setAttribute("AUTO_MAP", map);
+		List<Entity> list = autoService.fillingListByTheAutoes(new Auto());
+
+		request.setAttribute("auto_list", list);
 		
 		return page;
 	}
