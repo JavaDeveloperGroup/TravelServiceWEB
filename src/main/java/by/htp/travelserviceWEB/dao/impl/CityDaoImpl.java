@@ -1,13 +1,11 @@
 package by.htp.travelserviceWEB.dao.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import by.htp.travelserviceWEB.dao.CityDao;
 import by.htp.travelserviceWEB.entity.Entity;
-import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
-import by.htp.travelserviceWEB.sqlbuilder.select.Select;
+
+import static by.htp.travelserviceWEB.util.Formatter.*;
 
 public class CityDaoImpl implements CityDao {
 
@@ -24,20 +22,6 @@ public class CityDaoImpl implements CityDao {
 
 	@Override
 	public List<Entity> fetchListOfTheCities(Entity entity) {
-		Select select = new QueryBuilder().select(entity).all();
-
-		System.out.println(select.toString());
-
-		ResultSet rs = null;
-		List<Entity> list = null;
-
-		try {
-			rs = select.resultSet(select.toString());
-			list = select.getListOfInstanceWithDataFromSQL(rs, entity);
-		} catch (SecurityException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-
-		return list;
+		return extractionEntities(entity);
 	}
 }

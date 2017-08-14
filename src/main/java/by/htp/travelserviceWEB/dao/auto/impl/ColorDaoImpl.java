@@ -1,5 +1,7 @@
 package by.htp.travelserviceWEB.dao.auto.impl;
 
+import static by.htp.travelserviceWEB.util.Formatter.extractionEntities;
+
 import java.util.List;
 
 import by.htp.travelserviceWEB.dao.auto.ColorDao;
@@ -20,7 +22,6 @@ public class ColorDaoImpl implements ColorDao {
 
 	@Override
 	public List<Entity> fetchListOfTheColors(Entity entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return extractionEntities(entity);
 	}
 }

@@ -1,5 +1,7 @@
 package by.htp.travelserviceWEB.dao.auto.impl;
 
+import static by.htp.travelserviceWEB.util.Formatter.*;
+
 import java.util.List;
 
 import by.htp.travelserviceWEB.dao.auto.AutoDao;
@@ -20,7 +22,6 @@ public class AutoDaoImpl implements AutoDao {
 
 	@Override
 	public List<Entity> fetchListOfTheAutoes(Entity entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return extractionEntities(entity);
 	}
 }

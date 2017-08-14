@@ -3,12 +3,17 @@ package by.htp.travelserviceWEB.util;
 import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.sqlbuilder.Query;
+import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
+import by.htp.travelserviceWEB.sqlbuilder.select.Select;
 
 import static by.htp.travelserviceWEB.util.ConstantValue.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -274,5 +279,21 @@ public abstract class Formatter {
 			obj = request.getParameter(value.toString());
 		}
 		return obj;
+	}
+	
+	public static List<Entity> extractionEntities(Entity entity) {
+		Select select = new QueryBuilder().select(entity).all();
+
+		ResultSet rs = null;
+		List<Entity> list = null;
+
+		try {
+			rs = select.resultSet(select.toString());
+			list = select.getListOfInstanceWithDataFromSQL(rs, entity);
+		} catch (SecurityException | ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 }
