@@ -56,9 +56,18 @@ public class Room implements Entity, Serializable {
 
 	@Override
 	public String toString() {
-		return " TV " + tv + ", balcony " + balcony + ", conditioner " + conditioner + " ";
+		return "TV - " + tv + ", balcony - " + balcony + ", conditioner - " + conditioner;
 	}
 	
+	public String toStringTV() {
+		return "TV - " + tv;
+	}
 	
+	public String toStringBalcony() {
+		return "balcony - " + balcony;
+	}
 	
+	public String toStringConditioner() {
+		return "conditioner - " + conditioner;
+	}
 }
