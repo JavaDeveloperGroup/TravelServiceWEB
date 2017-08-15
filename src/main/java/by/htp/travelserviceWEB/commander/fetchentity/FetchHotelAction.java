@@ -27,7 +27,7 @@ public class FetchHotelAction implements CommandAction {
 		String page = "jsp/index.jsp";
 		
 		Map<Integer, Entity> map = hotelService.fillingListByTheHotels(new Hotel());
-		request.setAttribute("HOTEL_MAP", map);
+		request.setAttribute("hotel_map", map);
 		
 		return page;
 	}

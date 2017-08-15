@@ -31,7 +31,7 @@
 				<aside>
 					<nav>
 						<div class="aside-menu">
-							<div class="head-cont">Transmission:</div>
+							<!-- <div class="head-cont">Transmission:</div>
 							<input type="radio" name="transmission" value="auto" id="trans1" />
 							<label for="trans1">Auto</label><br /> <input type="radio"
 								name="transmission" value="manual" id="trans2" /> <label
@@ -71,6 +71,38 @@
 							<label for="minCost">From:</label> <input class="inp_price"
 								type="text" id="minCost" name="price_min" value="0" /> <label
 								for="maxCost">Till: </label> <input class="inp_price"
+								type="text" id="maxCost" name="price_max" value="500" />-->
+							<div class="head-cont">Transmission:</div>
+							<input type="radio" name="transmission" value="auto" id="trans1" />
+							Auto<br /> <input type="radio"
+								name="transmission" value="manual" id="trans2" />Manual
+							<hr>
+							<div class="head-cont">Wheel drive:</div>
+							<input type="checkbox" name="wheel_drive" value="rear"
+								id="wheel1" />Rear<br /> <input
+								type="checkbox" name="wheel_drive" value="front" id="wheel2" />
+							Front<br /> <input type="checkbox"
+								name="wheel_drive" value="full" id="wheel3" />Full
+							<hr>
+							<div class="head-cont">Fuel type:</div>
+							<input type="checkbox" name="fuel_type" value="petrol" id="fuel1" />
+							Petrol<br /> <input type="checkbox"
+								name="fuel_type" value="diesel" id="fuel2" /> Diesel<br /> <input type="checkbox"
+								name="fuel_type" value="gas" id="fuel3" />Gas<br />
+							<input type="checkbox" name="fuel_type" value="electro"
+								id="fuel4" />Electro
+							<hr>	
+							<div class="head-cont">Body type:</div>
+							<input type="checkbox" name="body_type" value="sedan" id="body1" />
+							Sedan<br /> <input type="checkbox"
+								name="body_type" value="coupe" id="body2" />Coupe<br />
+							<input type="checkbox" name="body_type" value="suv" id="body3" />
+							SUV<br /> <input type="checkbox"
+								name="body_type" value="hatchback" id="body4" />Hatchback
+							<hr>
+							<div class="head-cont">Price:</div>
+							From: <input class="inp_price"
+								type="text" id="minCost" name="price_min" value="0" />Till:<input class="inp_price"
 								type="text" id="maxCost" name="price_max" value="500" />
 							<hr class="div_tr">
 							<div id="slider" style=""></div>

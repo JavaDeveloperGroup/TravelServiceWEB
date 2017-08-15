@@ -27,7 +27,7 @@ public class FetchRoomAction implements CommandAction {
 		String page = "jsp/index.jsp";
 		
 		Map<Integer, Entity> map = roomService.fillingListByTheRooms(new Room());
-		request.setAttribute("ROOM_MAP", map);
+		request.setAttribute("room_map", map);
 		
 		return page;
 	}
