@@ -24,10 +24,10 @@ public class FetchSalonAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = "jsp/auto_catalogue_page.jsp";
+		String page = "jsp/index.jsp";
 		
-		List<Entity> list = salonService.fillingSelectPickUpSalon(new Salon());
-		request.setAttribute("SALON_LIST", list);
+		List<Entity> list = salonService.fillingListByTheSolons(new Salon());
+		request.setAttribute("salon_list", list);
 		
 		return page;
 	}

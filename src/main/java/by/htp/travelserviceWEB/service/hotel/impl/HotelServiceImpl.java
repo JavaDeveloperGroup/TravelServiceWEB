@@ -10,11 +10,9 @@ import by.htp.travelserviceWEB.service.hotel.HotelService;
 public class HotelServiceImpl implements HotelService {
 	
 	private HotelDao hotelDao;
-	{
-		hotelDao = HotelDaoImpl.getInstance();
-	}
 
 	private HotelServiceImpl() {
+		hotelDao = HotelDaoImpl.getInstance();
 	}
 
 	private static class Singletone {
@@ -26,7 +24,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<Entity> fillingSelectPickUpHotel(Entity entity) {
-		return hotelDao.fetchHotelName(entity);
+	public List<Entity> fillingListByTheHotels(Entity entity) {
+		return hotelDao.fetchListOfTheHotels(entity);
 	}
 }

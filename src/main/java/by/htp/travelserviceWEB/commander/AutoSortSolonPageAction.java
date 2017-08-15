@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import by.htp.travelserviceWEB.commander.fetchentity.FetchCityAction;
 import by.htp.travelserviceWEB.commander.fetchentity.FetchSalonAction;
 
-public class AutoCataloguePageAction implements CommandAction{
+public class AutoSortSolonPageAction implements CommandAction{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String page = "jsp/auto_catalogue_page.jsp";
+		String page = "jsp/auto_sort_salon_page.jsp";
 		
 		new FetchCityAction().execute(request, response);
 		

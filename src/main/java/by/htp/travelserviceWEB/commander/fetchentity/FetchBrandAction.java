@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.CommandAction;
-import by.htp.travelserviceWEB.entity.City;
 import by.htp.travelserviceWEB.entity.Entity;
-import by.htp.travelserviceWEB.service.CityService;
-import by.htp.travelserviceWEB.service.impl.CityServiceImpl;
+import by.htp.travelserviceWEB.entity.auto.Brand;
+import by.htp.travelserviceWEB.service.auto.BrandService;
+import by.htp.travelserviceWEB.service.auto.impl.BrandServiceImpl;
 
-public class FetchCityAction implements CommandAction {
+public class FetchBrandAction implements CommandAction {
 	
-	private CityService cityService;
+	private BrandService brandService;
 	
-	public FetchCityAction() {
-		cityService = CityServiceImpl.getInstance();
+	public FetchBrandAction() {
+		brandService = BrandServiceImpl.getInstance();
 	}
 
 	@Override
@@ -26,8 +26,8 @@ public class FetchCityAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
 		
-		List<Entity> list = cityService.fillingListByTheCities(new City());
-		request.setAttribute("city_list", list);
+		List<Entity> list = brandService.fillingListByTheBrands(new Brand());
+		request.setAttribute("brand_list", list);
 		
 		return page;
 	}

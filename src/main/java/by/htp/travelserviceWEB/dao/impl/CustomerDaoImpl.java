@@ -15,7 +15,6 @@ import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
 import by.htp.travelserviceWEB.sqlbuilder.insert.Insert;
 import by.htp.travelserviceWEB.sqlbuilder.select.Select;
 import by.htp.travelserviceWEB.sqlbuilder.update.Update;
-import by.htp.travelserviceWEB.util.TestClass;
 
 public class CustomerDaoImpl implements CustomerDao {
 

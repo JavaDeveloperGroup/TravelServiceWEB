@@ -116,8 +116,8 @@ public class CustomerTO implements Entity, Serializable {
 		return driverLicence;
 	}
 
-	public void setDriverLicence(String driverLicenсe) {
-		this.driverLicence = driverLicenсe;
+	public void setDriverLicence(String driverLicence) {
+		this.driverLicence = driverLicence;
 	}
 
 	public Integer getRoleId() {

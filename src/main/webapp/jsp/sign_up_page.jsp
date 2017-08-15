@@ -24,24 +24,28 @@
 			</div>
 			
 			<hr>
+			
 			<div id="heading">
 				<h2>Please, fill in the form to sign up!</h2>
 			</div>
+			
 			<div id="heading">
-				<font face="monospace" color="black" size="4"> <b> <c:out
-							value="${msg}" />
-				</b>
+				<font face="monospace" color="black" size="4"> 
+					<b> 
+						<c:out value="${msg}" />
+					</b>
 				</font>
 			</div>
+			
 			<div class='reg-form'>
-				<form action="${pageContext.request.contextPath}/Controller"
-					method="POST">
+				<form action="${pageContext.request.contextPath}/Controller" method="POST">
 					<input type="hidden" name="command" value="sign_up" />
 					<input type="hidden" name="id_role" value="1" />
 
 					<div class='form-row'>
-						<label for="name"> <span>Name</span> <input type='text'
-							value="Yauheni" id="name" name='name' required>
+						<label for="name"> 
+							<span>Name</span> 
+							<input type='text'	value="" id="name" name='name' required>
 							<ul class="input-requirements">
 								<li>Should be at least 1 character long.</li>
 								<li>Should only contain letters.</li>
@@ -51,8 +55,9 @@
 					</div>
 
 					<div class='form-row'>
-						<label for="surname"> <span>Surname </span> <input
-							type='text' value="Papovich" id="surname" name='surname' required>
+						<label for="surname"> 
+							<span>Surname </span> 
+							<input type='text' value="" id="surname" name='surname' required>
 							<ul class="input-requirements">
 								<li>Should be at least 1 characters long.</li>
 								<li>Should only contain letters.</li>
@@ -62,84 +67,85 @@
 					</div>
 
 					<div class='form-row'>
-						<label for="username"> <span>Login</span> <input
-							type='text' value="user" name='login' id="login" required>
+						<label for="username"> 
+							<span>Login</span> 
+							<input type='text' value="" name='login' id="login" required>
 							<ul class="input-requirements">
 								<li>At least 3 - 20 characters long</li>
-								<li>Must only contain letters and numbers (no special
-									characters)</li>
+								<li>Must only contain letters and numbers (no special characters)</li>
 							</ul>
 						</label>
 					</div>
 
 					<div class='form-row'>
-						<label for="password"> <span>Password</span> <input
-							type="password" value="user1Q@q" name='password' id="password"
-							required>
+						<label for="password"> 
+							<span>Password</span>
+							<input type="password" value="" name='password' id="password" required>
 							<ul class="input-requirements">
-								<li>At least 8 characters long (and less than 20
-									characters)</li>
+								<li>At least 8 characters long (and less than 20 characters)</li>
 								<li>Contains at least 1 number</li>
 								<li>Contains at least 1 lowercase letter</li>
 								<li>Contains at least 1 uppercase letter</li>
-								<li>Contains a special character (e.g. @ !)</li>
+								<li>Contains a special character (e.g. &, #, @, !...)</li>
 							</ul>
 						</label>
 					</div>
 
 					<div class='form-row'>
-						<label for="password_repeat"> <span> Repeat
-								Password </span> <input type="password" value="user1Q@q"
-							name='password_repeat' id="password_repeat" required>
+						<label for="password_repeat"> 
+							<span> Repeat Password </span> 
+							<input type="password" value="" name='password_repeat' id="password_repeat" required>
 						</label>
 					</div>
 
 					<div style="width: 100%; height: 1px; clear: both;"></div>
 
 					<div class='form-row' id="selectgender">
-						<label><div style="float: left;">
+						<label>
+							<div style="float: left;">
 								<span>Gender</span>
 							</div>
 							<div>
-								<font size="3"> <select id="gender" name='gender'
-									style="width: 492px;">
-										<!-- <option selected disabled value="male">Choose here</option>-->
-										<option value="Male">Male</option>
-										<option value="Female">Female</option>
-								</select>
+								<font size="3"> 
+									<select id="gender" name='gender' style="width: 492px;" required>
+											<option select="" value=""> </option>
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+									</select>
 								</font>
-							</div> </label>
+							</div> 
+						</label>
 					</div>
 
 					<div style="width: 100%; height: 1px; clear: both;"></div>
 
 					<div class="form-row">
-						<label> <span>Birthday</span> <font size="3"> <input
-								value="1999-06-30" type="date" placeholder="Birth date"
-								title="Format: YYYY-MM-DD" name="birthday" id="birthday" />
-						</font>
+						<label> 
+							<span>Birthday</span> 
+							<font size="3"> 
+								<input value="" type="date" title="Format: YYYY-MM-DD" name="birthday" id="birthday" />
+							</font>
 						</label>
 					</div>
 
 					<div style="width: 100%; height: 1px; clear: both;"></div>
 
 					<div class='form-row'>
-						<label>Passport </label> <input value="AA2222222" name='passport'
-							id="passport" required>
+						<label>Passport </label> <input value="" name='passport' id="passport" required>
 					</div>
 
 					<div style="width: 100%; height: 1px; clear: both;"></div>
 
 					<div class='form-row'>
-						<label>Email </label> <input type='email' id="email"
-							value="po@mail.ru" name='email' required>
+						<label>Email </label> 
+						<input type='email' id="email" value="" name='email' required>
 					</div>
 
 					<div style="width: 100%; height: 1px; clear: both;"></div>
 
 					<div class='form-row'>
-						<label>Phone </label> <input value="+375293333333" id="phone"
-							name='phone_number' required>
+						<label>Phone </label> 
+						<input value="" id="phone" name='phone_number' required>
 					</div>
 
 					<div style="width: 100%; height: 1px; clear: both;"></div>
@@ -150,11 +156,12 @@
 								<span>Driver licence</span>
 							</div>
 							<div>
-								<font size="3"> <select id="driver_licence"
-									name='driver_licence' style="width: 492px;">
-										<option value="No">No</option>
-										<option value="Yes">Yes</option>
-								</select>
+								<font size="3"> 
+									<select id="driver_licence" name='driver_licence' style="width: 492px;" required>
+											<option select="" value=""> </option>
+											<option value="No">No</option>
+											<option value="Yes">Yes</option>
+									</select>
 								</font>
 							</div>
 						</label>
@@ -171,11 +178,15 @@
 				</form>
 			</div>
 		</div>
+		
 		<div id="foot">
 			<jsp:include page="/jspf/footer.jspf" />
 		</div>
+		
 	</div>
+	
 	<script src="${pageContext.request.contextPath}/js/scriptSignUp.js"
-		charset="utf-8"></script>
+		charset="utf-8">
+	</script>
 </body>
 </html>

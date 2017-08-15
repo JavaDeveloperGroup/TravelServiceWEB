@@ -35,7 +35,7 @@ public class HotelCataloguePageAction implements CommandAction {
 		
 		new FetchRoomAction().execute(request, response);
 		
-		List<Entity> list = apartmentService.fillingSelectPickUpApartment(new Apartment());
+		List<Entity> list = apartmentService.fillingListByTheApartments(new Apartment());
 		request.setAttribute("APARTMENT_LIST", list);
 		
 		return page;

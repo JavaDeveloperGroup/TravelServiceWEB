@@ -1,9 +1,14 @@
 package by.htp.travelserviceWEB.dao.auto.impl;
 
+import static by.htp.travelserviceWEB.util.Formatter.extractionEntities;
+
+import java.util.List;
+
 import by.htp.travelserviceWEB.dao.auto.RentAutoDao;
+import by.htp.travelserviceWEB.entity.Entity;
 
 public class RentAutoDaoImpl implements RentAutoDao {
-
+	
 	private RentAutoDaoImpl() {
 	}
 
@@ -13,5 +18,10 @@ public class RentAutoDaoImpl implements RentAutoDao {
 
 	public static RentAutoDaoImpl getInstance() {
 		return Singletone.INSTANCE;
+	}
+
+	@Override
+	public List<Entity> fetchListOfTheRentAutoes(Entity entity) {
+		return extractionEntities(entity);
 	}
 }

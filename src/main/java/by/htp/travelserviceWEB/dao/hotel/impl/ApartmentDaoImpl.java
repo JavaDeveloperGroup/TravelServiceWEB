@@ -1,13 +1,11 @@
 package by.htp.travelserviceWEB.dao.hotel.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import static by.htp.travelserviceWEB.util.Formatter.extractionEntities;
+
 import java.util.List;
 
 import by.htp.travelserviceWEB.dao.hotel.ApartmentDao;
 import by.htp.travelserviceWEB.entity.Entity;
-import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
-import by.htp.travelserviceWEB.sqlbuilder.select.Select;
 
 public class ApartmentDaoImpl implements ApartmentDao {
 
@@ -22,20 +20,8 @@ public class ApartmentDaoImpl implements ApartmentDao {
 	}
 
 	@Override
-	public List<Entity> fetchApartmentName(Entity entity) {
-		Select select = new QueryBuilder().select(entity).all();
-		
-		ResultSet rs = null;
-		List<Entity> list = null;
-		
-		try {
-			rs = select.resultSet(select.toString());
-			list = select.getListOfInstanceWithDataFromSQL(rs, entity);
-		} catch (SecurityException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return list;
+	public List<Entity> fetchListOfTheApartments(Entity entity) {
+		return extractionEntities(entity);
 	}
 	
 	

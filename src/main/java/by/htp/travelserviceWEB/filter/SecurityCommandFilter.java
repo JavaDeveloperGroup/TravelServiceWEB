@@ -1,10 +1,8 @@
 package by.htp.travelserviceWEB.filter;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Set;
 
 import javax.servlet.Filter;
@@ -16,10 +14,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import by.htp.travelserviceWEB.entity.Admin;
-import by.htp.travelserviceWEB.entity.Customer;
-import by.htp.travelserviceWEB.util.EncryptionFdl;
 
 public class SecurityCommandFilter implements Filter {
 
@@ -82,7 +76,8 @@ final class InitSecurityCommand {
 	
 	static {
 		customerListCommand.add("hotel_catalogue_page");
-		customerListCommand.add("auto_catalogue_page");
+		guestListCommand.add("auto_catalogue_sorting_page");
+		guestListCommand.add("auto_sort_salon_page");
 		customerListCommand.add("tour_catalogue_page");
 		customerListCommand.add("hotel_make_order");
 		customerListCommand.add("auto_make_order");
@@ -93,7 +88,8 @@ final class InitSecurityCommand {
 	}
 	static {
 		guestListCommand.add("hotel_catalogue_page");
-		guestListCommand.add("auto_catalogue_page");
+		guestListCommand.add("auto_catalogue_sorting_page");
+		guestListCommand.add("auto_sort_salon_page");
 		guestListCommand.add("tour_catalogue_page");
 		guestListCommand.add("log_in_page");
 		guestListCommand.add("sign_up_page");
@@ -102,7 +98,8 @@ final class InitSecurityCommand {
 	}
 	static {
 		adminListCommand.add("hotel_catalogue_page");
-		adminListCommand.add("auto_catalogue_page");
+		guestListCommand.add("auto_catalogue_sorting_page");
+		guestListCommand.add("auto_sort_salon_page");
 		adminListCommand.add("tour_catalogue_page");
 		adminListCommand.add("admin_page");
 		adminListCommand.add("log_out");

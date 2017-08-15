@@ -10,11 +10,10 @@ import by.htp.travelserviceWEB.service.hotel.ApartmentService;
 public class ApartmentServiceImpl implements ApartmentService {
 	
 	private ApartmentDao apartmentDao;
-	{
+
+	private ApartmentServiceImpl() {
 		apartmentDao = ApartmentDaoImpl.getInstance();
 	}
-
-	private ApartmentServiceImpl() {}
 
 	private static class Singletone{
 		private static final ApartmentServiceImpl INSTANCE = new ApartmentServiceImpl();
@@ -25,7 +24,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 	}
 
 	@Override
-	public List<Entity> fillingSelectPickUpApartment(Entity entity) {
-		return apartmentDao.fetchApartmentName(entity);
+	public List<Entity> fillingListByTheApartments(Entity entity) {
+		return apartmentDao.fetchListOfTheApartments(entity);
 	}
 }

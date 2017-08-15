@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.CommandAction;
-import by.htp.travelserviceWEB.entity.City;
 import by.htp.travelserviceWEB.entity.Entity;
-import by.htp.travelserviceWEB.service.CityService;
-import by.htp.travelserviceWEB.service.impl.CityServiceImpl;
+import by.htp.travelserviceWEB.entity.auto.Color;
+import by.htp.travelserviceWEB.service.auto.ColorService;
+import by.htp.travelserviceWEB.service.auto.impl.ColorServiceImpl;
 
-public class FetchCityAction implements CommandAction {
+public class FetchColorAction implements CommandAction {
 	
-	private CityService cityService;
+	private ColorService colorService;
 	
-	public FetchCityAction() {
-		cityService = CityServiceImpl.getInstance();
+	public FetchColorAction() {
+		colorService = ColorServiceImpl.getInstance();
 	}
 
 	@Override
@@ -26,8 +26,8 @@ public class FetchCityAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
 		
-		List<Entity> list = cityService.fillingListByTheCities(new City());
-		request.setAttribute("city_list", list);
+		List<Entity> list = colorService.fillingListByTheColors(new Color());
+		request.setAttribute("color_list", list);
 		
 		return page;
 	}

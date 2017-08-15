@@ -1,7 +1,5 @@
 package by.htp.travelserviceWEB.service.impl;
 
-import java.sql.SQLException;
-
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import by.htp.travelserviceWEB.dao.CustomerDao;

@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.CommandAction;
-import by.htp.travelserviceWEB.entity.City;
 import by.htp.travelserviceWEB.entity.Entity;
-import by.htp.travelserviceWEB.service.CityService;
-import by.htp.travelserviceWEB.service.impl.CityServiceImpl;
+import by.htp.travelserviceWEB.entity.auto.BodyType;
+import by.htp.travelserviceWEB.service.auto.BodyTypeService;
+import by.htp.travelserviceWEB.service.auto.impl.BodyTypeServiceImpl;
 
-public class FetchCityAction implements CommandAction {
+public class FetchBodyTypeAction implements CommandAction {
 	
-	private CityService cityService;
+	private BodyTypeService bodyTypeService;
 	
-	public FetchCityAction() {
-		cityService = CityServiceImpl.getInstance();
+	public FetchBodyTypeAction() {
+		bodyTypeService = BodyTypeServiceImpl.getInstance();
 	}
 
 	@Override
@@ -26,8 +26,9 @@ public class FetchCityAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
 		
-		List<Entity> list = cityService.fillingListByTheCities(new City());
-		request.setAttribute("city_list", list);
+		List<Entity> list = bodyTypeService.fillingListByTheBodyTypes(new BodyType());
+
+		request.setAttribute("bodyType_list", list);
 		
 		return page;
 	}

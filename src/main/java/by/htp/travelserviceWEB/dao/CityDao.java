@@ -6,6 +6,6 @@ import by.htp.travelserviceWEB.entity.Entity;
 
 public interface CityDao {
 	
-	List<Entity> fetchCityName(Entity entity);
+	List<Entity> fetchListOfTheCities(Entity entity);
 	
 }

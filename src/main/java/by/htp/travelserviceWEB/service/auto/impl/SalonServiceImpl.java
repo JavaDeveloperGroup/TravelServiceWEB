@@ -10,11 +10,10 @@ import by.htp.travelserviceWEB.service.auto.SalonService;
 public class SalonServiceImpl implements SalonService {
 	
 	private SalonDao salonDao;
-	{
+
+	private SalonServiceImpl() {
 		salonDao = SalonDaoImpl.getInstance();
 	}
-
-	private SalonServiceImpl() {}
 
 	private static class Singletone {
 		private static final SalonServiceImpl INSTANCE = new SalonServiceImpl();
@@ -25,7 +24,7 @@ public class SalonServiceImpl implements SalonService {
 	}
 
 	@Override
-	public List<Entity> fillingSelectPickUpSalon(Entity entity) {
-		return salonDao.fetchSalonName(entity);
+	public List<Entity> fillingListByTheSolons(Entity entity) {
+		return salonDao.fetchListOfTheSalons(entity);
 	}
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
-public interface ColorService {
+public interface BrandService {
 
-	List<Entity> fillingListByTheColors(Entity entity);
+	List<Entity> fillingListByTheBrands(Entity entity);
 	
 }

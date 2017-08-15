@@ -4,24 +4,24 @@ import static by.htp.travelserviceWEB.util.Formatter.*;
 
 import java.util.List;
 
-import by.htp.travelserviceWEB.dao.auto.AutoDao;
+import by.htp.travelserviceWEB.dao.auto.BrandDao;
 import by.htp.travelserviceWEB.entity.Entity;
 
-public class AutoDaoImpl implements AutoDao {
+public class BrandDaoImpl implements BrandDao {
 
-	private AutoDaoImpl() {
+	private BrandDaoImpl() {
 	}
 
 	private static class Singletone {
-		private static final AutoDaoImpl INSTANCE = new AutoDaoImpl();
+		private static final BrandDaoImpl INSTANCE = new BrandDaoImpl();
 	}
 
-	public static AutoDaoImpl getInstance() {
+	public static BrandDaoImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
 
 	@Override
-	public List<Entity> fetchListOfTheAutoes(Entity entity) {
+	public List<Entity> fetchListOfTheBrands(Entity entity) {
 		return extractionEntities(entity);
 	}
 }

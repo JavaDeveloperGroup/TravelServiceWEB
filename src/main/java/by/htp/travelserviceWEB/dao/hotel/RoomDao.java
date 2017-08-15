@@ -6,6 +6,6 @@ import by.htp.travelserviceWEB.entity.Entity;
 
 public interface RoomDao {
 	
-	List<Entity> fetchRoomName(Entity entity);
+	List<Entity> fetchListOfTheRooms(Entity entity);
 
 }

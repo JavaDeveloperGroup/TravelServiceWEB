@@ -1,9 +1,6 @@
 package by.htp.travelserviceWEB.entity.auto;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.sql.Date;
-import java.util.List;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
@@ -117,9 +114,5 @@ public class Auto implements Entity, Serializable {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }

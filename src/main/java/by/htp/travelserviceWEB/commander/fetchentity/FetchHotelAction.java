@@ -26,16 +26,16 @@ public class FetchHotelAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String page = "jsp/hotel_catalogue_page.jsp";
+		String page = "jsp/index.jsp";
 		
-		List<Entity> list = hotelService.fillingSelectPickUpHotel(new Hotel());
-		
-		Map<Integer, Entity> map = new HashMap<Integer, Entity>();
-		for(Entity entity : list) {
-			map.put(((Hotel)entity).getHotelId(), (Hotel) entity);
+		List<Entity> list = hotelService.fillingListByTheHotels(new Hotel());
+		Map<Integer, Hotel> map = new HashMap<Integer, Hotel>();
+		for(Entity hotel : list) {
+			map.put(((Hotel)hotel).getHotelId(), (Hotel) hotel);
 		}
 		request.setAttribute("HOTEL_MAP", map);
 		
 		return page;
 	}
+
 }
