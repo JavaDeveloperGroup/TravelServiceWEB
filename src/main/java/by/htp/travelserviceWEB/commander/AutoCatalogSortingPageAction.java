@@ -12,8 +12,6 @@ import by.htp.travelserviceWEB.commander.fetchentity.FetchBodyTypeAction;
 import by.htp.travelserviceWEB.commander.fetchentity.FetchBrandAction;
 import by.htp.travelserviceWEB.commander.fetchentity.FetchCityAction;
 import by.htp.travelserviceWEB.commander.fetchentity.FetchColorAction;
-import by.htp.travelserviceWEB.commander.fetchentity.FetchHotelAction;
-import by.htp.travelserviceWEB.commander.fetchentity.FetchRoomAction;
 import by.htp.travelserviceWEB.commander.fetchentity.FetchSalonAction;
 import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.auto.RentAuto;
@@ -42,7 +40,6 @@ public class AutoCatalogSortingPageAction implements CommandAction{
 		new FetchSalonAction().execute(request, response);
 		
 		List<Entity> list = rentAutoServiceImpl.fillingListByTheRentAutoes(new RentAuto());
-
 		request.setAttribute("rentAuto_list", list);
 
 		return page;

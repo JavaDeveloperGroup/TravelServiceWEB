@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.dao.hotel.impl;
 
-import static by.htp.travelserviceWEB.util.Formatter.extractionEntities;
+import static by.htp.travelserviceWEB.util.Formatter.*;
 
 import java.util.List;
 

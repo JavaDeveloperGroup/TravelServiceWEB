@@ -1,11 +1,11 @@
 package by.htp.travelserviceWEB.dao.hotel;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
 public interface RoomDao {
 	
-	List<Entity> fetchListOfTheRooms(Entity entity);
+	Map<Integer, Entity> fetchListOfTheRooms(Entity entity);
 
 }

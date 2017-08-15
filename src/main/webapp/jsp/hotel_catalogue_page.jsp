@@ -78,8 +78,7 @@
 								<c:forEach items="${APARTMENT_LIST}" var="a">
 								
 									<tr>
-										<td><input type="radio" name="id"
-											value="${a.getApartmentId()}" /></td>
+										<td><input type="radio" name="id" value="${a.getApartmentId()}" /></td>
 										<td><img src="${a.getImage()}"></td>
 										<td>${HOTEL_MAP.get(a.getHotelId()).getTitle()} <br> 
 											${CITY_MAP.get(HOTEL_MAP.get(a.getHotelId()).getCityId()).getName()} <br> 

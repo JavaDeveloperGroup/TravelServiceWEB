@@ -1,8 +1,8 @@
 package by.htp.travelserviceWEB.dao.hotel.impl;
 
-import static by.htp.travelserviceWEB.util.Formatter.extractionEntities;
+import static by.htp.travelserviceWEB.util.Formatter.*;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.hotel.HotelDao;
 import by.htp.travelserviceWEB.entity.Entity;
@@ -21,7 +21,7 @@ public class HotelDaoImpl implements HotelDao {
 	}
 
 	@Override
-	public List<Entity> fetchListOfTheHotels(Entity entity) {
-		return extractionEntities(entity);
+	public Map<Integer, Entity> fetchListOfTheHotels(Entity entity) {
+		return extractionEntitiesInMap(entity);
 	}
 }

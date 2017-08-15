@@ -1,11 +1,11 @@
 package by.htp.travelserviceWEB.dao;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
 public interface CityDao {
 	
-	List<Entity> fetchListOfTheCities(Entity entity);
+	Map<Integer, Entity> fetchListOfTheCities(Entity entity);
 	
 }

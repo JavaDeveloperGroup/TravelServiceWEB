@@ -1,7 +1,7 @@
 package by.htp.travelserviceWEB.commander.fetchentity;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +26,8 @@ public class FetchSalonAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
 		
-		List<Entity> list = salonService.fillingListByTheSolons(new Salon());
-		request.setAttribute("salon_list", list);
+		Map<Integer, Entity> map = salonService.fillingListByTheSolons(new Salon());
+		request.setAttribute("salon_map", map);
 		
 		return page;
 	}

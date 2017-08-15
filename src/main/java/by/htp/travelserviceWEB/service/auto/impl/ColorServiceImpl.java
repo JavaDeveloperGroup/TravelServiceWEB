@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.service.auto.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.auto.ColorDao;
 import by.htp.travelserviceWEB.dao.auto.impl.ColorDaoImpl;
@@ -24,7 +24,7 @@ public class ColorServiceImpl implements ColorService {
 	}
 
 	@Override
-	public List<Entity> fillingListByTheColors(Entity entity) {
+	public Map<Integer, Entity> fillingListByTheColors(Entity entity) {
 		return colorDao.fetchListOfTheColors(entity);
 	}
 }

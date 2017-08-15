@@ -1,8 +1,6 @@
 package by.htp.travelserviceWEB.commander.fetchentity;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -28,11 +26,7 @@ public class FetchRoomAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
 		
-		List<Entity> list = roomService.fillingListByTheRooms(new Room());
-		Map<Integer, Room> map = new HashMap<Integer, Room>();
-		for(Entity room : list) {
-			map.put(((Room)room).getRoomId(), (Room) room);
-		}
+		Map<Integer, Entity> map = roomService.fillingListByTheRooms(new Room());
 		request.setAttribute("ROOM_MAP", map);
 		
 		return page;

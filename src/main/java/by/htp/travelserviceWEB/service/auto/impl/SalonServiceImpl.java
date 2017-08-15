@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.service.auto.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.auto.SalonDao;
 import by.htp.travelserviceWEB.dao.auto.impl.SalonDaoImpl;
@@ -24,7 +24,7 @@ public class SalonServiceImpl implements SalonService {
 	}
 
 	@Override
-	public List<Entity> fillingListByTheSolons(Entity entity) {
+	public Map<Integer, Entity> fillingListByTheSolons(Entity entity) {
 		return salonDao.fetchListOfTheSalons(entity);
 	}
 }

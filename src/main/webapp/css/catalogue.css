@@ -150,20 +150,28 @@ div input [type="date"] {
 	opacity: 0;
 }
 
+.col1 {
+	width: 220px;
+}
+
+.col2 {
+	width: 150px;
+}
+
 .col3 {
-	width: 50px;
+	width: 100px;
 }
 
 .col4 {
-	width: 50px;
+	width: 60px;
 }
 
 .col5 {
-	width: 50px;
+	width: 60px;
 }
 
 .col6 {
-	width: 50px;
+	width: 60px;
 }
 
 #line {

@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.service.hotel.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.hotel.RoomDao;
 import by.htp.travelserviceWEB.dao.hotel.impl.RoomDaoImpl;
@@ -24,7 +24,7 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public List<Entity> fillingListByTheRooms(Entity entity) {
+	public Map<Integer, Entity> fillingListByTheRooms(Entity entity) {
 		return roomDao.fetchListOfTheRooms(entity);
 	}
 }

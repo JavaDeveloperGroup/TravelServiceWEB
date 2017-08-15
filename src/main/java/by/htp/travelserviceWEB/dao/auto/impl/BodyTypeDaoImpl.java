@@ -2,7 +2,7 @@ package by.htp.travelserviceWEB.dao.auto.impl;
 
 import static by.htp.travelserviceWEB.util.Formatter.*;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.auto.BodyTypeDao;
 import by.htp.travelserviceWEB.entity.Entity;
@@ -21,7 +21,7 @@ public class BodyTypeDaoImpl implements BodyTypeDao {
 	}
 
 	@Override
-	public List<Entity> fetchListOfTheBodyTypes(Entity entity) {
-		return extractionEntities(entity);
+	public Map<Integer, Entity> fetchListOfTheBodyTypes(Entity entity) {
+		return extractionEntitiesInMap(entity);
 	}
 }

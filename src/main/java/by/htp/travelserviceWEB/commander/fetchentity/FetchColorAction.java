@@ -1,7 +1,7 @@
 package by.htp.travelserviceWEB.commander.fetchentity;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +26,8 @@ public class FetchColorAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
 		
-		List<Entity> list = colorService.fillingListByTheColors(new Color());
-		request.setAttribute("color_list", list);
+		Map<Integer, Entity> map = colorService.fillingListByTheColors(new Color());
+		request.setAttribute("color_map", map);
 		
 		return page;
 	}

@@ -77,7 +77,7 @@
 						</div>
 					</nav>
 				</aside>
-				<div>
+				<di class="table">
 					<form action="${pageContext.request.contextPath}/Controller"
 						method="GET">
 						<input type="hidden" name="command" value="auto_make_order">
@@ -86,19 +86,36 @@
 								<tr>
 									<th id="ckeck">
 									<th id="photo">PHOTO</th>
-									<th class="col1">MODEL</th>
+									<th class="col1">MODEL & BODY TYPE & YEAR</th>
 									<th class="col2">CHARACTERISTIC</th>
-									<th class="col4">SALON</th>
-									<th class="col5">PRICE</th>
+									<th class="col3">LOCATION</th>
+									<th class="col3">STATUS</th>
+									<th class="col5">PRICE, $</th>
 								</tr>
-								<c:forEach items="${list_rentAuto}" var="i">
+								<c:forEach items="${rentAuto_list}" var="i">
 									<tr>
-										<td><input type="radio" name="id"
-											value="${i.getRentAutoId()}" /></td>
-										<td><img src="${i.getImage()}"></td>
-										<td>${i.getAuto().toStringModel()}</td>
-										<td>${i.getAuto().toStringCharacteristic()}</td>
-										<td>${i.getSalon().toStringAddress()}</td>
+										<td><input type="radio" name="id" value="${i.getRentAutoId()}" /></td>
+										
+										<td><img src="${auto_map.get(i.getAutoId()).getImage()}"></td>
+										
+										<td> 
+										      ${brand_map.get(auto_map.get(i.getAutoId()).getBrandId()).getName()} <br>
+										      ${auto_map.get(i.getAutoId()).getModel()} <br>
+										      ${auto_map.get(i.getAutoId()).getYear()} <br>
+										      ${bodyType_map.get(auto_map.get(i.getAutoId()).getBodyTypeId()).getName()}
+										</td>
+										
+										<td>
+										      ${auto_map.get(i.getAutoId()).getTransmition()} <br>
+										      ${auto_map.get(i.getAutoId()).getWheelDrive()} <br>
+										      ${auto_map.get(i.getAutoId()).getFuilType()} <br>
+										      ${color_map.get(auto_map.get(i.getAutoId()).getColorId()).getName()}
+										</td>
+										<td>  
+											  ${city_map.get(salon_map.get(i.getSalonStartId()).getCityId()).getName()} <br>
+											  ${salon_map.get(i.getSalonStartId()).getAddress()}										
+										</td>
+										<td>${i.getStatus()}</td>
 										<td>${i.getPrice()}</td>
 									</tr>
 								</c:forEach>
