@@ -17,10 +17,7 @@ import javax.servlet.http.HttpSession;
 
 public class SecurityCommandFilter implements Filter {
 
-	private FilterChain chain;
 	private String command;
-	private ServletRequest servletRequest;
-	private ServletResponse servletResponse;
 
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {}
@@ -28,26 +25,23 @@ public class SecurityCommandFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
-		this.chain = chain;
-		this.servletRequest = servletRequest;
-		this.servletResponse = servletResponse;
+		FilterChain filterChain = chain;
+
 		this.command = ((HttpServletRequest) servletRequest).getParameter("command");
 		HttpSession httpSession = ((HttpServletRequest) servletRequest).getSession();
 		Object user = httpSession.getAttribute("user");
-		whereCanGoUser(user);
+		checkUserSeccus(user, servletResponse);
+		filterChain.doFilter(servletRequest, servletResponse);
 	}
 	
-	private void whereCanGoUser(Object user) throws IOException, ServletException {
+	private void checkUserSeccus(Object user, ServletResponse servletResponse) throws IOException, ServletException {
 		if (null == user) {
-			if (InitSecurityCommand.getInstance().initGuestCommand(command)) {
-				chain.doFilter(servletRequest, servletResponse);
+			if (InitSecurityCommand.getInstance().checkGuestCommand(command)) {
 			} else {
 				((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 			}
-		} else if ("Customer".equals(user.getClass().getSimpleName().subSequence(0, 8)) && InitSecurityCommand.getInstance().initCustomerCommand(command)) {
-			chain.doFilter(servletRequest, servletResponse);
-		} else if ("Admin".equals(user.getClass().getSimpleName().substring(0, 5)) && InitSecurityCommand.getInstance().initAdminCommand(command)) {
-			chain.doFilter(servletRequest, servletResponse);
+		} else if ("Customer".equals(user.getClass().getSimpleName().subSequence(0, 8)) && InitSecurityCommand.getInstance().checkCustomerCommand(command)) {
+		} else if ("Admin".equals(user.getClass().getSimpleName().substring(0, 5)) && InitSecurityCommand.getInstance().checkAdminCommand(command)) {
 		} else 
 			((HttpServletResponse)servletResponse).sendRedirect("jsp/home_page.jsp");
 	}
@@ -76,8 +70,8 @@ final class InitSecurityCommand {
 	
 	static {
 		customerListCommand.add("hotel_catalogue_page");
-		guestListCommand.add("auto_catalogue_sorting_page");
-		guestListCommand.add("auto_sort_salon_page");
+		customerListCommand.add("auto_catalogue_sorting_page");
+		customerListCommand.add("auto_sort_salon_page");
 		customerListCommand.add("tour_catalogue_page");
 		customerListCommand.add("hotel_make_order");
 		customerListCommand.add("auto_make_order");
@@ -98,20 +92,20 @@ final class InitSecurityCommand {
 	}
 	static {
 		adminListCommand.add("hotel_catalogue_page");
-		guestListCommand.add("auto_catalogue_sorting_page");
-		guestListCommand.add("auto_sort_salon_page");
+		adminListCommand.add("auto_catalogue_sorting_page");
+		adminListCommand.add("auto_sort_salon_page");
 		adminListCommand.add("tour_catalogue_page");
 		adminListCommand.add("admin_page");
 		adminListCommand.add("log_out");
 	}
 	
-	boolean initCustomerCommand(String command) {
+	boolean checkCustomerCommand(String command) {
 		return customerListCommand.contains(command);
 	}
-	boolean initAdminCommand(String command) {
+	boolean checkAdminCommand(String command) {
 		return adminListCommand.contains(command);
 	}
-	boolean initGuestCommand(String command) {
+	boolean checkGuestCommand(String command) {
 		return guestListCommand.contains(command);		
 	}
 	

@@ -10,24 +10,32 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 public class EncodingFilter implements Filter{
+	
+	public EncodingFilter () {
+		System.out.println("constr filter");
+	}
 
-	private String code = "UTF-8";
+	private static final String CODE = "UTF-8";
 
 	@Override
-	public void init(FilterConfig fConfig) throws ServletException {}
+	public void init(FilterConfig fConfig) throws ServletException {
+		System.out.println("init filter");
+	}
 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
 		String codeRequest = servletRequest.getCharacterEncoding();
-		if (!code.equalsIgnoreCase(codeRequest)) {
-            servletRequest.setCharacterEncoding(code);
-            servletResponse.setCharacterEncoding(code);
+		if (!CODE.equalsIgnoreCase(codeRequest)) {
+            servletRequest.setCharacterEncoding(CODE);
+            servletResponse.setCharacterEncoding(CODE);
         }
         chain.doFilter(servletRequest, servletResponse);
 	}
 
 	@Override
-	public void destroy() {code = null;}
+	public void destroy() {
+		System.out.println("destroy filter");
+	}
 
 }

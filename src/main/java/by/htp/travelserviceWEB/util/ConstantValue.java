@@ -14,40 +14,40 @@ public final class ConstantValue {
 	public static final String PAGE_CATALOG_HOTEL = "/catalog_hotel.jsp";
 	public static final String PAGE_CATALOG_AUTO = "/catalog_auto.jsp";
 	public static final String PAGE_CATALOG_TOUR = "/catalog_tour.jsp";
-	public static final Map<String, List<Object>> allListsParameters = new ConcurrentHashMap<String, List<Object>>();
+	public static final Map<String, List<String>> allListsParameters = new ConcurrentHashMap<String, List<String>>();
 	//private static final List<String> listOfParametersForSignUp = new LinkedList<>();
 	static {
-		List<Object> listOfParametersForSignUp = new LinkedList<>();
-		listOfParametersForSignUp.add("login");		
-		listOfParametersForSignUp.add("password");
-		listOfParametersForSignUp.add("name");
-		listOfParametersForSignUp.add("surname");
-		listOfParametersForSignUp.add("gender");
-		listOfParametersForSignUp.add("birthday");
-		listOfParametersForSignUp.add("passport");
-		listOfParametersForSignUp.add("email");
-		listOfParametersForSignUp.add("phone_number");
-		listOfParametersForSignUp.add("driver_licence");
-		listOfParametersForSignUp.add("id_role");
-		allListsParameters.put("customerto", listOfParametersForSignUp);
+		List<String> parametersForSignUp = new LinkedList<>();
+		parametersForSignUp.add("login");		
+		parametersForSignUp.add("password");
+		parametersForSignUp.add("name");
+		parametersForSignUp.add("surname");
+		parametersForSignUp.add("gender");
+		parametersForSignUp.add("birthday");
+		parametersForSignUp.add("passport");
+		parametersForSignUp.add("email");
+		parametersForSignUp.add("phone_number");
+		parametersForSignUp.add("driver_licence");
+		parametersForSignUp.add("id_role");
+		allListsParameters.put("customerto", parametersForSignUp);
 	}
 	//public static final List<String> listOfParametersForLogIn = new LinkedList<>();
 	static {
-		List<Object> listOfParametersForLogIn = new LinkedList<>();
-		listOfParametersForLogIn.add("login");		
-		listOfParametersForLogIn.add("password");
-		allListsParameters.put("customertolp", listOfParametersForLogIn);
+		List<String> parametersForLogIn = new LinkedList<>();
+		parametersForLogIn.add("login");		
+		parametersForLogIn.add("password");
+		allListsParameters.put("customertolp", parametersForLogIn);
 	}
 	//public static final List<String> listOfParametersForUpdateData = new LinkedList<>();
 	static {	
-		List<Object> listOfParametersForUpdateData = new LinkedList<>();
-		listOfParametersForUpdateData.add("new_password");
-		listOfParametersForUpdateData.add("gender");
-		listOfParametersForUpdateData.add("birthday");
-		listOfParametersForUpdateData.add("email");
-		listOfParametersForUpdateData.add("phone_number");
-		listOfParametersForUpdateData.add("driver_licence");
-		allListsParameters.put("customertoupdate", listOfParametersForUpdateData);
+		List<String> parametersForUpdateData = new LinkedList<>();
+		parametersForUpdateData.add("new_password");
+		parametersForUpdateData.add("gender");
+		parametersForUpdateData.add("birthday");
+		parametersForUpdateData.add("email");
+		parametersForUpdateData.add("phone_number");
+		parametersForUpdateData.add("driver_licence");
+		allListsParameters.put("customertoupdate", parametersForUpdateData);
 	}
 	
 }

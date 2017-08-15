@@ -18,7 +18,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-public abstract class Formatter {
+public final class Formatter {
+	
+	private Formatter() {}
 
 	public static Map<String, Object> listOfEntityFieldsAndValues(Entity entity, Map<String, Object> columnsAndValues)
 			throws SecurityException, ClassNotFoundException, IllegalArgumentException, IllegalAccessException {
@@ -261,7 +263,7 @@ public abstract class Formatter {
 			throws SecurityException, ClassNotFoundException {
 		
 		Object[] obj = new Object[getParameterTypes(entity).length];
-		System.out.println(entity.getClass().getSimpleName().toLowerCase());
+		
 		int i = 0;
 		for (Object value : allListsParameters.get(entity.getClass().getSimpleName().toLowerCase())) {
 			obj[i] = castValueFromRequest(request, value);

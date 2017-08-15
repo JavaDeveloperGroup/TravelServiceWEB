@@ -1,14 +1,14 @@
 package by.htp.travelserviceWEB.util;
 
-public class EncryptionFdl{
+public final class EncryptionFdl{
 	
 	private EncryptionFdl(){}
 	
 	private static final String KEY = "fiDeliO";
-	private static Integer dataLength = null;
+	private static int dataLength;
 	
-	private static int[] dataInArrayInt(String data) {
-		char[] dataArrayChar = data.toCharArray();
+	private static int[] parseInArrayInt(String data) {
+		char[] dataArrayChar = parseInArrayChar(data);
 		dataLength = dataArrayChar.length;
 		int[] dataArrayInt = new int[dataLength];
 		for(int i = 0; i < dataLength; i++) {
@@ -17,8 +17,12 @@ public class EncryptionFdl{
 		return dataArrayInt;
 	}
 	
-	private static int[] keyArrayInt() {
-		char[] keyArray = KEY.toCharArray();
+	private static char[] parseInArrayChar(String data) {
+		return data.toCharArray();
+	}
+	
+	private static int[] parseKeyInArrayInt() {
+		char[] keyArray = parseInArrayChar(KEY);
 		int lengthArrayKey = keyArray.length;
 		char[] keyArrayChar = new char[dataLength];
 		for(int i = 0; i < dataLength - 1; i++) {
@@ -56,12 +60,12 @@ public class EncryptionFdl{
 	}
 	
 	public static String encrypt(String data) {
-		String code = getEncryptData(dataInArrayInt(data), keyArrayInt());
+		String code = getEncryptData(parseInArrayInt(data), parseKeyInArrayInt());
 		return code;
 	}
 	
 	public static String decrypt(String data) {
-		data = getDecryptData(dataInArrayInt(data), keyArrayInt());
+		data = getDecryptData(parseInArrayInt(data), parseKeyInArrayInt());
 		return data;
 	}
 }

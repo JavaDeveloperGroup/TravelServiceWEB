@@ -18,7 +18,6 @@ import by.htp.travelserviceWEB.entity.Entity;
 public abstract class GlobalMethod {
 	
 	private final ConnectionPool connector = ConnectionPool.getInstance();
-	private Connection connection;
 	
 	public GlobalMethod getQuery() throws SecurityException, ClassNotFoundException, 
 							IllegalArgumentException, IllegalAccessException {
@@ -37,7 +36,7 @@ public abstract class GlobalMethod {
 	public final PreparedStatement prepareStatement(String sqlQuery)
 			throws SQLException, SecurityException, ClassNotFoundException {
 		
-		connection = connector.getConnection();
+		Connection connection = connector.getConnection();
 		
 		PreparedStatement statement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS);
 		
