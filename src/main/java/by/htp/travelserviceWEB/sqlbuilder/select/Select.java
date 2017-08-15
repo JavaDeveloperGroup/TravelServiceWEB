@@ -37,9 +37,9 @@ public final class Select extends QueryBuilder {
 	}
 	
 	public Select all() {
-		query.append(" * ")
+		query.append("* ")
 			 .append("FROM ")
-			 .append(entity.getClass().getSimpleName().toLowerCase());
+			 .append(getClassName(entity));
 		return this;
 	}
 

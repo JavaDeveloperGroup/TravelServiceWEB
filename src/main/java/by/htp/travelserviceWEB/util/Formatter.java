@@ -283,7 +283,7 @@ public abstract class Formatter {
 	
 	public static List<Entity> extractionEntities(Entity entity) {
 		Select select = new QueryBuilder().select(entity).all();
-
+		//System.out.println(entity.getClass().getSimpleName() + " : " + select.toString());
 		ResultSet rs = null;
 		List<Entity> list = null;
 

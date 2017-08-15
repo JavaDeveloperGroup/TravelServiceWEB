@@ -76,7 +76,8 @@ final class InitSecurityCommand {
 	
 	static {
 		customerListCommand.add("hotel_catalogue_page");
-		customerListCommand.add("auto_catalogue_page");
+		guestListCommand.add("auto_catalogue_sorting_page");
+		guestListCommand.add("auto_sort_salon_page");
 		customerListCommand.add("tour_catalogue_page");
 		customerListCommand.add("hotel_make_order");
 		customerListCommand.add("auto_make_order");
@@ -87,7 +88,8 @@ final class InitSecurityCommand {
 	}
 	static {
 		guestListCommand.add("hotel_catalogue_page");
-		guestListCommand.add("auto_catalogue_page");
+		guestListCommand.add("auto_catalogue_sorting_page");
+		guestListCommand.add("auto_sort_salon_page");
 		guestListCommand.add("tour_catalogue_page");
 		guestListCommand.add("log_in_page");
 		guestListCommand.add("sign_up_page");
@@ -96,7 +98,8 @@ final class InitSecurityCommand {
 	}
 	static {
 		adminListCommand.add("hotel_catalogue_page");
-		adminListCommand.add("auto_catalogue_page");
+		guestListCommand.add("auto_catalogue_sorting_page");
+		guestListCommand.add("auto_sort_salon_page");
 		adminListCommand.add("tour_catalogue_page");
 		adminListCommand.add("admin_page");
 		adminListCommand.add("log_out");
