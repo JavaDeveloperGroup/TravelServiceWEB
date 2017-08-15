@@ -1,8 +1,8 @@
 package by.htp.travelserviceWEB.dao.auto.impl;
 
-import static by.htp.travelserviceWEB.util.Formatter.extractionEntities;
+import static by.htp.travelserviceWEB.util.Formatter.*;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.auto.SalonDao;
 import by.htp.travelserviceWEB.entity.Entity;
@@ -21,7 +21,7 @@ public class SalonDaoImpl implements SalonDao {
 	}
 
 	@Override
-	public List<Entity> fetchListOfTheSalons(Entity entity) {
-		return extractionEntities(entity);
+	public Map<Integer, Entity> fetchListOfTheSalons(Entity entity) {
+		return extractionEntitiesInMap(entity);
 	}
 }

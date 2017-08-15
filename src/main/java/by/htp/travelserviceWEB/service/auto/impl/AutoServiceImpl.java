@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.service.auto.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.auto.AutoDao;
 import by.htp.travelserviceWEB.dao.auto.impl.AutoDaoImpl;
@@ -24,7 +24,7 @@ public class AutoServiceImpl implements AutoService {
 	}
 
 	@Override
-	public List<Entity> fillingListByTheAutoes(Entity entity) {
+	public Map<Integer, Entity> fillingListByTheAutoes(Entity entity) {
 		return autoDao.fetchListOfTheAutoes(entity); 
 	}
 }

@@ -1,11 +1,11 @@
 package by.htp.travelserviceWEB.service.hotel;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
 public interface RoomService {
 	
-	List<Entity> fillingListByTheRooms(Entity entity);
+	Map<Integer, Entity> fillingListByTheRooms(Entity entity);
 
 }

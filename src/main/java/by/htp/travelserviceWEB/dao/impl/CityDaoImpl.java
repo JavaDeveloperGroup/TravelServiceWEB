@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.dao.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.CityDao;
 import by.htp.travelserviceWEB.entity.Entity;
@@ -21,7 +21,7 @@ public class CityDaoImpl implements CityDao {
 	}
 
 	@Override
-	public List<Entity> fetchListOfTheCities(Entity entity) {
-		return extractionEntities(entity);
+	public Map<Integer, Entity> fetchListOfTheCities(Entity entity) {
+		return extractionEntitiesInMap(entity);
 	}
 }

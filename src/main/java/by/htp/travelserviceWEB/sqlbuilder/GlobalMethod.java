@@ -7,8 +7,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.connector.ConnectionPool;
 import by.htp.travelserviceWEB.entity.Entity;
@@ -71,5 +73,20 @@ public abstract class GlobalMethod {
 			list.add((Entity) newInstance(entity, obj));
 		}
 		return list;
+	}
+	
+	public Map<Integer, Entity> getMapOfInstanceWithDataFromSQL(ResultSet resultSet, Entity entity) 
+			throws SQLException, SecurityException, ClassNotFoundException {
+		
+		Object[] obj = new Object[getConstructor(entity)[1].getParameters().length];
+		Map<Integer, Entity> map = new HashMap<>();
+		
+		while (resultSet.next()) {
+			for(int i = 1, o = 0, l = obj.length; i <= l; i++, o++) {
+				obj[o] = resultSet.getObject(i);
+			}
+			map.put((Integer) obj[0], (Entity) newInstance(entity, obj));
+		}
+		return map;
 	}
 }

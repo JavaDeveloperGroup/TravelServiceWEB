@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.service.hotel.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.hotel.HotelDao;
 import by.htp.travelserviceWEB.dao.hotel.impl.HotelDaoImpl;
@@ -24,7 +24,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<Entity> fillingListByTheHotels(Entity entity) {
+	public Map<Integer, Entity> fillingListByTheHotels(Entity entity) {
 		return hotelDao.fetchListOfTheHotels(entity);
 	}
 }

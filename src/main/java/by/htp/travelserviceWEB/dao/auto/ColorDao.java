@@ -1,11 +1,11 @@
 package by.htp.travelserviceWEB.dao.auto;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
 public interface ColorDao {
 
-	List<Entity> fetchListOfTheColors(Entity entity);
+	Map<Integer, Entity> fetchListOfTheColors(Entity entity);
 	
 }

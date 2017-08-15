@@ -1,7 +1,7 @@
 package by.htp.travelserviceWEB.commander.fetchentity;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +26,8 @@ public class FetchBrandAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
 		
-		List<Entity> list = brandService.fillingListByTheBrands(new Brand());
-		request.setAttribute("brand_list", list);
+		Map<Integer, Entity> map = brandService.fillingListByTheBrands(new Brand());
+		request.setAttribute("brand_map", map);
 		
 		return page;
 	}

@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.service.auto.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.auto.BrandDao;
 import by.htp.travelserviceWEB.dao.auto.impl.BrandDaoImpl;
@@ -24,7 +24,7 @@ public class BrandServiceImpl implements BrandService {
 	}
 
 	@Override
-	public List<Entity> fillingListByTheBrands(Entity entity) {
+	public Map<Integer, Entity> fillingListByTheBrands(Entity entity) {
 		return brandDao.fetchListOfTheBrands(entity);
 	}
 }

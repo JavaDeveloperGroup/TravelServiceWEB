@@ -1,11 +1,11 @@
 package by.htp.travelserviceWEB.dao.auto;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
 public interface BodyTypeDao {
 
-	List<Entity> fetchListOfTheBodyTypes(Entity entity);
+	Map<Integer, Entity> fetchListOfTheBodyTypes(Entity entity);
 	
 }

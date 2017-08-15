@@ -1,11 +1,11 @@
 package by.htp.travelserviceWEB.service.auto;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
 public interface BrandService {
 
-	List<Entity> fillingListByTheBrands(Entity entity);
+	Map<Integer, Entity> fillingListByTheBrands(Entity entity);
 	
 }

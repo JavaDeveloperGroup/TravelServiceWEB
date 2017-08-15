@@ -1,6 +1,6 @@
 package by.htp.travelserviceWEB.service.auto.impl;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.auto.BodyTypeDao;
 import by.htp.travelserviceWEB.dao.auto.impl.BodyTypeDaoImpl;
@@ -24,7 +24,7 @@ public class BodyTypeServiceImpl implements BodyTypeService {
 	}
 
 	@Override
-	public List<Entity> fillingListByTheBodyTypes(Entity entity) {
+	public Map<Integer, Entity> fillingListByTheBodyTypes(Entity entity) {
 		return bodyTypeDao.fetchListOfTheBodyTypes(entity);
 	}
 }

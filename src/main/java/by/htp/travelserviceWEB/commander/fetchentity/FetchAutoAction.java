@@ -1,7 +1,7 @@
 package by.htp.travelserviceWEB.commander.fetchentity;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +25,9 @@ public class FetchAutoAction implements CommandAction {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
-		
-		List<Entity> list = autoService.fillingListByTheAutoes(new Auto());
 
-		request.setAttribute("auto_list", list);
+		Map<Integer, Entity> map = autoService.fillingListByTheAutoes(new Auto());
+		request.setAttribute("auto_map", map);
 		
 		return page;
 	}

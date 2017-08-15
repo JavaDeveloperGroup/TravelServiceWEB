@@ -1,7 +1,7 @@
 package by.htp.travelserviceWEB.commander.fetchentity;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +26,8 @@ public class FetchBodyTypeAction implements CommandAction {
 			throws ServletException, IOException {
 		String page = "jsp/index.jsp";
 		
-		List<Entity> list = bodyTypeService.fillingListByTheBodyTypes(new BodyType());
-
-		request.setAttribute("bodyType_list", list);
+		Map<Integer, Entity> map = bodyTypeService.fillingListByTheBodyTypes(new BodyType());
+		request.setAttribute("bodyType_map", map);
 		
 		return page;
 	}

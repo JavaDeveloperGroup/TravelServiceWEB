@@ -296,4 +296,20 @@ public abstract class Formatter {
 
 		return list;
 	}
+	
+	public static Map<Integer, Entity> extractionEntitiesInMap(Entity entity) {
+		Select select = new QueryBuilder().select(entity).all();
+		//System.out.println(entity.getClass().getSimpleName() + " : " + select.toString());
+		ResultSet rs = null;
+		Map<Integer, Entity> map = null;
+
+		try {
+			rs = select.resultSet(select.toString());
+			map = select.getMapOfInstanceWithDataFromSQL(rs, entity);
+		} catch (SecurityException | ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		return map;
+	}
 }
