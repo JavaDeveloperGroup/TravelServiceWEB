@@ -44,9 +44,7 @@ public class SignUpAction implements CommandAction {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		customerTO = (CustomerTO) newInstance(request, customerTO);
-		//customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
-		          
-		//String passwordRepeatEncrypt = EncryptionFdl.encrypt(request.getParameter(listOfParametersForSignUp.get(listOfParametersForSignUp.size() - 1)));
+
 		String passwordRepeat = request.getParameter("password_repeat");
 		
 		if (!Validator.checkForCorrentInputDataCustomer(customerTO, passwordRepeat)) {
@@ -56,7 +54,6 @@ public class SignUpAction implements CommandAction {
 		}
 		else {
 			customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
-			//create customerTOLP
 			customerTOLP = new CustomerTOLP(customerTO.getLogin(), customerTO.getPassword());
 			return getPage(request, response);
 		}

@@ -1,6 +1,7 @@
 package by.htp.travelserviceWEB.util;
 
 import by.htp.travelserviceWEB.entity.Entity;
+import by.htp.travelserviceWEB.entity.User;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.sqlbuilder.Query;
 import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
@@ -177,6 +178,25 @@ public final class Formatter {
 		className = remodel(serviceArray[0]);
 
 		return className;
+	}
+	
+	public static String getRoleName(User user) {
+		if (user == null) {
+			return "Guest";
+		}
+		Integer roleId = user.getRoleId();
+		switch (roleId) {
+		case 1:
+			return "Customer";
+		case 2:
+			return "Admin_Tour";
+		case 3:
+			return "Admin_Hotel";
+		case 4:
+			return "Admin_Auto";
+		default:
+			return "User";	
+		}
 	}
 	
 	public static void fieldsAndValuesListFormation(Entity entity, CustomerTOLP customerTOLP,
