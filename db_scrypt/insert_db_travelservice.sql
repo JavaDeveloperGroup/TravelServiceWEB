@@ -13,12 +13,6 @@ INSERT INTO `salon` (`id_salon`, `id_city`, `address`) VALUES
 	(4, 3, '25A Gogol Str. '),
 	(5, 4, '17 Mayakovsky Str.');
 	
-INSERT INTO `body_type` (`id_body_type`, `name`) VALUES
-	(1, 'SUV'),
-	(2, 'Sedan'),
-	(3, 'Minivan'),
-	(4, 'Coupe');
-	
 INSERT INTO `room` (`id_room`, `tv`, `balcony`, `conditioner`) VALUES
 	(1, 'No', 'No', 'No'),
 	(2, 'Yes', 'No', 'No'),
@@ -28,11 +22,6 @@ INSERT INTO `room` (`id_room`, `tv`, `balcony`, `conditioner`) VALUES
 	(6, 'No', 'No', 'Yes'),
 	(7, 'No', 'Yes', 'No'),
 	(8, 'Yes', 'No', 'Yes');
-	
-INSERT INTO `brand` (`id_brand`, `name`) VALUES
-	(1, 'BMW'),
-	(2, 'Mercedes'),
-	(3, 'Ford');
 	
 INSERT INTO `role` (`id_role`, `name`) VALUES
 	(1, 'customer'),
@@ -56,13 +45,6 @@ INSERT INTO `bus` (`id_bus`, `name`, `capacity`, `registration_number`) VALUES
 	(6, 'Iveco', 22, 'AH 6347-7'),
 	(7, 'Mercedes Sprinter', 8, 'AH 6897-7'),
 	(8, 'Scania', 30, 'AH 6027-7');
-
-INSERT INTO `color` (`id_color`, `name`) VALUES
-	(1, 'black'),
-	(2, 'white'),
-	(3, 'blue'),
-	(4, 'red'),
-	(5, 'silver');
 	
 INSERT INTO `tour` (`id_tour`, `destination`, `name`, `type`, `description`, `image`) VALUES
 	(1, 'Stankovo', 'Miracles of Stankovo Forest', 'REST', 'New Year\'s atmosphere lives here!', 'http://res.cloudinary.com/javadevgroup/image/upload/v1497429711/tourpics/stankovo_dtzzvp.jpg'),
@@ -122,13 +104,14 @@ INSERT INTO `apartment` (`id_apartment`, `id_hotel`, `id_room`, `room_capacity`,
 	(26, 5, 4, 1, 45.00, 'FREE', 'http://res.cloudinary.com/javadevgroup/image/upload/v1497853427/hotel/1tvcon.jpg');
 
 INSERT INTO `auto` (`id_auto`, `id_brand`, `model`, `year`, `transmition`, `wheel_drive`, `fuil_type`, `id_color`, `id_body_type`, `image`) VALUES
-	(1, 3, 'Mustang', '1969', 'MANUAL', 'FULL', 'PETROL', 3, 2, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg'),
-	(2, 1, 'X5', '2011', 'MANUAL', 'FRONT', 'PETROL', 1, 1, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805travelservice525/auto/bmw-x5-suv_gqaopv.jpg'),
-	(3, 2, 'C300', '2010', 'AUTO', 'FULL', 'DIESEL', 5, 2, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805529/auto/2015_mercedes-benz_c-class_sedan_c300_xbc5ol.jpg'),
-	(4, 3, 'Mustang', '1975', 'MANUAL', 'REAR', 'PETROL', 3, 2, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805531/auto/Lovely-Ford-Mustang_ploeiz.jpg'),
-	(5, 3, 'Flex', '2012', 'AUTO', 'FULL', 'GAS', 4, 1, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Ford-Flex-suv_rlhzej.jpg'),
-	(6, 2, 'AMG', '2015', 'MANUAL', 'REAR', 'ELECTRO', 3, 4, 'http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Mercedes-AMG-C63S-Coupe_wqxpnc.jpg');
-
+	(1,'Ford','Mustang',1969,'MANUAL','FULL','PETROL','blue','Sedan','http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg'),
+	(2,'BMW','X5',2011,'MANUAL','FRONT','PETROL','black','SUV','http://res.cloudinary.com/javadevgroup/image/upload/v1502770599/2017_bmw_x5_angularfront_bqwqyr.jpg'),
+	(3,'Mercedes','C300',2010,'AUTO','FULL','DIESEL','silver','Sedan','http://res.cloudinary.com/javadevgroup/image/upload/v1497805529/auto/2015_mercedes-benz_c-class_sedan_c300_xbc5ol.jpg'),
+	(4,'Ford','Mustang',1975,'MANUAL','REAR','PETROL','blue','Sedan','http://res.cloudinary.com/javadevgroup/image/upload/v1497805531/auto/Lovely-Ford-Mustang_ploeiz.jpg'),
+	(5,'Ford','Flex',2012,'AUTO','FULL','GAS','red','SUV','http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Ford-Flex-suv_rlhzej.jpg'),
+	(6,'Mercedes','AMG',2015,'MANUAL','REAR','ELECTRO','blue','Coupe','http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Mercedes-AMG-C63S-Coupe_wqxpnc.jpg'),
+	(7,'Ford','X5',1999,'AUTO','FULL','PETROL','blue','Sedan','http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg');
+	
 INSERT INTO `rent_auto` (`id_rent_auto`, `id_auto`, `id_salon_start`, `status`, `price`) VALUES
 	(1, 1, 1, 'FREE', 30.00),
 	(2, 2, 1, 'FREE', 25.00),
