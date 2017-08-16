@@ -24,7 +24,7 @@ public final class CommandFilter extends AbstractFilter {
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
 		final String MESSAGE = "No access!";
-		
+
 		String command = ((HttpServletRequest) servletRequest).getParameter(REQUEST_PARAM_ACTION);
 		HttpSession httpSession = ((HttpServletRequest) servletRequest).getSession();
 		User user = (User) httpSession.getAttribute(SESSION_ATTRIBUTE_USER);
@@ -32,17 +32,22 @@ public final class CommandFilter extends AbstractFilter {
 			chain.doFilter(servletRequest, servletResponse);
 		} else {
 			((HttpServletRequest) servletRequest).setAttribute(REQUEST_ATTRIBUTE_MSG, MESSAGE);
+			((HttpServletRequest) servletRequest).setAttribute("us", user);
 			((HttpServletResponse) servletResponse).sendRedirect(PAGE_HOME);
 		}
 	}
 
-	private boolean checkUserAccess(User user, String command)
-			throws IOException, ServletException {
-		if (CheckCommandList.getInstance().fetchUserCommands(user)
-				.getCommands().contains(Commands.valueOf(command.toUpperCase()))) {
-			return true;
-		} else {
+	private boolean checkUserAccess(User user, String command) throws IOException, ServletException {
+		try {
+			if (CheckCommandList.getInstance().fetchUserCommands(user).getCommands()
+					.contains(Commands.valueOf(command.toUpperCase()))) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (IllegalArgumentException e) {
 			return false;
 		}
+
 	}
 }
