@@ -10,12 +10,12 @@ import javax.servlet.ServletResponse;
 public class EncodingFilter extends AbstractFilter {
 	
 	private static final long serialVersionUID = 7740625431531226243L;
-	
-	private static final String CODE = "UTF-8";
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		String CODE = "UTF-8";
+		
 		String codeRequest = request.getCharacterEncoding();
 		if (!CODE.equalsIgnoreCase(codeRequest)) {
 			request.setCharacterEncoding(CODE);
