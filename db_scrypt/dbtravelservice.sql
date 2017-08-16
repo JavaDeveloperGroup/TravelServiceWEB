@@ -4,7 +4,7 @@ USE `travelservice`;
 --
 -- Host: localhost    Database: travelservice
 -- ------------------------------------------------------
--- Server version	5.7.18-log
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'tour1','ÚØ¹×ºq',2),(2,'hotel1','ÎØ¸ÊØ ¦Ú',3),(3,'auto1','ÇÞ¸Ôºq',4);
+INSERT INTO `admin` VALUES (1,'tour1','ÚØ¹×ºq',2),(2,'hotel1','ÎØ¸ÊØ ¦Ú',3),(3,'auto1','ÇÞ¸Ôºq',4);
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,23 +87,17 @@ DROP TABLE IF EXISTS `auto`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `auto` (
   `id_auto` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `id_brand` tinyint(4) NOT NULL,
+  `brand` varchar(10) NOT NULL,
   `model` varchar(10) NOT NULL,
   `year` year(4) NOT NULL,
   `transmition` enum('AUTO','MANUAL') NOT NULL DEFAULT 'AUTO',
   `wheel_drive` enum('REAR','FRONT','FULL') NOT NULL DEFAULT 'REAR',
   `fuil_type` enum('PETROL','DIESEL','GAS','ELECTRO') NOT NULL DEFAULT 'PETROL',
-  `id_color` tinyint(4) NOT NULL,
-  `id_body_type` tinyint(4) NOT NULL,
+  `color` varchar(10) NOT NULL,
+  `body_type` varchar(10) NOT NULL,
   `image` varchar(400) NOT NULL,
-  PRIMARY KEY (`id_auto`),
-  KEY `FK_auto_brand` (`id_brand`),
-  KEY `FK_auto_color` (`id_color`),
-  KEY `FK_auto_body_type` (`id_body_type`),
-  CONSTRAINT `FK_auto_body_type` FOREIGN KEY (`id_body_type`) REFERENCES `body_type` (`id_body_type`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_auto_brand` FOREIGN KEY (`id_brand`) REFERENCES `brand` (`id_brand`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_auto_color` FOREIGN KEY (`id_color`) REFERENCES `color` (`id_color`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_auto`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +106,7 @@ CREATE TABLE `auto` (
 
 LOCK TABLES `auto` WRITE;
 /*!40000 ALTER TABLE `auto` DISABLE KEYS */;
-INSERT INTO `auto` VALUES (1,3,'Mustang',1969,'MANUAL','FULL','PETROL',3,2,'http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg'),(2,1,'X5',2011,'MANUAL','FRONT','PETROL',1,1,'http://res.cloudinary.com/javadevgroup/image/upload/v1497805travelservice525/auto/bmw-x5-suv_gqaopv.jpg'),(3,2,'C300',2010,'AUTO','FULL','DIESEL',5,2,'http://res.cloudinary.com/javadevgroup/image/upload/v1497805529/auto/2015_mercedes-benz_c-class_sedan_c300_xbc5ol.jpg'),(4,3,'Mustang',1975,'MANUAL','REAR','PETROL',3,2,'http://res.cloudinary.com/javadevgroup/image/upload/v1497805531/auto/Lovely-Ford-Mustang_ploeiz.jpg'),(5,3,'Flex',2012,'AUTO','FULL','GAS',4,1,'http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Ford-Flex-suv_rlhzej.jpg'),(6,2,'AMG',2015,'MANUAL','REAR','ELECTRO',3,4,'http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Mercedes-AMG-C63S-Coupe_wqxpnc.jpg');
+INSERT INTO `auto` VALUES (1,'Ford','Mustang',1969,'MANUAL','FULL','PETROL','blue','Sedan','http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg'),(2,'BMW','X5',2011,'MANUAL','FRONT','PETROL','black','SUV','http://res.cloudinary.com/javadevgroup/image/upload/v1502770599/2017_bmw_x5_angularfront_bqwqyr.jpg'),(3,'Mercedes','C300',2010,'AUTO','FULL','DIESEL','silver','Sedan','http://res.cloudinary.com/javadevgroup/image/upload/v1497805529/auto/2015_mercedes-benz_c-class_sedan_c300_xbc5ol.jpg'),(4,'Ford','Mustang',1975,'MANUAL','REAR','PETROL','blue','Sedan','http://res.cloudinary.com/javadevgroup/image/upload/v1497805531/auto/Lovely-Ford-Mustang_ploeiz.jpg'),(5,'Ford','Flex',2012,'AUTO','FULL','GAS','red','SUV','http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Ford-Flex-suv_rlhzej.jpg'),(6,'Mercedes','AMG',2015,'MANUAL','REAR','ELECTRO','blue','Coupe','http://res.cloudinary.com/javadevgroup/image/upload/v1497805525/auto/Mercedes-AMG-C63S-Coupe_wqxpnc.jpg'),(7,'Ford','X5',1999,'AUTO','FULL','PETROL','blue','Sedan','http://res.cloudinary.com/javadevgroup/image/upload/v1497805554/auto/1969-Mustang-Pro-Street_tfthgb.jpg');
 /*!40000 ALTER TABLE `auto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,54 +139,6 @@ CREATE TABLE `auto_order` (
 LOCK TABLES `auto_order` WRITE;
 /*!40000 ALTER TABLE `auto_order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `auto_order` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `body_type`
---
-
-DROP TABLE IF EXISTS `body_type`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `body_type` (
-  `id_body_type` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_body_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `body_type`
---
-
-LOCK TABLES `body_type` WRITE;
-/*!40000 ALTER TABLE `body_type` DISABLE KEYS */;
-INSERT INTO `body_type` VALUES (1,'SUV'),(2,'Sedan'),(3,'Minivan'),(4,'Coupe');
-/*!40000 ALTER TABLE `body_type` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `brand`
---
-
-DROP TABLE IF EXISTS `brand`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `brand` (
-  `id_brand` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_brand`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `brand`
---
-
-LOCK TABLES `brand` WRITE;
-/*!40000 ALTER TABLE `brand` DISABLE KEYS */;
-INSERT INTO `brand` VALUES (1,'BMW'),(2,'Mercedes'),(3,'Ford');
-/*!40000 ALTER TABLE `brand` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -246,30 +192,6 @@ INSERT INTO `city` VALUES (1,'Minsk'),(2,'Mogilev'),(3,'Brest'),(4,'Vitebsk');
 UNLOCK TABLES;
 
 --
--- Table structure for table `color`
---
-
-DROP TABLE IF EXISTS `color`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `color` (
-  `id_color` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_color`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `color`
---
-
-LOCK TABLES `color` WRITE;
-/*!40000 ALTER TABLE `color` DISABLE KEYS */;
-INSERT INTO `color` VALUES (1,'black'),(2,'white'),(3,'blue'),(4,'red'),(5,'silver');
-/*!40000 ALTER TABLE `color` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `customer`
 --
 
@@ -296,7 +218,7 @@ CREATE TABLE `customer` (
   UNIQUE KEY `phone_number` (`phone_number`),
   KEY `FK_customer_role` (`id_role`),
   CONSTRAINT `FK_customer_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,7 +227,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'user0','ÛÜ©×ºq','Tsovak','Palakian','Male','1990-06-05','AA1111111','tsovak@gmail.com','+375257018079','No',1),(2,'user1','ÛÜ©×ºq','Zhenya','Popovich','Male','1990-06-05','AA2222222','popo@gmail.com','+375297261647','Yes',1),(3,'user2','ÛÜ©×ºq','Dasha','Bortnik','Female','1990-06-11','AA3333333','dasha@gmail.com','+375299218769','Yes',1);
+INSERT INTO `customer` VALUES (1,'user0','ÛÜ©×ºq','Tsovak','Palakian','Male','1990-06-05','AA1111111','tsovak@gmail.com','+375257018079','No',1),(2,'user1','ÛÜ©×ºq','Zhenya','Popovich','Male','1990-06-05','AA2222222','zhenya@gmail.com','+375297261647','Yes',1),(3,'user2','ÛÜ©×ºq','Dasha','Bortnik','Female','1990-06-11','AA3333333','dasha@gmail.com','+375299218769','Yes',1),(5,'user234','ÛÜ©×ºq','Yauheni','Papovich','Male','1999-06-30','AA2232322','po@ma3il.ru','+375293223333','No',1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +306,7 @@ CREATE TABLE `rent_auto` (
   KEY `FK_rent_auto_salon` (`id_salon_start`),
   CONSTRAINT `FK_rent_auto_auto` FOREIGN KEY (`id_auto`) REFERENCES `auto` (`id_auto`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_rent_auto_salon` FOREIGN KEY (`id_salon_start`) REFERENCES `salon` (`id_salon`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,7 +315,7 @@ CREATE TABLE `rent_auto` (
 
 LOCK TABLES `rent_auto` WRITE;
 /*!40000 ALTER TABLE `rent_auto` DISABLE KEYS */;
-INSERT INTO `rent_auto` VALUES (1,1,1,'FREE',30.00),(2,2,1,'FREE',25.00),(3,3,2,'FREE',35.00),(4,4,1,'FREE',30.00),(5,6,3,'FREE',25.00),(6,5,1,'FREE',35.00);
+INSERT INTO `rent_auto` VALUES (1,1,3,'FREE',30.00),(2,2,4,'FREE',25.00),(3,3,2,'FREE',35.00),(4,4,1,'FREE',30.00),(5,6,3,'FREE',25.00),(6,5,1,'FREE',35.00),(7,7,3,'FREE',46.00);
 /*!40000 ALTER TABLE `rent_auto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -607,4 +529,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-14 14:47:05
+-- Dump completed on 2017-08-16 22:53:30

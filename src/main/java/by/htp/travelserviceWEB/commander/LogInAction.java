@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 
 import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.User;
-import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.service.CustomerService;
 import by.htp.travelserviceWEB.service.impl.CustomerServiceImpl;
@@ -18,6 +17,7 @@ import by.htp.travelserviceWEB.util.ReturnToTheOriginalPage;
 import by.htp.travelserviceWEB.util.Validator;
 
 import static by.htp.travelserviceWEB.util.Formatter.*;
+import static by.htp.travelserviceWEB.util.ConstantValue.*;
 
 public final class LogInAction implements CommandAction {
 	
@@ -58,7 +58,7 @@ public final class LogInAction implements CommandAction {
 		if (user == null) {
 			user = customerService.authoriseAdmin(customerTOLP);
 			if (user == null) {
-				request.setAttribute("msg", "There is no user with such login.");
+				request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
 				page = "jsp/log_in_page.jsp";
 				return page;
 			}

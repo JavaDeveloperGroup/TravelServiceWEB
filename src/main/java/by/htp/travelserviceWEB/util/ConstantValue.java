@@ -9,11 +9,15 @@ public final class ConstantValue {
 	
 	private ConstantValue(){}
 	
-	public static final String REQUEST_PARAM_ACTION = "action";
+	public static final String REQUEST_PARAM_ACTION = "command";
 	
 	public static final String PAGE_CATALOG_HOTEL = "/catalog_hotel.jsp";
 	public static final String PAGE_CATALOG_AUTO = "/catalog_auto.jsp";
 	public static final String PAGE_CATALOG_TOUR = "/catalog_tour.jsp";
+	public static final String PAGE_HOME = "jsp/home_page.jsp";
+	public static final String SESSION_ATTRIBUTE_USER = "user";
+	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
+
 	public static final Map<String, List<String>> allListsParameters = new ConcurrentHashMap<String, List<String>>();
 	//private static final List<String> listOfParametersForSignUp = new LinkedList<>();
 	static {

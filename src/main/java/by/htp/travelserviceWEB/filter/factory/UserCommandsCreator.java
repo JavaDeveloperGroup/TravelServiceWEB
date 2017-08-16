@@ -2,8 +2,8 @@ package by.htp.travelserviceWEB.filter.factory;
 
 import by.htp.travelserviceWEB.entity.User;
 
-interface UserCommandListCreator {
+interface UserCommandsCreator {
 
-	boolean isUserCommand(User user, String command);
+	SetOfCommands fetchUserCommands(User user);
 
 }

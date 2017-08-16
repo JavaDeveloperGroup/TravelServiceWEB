@@ -2,7 +2,7 @@ package by.htp.travelserviceWEB.filter.factory;
 
 import by.htp.travelserviceWEB.entity.User;
 
-public class CheckCommandList implements UserCommandListCreator{
+public class CheckCommandList implements UserCommandsCreator{
 	
 	private CheckCommandList() {}
 	
@@ -15,20 +15,22 @@ public class CheckCommandList implements UserCommandListCreator{
 	}
 
 	@Override
-	public boolean isUserCommand(User user, String command) {
+	public SetOfCommands fetchUserCommands(User user) {
 		if (user == null)
-			return new GuestCommands().getSetCommands().contains(command);
+			return new GuestCommand();
+		else
+		{
 		switch (user.getRoleId()) {
 		case 1:
-			return new CustomerCommands().getSetCommands().contains(command);
+			return new CustomerCommand();
 		case 2:
-			return new AdminTourCommands().getSetCommands().contains(command);
+			return new AdminTourCommand();
 		case 3:
-			return new AdminHotelCommands().getSetCommands().contains(command);
+			return new AdminHotelCommand();
 		case 4:
-			return new AdminAutoCommands().getSetCommands().contains(command);
+			return new AdminAutoCommand();
 		default:
-			return new GuestCommands().getSetCommands().contains(command);
-		}	
-	}
+			return new GuestCommand();
+		}
+	}}
 }
