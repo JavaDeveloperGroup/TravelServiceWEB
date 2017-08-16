@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-public class EncodingFilter extends AbstractFilter{
+public class EncodingFilter extends AbstractFilter {
 	
 	private static final long serialVersionUID = 7740625431531226243L;
 	

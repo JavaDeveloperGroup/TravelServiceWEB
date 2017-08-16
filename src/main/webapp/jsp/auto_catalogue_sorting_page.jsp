@@ -131,17 +131,17 @@
 										<td><img src="${auto_map.get(i.getAutoId()).getImage()}"></td>
 										
 										<td> 
-										      ${brand_map.get(auto_map.get(i.getAutoId()).getBrandId()).getName()} <br>
+										      ${auto_map.get(i.getAutoId()).getBrand()} <br>
 										      ${auto_map.get(i.getAutoId()).getModel()} <br>
 										      ${auto_map.get(i.getAutoId()).getYear()} <br>
-										      ${bodyType_map.get(auto_map.get(i.getAutoId()).getBodyTypeId()).getName()}
+										      ${auto_map.get(i.getAutoId()).getBodyType()}
 										</td>
 										
 										<td>
 										      ${auto_map.get(i.getAutoId()).getTransmition()} <br>
 										      ${auto_map.get(i.getAutoId()).getWheelDrive()} <br>
 										      ${auto_map.get(i.getAutoId()).getFuilType()} <br>
-										      ${color_map.get(auto_map.get(i.getAutoId()).getColorId()).getName()}
+										      ${auto_map.get(i.getAutoId()).getColor()}
 										</td>
 										<td>  
 											  ${city_map.get(salon_map.get(i.getSalonStartId()).getCityId()).getName()} <br>

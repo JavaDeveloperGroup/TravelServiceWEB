@@ -54,7 +54,7 @@ public enum EnumCommandAction {
 	AUTO_CATALOGUE_SORTING_PAGE {
 		@Override
 		public CommandAction getCommantAction() {
-			return new AutoCatalogSortingPageAction();
+			return new AutoCatalogueSortingPageAction();
 		}
 	},
 	TOUR_CATALOGUE_PAGE {
