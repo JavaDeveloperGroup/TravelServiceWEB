@@ -197,6 +197,3 @@ input:not([type="submit"]):active + .input-requirements {
   max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
   transition: max-height 1s ease-in;
 }
-li {
-	height: 24px;
-}

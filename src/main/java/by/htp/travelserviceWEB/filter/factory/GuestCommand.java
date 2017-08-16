@@ -17,7 +17,6 @@ public class GuestCommand implements SetOfCommands {
 		set.add(AUTO_CATALOGUE_SORTING_PAGE);
 		set.add(AUTO_SORT_SALON_PAGE);
 		set.add(TOUR_CATALOGUE_PAGE);
-		set.add(LOG_OUT);
 		set.add(LOG_IN);
 		set.add(SIGN_UP);
 		set.add(LOG_IN_PAGE);
