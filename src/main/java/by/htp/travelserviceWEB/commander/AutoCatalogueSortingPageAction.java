@@ -8,21 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.htp.travelserviceWEB.commander.fetchentity.FetchAutoAction;
-import by.htp.travelserviceWEB.commander.fetchentity.FetchBodyTypeAction;
-import by.htp.travelserviceWEB.commander.fetchentity.FetchBrandAction;
 import by.htp.travelserviceWEB.commander.fetchentity.FetchCityAction;
-import by.htp.travelserviceWEB.commander.fetchentity.FetchColorAction;
 import by.htp.travelserviceWEB.commander.fetchentity.FetchSalonAction;
 import by.htp.travelserviceWEB.entity.Entity;
 import by.htp.travelserviceWEB.entity.auto.RentAuto;
 import by.htp.travelserviceWEB.service.auto.RentAutoService;
 import by.htp.travelserviceWEB.service.auto.impl.RentAutoServiceImpl;
 
-public class AutoCatalogSortingPageAction implements CommandAction{
+public class AutoCatalogueSortingPageAction implements CommandAction{
 
 	private RentAutoService rentAutoServiceImpl;
 	
-	public AutoCatalogSortingPageAction() {
+	public AutoCatalogueSortingPageAction() {
 		rentAutoServiceImpl = RentAutoServiceImpl.getInstance();
 	}
 	
@@ -33,10 +30,7 @@ public class AutoCatalogSortingPageAction implements CommandAction{
 		String page = "jsp/auto_catalogue_sorting_page.jsp";
 
 		new FetchAutoAction().execute(request, response);
-		new FetchBodyTypeAction().execute(request, response);
-		new FetchBrandAction().execute(request, response);
 		new FetchCityAction().execute(request, response);
-		new FetchColorAction().execute(request, response);
 		new FetchSalonAction().execute(request, response);
 		
 		List<Entity> list = rentAutoServiceImpl.fillingListByTheRentAutoes(new RentAuto());
