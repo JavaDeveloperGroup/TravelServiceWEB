@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import by.htp.travelserviceWEB.entity.User;
 import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
+import by.htp.travelserviceWEB.filter.factory.CheckCommandList;
+
+import static by.htp.travelserviceWEB.util.Formatter.*;
 
 public class CommandFilter extends AbstractFilter {
 
@@ -26,25 +30,29 @@ public class CommandFilter extends AbstractFilter {
 		FilterChain filterChain = chain;
 		String command = ((HttpServletRequest) servletRequest).getParameter("command");
 		HttpSession httpSession = ((HttpServletRequest) servletRequest).getSession();
-		Object user = httpSession.getAttribute("user");
-		checkUserAccess(user, servletResponse, command);
-		filterChain.doFilter(servletRequest, servletResponse);
+		User user = (User) httpSession.getAttribute("user");
+		if (checkUserAccess(user, servletResponse, command))
+			filterChain.doFilter(servletRequest, servletResponse);
+		else 
+			((HttpServletResponse) servletResponse).sendRedirect("jsp/home_page.jsp");
+		
 	}
 
-	private void checkUserAccess(Object user, ServletResponse servletResponse, String command)
+	private boolean checkUserAccess(User user, ServletResponse servletResponse, String command)
 			throws IOException, ServletException {
-		String userTypeString;
-		if (user == null)
-			userTypeString = "GUEST";
-		else
-			userTypeString = user.getClass().getSimpleName().toUpperCase();
+		
+		if (CheckCommandList.getInstance().isUserCommand(user, command)) {
+			return true;
+		} else 
+			return false;
+		/*String userTypeString = getRoleName(user).toUpperCase();
 		if (UserHasCommands.valueOf(userTypeString).getSetUserCommands(user).contains(command)) {
 		} else
-			((HttpServletResponse) servletResponse).sendRedirect("jsp/home_page.jsp");
+			((HttpServletResponse) servletResponse).sendRedirect("jsp/home_page.jsp");*/
 	}
 }
 
-enum UserHasCommands {
+/*enum UserHasCommands {
 
 	GUEST {
 
@@ -64,30 +72,46 @@ enum UserHasCommands {
 
 	},
 
-	ADMINTOWP {
+	ADMIN_TOUR {
 
 		@Override
 		Set<String> getSetUserCommands(Object user) {
 			Set<String> adminListCommand = new HashSet<>();
-			AdminTOWP admin = (AdminTOWP) user;
-			if (2 == admin.getRoleId()) {
-				adminListCommand.add("tour_catalogue_page");
-				adminListCommand.add("admin_page");
-				adminListCommand.add("log_out");
-			} else if (3 == admin.getRoleId()) {
-				adminListCommand.add("hotel_catalogue_page");
-				adminListCommand.add("admin_page");
-				adminListCommand.add("log_out");
-			} else if (4 == admin.getRoleId()) {
-				adminListCommand.add("auto_catalogue_sorting_page");
-				adminListCommand.add("auto_sort_salon_page");
-				adminListCommand.add("admin_page");
-				adminListCommand.add("log_out");
-			} 
+			adminListCommand.add("admin_page");
+			adminListCommand.add("log_out");
+			adminListCommand.add("tour_catalogue_page");
 			return adminListCommand;
 		}
 
 	},
+
+	ADMIN_AUTO {
+
+		@Override
+		Set<String> getSetUserCommands(Object user) {
+			Set<String> adminListCommand = new HashSet<>();
+			adminListCommand.add("admin_page");
+			adminListCommand.add("log_out");
+			adminListCommand.add("auto_catalogue_sorting_page");
+			adminListCommand.add("auto_sort_salon_page");
+			return adminListCommand;
+		}
+
+	},
+
+	ADMIN_HOTEL {
+
+		@Override
+		Set<String> getSetUserCommands(Object user) {
+			Set<String> adminListCommand = new HashSet<>();
+			adminListCommand.add("admin_page");
+			adminListCommand.add("log_out");
+			adminListCommand.add("hotel_catalogue_page");
+			return adminListCommand;
+		}
+
+	},
+
 	CUSTOMER {
 
 		@Override
@@ -106,10 +130,20 @@ enum UserHasCommands {
 			return customerListCommand;
 		}
 
+	},
+	
+	USER {
+
+		@Override
+		Set<String> getSetUserCommands(Object user) {
+			Set<String> userListCommand = new HashSet<>();
+			return userListCommand;
+		}
+		
 	};
 
 	abstract Set<String> getSetUserCommands(Object user);
-}
+}*/
 
 /*
  * final class InitSecurityCommand {

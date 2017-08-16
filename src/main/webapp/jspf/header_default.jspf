@@ -21,8 +21,7 @@
 		</c:if>
 
 		<c:if test="${user != null}">
-			<c:if
-				test="${user.getClass().getSimpleName().subSequence(0, 5) == 'Admin'}">
+			<c:if test="${user.getRoleId() != '1'}">
 				<form name="sign_up"
 					action="${pageContext.request.contextPath}/Controller"
 					method="GET">
@@ -33,9 +32,8 @@
 					<button name="log_out" type="submit">LOG OUT</button>
 				</form>
 			</c:if>
-
-			<c:if
-				test="${user.getClass().getSimpleName().subSequence(0, 8) == 'Customer'}">
+			
+			 <c:if test="${user.getRoleId() == '1'}">
 				<form name="sign_up"
 					action="${pageContext.request.contextPath}/Controller"
 					method="GET">
