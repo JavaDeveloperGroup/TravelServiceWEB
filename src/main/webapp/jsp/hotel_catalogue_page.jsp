@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="http://res.cloudinary.com/javadevgroup/image/upload/v1499189950/fidelio_icon_fynnxg.png" rel="shortcut icon" type="image/png">
-<title>Hotel page</title>
+<title>Hotel catalogue</title>
 </head>
 <body>
 	<div>
@@ -33,33 +33,31 @@
 							<div class="head-cont">Star rate:</div>
 							<input type="checkbox" name="id_stars" value="3" />3 &#9733;
 							(Cat. B)
-							</td> <br /> <input type="checkbox" name="id_stars" value="4" />4
+							<br /> <input type="checkbox" name="id_stars" value="4" />4
 							&#9733; (Cat. A)
-							</td> <br /> <input type="checkbox" name="id_stars" value="5" />5
+							 <br /> <input type="checkbox" name="id_stars" value="5" />5
 							&#9733; (Cat. De Luxe)
-							</td>
 							<hr>
 							<div class="head-cont">Number of persons:</div>
 							<input type="radio" name="id_num_persons" value="1" />1 (single)
-							</td> <br /> <input type="radio" name="id_num_persons" value="2" />2
+							 <br /> <input type="radio" name="id_num_persons" value="2" />2
 							(double)
-							</td> <br /> <input type="radio" name="id_num_persons" value="3" />2
+							 <br /> <input type="radio" name="id_num_persons" value="3" />2
 							+ 1 additional bed
-							</td> <br /> <input type="radio" name="id_num_persons" value="4" />2
+							 <br /> <input type="radio" name="id_num_persons" value="4" />2
 							+ 2 additional beds
-							</td>
+							
 							<hr>
 							<div class="head-cont">Price:</div>
-							<label for="minCost">From:</label> <input class="inp_price"
-								type="text" id="minCost" name="price_min" value="0" /> <label
-								for="maxCost">Till: </label> <input class="inp_price"
+							From:<input class="inp_price"
+								type="text" id="minCost" name="price_min" value="0" />Till:<input class="inp_price"
 								type="text" id="maxCost" name="price_max" value="500" />
 							<hr class="div_tr">
 							<div id="slider" style=""></div>
 						</div>
 					</nav>
 				</aside>
-				<div>
+				<div class="table">
 					<form action="${pageContext.request.contextPath}/Controller"
 						method="GET">
 						<input type="hidden" name="command" value="hotel_make_order">
@@ -69,21 +67,26 @@
 									<th id="ckeck">
 									<th id="photo">PHOTO</th>
 									<th class="col1">HOTEL</th>
-									<th class="col2">ADDRESS</th>
-									<th class="col3">STAR RATE</th>
+									<th class="col2">APARTMENT</th>
+									<th class="col3">&#9733</th>
 									<th class="col4">NUMBER OF PERSONS</th>
-									<th class="col5">PRICE</th>
+									<th class="col5">PRICE, $</th>
 								</tr>
-								<c:forEach items="${list_apartment}" var="i">
+							
+								<c:forEach items="${APARTMENT_LIST}" var="a">
+								
 									<tr>
-										<td><input type="radio" name="id"
-											value="${i.getApartmentId()}" /></td>
-										<td><img src="${i.getImage()}"></td>
-										<td>${i.getHotel().getTitle()}</td>
-										<td>${i.getHotel().toStringAddress()}</td>
-										<td>${i.getHotel().getStars()}</td>
-										<td>${i.getRoom().getCapacity()}</td>
-										<td>${i.getPrice()}</td>
+										<td><input type="radio" name="id" value="${a.getApartmentId()}" /></td>
+										<td><img src="${a.getImage()}"></td>
+										<td>${hotel_map.get(a.getHotelId()).getTitle()} <br> 
+											${city_map.get(hotel_map.get(a.getHotelId()).getCityId()).getName()} <br> 
+											${hotel_map.get(a.getHotelId()).getAddress()}</td>
+										<td>${room_map.get(a.getRoomId()).toStringTV()} <br> 
+											${room_map.get(a.getRoomId()).toStringBalcony()} <br> 
+											${room_map.get(a.getRoomId()).toStringConditioner()}</td>
+										<td>${hotel_map.get(a.getHotelId()).getStars()}</td>
+										<td>${a.getRoomCapacity()}</td>
+										<td>${a.getPrice()}</td>
 									</tr>
 								</c:forEach>
 							</table>

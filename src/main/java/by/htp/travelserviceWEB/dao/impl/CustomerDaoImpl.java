@@ -15,7 +15,6 @@ import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
 import by.htp.travelserviceWEB.sqlbuilder.insert.Insert;
 import by.htp.travelserviceWEB.sqlbuilder.select.Select;
 import by.htp.travelserviceWEB.sqlbuilder.update.Update;
-import by.htp.travelserviceWEB.util.TestClass;
 
 public class CustomerDaoImpl implements CustomerDao {
 
@@ -96,7 +95,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		//"UPDATE `travelservice`.`customer` SET `password`=?, `name`=?, `surname`=?, `gender`=?, `birthday`=?, `passport`=?, `email`=?, `phone_driver`=?, `driver_licence`=? WHERE `id_customer`=?;");
 		try {
 			Update update = new QueryBuilder().update(customer).getQuery();
-			System.out.println(update.toString());
+			
 			try (PreparedStatement preparedStatement = update.prepareStatement(update.toString())) {
 				preparedStatement.executeUpdate();
 			} catch (SQLException e) {

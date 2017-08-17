@@ -8,10 +8,9 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.apache.taglibs.standard.tag.common.core.OutSupport;
-
 import by.htp.travelserviceWEB.util.EncryptionFdl;
 
+@SuppressWarnings("serial")
 public final class OutputCookieDataTag extends  TagSupport implements DynamicAttributes{
 	
 	private String login;

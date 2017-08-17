@@ -1,7 +1,5 @@
 package by.htp.travelserviceWEB.service.impl;
 
-import java.sql.SQLException;
-
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import by.htp.travelserviceWEB.dao.CustomerDao;
@@ -40,23 +38,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer registrationCustomer(CustomerTO customerTO) throws MySQLIntegrityConstraintViolationException {
-		Customer customer = customerDao.makeCustomer(customerTO);
-		customer.setLogin(customerTO.getLogin());
-		customer.setPassword(customerTO.getPassword());
-		customer.setName(customerTO.getName());
-		customer.setSurname(customerTO.getSurname());
-		customer.setBirthday(customerTO.getBirthday());
-		customer.setGender(customerTO.getGender());
-		customer.setPassport(customerTO.getPassport());
-		customer.setEmail(customerTO.getEmail());
-		customer.setPhoneNumber(customerTO.getPhoneNumber());
-		customer.setDriverLicence(customerTO.getDriverLicence());
-		customer.setRoleId(customerTO.getRoleId());
-		return customer;
+		return customerDao.makeCustomer(customerTO);
 	}
 
 	@Override
-	public Customer updateAccountCustomer(Customer customer) throws MySQLIntegrityConstraintViolationException {
-		return customerDao.updateAccountCustomer(customer);
+	public Customer updateAccountCustomer(Customer customerUpdate) throws MySQLIntegrityConstraintViolationException {
+		return customerDao.updateAccountCustomer(customerUpdate);
 	}
 }

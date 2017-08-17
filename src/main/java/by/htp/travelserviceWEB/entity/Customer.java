@@ -2,7 +2,7 @@ package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
 
-public class Customer implements Entity, Serializable {
+public class Customer implements Entity, Serializable, User {
 
 	private static final long serialVersionUID = 1114361367677869178L;
 	

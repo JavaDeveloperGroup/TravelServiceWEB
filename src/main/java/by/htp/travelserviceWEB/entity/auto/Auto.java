@@ -1,9 +1,6 @@
 package by.htp.travelserviceWEB.entity.auto;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.sql.Date;
-import java.util.List;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
@@ -12,30 +9,30 @@ public class Auto implements Entity, Serializable {
 	private static final long serialVersionUID = -4441682023481983611L;
 	
 	private Integer autoId;
-	private Integer brandId;
+	private String brand;
 	private String model;
 	private String year;
 	private String transmition;
 	private String wheelDrive;
 	private String fuilType;
-	private Integer colorId;
-	private Integer bodyTypeId;
+	private String color;
+	private String bodyType;
 	private String image;
 	
 	public Auto() {}
-	
-	public Auto(Integer autoId, Integer brandId, String model, String year, String transmition, String wheelDrive,
-			String fuilType, Integer colorId, Integer bodyTypeId, String image) {
+
+	public Auto(Integer autoId, String brand, String model, String year, String transmition, String wheelDrive,
+			String fuilType, String color, String bodyType, String image) {
 		super();
 		this.autoId = autoId;
-		this.brandId = brandId;
+		this.brand = brand;
 		this.model = model;
 		this.year = year;
 		this.transmition = transmition;
 		this.wheelDrive = wheelDrive;
 		this.fuilType = fuilType;
-		this.colorId = colorId;
-		this.bodyTypeId = bodyTypeId;
+		this.color = color;
+		this.bodyType = bodyType;
 		this.image = image;
 	}
 
@@ -47,12 +44,12 @@ public class Auto implements Entity, Serializable {
 		this.autoId = autoId;
 	}
 
-	public Integer getBrandId() {
-		return brandId;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setBrandId(Integer brandId) {
-		this.brandId = brandId;
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
 	public String getModel() {
@@ -95,20 +92,20 @@ public class Auto implements Entity, Serializable {
 		this.fuilType = fuilType;
 	}
 
-	public Integer getColorId() {
-		return colorId;
+	public String getColor() {
+		return color;
 	}
 
-	public void setColorId(Integer colorId) {
-		this.colorId = colorId;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
-	public Integer getBodyTypeId() {
-		return bodyTypeId;
+	public String getBodyType() {
+		return bodyType;
 	}
 
-	public void setBodyTypeId(Integer bodyTypeId) {
-		this.bodyTypeId = bodyTypeId;
+	public void setBodyType(String bodyType) {
+		this.bodyType = bodyType;
 	}
 
 	public String getImage() {
@@ -118,8 +115,5 @@ public class Auto implements Entity, Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 }

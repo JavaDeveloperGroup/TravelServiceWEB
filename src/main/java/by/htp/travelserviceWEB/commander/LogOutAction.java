@@ -8,7 +8,9 @@ import org.apache.log4j.Logger;
 
 import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.Entity;
+import by.htp.travelserviceWEB.entity.User;
 import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
+
 import static by.htp.travelserviceWEB.util.Formatter.*;
 
 public class LogOutAction implements CommandAction {
@@ -24,9 +26,8 @@ public class LogOutAction implements CommandAction {
 		String page = "jsp/home_page.jsp";
 
 		HttpSession httpSession = request.getSession();
-		Object user = httpSession.getAttribute("user");
-		
-		log.info("Log out " + ("admin".equals(getClassName((Entity)user)) ? "admin " + ((AdminTOWP)user).getLogin() : "customer " + ((Customer)user).getLogin()));
+		User user = (User)httpSession.getAttribute("user");
+		log.info("Log out " + getRoleName(user) + user.getLogin());
 
 		request.getSession(false);
 		if (request.getSession() != null) {

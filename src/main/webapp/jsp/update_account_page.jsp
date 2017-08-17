@@ -15,11 +15,11 @@
 </head>
 <body>
 	<div id="wrapper">
-		<%@include file="../jspf/header_update_account.jspf" %>>
+		<%@include file="../jspf/header_update_account.jspf" %>
 		<hr>
 		
 		<div class="menu_center">
-			<%@include file="../jspf/menu.jspf" %> />
+			<%@include file="../jspf/menu.jspf" %> 
 		</div>
 		
 		<hr>

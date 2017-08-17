@@ -1,13 +1,11 @@
 package by.htp.travelserviceWEB.dao.auto.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
+import static by.htp.travelserviceWEB.util.Formatter.*;
+
+import java.util.Map;
 
 import by.htp.travelserviceWEB.dao.auto.SalonDao;
 import by.htp.travelserviceWEB.entity.Entity;
-import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
-import by.htp.travelserviceWEB.sqlbuilder.select.Select;
 
 public class SalonDaoImpl implements SalonDao {
 
@@ -23,19 +21,7 @@ public class SalonDaoImpl implements SalonDao {
 	}
 
 	@Override
-	public List<Entity> fetchSalonName(Entity entity) {
-		Select select = new QueryBuilder().select(entity).all();
-		System.out.println(select.toString());
-		ResultSet rs = null;
-		List<Entity> list = null;
-		
-		try {
-			rs = select.resultSet(select.toString());
-			list = select.getListOfInstanceWithDataFromSQL(rs, entity);
-		} catch (SecurityException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return list;
+	public Map<Integer, Entity> fetchListOfTheSalons(Entity entity) {
+		return extractionEntitiesInMap(entity);
 	}
 }

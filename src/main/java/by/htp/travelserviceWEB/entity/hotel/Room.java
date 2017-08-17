@@ -2,21 +2,21 @@ package by.htp.travelserviceWEB.entity.hotel;
 
 import java.io.Serializable;
 
-public class Room implements Serializable {
+import by.htp.travelserviceWEB.entity.Entity;
+
+public class Room implements Entity, Serializable {
 	
 	private static final long serialVersionUID = -1767898336508143177L;
 	
 	private Integer roomId;
-	private Integer capacity;
 	private String tv;
 	private String balcony;
 	private String conditioner;
 	
 	public Room() {}
 
-	public Room(Integer roomId, Integer capacity, String tv, String balcony, String conditioner) {
+	public Room(Integer roomId, String tv, String balcony, String conditioner) {
 		this.roomId = roomId;
-		this.capacity = capacity;
 		this.tv = tv;
 		this.balcony = balcony;
 		this.conditioner = conditioner;
@@ -28,14 +28,6 @@ public class Room implements Serializable {
 
 	public void setRoomId(Integer roomId) {
 		this.roomId = roomId;
-	}
-
-	public Integer getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(Integer capacity) {
-		this.capacity = capacity;
 	}
 
 	public String getTv() {
@@ -61,5 +53,21 @@ public class Room implements Serializable {
 	public void setConditioner(String conditioner) {
 		this.conditioner = conditioner;
 	}
+
+	@Override
+	public String toString() {
+		return "TV - " + tv + ", balcony - " + balcony + ", conditioner - " + conditioner;
+	}
 	
+	public String toStringTV() {
+		return "TV - " + tv;
+	}
+	
+	public String toStringBalcony() {
+		return "balcony - " + balcony;
+	}
+	
+	public String toStringConditioner() {
+		return "conditioner - " + conditioner;
+	}
 }

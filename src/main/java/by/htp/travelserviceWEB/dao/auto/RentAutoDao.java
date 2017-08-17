@@ -1,5 +1,11 @@
 package by.htp.travelserviceWEB.dao.auto;
 
-public interface RentAutoDao {
+import java.util.List;
 
+import by.htp.travelserviceWEB.entity.Entity;
+
+public interface RentAutoDao {
+	
+	List<Entity> fetchListOfTheRentAutoes(Entity entity);
+	
 }

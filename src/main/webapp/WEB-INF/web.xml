@@ -21,7 +21,7 @@
 	
 	<filter>
 		<filter-name>SecurityCommandFilter</filter-name>
-		<filter-class>by.htp.travelserviceWEB.filter.SecurityCommandFilter</filter-class>
+		<filter-class>by.htp.travelserviceWEB.filter.CommandFilter</filter-class>
 	</filter>
 	
 	<filter-mapping>

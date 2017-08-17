@@ -1,19 +1,27 @@
 package by.htp.travelserviceWEB.util;
 
 import by.htp.travelserviceWEB.entity.Entity;
+import by.htp.travelserviceWEB.entity.User;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.sqlbuilder.Query;
+import by.htp.travelserviceWEB.sqlbuilder.builder.QueryBuilder;
+import by.htp.travelserviceWEB.sqlbuilder.select.Select;
 
 import static by.htp.travelserviceWEB.util.ConstantValue.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-public abstract class Formatter {
+public final class Formatter {
+	
+	private Formatter() {}
 
 	public static Map<String, Object> listOfEntityFieldsAndValues(Entity entity, Map<String, Object> columnsAndValues)
 			throws SecurityException, ClassNotFoundException, IllegalArgumentException, IllegalAccessException {
@@ -172,6 +180,25 @@ public abstract class Formatter {
 		return className;
 	}
 	
+	public static String getRoleName(User user) {
+		if (user == null) {
+			return "Guest";
+		}
+		Integer roleId = user.getRoleId();
+		switch (roleId) {
+		case 1:
+			return "Customer";
+		case 2:
+			return "Admin_Tour";
+		case 3:
+			return "Admin_Hotel";
+		case 4:
+			return "Admin_Auto";
+		default:
+			return "User";	
+		}
+	}
+	
 	public static void fieldsAndValuesListFormation(Entity entity, CustomerTOLP customerTOLP,
 																	Map<String, Object> entityMap, 
 																	Map<String, Object> conditionsMap)
@@ -243,6 +270,8 @@ public abstract class Formatter {
 		for (int i = 0; i < object.length; i++) {
 			if ("java.lang.Integer".equals(types[i].getName())) {
 				object[i] = (Integer) object[i];
+			} else if ("java.lang.Double".equals(types[i].getName())) {
+				object[i] = (Double) object[i];
 			} else {
 				object[i] = object[i].toString();
 			}
@@ -254,7 +283,7 @@ public abstract class Formatter {
 			throws SecurityException, ClassNotFoundException {
 		
 		Object[] obj = new Object[getParameterTypes(entity).length];
-		System.out.println(entity.getClass().getSimpleName().toLowerCase());
+		
 		int i = 0;
 		for (Object value : allListsParameters.get(entity.getClass().getSimpleName().toLowerCase())) {
 			obj[i] = castValueFromRequest(request, value);
@@ -272,5 +301,37 @@ public abstract class Formatter {
 			obj = request.getParameter(value.toString());
 		}
 		return obj;
+	}
+	
+	public static List<Entity> extractionEntities(Entity entity) {
+		Select select = new QueryBuilder().select(entity).all();
+		//System.out.println(entity.getClass().getSimpleName() + " : " + select.toString());
+		ResultSet rs = null;
+		List<Entity> list = null;
+
+		try {
+			rs = select.resultSet(select.toString());
+			list = select.getListOfInstanceWithDataFromSQL(rs, entity);
+		} catch (SecurityException | ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	public static Map<Integer, Entity> extractionEntitiesInMap(Entity entity) {
+		Select select = new QueryBuilder().select(entity).all();
+		//System.out.println(entity.getClass().getSimpleName() + " : " + select.toString());
+		ResultSet rs = null;
+		Map<Integer, Entity> map = null;
+
+		try {
+			rs = select.resultSet(select.toString());
+			map = select.getMapOfInstanceWithDataFromSQL(rs, entity);
+		} catch (SecurityException | ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
+		return map;
 	}
 }

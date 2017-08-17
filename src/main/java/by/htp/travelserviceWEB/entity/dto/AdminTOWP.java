@@ -3,9 +3,10 @@ package by.htp.travelserviceWEB.entity.dto;
 import java.io.Serializable;
 
 import by.htp.travelserviceWEB.entity.Entity;
+import by.htp.travelserviceWEB.entity.User;
 
 
-public class AdminTOWP implements Entity, Serializable {
+public class AdminTOWP implements Entity, Serializable, User {
 	
 	private static final long serialVersionUID = -6191394259691941922L;
 	

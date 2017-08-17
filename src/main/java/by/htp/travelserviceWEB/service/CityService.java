@@ -1,11 +1,11 @@
 package by.htp.travelserviceWEB.service;
 
-import java.util.List;
+import java.util.Map;
 
 import by.htp.travelserviceWEB.entity.Entity;
 
 public interface CityService {
 	
-	List<Entity> fillingSelectPickUpCity(Entity entity);
+	Map<Integer, Entity> fillingListByTheCities(Entity entity);
 	
 }

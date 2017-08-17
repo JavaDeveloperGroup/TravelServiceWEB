@@ -15,7 +15,7 @@ body {
 	color: #8f8f8f;
 	font-family: 'Oswald', sans-serif;
 	background-color: #f8f8f8;
-	border-top: 5px solid #7e7e7e;
+	border-top: 0px solid #7e7e7e;
 	margin: 0;
 }
 
@@ -196,7 +196,4 @@ input:not([type="submit"]):focus + .input-requirements,
 input:not([type="submit"]):active + .input-requirements {
   max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
   transition: max-height 1s ease-in;
-}
-li {
-	height: 24px;
 }

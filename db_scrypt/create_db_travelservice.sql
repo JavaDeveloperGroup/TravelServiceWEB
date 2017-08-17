@@ -56,24 +56,6 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 DELETE FROM `admin`;
 
-DROP TABLE IF EXISTS `body_type`;
-CREATE TABLE IF NOT EXISTS `body_type` (
-  `id_body_type` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_body_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
-DELETE FROM `body_type`;
-
-DROP TABLE IF EXISTS `brand`;
-CREATE TABLE IF NOT EXISTS `brand` (
-  `id_brand` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_brand`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
-DELETE FROM `brand`;
-
 DROP TABLE IF EXISTS `bus`;
 CREATE TABLE IF NOT EXISTS `bus` (
   `id_bus` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -84,15 +66,6 @@ CREATE TABLE IF NOT EXISTS `bus` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 DELETE FROM `bus`;
-
-DROP TABLE IF EXISTS `color`;
-CREATE TABLE IF NOT EXISTS `color` (
-  `id_color` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_color`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
-DELETE FROM `color`;
 
 DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE IF NOT EXISTS `hotel` (

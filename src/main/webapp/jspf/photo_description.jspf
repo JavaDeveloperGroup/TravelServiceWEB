@@ -1,0 +1,26 @@
+<div id="fadein">
+	<div>
+		<img
+			src="http://res.cloudinary.com/javadevgroup/image/upload/v1497805539/hotel/tv4_vkohcp.jpg">
+		<p>
+			Perfect vacations in luxurious hotel apartments! <br> To
+			explore all options available, please, check our hotel catalogue.
+		</p>
+	</div>
+	<div>
+		<img
+			src="http://res.cloudinary.com/javadevgroup/image/upload/v1497429719/tourpics/krasnybor_ywoeag.jpg">
+		<p>
+			Magnificent views and perfect holidays! <br> To explore all
+			options available, please, check our tour catalogue.
+		</p>
+	</div>
+	<div>
+		<img
+			src="http://res.cloudinary.com/javadevgroup/image/upload/v1497805529/auto/2015_mercedes-benz_c-class_sedan_c300_xbc5ol.jpg">
+		<p>
+			Fantastically powerful and stylish cars! <br> To explore all
+			options available, please, check our car catalogue.
+		</p>
+	</div>
+</div>

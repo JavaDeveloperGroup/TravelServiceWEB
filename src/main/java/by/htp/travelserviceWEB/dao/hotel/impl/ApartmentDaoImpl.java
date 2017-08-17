@@ -1,6 +1,11 @@
 package by.htp.travelserviceWEB.dao.hotel.impl;
 
+import static by.htp.travelserviceWEB.util.Formatter.*;
+
+import java.util.List;
+
 import by.htp.travelserviceWEB.dao.hotel.ApartmentDao;
+import by.htp.travelserviceWEB.entity.Entity;
 
 public class ApartmentDaoImpl implements ApartmentDao {
 
@@ -13,4 +18,11 @@ public class ApartmentDaoImpl implements ApartmentDao {
 	public static ApartmentDaoImpl getInstance() {
 		return Singletone.INSTANCE;
 	}
+
+	@Override
+	public List<Entity> fetchListOfTheApartments(Entity entity) {
+		return extractionEntities(entity);
+	}
+	
+	
 }

@@ -15,6 +15,15 @@ public class RentAuto implements Entity, Serializable {
 	private Double price;
 	
 	public RentAuto() {}
+	
+	public RentAuto(Integer rentAutoId, Integer autoId, Integer salonStartId, String status, Double price) {
+		super();
+		this.rentAutoId = rentAutoId;
+		this.autoId = autoId;
+		this.salonStartId = salonStartId;
+		this.status = status;
+		this.price = price;
+	}
 
 	public Integer getRentAutoId() {
 		return rentAutoId;
@@ -54,5 +63,6 @@ public class RentAuto implements Entity, Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}	
+	}
+	
 }
