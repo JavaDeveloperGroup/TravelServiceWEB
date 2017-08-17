@@ -5,6 +5,12 @@ The project represents a website, which offers customers 3 types of services rel
 - Hotel room rental
 - Car rental
 
+<img height=600 src="https://github.com/JavaDeveloperGroup/travel-service-WEB/blob/master/screenshots/home_page.PNG?raw=true" />
+<img height=600 src="https://github.com/JavaDeveloperGroup/travel-service-WEB/blob/master/screenshots/sign_up_page.png?raw=true" />
+<img height=600 src="https://github.com/JavaDeveloperGroup/travel-service-WEB/blob/master/screenshots/update_account_page.png?raw=true" />
+<img height=600 src="https://github.com/JavaDeveloperGroup/travel-service-WEB/blob/master/screenshots/hotel_catalogue_page.PNG?raw=true />
+<img height=600 src="https://github.com/JavaDeveloperGroup/travel-service-WEB/blob/master/screenshots/auto_catalogue_page.PNG?raw=true" />
+
 User performs following functions:
 - registration;
 - logging in;
@@ -18,10 +24,6 @@ Admin performs following functions:
 - adding new offers to catalogues: tour offers, apartments and cars;
 - marking damaged cars and creating a bill for the clients;
 - fetching info about orders: by service, by user, by period.
-
-Additional functions:
-- Soon expiring offers are marked as "hot";
-- Clients with more than 3 orders are marked as "vip".
 
 Project realisation details:
 - MySQL JDBC with connection pool;
