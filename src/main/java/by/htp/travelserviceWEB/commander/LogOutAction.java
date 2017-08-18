@@ -27,7 +27,7 @@ public class LogOutAction implements CommandAction {
 
 		HttpSession httpSession = request.getSession();
 		User user = (User)httpSession.getAttribute("user");
-		log.info("Log out " + getRoleName(user) + user.getLogin());
+		log.info("Log out " + getRoleName(user) + " " + user.getLogin());
 
 		request.getSession(false);
 		if (request.getSession() != null) {

@@ -19,10 +19,9 @@ import by.htp.travelserviceWEB.util.Validator;
 import static by.htp.travelserviceWEB.util.Formatter.*;
 import static by.htp.travelserviceWEB.util.ConstantValue.*;
 
-public final class LogInAction implements CommandAction {
+public final class LogInAction implements CommandAction, InputCookie {
 	
 	private static final Logger log = Logger.getLogger(LogInAction.class);
-	private User user;
 	private CustomerService customerService;
 	private String page;;
 	
@@ -30,30 +29,22 @@ public final class LogInAction implements CommandAction {
 		customerService = CustomerServiceImpl.getInstance();
 	}
 
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
-				
-		CustomerTOLP customerTOLP = new CustomerTOLP();
-		
-		//produce session
-		HttpSession httpSession = request.getSession();
-		
-		customerTOLP = (CustomerTOLP) newInstance(request, customerTOLP);	
+	public String execute(HttpServletRequest request, HttpServletResponse response) {	
+		CustomerTOLP customerTOLP = (CustomerTOLP) newInstance(request, new CustomerTOLP());	
 		
 		if(!Validator.checkForCorrentInputDataAuthoriseUser(customerTOLP)) {
 			page = "jsp/log_in_page.jsp";
 			request.setAttribute("msg", "Incorrect data entry.");
 			return page;
 		} else 
+			customerTOLP.setPassword(EncryptionFdl.encrypt(customerTOLP.getPassword()));
 			return authorisationUser(request, response, customerTOLP);
 	}
 	
 	private String authorisationUser(HttpServletRequest request, HttpServletResponse response, CustomerTOLP customerTOLP) {
-		//AdminTOWP adminTOWP = null;
-		//produce session
 		HttpSession httpSession = request.getSession();
-		customerTOLP.setPassword(EncryptionFdl.encrypt(customerTOLP.getPassword()));
 
-		user = customerService.authoriseCustomer(customerTOLP);
+		User user = customerService.authoriseCustomer(customerTOLP);
 
 		if (user == null) {
 			user = customerService.authoriseAdmin(customerTOLP);
@@ -64,18 +55,18 @@ public final class LogInAction implements CommandAction {
 			}
 		} else {
 			// input data in Cookie
-			inputCookie(request, response);
+			createCookie(request, response, user);		
 		}
 		httpSession.setAttribute("user", user);
 		page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
 		httpSession.setAttribute("originalPage", null);
-		log.info("Log in " + getRoleName(user) + customerTOLP.getLogin());
-		request.setAttribute("user", httpSession.getAttribute("user"));
+		log.info("Log in " + getRoleName(user) + " " + customerTOLP.getLogin());
+		//request.setAttribute("user", httpSession.getAttribute("user"));
 		return page;
 	}
 	
-	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
-		response.addCookie(new Cookie("log", this.user.getLogin()));
-		response.addCookie(new Cookie("passw", ((Customer)this.user).getPassword()));
-	}
+	/*private void inputCookie(HttpServletRequest request, HttpServletResponse response, User user) {
+		response.addCookie(new Cookie("log", user.getLogin()));
+		response.addCookie(new Cookie("passw", ((Customer)user).getPassword()));
+	}*/
 }

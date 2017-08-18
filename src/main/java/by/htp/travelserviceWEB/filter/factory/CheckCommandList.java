@@ -16,21 +16,21 @@ public class CheckCommandList implements UserCommandsCreator{
 
 	@Override
 	public SetOfCommands fetchUserCommands(User user) {
-		if (user == null)
+		if (user == null) {
 			return new GuestCommand();
-		else
-		{
-		switch (user.getRoleId()) {
-		case 1:
-			return new CustomerCommand();
-		case 2:
-			return new AdminTourCommand();
-		case 3:
-			return new AdminHotelCommand();
-		case 4:
-			return new AdminAutoCommand();
-		default:
-			return new GuestCommand();
+		} else {
+			switch (user.getRoleId()) {
+			case 1:
+				return new CustomerCommand();
+			case 2:
+				return new AdminTourCommand();
+			case 3:
+				return new AdminHotelCommand();
+			case 4:
+				return new AdminAutoCommand();
+			default:
+				return new GuestCommand();
+			}
 		}
-	}}
+	}
 }

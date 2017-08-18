@@ -2,6 +2,10 @@ package by.htp.travelserviceWEB.entity;
 
 import java.io.Serializable;
 
+import by.htp.travelserviceWEB.entity.dto.CustomerTO;
+import by.htp.travelserviceWEB.entity.dto.CustomerTOUpdate;
+import by.htp.travelserviceWEB.util.EncryptionFdl;
+
 public class Customer implements Entity, Serializable, User {
 
 	private static final long serialVersionUID = 1114361367677869178L;
@@ -39,6 +43,29 @@ public class Customer implements Entity, Serializable, User {
 		this.driverLicence = driverLicence;
 		this.roleId = roleId;
 		
+	}
+	
+	public Customer(CustomerTO customerTO) {
+		this.login = customerTO.getLogin();
+		this.password = customerTO.getPassword();
+		this.name = customerTO.getName();
+		this.surname = customerTO.getSurname();
+		this.gender = customerTO.getGender();
+		this.birthday = customerTO.getBirthday();
+		this.passport = customerTO.getPassword();
+		this.email = customerTO.getEmail();
+		this.phoneNumber = customerTO.getPhoneNumber();
+		this.driverLicence = customerTO.getDriverLicence();
+		this.roleId = customerTO.getRoleId();
+	}
+	
+	public void updateData(CustomerTOUpdate customerTOUpdate) {
+		this.password = EncryptionFdl.encrypt(customerTOUpdate.getPassword());
+		this.gender = customerTOUpdate.getGender();
+		this.birthday = customerTOUpdate.getBirthday();
+		this.email = customerTOUpdate.getEmail();
+		this.phoneNumber = customerTOUpdate.getPhoneNumber();
+		this.driverLicence = customerTOUpdate.getDriverLicence();
 	}
 
 	public Integer getCustomerId() {
