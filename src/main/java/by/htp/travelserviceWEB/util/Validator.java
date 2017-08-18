@@ -3,6 +3,7 @@ package by.htp.travelserviceWEB.util;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Clock;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -89,18 +90,19 @@ public class Validator {
     }
     
     private static boolean checkDate(String birthday) throws ServletException, IOException {
-		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-		long d1 = 0;
-		long d2 = 0;
+    	long birthTimeMillis = 0;
+		long todayTimeMillis = 0;
+    	
+    	SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 		
 		try {
-			d1 = formater.parse(birthday).getTime();
-			d2 = formater.parse(formater.format(new Date())).getTime();
+			birthTimeMillis = formater.parse(birthday).getTime();
+			todayTimeMillis = Clock.systemDefaultZone().millis();
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
 		
-		if (((18 * 365) + 4) > Math.abs((d2 - d1) / (1000 * 60 * 60 * 24)) && d1 < d2) {
+		if (((18 * 365) + 4) > Math.abs((todayTimeMillis - birthTimeMillis) / (1000 * 60 * 60 * 24)) && birthTimeMillis < todayTimeMillis) {
 			return false;
 		} else 
 			return true;

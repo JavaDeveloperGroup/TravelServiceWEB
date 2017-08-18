@@ -25,26 +25,19 @@ import by.htp.travelserviceWEB.util.Validator;
 
 import static by.htp.travelserviceWEB.util.Formatter.*;
 
-public class SignUpAction implements CommandAction {
+public class SignUpAction implements CommandAction, InputCookie {
 
 	private CustomerService customerService;
 	private static final Logger log = Logger.getLogger(SignUpAction.class);
-	
-	private HttpSession httpSession;
-	private CustomerTO customerTO;
-	private User customer;
-	private CustomerTOLP customerTOLP;
 	private String page;
 
 	public SignUpAction() {
 		customerService = CustomerServiceImpl.getInstance();
-		customer = new Customer();
-		customerTO = new CustomerTO();
 	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		customerTO = (CustomerTO) newInstance(request, customerTO);
+		CustomerTO customerTO = (CustomerTO) newInstance(request, new CustomerTO());
 
 		String passwordRepeat = request.getParameter("password_repeat");
 		
@@ -54,26 +47,26 @@ public class SignUpAction implements CommandAction {
 			return page;
 		}
 		else {
-			customerTO.setPassword(EncryptionFdl.encrypt(customerTO.getPassword()));
-			customerTOLP = new CustomerTOLP(customerTO.getLogin(), customerTO.getPassword());
-			return getPage(request, response);
+			customerTO.setPassword(EncryptionFdl.encrypt(passwordRepeat));
+	
+			return getPage(request, response, customerTO);
 		}
 	}
 	
-	private String getPage(HttpServletRequest request, HttpServletResponse response) {
-		httpSession = request.getSession();
-		AdminTOWP adminTOWP;
-		adminTOWP = customerService.authoriseAdmin(customerTOLP);
+	private String getPage(HttpServletRequest request, HttpServletResponse response, CustomerTO customerTO) {
+		User customer;
+		CustomerTOLP customerTOLP = new CustomerTOLP(customerTO.getLogin(), customerTO.getPassword());
+		HttpSession httpSession = request.getSession();
+		AdminTOWP adminTOWP = customerService.authoriseAdmin(customerTOLP);
 		if (adminTOWP == null) {
 			try {
-				customer = customerService.registrationCustomer(this.customerTO);
+				customer = customerService.registrationCustomer(customerTO);
 				httpSession.setAttribute("user", customer);
 				// input data in Cookie
-				inputCookie(request, response);
-				log.info("Sign up " + customer.getLogin());
+				createCookie(request, response, customer);
+				log.info("Sign up Customer " + customer.getLogin());
 				page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
 				httpSession.setAttribute("originalPage",  null);
-				request.setAttribute("user", customer);
 			} catch (MySQLIntegrityConstraintViolationException e) {
 				log.info("Sign up is fail " + e.toString());
 				page = getPageOnErrorInputData(request);
@@ -91,8 +84,8 @@ public class SignUpAction implements CommandAction {
 		return page;
 	}
 	
-	private void inputCookie(HttpServletRequest request, HttpServletResponse response) {
-		response.addCookie(new Cookie("log", this.customer.getLogin()));
-		response.addCookie(new Cookie("passw", ((Customer)this.customer).getPassword()));
-	}
+	/*private void inputCookie(HttpServletRequest request, HttpServletResponse response, User customer) {
+		response.addCookie(new Cookie("log", customer.getLogin()));
+		response.addCookie(new Cookie("passw", ((Customer)customer).getPassword()));
+	}*/
 }

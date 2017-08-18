@@ -8,6 +8,7 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 
 import by.htp.travelserviceWEB.dao.CustomerDao;
 import by.htp.travelserviceWEB.entity.Customer;
+import by.htp.travelserviceWEB.entity.User;
 import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
@@ -64,7 +65,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	@Override
 	public Customer makeCustomer(CustomerTO customerTO) throws MySQLIntegrityConstraintViolationException{	
-		Customer customer = new Customer();
+		Customer customer = new Customer(customerTO);
 		Insert insert = null;
 		try {
 			insert = new QueryBuilder().insert(customerTO).getQuery();
@@ -91,8 +92,6 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public Customer updateAccountCustomer(Customer customer) throws MySQLIntegrityConstraintViolationException {
-
-		//"UPDATE `travelservice`.`customer` SET `password`=?, `name`=?, `surname`=?, `gender`=?, `birthday`=?, `passport`=?, `email`=?, `phone_driver`=?, `driver_licence`=? WHERE `id_customer`=?;");
 		try {
 			Update update = new QueryBuilder().update(customer).getQuery();
 			
