@@ -1,13 +1,11 @@
 package by.htp.travelserviceWEB.commander;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import by.htp.travelserviceWEB.entity.Customer;
 import by.htp.travelserviceWEB.entity.User;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.service.CustomerService;
@@ -33,8 +31,8 @@ public final class LogInAction implements CommandAction, InputCookie {
 		CustomerTOLP customerTOLP = (CustomerTOLP) newInstance(request, new CustomerTOLP());	
 		
 		if(!Validator.checkForCorrentInputDataAuthoriseUser(customerTOLP)) {
-			page = "jsp/log_in_page.jsp";
-			request.setAttribute("msg", "Incorrect data entry.");
+			page = PAGE_LOG_IN;
+			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry.");
 			return page;
 		} else 
 			customerTOLP.setPassword(EncryptionFdl.encrypt(customerTOLP.getPassword()));
@@ -50,7 +48,7 @@ public final class LogInAction implements CommandAction, InputCookie {
 			user = customerService.authoriseAdmin(customerTOLP);
 			if (user == null) {
 				request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
-				page = "jsp/log_in_page.jsp";
+				page = PAGE_LOG_IN;
 				return page;
 			}
 		} else {
@@ -59,7 +57,7 @@ public final class LogInAction implements CommandAction, InputCookie {
 		}
 		httpSession.setAttribute("user", user);
 		page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
-		httpSession.setAttribute("originalPage", null);
+		httpSession.setAttribute(ORIGINAL_PAGE, null);
 		log.info("Log in " + getRoleName(user) + " " + customerTOLP.getLogin());
 		//request.setAttribute("user", httpSession.getAttribute("user"));
 		return page;
