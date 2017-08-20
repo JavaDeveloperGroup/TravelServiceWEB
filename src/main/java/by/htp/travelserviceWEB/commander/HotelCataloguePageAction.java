@@ -1,6 +1,7 @@
 package by.htp.travelserviceWEB.commander;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -36,6 +37,7 @@ public class HotelCataloguePageAction implements CommandAction {
 		new FetchRoomAction().execute(request, response);
 		
 		List<Entity> list = apartmentService.fillingListByTheApartments(new Apartment());
+		//List l = Collections.sort(list, (Entity a, Entity b) -> b.compareTo(a));
 		request.setAttribute("APARTMENT_LIST", list);
 		
 		return page;

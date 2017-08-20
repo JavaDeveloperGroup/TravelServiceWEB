@@ -3,6 +3,8 @@ package by.htp.travelserviceWEB.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import static by.htp.travelserviceWEB.util.ConstantValue.*;
+
 public final class ReturnToTheOriginalPage {
 
 	private ReturnToTheOriginalPage() {	}
@@ -10,17 +12,17 @@ public final class ReturnToTheOriginalPage {
 	public static String getOriginalPage(String nameCommandFromOriginalPage, HttpServletRequest request) {
 		String page;
 		HttpSession httpSession = request.getSession();
-		String nameCommandFromSession = (String) httpSession.getAttribute("originalPage");
+		String nameCommandFromSession = (String) httpSession.getAttribute(ORIGINAL_PAGE);
 		if (nameCommandFromSession != null) {
 			if (!nameCommandFromSession.matches(".*(log_out).*")) {
 				page = nameCommandFromSession;
 			} else
-				page = "jsp/home_page.jsp";
+				page = PAGE_HOME;
 		} else if (nameCommandFromOriginalPage.matches(".*(command).*")) {
 			page = new String(
 					new StringBuffer().append("jsp/").append(nameCommandFromOriginalPage.substring(55)).append(".jsp"));
 		} else
-			page = "jsp/home_page.jsp";
+			page = PAGE_HOME;
 		return page;
 	}
 

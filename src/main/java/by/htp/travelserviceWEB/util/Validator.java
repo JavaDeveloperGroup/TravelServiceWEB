@@ -20,6 +20,8 @@ import by.htp.travelserviceWEB.entity.dto.CustomerTOUpdate;
 
 public class Validator {
 	
+	private static final String FORMAT = ("yyyy-MM-dd");
+	
 	private Validator(){}
 	
 	private static final String LOGIN_REGEX = "[A-z0-9]{3,20}";
@@ -93,7 +95,7 @@ public class Validator {
     	long birthTimeMillis = 0;
 		long todayTimeMillis = 0;
     	
-    	SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+    	SimpleDateFormat formater = new SimpleDateFormat(FORMAT);
 		
 		try {
 			birthTimeMillis = formater.parse(birthday).getTime();

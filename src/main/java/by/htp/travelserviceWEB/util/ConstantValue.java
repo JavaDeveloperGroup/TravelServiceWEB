@@ -11,15 +11,17 @@ public final class ConstantValue {
 	
 	public static final String REQUEST_PARAM_ACTION = "command";
 	
-	public static final String PAGE_CATALOG_HOTEL = "/catalog_hotel.jsp";
-	public static final String PAGE_CATALOG_AUTO = "/catalog_auto.jsp";
-	public static final String PAGE_CATALOG_TOUR = "/catalog_tour.jsp";
+	public static final String PAGE_CATALOG_HOTEL = "jsp/catalog_hotel.jsp";
+	public static final String PAGE_CATALOG_AUTO = "jsp/catalog_auto.jsp";
+	public static final String PAGE_CATALOG_TOUR = "jsp/catalog_tour.jsp";
 	public static final String PAGE_HOME = "jsp/home_page.jsp";
+	public static final String PAGE_LOG_IN = "jsp/log_in_page.jsp";
 	public static final String SESSION_ATTRIBUTE_USER = "user";
 	public static final String REQUEST_ATTRIBUTE_MSG = "msg";
+	public static final String ORIGINAL_PAGE = "originalPage";
 
 	public static final Map<String, List<String>> allListsParameters = new ConcurrentHashMap<String, List<String>>();
-	//private static final List<String> listOfParametersForSignUp = new LinkedList<>();
+	
 	static {
 		List<String> parametersForSignUp = new LinkedList<>();
 		parametersForSignUp.add("login");		
@@ -35,14 +37,14 @@ public final class ConstantValue {
 		parametersForSignUp.add("id_role");
 		allListsParameters.put("customerto", parametersForSignUp);
 	}
-	//public static final List<String> listOfParametersForLogIn = new LinkedList<>();
+	
 	static {
 		List<String> parametersForLogIn = new LinkedList<>();
 		parametersForLogIn.add("login");		
 		parametersForLogIn.add("password");
 		allListsParameters.put("customertolp", parametersForLogIn);
 	}
-	//public static final List<String> listOfParametersForUpdateData = new LinkedList<>();
+	
 	static {	
 		List<String> parametersForUpdateData = new LinkedList<>();
 		parametersForUpdateData.add("new_password");
