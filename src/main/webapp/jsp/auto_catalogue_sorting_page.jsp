@@ -109,7 +109,7 @@
 						</div>
 					</nav>
 				</aside>
-				<di class="table">
+				<div class="table">
 					<form action="${pageContext.request.contextPath}/Controller"
 						method="GET">
 						<input type="hidden" name="command" value="auto_make_order">
@@ -117,12 +117,12 @@
 							<table>
 								<tr>
 									<th id="ckeck">
-									<th id="photo">PHOTO</th>
-									<th class="col1">MODEL & BODY TYPE & YEAR</th>
-									<th class="col2">CHARACTERISTIC</th>
-									<th class="col3">LOCATION</th>
-									<th class="col3">STATUS</th>
-									<th class="col5">PRICE, $</th>
+									<th id="photo"></th>
+									<th class="col1"></th>
+									<th class="col2"></th>
+									<th class="col3"></th>
+									<th class="col3"></th>
+									<th class="col5"></th>
 								</tr>
 								<c:forEach items="${rentAuto_list}" var="i">
 									<tr>
@@ -152,7 +152,7 @@
 									</tr>
 								</c:forEach>
 							</table>
-							<div style="text-align: center">
+							<div style="text-align: center; border-top-width: 20px;">
 								<input value="ORDER" type="submit">
 							</div>
 						</div>

@@ -65,12 +65,12 @@
 							<table>
 								<tr>
 									<th id="ckeck">
-									<th id="photo">PHOTO</th>
-									<th class="col1">HOTEL</th>
-									<th class="col2">APARTMENT</th>
-									<th class="col3">&#9733</th>
-									<th class="col4">NUMBER OF PERSONS</th>
-									<th class="col5">PRICE, $</th>
+									<th id="photo"></th>
+									<th class="col1"></th>
+									<th class="col2"></th>
+									<th class="col3"></th>
+									<th class="col4"></th>
+									<th class="col5"></th>
 								</tr>
 							
 								<c:forEach items="${APARTMENT_LIST}" var="a">
@@ -84,13 +84,13 @@
 										<td>${room_map.get(a.getRoomId()).toStringTV()} <br> 
 											${room_map.get(a.getRoomId()).toStringBalcony()} <br> 
 											${room_map.get(a.getRoomId()).toStringConditioner()}</td>
-										<td>${hotel_map.get(a.getHotelId()).getStars()}</td>
-										<td>${a.getRoomCapacity()}</td>
+										<td>${hotel_map.get(a.getHotelId()).getStars()} &#10026</td>
+										<td>${a.getRoomCapacity()} &#9786</td>
 										<td>${a.getPrice()}</td>
 									</tr>
 								</c:forEach>
 							</table>
-							<div style="text-align: center">
+							<div style="text-align: center; border-top-width: 20px;">
 								<input value="ORDER" type="submit">
 							</div>
 						</div>

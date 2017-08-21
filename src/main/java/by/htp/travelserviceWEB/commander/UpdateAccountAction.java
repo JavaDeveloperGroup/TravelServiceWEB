@@ -48,7 +48,7 @@ public class UpdateAccountAction implements CommandAction, InputCookie {
 		String passwordRepeat = request.getParameter("password_repeat");
 		
 		if (oldPassword.equals(((Customer)customer).getPassword())) {
-			if (!Validator.checkForCorrentInputDataCustomer(customerTOUpdate, passwordRepeat)) {
+			if (!Validator.dataRegistration(customerTOUpdate, passwordRepeat)) {
 				page = "jsp/update_account_page.jsp";
 				request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry.");
 				return page;

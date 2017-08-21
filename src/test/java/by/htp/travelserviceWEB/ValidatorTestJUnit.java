@@ -50,7 +50,7 @@ public class ValidatorTestJUnit {
 	@Test (timeout = 500)
 	public void validAllDataField() throws ServletException, IOException {
 		CustomerTO сustomerTO = new CustomerTO(login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicence, roleId);
-		assertEquals(true, Validator.checkForCorrentInputDataCustomer(сustomerTO, repeatPassword));
+		assertEquals(true, Validator.dataRegistration(сustomerTO, repeatPassword));
 	}
 	
 	@Test (timeout = 500)
@@ -66,7 +66,7 @@ public class ValidatorTestJUnit {
 		phoneNumber = "";
 		driverLicence = "";
 		CustomerTO сustomerTO = new CustomerTO(login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicence, roleId);
-		assertEquals(true, Validator.checkForCorrentInputDataCustomer(сustomerTO, repeatPassword));
+		assertEquals(true, Validator.dataRegistration(сustomerTO, repeatPassword));
 	}
 	
 	//@Ignore
@@ -74,13 +74,13 @@ public class ValidatorTestJUnit {
 	public void notValidEmailField() throws ServletException, IOException {
 		email = "popovich@a1qa";
 		CustomerTO сustomerTO = new CustomerTO(login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicence, roleId);
-		assertEquals(true, Validator.checkForCorrentInputDataCustomer(сustomerTO, repeatPassword));
+		assertEquals(true, Validator.dataRegistration(сustomerTO, repeatPassword));
 	}
 	
 	@Test (timeout = 500)
 	public void notValidPasswField() throws ServletException, IOException {
 		password = "fidelio1Q";
 		CustomerTO сustomerTO = new CustomerTO(login, password, name, surname, gender, birthday, passport, email, phoneNumber, driverLicence, roleId);
-		assertEquals(true, Validator.checkForCorrentInputDataCustomer(сustomerTO, repeatPassword));
+		assertEquals(true, Validator.dataRegistration(сustomerTO, repeatPassword));
 	}
 }
