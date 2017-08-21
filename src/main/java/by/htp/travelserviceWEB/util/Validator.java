@@ -48,7 +48,7 @@ public class Validator {
      * @throws ServletException 
      */
     
-    public static boolean checkForCorrentInputDataCustomer(Entity entity, String repeatPassword) 
+    public static boolean dataRegistration(Entity entity, String repeatPassword) 
     		throws ServletException, IOException {
     	
     	if(entity instanceof CustomerTO) {
@@ -110,7 +110,7 @@ public class Validator {
 			return true;
 	}
     
-    public static boolean checkForCorrentInputDataAuthoriseUser(CustomerTOLP customerTOLP) {
+    public static boolean dataAuthorisation(CustomerTOLP customerTOLP) {
     	if (null != customerTOLP.getLogin() && null != customerTOLP.getPassword())
     		return Pattern.matches(LOGIN_REGEX, customerTOLP.getLogin())
     				&& Pattern.matches(PASSWORD_REGEX, customerTOLP.getPassword()); 

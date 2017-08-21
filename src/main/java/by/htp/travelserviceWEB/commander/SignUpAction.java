@@ -41,7 +41,7 @@ public class SignUpAction implements CommandAction, InputCookie {
 
 		String passwordRepeat = request.getParameter("password_repeat");
 		
-		if (!Validator.checkForCorrentInputDataCustomer(customerTO, passwordRepeat)) {
+		if (!Validator.dataRegistration(customerTO, passwordRepeat)) {
 			page = "jsp/sign_up_page.jsp";
 			request.setAttribute("msg", "Incorrect data entry.");
 			return page;

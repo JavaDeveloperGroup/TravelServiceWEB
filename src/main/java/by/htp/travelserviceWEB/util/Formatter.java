@@ -122,7 +122,7 @@ public final class Formatter {
         int i = 0;
         for (Map.Entry<String, Object> column : columnsAndValues.entrySet()) {
             i++;
-            //String nameOfCallingClass = Thread.currentThread().getContextClassLoader();
+            
             if (i > startIndex(entity) && i < columnsAndValues.size()) {
                 builder.append(column.getKey()).append(", ");
             } else if (i == columnsAndValues.size()) {
@@ -305,7 +305,7 @@ public final class Formatter {
 	
 	public static List<Entity> extractionEntities(Entity entity) {
 		Select select = new QueryBuilder().select(entity).all();
-		//System.out.println(entity.getClass().getSimpleName() + " : " + select.toString());
+		
 		ResultSet rs = null;
 		List<Entity> list = null;
 
@@ -321,7 +321,7 @@ public final class Formatter {
 	
 	public static Map<Integer, Entity> extractionEntitiesInMap(Entity entity) {
 		Select select = new QueryBuilder().select(entity).all();
-		//System.out.println(entity.getClass().getSimpleName() + " : " + select.toString());
+		
 		ResultSet rs = null;
 		Map<Integer, Entity> map = null;
 

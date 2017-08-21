@@ -30,7 +30,7 @@ public final class LogInAction implements CommandAction, InputCookie {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {	
 		CustomerTOLP customerTOLP = (CustomerTOLP) newInstance(request, new CustomerTOLP());	
 		
-		if(!Validator.checkForCorrentInputDataAuthoriseUser(customerTOLP)) {
+		if(!Validator.dataAuthorisation(customerTOLP)) {
 			page = PAGE_LOG_IN;
 			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry.");
 			return page;
@@ -59,12 +59,7 @@ public final class LogInAction implements CommandAction, InputCookie {
 		page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
 		httpSession.setAttribute(ORIGINAL_PAGE, null);
 		log.info("Log in " + getRoleName(user) + " " + customerTOLP.getLogin());
-		//request.setAttribute("user", httpSession.getAttribute("user"));
+		
 		return page;
 	}
-	
-	/*private void inputCookie(HttpServletRequest request, HttpServletResponse response, User user) {
-		response.addCookie(new Cookie("log", user.getLogin()));
-		response.addCookie(new Cookie("passw", ((Customer)user).getPassword()));
-	}*/
 }
