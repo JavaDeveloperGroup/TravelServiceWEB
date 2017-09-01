@@ -21,45 +21,33 @@ public final class LogInAction implements CommandAction, InputCookie {
 	
 	private static final Logger log = Logger.getLogger(LogInAction.class);
 	private CustomerService customerService;
-	private String page;;
 	
 	public LogInAction() {
 		customerService = CustomerServiceImpl.getInstance();
 	}
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) {	
-		CustomerTOLP customerTOLP = (CustomerTOLP) newInstance(request, new CustomerTOLP());	
-		
-		if(!Validator.dataAuthorisation(customerTOLP)) {
-			page = PAGE_LOG_IN;
-			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry.");
-			return page;
-		} else 
-			customerTOLP.setPassword(EncryptionFdl.encrypt(customerTOLP.getPassword()));
-			return authorisationUser(request, response, customerTOLP);
-	}
-	
-	private String authorisationUser(HttpServletRequest request, HttpServletResponse response, CustomerTOLP customerTOLP) {
 		HttpSession httpSession = request.getSession();
-
+		CustomerTOLP customerTOLP = (CustomerTOLP) newInstance(request, new CustomerTOLP());	
+		if(!Validator.dataAuthorisation(customerTOLP))	{
+			request.setAttribute(REQUEST_ATTRIBUTE_MSG, "Incorrect data entry.");
+			return PAGE_LOG_IN;
+		}
+		customerTOLP.setPassword(EncryptionFdl.encrypt(customerTOLP.getPassword()));
 		User user = customerService.authoriseCustomer(customerTOLP);
-
-		if (user == null) {
+		if(user == null) {
 			user = customerService.authoriseAdmin(customerTOLP);
-			if (user == null) {
-				request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login.");
-				page = PAGE_LOG_IN;
-				return page;
+			if(user == null) {
+				request.setAttribute(REQUEST_ATTRIBUTE_MSG, "There is no user with such login or password.");	
+				return PAGE_LOG_IN;
 			}
 		} else {
-			// input data in Cookie
-			createCookie(request, response, user);		
+			//input data in Cookie
+			createCookie(request, response, user);
 		}
 		httpSession.setAttribute("user", user);
-		page = ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
 		httpSession.setAttribute(ORIGINAL_PAGE, null);
 		log.info("Log in " + getRoleName(user) + " " + customerTOLP.getLogin());
-		
-		return page;
+		return ReturnToTheOriginalPage.getOriginalPage(request.getHeader("referer"), request);
 	}
 }

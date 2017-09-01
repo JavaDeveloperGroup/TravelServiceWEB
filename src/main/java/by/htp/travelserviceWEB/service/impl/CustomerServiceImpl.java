@@ -1,5 +1,10 @@
 package by.htp.travelserviceWEB.service.impl;
 
+import static by.htp.travelserviceWEB.util.ConstantValue.*;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import by.htp.travelserviceWEB.dao.CustomerDao;
@@ -9,6 +14,8 @@ import by.htp.travelserviceWEB.entity.dto.AdminTOWP;
 import by.htp.travelserviceWEB.entity.dto.CustomerTO;
 import by.htp.travelserviceWEB.entity.dto.CustomerTOLP;
 import by.htp.travelserviceWEB.service.CustomerService;
+import by.htp.travelserviceWEB.util.EncryptionFdl;
+import by.htp.travelserviceWEB.util.Validator;
 
 public class CustomerServiceImpl implements CustomerService {
 	
@@ -27,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer authoriseCustomer(CustomerTOLP customerTOLP) {
+	public Customer authoriseCustomer(CustomerTOLP customerTOLP) {		
 		return customerDao.fetchCustomer(customerTOLP);
 	}
 

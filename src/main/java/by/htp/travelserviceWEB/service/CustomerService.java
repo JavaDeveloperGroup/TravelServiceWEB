@@ -1,5 +1,8 @@
 package by.htp.travelserviceWEB.service;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import by.htp.travelserviceWEB.entity.Customer;

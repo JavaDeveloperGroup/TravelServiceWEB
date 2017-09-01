@@ -24,7 +24,6 @@ public final class CommandFilter extends AbstractFilter {
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws IOException, ServletException {
 		final String MESSAGE = "No access!";
-
 		String command = ((HttpServletRequest) servletRequest).getParameter(REQUEST_PARAM_ACTION);
 		HttpSession httpSession = ((HttpServletRequest) servletRequest).getSession();
 		User user = (User) httpSession.getAttribute(SESSION_ATTRIBUTE_USER);
@@ -32,7 +31,6 @@ public final class CommandFilter extends AbstractFilter {
 			chain.doFilter(servletRequest, servletResponse);
 		} else {
 			((HttpServletRequest) servletRequest).setAttribute(REQUEST_ATTRIBUTE_MSG, MESSAGE);
-			((HttpServletRequest) servletRequest).setAttribute("us", user);
 			((HttpServletResponse) servletResponse).sendRedirect(PAGE_HOME);
 		}
 	}

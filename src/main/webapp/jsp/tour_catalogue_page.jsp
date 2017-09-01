@@ -100,7 +100,7 @@
 									</tr>
 								</c:forEach>
 							</table>
-							<div style="text-align: center; border-top-width: 20px;">
+							<div style="text-align: center;">
 								<input value="ORDER" type="submit">
 							</div>
 						</div>

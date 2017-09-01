@@ -29,13 +29,12 @@ public class Controller extends HttpServlet {
 	}
 
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String command = request.getParameter("command");
 		String page = "index.jsp";
 		if (command != null) {
 			CommandAction commandAction = EnumCommandAction.valueOf(command.toUpperCase()).getCommantAction();
 			page = commandAction.execute(request, response);
-		}		
+		}
 		RequestDispatcher disp = request.getRequestDispatcher(page);
 		disp.forward(request, response);
 	}
